@@ -15,20 +15,20 @@ import logoSymbol from '~/assets/images/logos/symbol.png';
       <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading mb-8">
         Astro Image Component Test
       </h1>
-      
+
       <div class="prose prose-md lg:prose-xl dark:prose-invert max-w-none">
         <h2>Single Responsive Image</h2>
-        <Image 
-          src={logoSymbol} 
-          alt="CTO4.AI logo symbol" 
+        <Image
+          src={logoSymbol}
+          alt="CTO4.AI logo symbol"
           widths={[200, 400, 800]}
           sizes="(max-width: 768px) 200px, (max-width: 1200px) 400px, 800px"
           class="mx-auto my-8"
         />
 
         <h2>Picture Component with Multiple Formats</h2>
-        <Picture 
-          src={logoSymbol} 
+        <Picture
+          src={logoSymbol}
           alt="CTO4.AI logo symbol with multiple formats"
           widths={[200, 400, 800]}
           formats={['avif', 'webp', 'png']}
@@ -40,8 +40,8 @@ import logoSymbol from '~/assets/images/logos/symbol.png';
         <img src="/favicon-source.png" alt="Favicon source" class="mx-auto my-8" width="200" />
 
         <p>
-          This demonstrates native Astro Image components working outside of content collections.
-          This bypasses the MDX content collection processing issue.
+          This demonstrates native Astro Image components working outside of content collections. This bypasses the MDX
+          content collection processing issue.
         </p>
       </div>
     </div>
