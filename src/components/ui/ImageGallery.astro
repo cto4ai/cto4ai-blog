@@ -1,0 +1,89 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { Image } from 'astro:assets';
+
+interface Props {
+  images: string[];
+  alt?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  class?: string;
+}
+
+const { images, alt = '', size = 'lg', class: className = '' } = Astro.props;
+
+const sizeClasses = {
+  sm: 'max-w-sm',
+  md: 'max-w-md', 
+  lg: 'max-w-lg',
+  xl: 'max-w-xl',
+  '2xl': 'max-w-2xl'
+};
+
+const gridClasses = images.length === 2 
+  ? 'grid-cols-1 sm:grid-cols-2' 
+  : images.length === 3
+  ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+  : 'grid-cols-1 sm:grid-cols-2';
+
+// Import all images dynamically
+const imageModules = await Promise.all(
+  images.map(async (img) => {
+    try {
+      const imageModule = await import(`../../assets/images/blog/chatgpt-4v/${img}`);
+      return { src: imageModule.default, filename: img };
+    } catch (error) {
+      console.error(`Failed to load image: ${img}`, error);
+      return null;
+    }
+  })
+);
+
+const validImages = imageModules.filter(Boolean);
+---
+
+<div class={`image-gallery grid gap-4 ${gridClasses} ${sizeClasses[size]} mx-auto ${className}`}>
+  {validImages.map((imgData, index) => (
+    <a 
+      href={imgData.src.src}
+      class="glightbox block"
+      data-gallery="gallery"
+      data-title={alt || `Image ${index + 1}`}
+    >
+      <Image 
+        src={imgData.src}
+        alt={alt || `Image ${index + 1}`}
+        class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+        loading="lazy"
+        width={800}
+        height={600}
+      />
+    </a>
+  ))}
+</div>
+
+<script>
+  import GLightbox from 'glightbox';
+  import 'glightbox/dist/css/glightbox.min.css';
+
+  // Initialize GLightbox
+  const lightbox = GLightbox({
+    touchNavigation: true,
+    loop: false,
+    autoplayVideos: true
+  });
+</script>
+
+<style>
+  .image-gallery {
+    margin: 2rem auto;
+  }
+  
+  .glightbox {
+    display: block;
+    transition: transform 0.2s ease;
+  }
+  
+  .glightbox:hover {
+    transform: scale(1.02);
+  }
+</style>

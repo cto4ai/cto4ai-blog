@@ -49,8 +49,8 @@ const metadataDefinition = () =>
 const postsCollection = defineCollection({
   loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/posts' }),
   schema: z.object({
-    publishDate: z.date().optional(),
-    updateDate: z.date().optional(),
+    publishDate: z.coerce.date().optional(),
+    updateDate: z.coerce.date().optional(),
     draft: z.boolean().optional(),
 
     title: z.string(),
@@ -70,8 +70,8 @@ const postsCollection = defineCollection({
 const microCollection = defineCollection({
   loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/micro' }),
   schema: z.object({
-    publishDate: z.date().optional(),
-    updateDate: z.date().optional(),
+    publishDate: z.coerce.date().optional(),
+    updateDate: z.coerce.date().optional(),
     draft: z.boolean().optional(),
 
     title: z.string(),
@@ -86,8 +86,8 @@ const microCollection = defineCollection({
 const elsewhereCollection = defineCollection({
   loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/elsewhere' }),
   schema: z.object({
-    publishDate: z.date().optional(),
-    updateDate: z.date().optional(),
+    publishDate: z.coerce.date().optional(),
+    updateDate: z.coerce.date().optional(),
     draft: z.boolean().optional(),
 
     title: z.string(),
@@ -103,8 +103,8 @@ const elsewhereCollection = defineCollection({
 const quoteCollection = defineCollection({
   loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/quote' }),
   schema: z.object({
-    publishDate: z.date().optional(),
-    updateDate: z.date().optional(),
+    publishDate: z.coerce.date().optional(),
+    updateDate: z.coerce.date().optional(),
     draft: z.boolean().optional(),
 
     title: z.string(),

@@ -1,0 +1,80 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: string;
+  alt?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  class?: string;
+}
+
+const { src, alt = '', size = 'lg', class: className = '' } = Astro.props;
+
+const sizeClasses = {
+  sm: 'max-w-sm',
+  md: 'max-w-md', 
+  lg: 'max-w-lg',
+  xl: 'max-w-xl',
+  '2xl': 'max-w-2xl'
+};
+
+// Import the image dynamically
+let imageModule;
+try {
+  imageModule = await import(`../../assets/images/blog/chatgpt-4v/${src}`);
+} catch (error) {
+  console.error(`Failed to load image: ${src}`, error);
+  imageModule = null;
+}
+---
+
+{imageModule && (
+  <div class={`single-image ${sizeClasses[size]} mx-auto ${className}`}>
+    <a 
+      href={imageModule.default.src}
+      class="glightbox block"
+      data-gallery="gallery"
+      data-title={alt}
+    >
+      <Image 
+        src={imageModule.default}
+        alt={alt}
+        class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+        loading="lazy"
+        width={800}
+        height={600}
+      />
+    </a>
+  </div>
+)}
+
+<script>
+  import GLightbox from 'glightbox';
+  import 'glightbox/dist/css/glightbox.min.css';
+
+  // Initialize GLightbox (will be shared across all instances)
+  if (typeof window !== 'undefined' && !window.glightboxInitialized) {
+    const lightbox = GLightbox({
+      touchNavigation: true,
+      loop: false,
+      autoplayVideos: true
+    });
+    window.glightboxInitialized = true;
+  }
+</script>
+
+<style>
+  .single-image {
+    margin: 2rem auto;
+  }
+  
+  .glightbox {
+    display: block;
+    transition: transform 0.2s ease;
+  }
+  
+  .glightbox:hover {
+    transform: scale(1.02);
+  }
+</style>
