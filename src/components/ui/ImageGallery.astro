@@ -7,9 +7,10 @@ interface Props {
   alt?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   class?: string;
+  postDir?: string;
 }
 
-const { images, alt = '', size = 'lg', class: className = '' } = Astro.props;
+const { images, alt = '', size = 'lg', class: className = '', postDir = 'chatgpt-4v' } = Astro.props;
 
 const sizeClasses = {
   sm: 'max-w-sm',
@@ -29,7 +30,7 @@ const gridClasses = images.length === 2
 const imageModules = await Promise.all(
   images.map(async (img) => {
     try {
-      const imageModule = await import(`../../assets/images/blog/chatgpt-4v/${img}`);
+      const imageModule = await import(`../../assets/images/blog/${postDir}/${img}`);
       return { src: imageModule.default, filename: img };
     } catch (error) {
       console.error(`Failed to load image: ${img}`, error);
@@ -65,12 +66,27 @@ const validImages = imageModules.filter(Boolean);
   import GLightbox from 'glightbox';
   import 'glightbox/dist/css/glightbox.min.css';
 
-  // Initialize GLightbox
-  const lightbox = GLightbox({
-    touchNavigation: true,
-    loop: false,
-    autoplayVideos: true
-  });
+  function initLightbox() {
+    // Destroy any existing instances first
+    if (window.glightboxInstance) {
+      try {
+        window.glightboxInstance.destroy();
+      } catch (e) {}
+    }
+    
+    // Create new instance
+    window.glightboxInstance = GLightbox({
+      touchNavigation: true,
+      loop: false,
+      autoplayVideos: true,
+    });
+  }
+
+  // Initialize immediately
+  initLightbox();
+
+  // Re-initialize on navigation
+  document.addEventListener('astro:after-swap', initLightbox);
 </script>
 
 <style>
