@@ -1,6 +1,6 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: CTO4.AI
+  site: 'https://cto4.ai'
   base: '/'
   trailingSlash: false
 
@@ -9,22 +9,22 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: CTO4.AI
+    template: '%s — CTO4.AI'
+  description: "AI-focused insights and expertise for technology leaders. Practical guidance for CTOs navigating the AI transformation."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: CTO4.AI
     images:
       - url: '~/assets/images/default.png'
         width: 1200
         height: 628
     type: website
   twitter:
-    handle: '@arthelokyo'
-    site: '@arthelokyo'
+    handle: '@Jackivers'
+    site: '@Jackivers'
     cardType: summary_large_image
 
 i18n:
