@@ -11,7 +11,7 @@ metadata:
   title:
     default: CTO4.AI
     template: '%s — CTO4.AI'
-  description: "AI-focused insights and expertise for technology leaders. Practical guidance for CTOs navigating the AI transformation."
+  description: 'AI-focused insights and expertise for technology leaders. Practical guidance for CTOs navigating the AI transformation.'
   robots:
     index: true
     follow: true
