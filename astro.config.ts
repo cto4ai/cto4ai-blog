@@ -17,6 +17,18 @@ import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehype
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Polyfill URL.canParse for Vite bundling context
+if (typeof URL.canParse !== 'function') {
+  URL.canParse = (input, base) => {
+    try {
+      new URL(input, base);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+}
+
 const hasExternalScripts = false;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];

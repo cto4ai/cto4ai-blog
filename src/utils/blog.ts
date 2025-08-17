@@ -40,24 +40,25 @@ const generatePermalink = async ({
     .join('/');
 };
 
-const getNormalizedPost = async (post: CollectionEntry<'posts'>): Promise<Post> => {
+const getNormalizedPost = async (
+  post: CollectionEntry<'posts'> | CollectionEntry<'micro'> | CollectionEntry<'elsewhere'> | CollectionEntry<'quote'>
+): Promise<Post> => {
   const { id, data } = post;
   const { Content, remarkPluginFrontmatter } = await render(post);
 
-  const {
-    publishDate: rawPublishDate = new Date(),
-    updateDate: rawUpdateDate,
-    title,
-    excerpt,
-    image,
-    tags: rawTags = [],
-    category: rawCategory,
-    author,
-    draft = false,
-    metadata = {},
-  } = data;
+  // Handle different content collection schemas
+  const rawPublishDate = data.publishDate || new Date();
+  const rawUpdateDate = data.updateDate;
+  const title = data.title;
+  const excerpt = 'excerpt' in data ? data.excerpt : undefined;
+  const image = 'image' in data ? data.image : undefined;
+  const rawTags = 'tags' in data ? data.tags || [] : [];
+  const rawCategory = 'category' in data ? data.category : undefined;
+  const author = 'author' in data ? data.author : undefined;
+  const draft = data.draft || false;
+  const metadata = data.metadata || {};
 
-  const slug = cleanSlug(id); // cleanSlug(rawSlug.split('/').pop());
+  const slug = cleanSlug(id);
   const publishDate = new Date(rawPublishDate);
   const updateDate = rawUpdateDate ? new Date(rawUpdateDate) : undefined;
 
@@ -101,8 +102,17 @@ const getNormalizedPost = async (post: CollectionEntry<'posts'>): Promise<Post> 
 };
 
 const load = async function (): Promise<Array<Post>> {
-  const posts = await getCollection('posts');
-  const normalizedPosts = posts.map(async (post) => await getNormalizedPost(post));
+  // Get all content types for unified blog routing
+  const [posts, micro, elsewhere, quote] = await Promise.all([
+    getCollection('posts'),
+    getCollection('micro'),
+    getCollection('elsewhere'),
+    getCollection('quote'),
+  ]);
+
+  // Combine all content types with normalized processing
+  const allContent = [...posts, ...micro, ...elsewhere, ...quote];
+  const normalizedPosts = allContent.map(async (post) => await getNormalizedPost(post));
 
   const results = (await Promise.all(normalizedPosts))
     .sort((a, b) => b.publishDate.valueOf() - a.publishDate.valueOf())
