@@ -12,9 +12,30 @@
 
 #### 1. URL.canParse Compatibility Error
 **Error**: `TypeError: URL.canParse is not a function`
-**Location**: `@astrojs/markdown-remark/dist/remark-collect-images.js:23:15`
+**Locations**: 
+- `@astrojs/markdown-remark/dist/remark-collect-images.js:23:15` (markdown processing)
+- `astro/dist/content/vite-plugin-content-virtual-mod.js:90:29` (content virtual modules)
+- Affects Vite's import analysis plugin when processing content-layer-deferred-modules
 **Impact**: Prevents all MDX content collections from processing
-**Node Version**: Using 20.19.4 (which should support URL.canParse)
+**Node Version**: Using 22.1.0 (URL.canParse available since Node 18.17.0/20.5.0)
+
+**Research Findings**:
+- Not a widely reported Astro 5.13.2 issue based on GitHub/community searches
+- May be related to known image collection issues in Astro's markdown processing
+- Similar to reported issues where Astro's remark-collect-images only processes 'image' and 'imageReference' node types
+- URL.canParse should be available in Node 22.1.0, suggesting potential polyfill or bundling issue
+
+**Reproduction Context**:
+- Occurs during: MDX content collection processing at build/dev time
+- Triggered by: All `.mdx` files in content collections (`src/data/posts/*.mdx`)
+- What works: Image components in regular `.astro` pages function perfectly
+- What fails: Any MDX file processing that involves image collection
+
+**Potential Solutions to Investigate**:
+- Add URL.canParse polyfill to Astro configuration
+- Configure Astro to skip image collection in markdown processing
+- Downgrade @astrojs/markdown-remark to earlier version
+- Use alternative image handling approach for MDX files
 
 #### 2. MDX Content Collections Not Rendering
 **Symptom**: Blog posts show title/metadata but empty prose sections
@@ -88,4 +109,8 @@ This hybrid approach provides the familiarity of Hugo page bundles while leverag
 - Content collections: posts, micro, elsewhere, quote configured
 
 ### 🚨 Critical Issue
-The URL.canParse error must be resolved before MDX content migration can proceed. This appears to be an Astro 5.13.2 bug with Node.js compatibility in the markdown image processing pipeline.
+The URL.canParse error must be resolved before MDX content migration can proceed. This appears to be an isolated compatibility issue between Astro 5.13.2's markdown image processing and the current Node.js environment, despite URL.canParse being officially supported in Node 22.1.0. The issue specifically affects content collections with `.mdx` files, while regular `.astro` pages with Image components work perfectly.
+
+**Urgency**: HIGH - Blocks all blog content migration
+**Impact**: Cannot process any MDX content collections until resolved
+**Workaround**: Continue development with `.astro` pages until solution found
