@@ -76,6 +76,7 @@ const microCollection = defineCollection({
 
     title: z.string(),
     description: z.string().optional(),
+    image: z.string().optional(),
     author: z.string().optional(),
 
     metadata: metadataDefinition(),
@@ -91,6 +92,7 @@ const elsewhereCollection = defineCollection({
 
     title: z.string(),
     description: z.string().optional(),
+    image: z.string().optional(),
     sourceLink: z.string().url().optional(),
     author: z.string().optional(),
 
@@ -107,6 +109,7 @@ const quoteCollection = defineCollection({
 
     title: z.string(),
     description: z.string().optional(),
+    image: z.string().optional(),
     sourceLink: z.string().url().optional(),
     author: z.string().optional(),
     categories: z.array(z.string()).optional(),
