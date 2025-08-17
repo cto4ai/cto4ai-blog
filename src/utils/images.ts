@@ -71,7 +71,6 @@ export const adaptOpenGraphImages = async (
           };
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-implicit-any-catch
         let _image;
 
         if (
