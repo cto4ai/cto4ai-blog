@@ -1,9 +1,24 @@
 ---
 import { SITE } from 'astrowind:config';
+import { Image } from 'astro:assets';
+import logoColor from '~/assets/images/logos/noBgColor.svg';
+import logoWhite from '~/assets/images/logos/noBgWhite.svg';
+import logoBlack from '~/assets/images/logos/noBgBlack.svg';
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
->
-  🚀 {SITE?.name}
-</span>
+<div class="flex items-center">
+  <Image
+    src={logoColor}
+    alt={SITE?.name || 'CTO4.AI'}
+    width={120}
+    height={40}
+    class="h-8 w-auto dark:hidden"
+  />
+  <Image
+    src={logoWhite}
+    alt={SITE?.name || 'CTO4.AI'}
+    width={120}
+    height={40}
+    class="h-8 w-auto hidden dark:block"
+  />
+</div>

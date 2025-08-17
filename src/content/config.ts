@@ -46,8 +46,8 @@ const metadataDefinition = () =>
     })
     .optional();
 
-const postCollection = defineCollection({
-  loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/post' }),
+const postsCollection = defineCollection({
+  loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/posts' }),
   schema: z.object({
     publishDate: z.date().optional(),
     updateDate: z.date().optional(),
@@ -55,9 +55,11 @@ const postCollection = defineCollection({
 
     title: z.string(),
     excerpt: z.string().optional(),
+    description: z.string().optional(),
     image: z.string().optional(),
 
     category: z.string().optional(),
+    categories: z.array(z.string()).optional(),
     tags: z.array(z.string()).optional(),
     author: z.string().optional(),
 
@@ -65,6 +67,60 @@ const postCollection = defineCollection({
   }),
 });
 
+const microCollection = defineCollection({
+  loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/micro' }),
+  schema: z.object({
+    publishDate: z.date().optional(),
+    updateDate: z.date().optional(),
+    draft: z.boolean().optional(),
+
+    title: z.string(),
+    description: z.string().optional(),
+    author: z.string().optional(),
+
+    metadata: metadataDefinition(),
+  }),
+});
+
+const elsewhereCollection = defineCollection({
+  loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/elsewhere' }),
+  schema: z.object({
+    publishDate: z.date().optional(),
+    updateDate: z.date().optional(),
+    draft: z.boolean().optional(),
+
+    title: z.string(),
+    description: z.string().optional(),
+    sourceLink: z.string().url().optional(),
+    author: z.string().optional(),
+
+    metadata: metadataDefinition(),
+  }),
+});
+
+const quoteCollection = defineCollection({
+  loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/quote' }),
+  schema: z.object({
+    publishDate: z.date().optional(),
+    updateDate: z.date().optional(),
+    draft: z.boolean().optional(),
+
+    title: z.string(),
+    description: z.string().optional(),
+    sourceLink: z.string().url().optional(),
+    author: z.string().optional(),
+    categories: z.array(z.string()).optional(),
+    ShowToc: z.boolean().optional(),
+    ShowBreadCrumbs: z.boolean().optional(),
+    hideMeta: z.boolean().optional(),
+
+    metadata: metadataDefinition(),
+  }),
+});
+
 export const collections = {
-  post: postCollection,
+  posts: postsCollection,
+  micro: microCollection,
+  elsewhere: elsewhereCollection,
+  quote: quoteCollection,
 };
