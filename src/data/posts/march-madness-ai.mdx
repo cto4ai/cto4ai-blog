@@ -9,6 +9,9 @@ tags: ["CTO", "AI", "LLM"]
 image: "~/assets/images/posts/blog/ai-with-ball-1.webp"
 ---
 
+import SingleImage from '~/components/ui/SingleImage.astro';
+import ImageGallery from '~/components/ui/ImageGallery.astro';
+
 I've been trying to write a comprehensive, buttoned-up "AI Update," covering all this month's AI developments. But nearly every day, there's been something new that's at least important and sometimes game-changing. So I'm reluctantly giving up on comprehensive, and settling for selective commentary on a few of the more interesting bits. 
 
 ## First, let's define AI ...
@@ -23,6 +26,7 @@ So if AI is not machine thought, what is it? Let me take a rough hack at a defin
 
 That's a lesser achievement than an AI actually thinking; but when you grasp and experience AI augmentation, you may conclude, as I have -- "this changes everything" is not an exaggeration.
 
+<SingleImage src="friendly-ai-helping.webp" alt="Friendly AI Helping" size="2xl" postDir="march-madness-ai" />
 
 
 ## AI acceleration
@@ -41,6 +45,8 @@ Data scientist and open source developer [Simon Willison](https://simonwillison.
 
 I believe Text AI will follow the same "sustained explosion" trajectory of innovation seen in Art AI.
 
+<SingleImage src="slender-ai-2.webp" alt="Slender AI 2" size="2xl" postDir="march-madness-ai" />
+
 
 
 ## Order of magnitude better
@@ -55,6 +61,7 @@ OpenAI demonstrated visual inputs (not yet released), allowing prompts to includ
 
 Check out this example from the [GPT-4 announcement](https://openai.com/research/gpt-4):
 
+<SingleImage src="gpt4-vga-3-panel.png" alt="GPT-4 VGA 3 Panel" size="2xl" postDir="march-madness-ai" />
 
 
 How crazy is that? Other examples include interpreting a business barchart, and solving an engineering test problem (in French!) where a diagram is integral to the question. Mind-blowing.
@@ -66,6 +73,8 @@ Last but not least, GPT-4 delivers an eightfold increase in the size of its prom
 > My training data includes information up until September 2021. I do not have knowledge of events, developments, or advancements that occurred after that date.
 
 But -- with GPT-4 and 32K tokens, we can actually inject newer information ***as part of the prompt*** -- and 25,000 words is a lot of information. OpenAI demoed this, incorporating the post-2021 updated tax code in the prompt and then asking a question that required knowledge of the latest changes. GPT-4 was able to accurately address questions that factored in this updated tax code.
+
+<SingleImage src="better-ai.webp" alt="Better AI" size="2xl" postDir="march-madness-ai" />
 
 
 
@@ -90,7 +99,9 @@ But this week all that changed. First there was "Run a full GPT-3-grade model on
 
 The point here isn't that we'll run production LLMs on our MacBook Pros; it's that, all of a sudden, we're within sight of **running ChatGPT-grade models on a low-cost server** that we cloud-rent or own outright. And of **training our own models** on a reasonable budget. 
 
-And don't underestimate the value of a developer being able to run a serious LLM on their development machine. Hands-on experimentation and prototyping is the top of the new application funnel. 
+And don't underestimate the value of a developer being able to run a serious LLM on their development machine. Hands-on experimentation and prototyping is the top of the new application funnel.
+
+<SingleImage src="slender-ai.webp" alt="Slender AI" size="2xl" postDir="march-madness-ai" /> 
 
 
 
@@ -112,6 +123,8 @@ Over in Cupertino, I suspect that Apple is having its own moments of panic.
 
 I tend to give Apple the benefit of the doubt, to believe that they're playing the long game, that they have a grand strategy, that maybe I'm just not seeing it. That often proves true; consider Apple Watch, where limited early generations led to today's incredible wrist computer / health sensor / emergency detector, in a sizable market that Apple effectively created and now dominates. Long game, grand strategy in action.
 
+<SingleImage src="ai-with-apple.webp" alt="AI With Apple" size="2xl" postDir="march-madness-ai" />
+
 
 
 But this week there were strong indications that Apple's AI mainstay, Siri, is as much of a steaming pile of unmaintainable crap as it has always appeared to be from the outside, and there may be no fixing it. When you [hear descriptions like these](https://www.nytimes.com/2023/03/15/technology/siri-alexa-google-assistant-artificial-intelligence.html), you can smell the mess from a mile away:
@@ -127,4 +140,6 @@ Too much of the news described above is based on closed technology and proprieta
 What we need is the AI equivalent of free / open software -- open, free, community developed trained models. Just add the application and a reasonable dollop of infrastructure, and you've got an offering that's inexpensive to operate and 100% under your control. 
 
 Such work is underway; I've not had time to research it yet but will. I'm also encouraged by Willison's point above, that training our own models is becoming increasingly cost-effective and viable.
+
+<ImageGallery images={["hyper-ai-1.webp", "hyper-ai-3.webp", "hyper-ai-4.webp", "hyper-ai-2.webp"]} postDir="march-madness-ai" size="md" />
 
