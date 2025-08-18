@@ -2,16 +2,10 @@
 title: "Observable Framework Delivers Blazing-fast Data Dashboards"
 description: "An exciting new offering, launched in February, from the team that brought us Observable Notebooks"
 author: "Jack Ivers"
-publishDate: 2024-06-10T00:10:04-05:00
+publishDate: "2024-06-10T00:10:04-05:00"
 draft: false
-categories: ["Technology", "Data"]
-tags: ["Observable", "data visualization", "dashboards", "frameworks"]
 image: "~/assets/images/posts/blog/observable_1.webp"
 ---
-
-import { Image } from 'astro:assets';
-import ImageGallery from '~/components/ui/ImageGallery.astro';
-import SingleImage from '~/components/ui/SingleImage.astro';
 
 ## Stumbled Upon ...
 
@@ -27,7 +21,7 @@ My [Kagi](https://kagi.com/) search returned hits for [Observable Notebooks](htt
 
 So I dropped in over at [ObservableHQ](https://observablehq.com/) to get up to speed on Observable Notebooks---only to find that Observable had changed course. Though Observable Notebooks are still alive and well (and will, I suspect, [get even better](https://talk.observablehq.com/t/announcing-observable-2-0/8744/4), as of February, the company's primary focus has shifted to what they are calling [Observable Framework](https://observablehq.com/framework/). That led me down one final rabbit hole, but a very useful one, as I soon realized that Framework was a perfect fit for one of my fractional CTO client's "data science reporting and dashboard" needs.
 
-<SingleImage src="observable_6.webp" alt="Observable Framework" size="2xl" postDir="observable-framework-blazing-fast" />
+
 
 ## The Need
 
@@ -39,7 +33,7 @@ The non-profit's primary user-facing (farmer-facing!) platform, on the other han
 
 All of this deploys gracefully onto modern AWS infrastructure, and the result is capable of supporting tens of thousands of web and mobile users. Costs are low---tooling costs almost zero---and the result has been highly effective for developers and enabled us to deliver an excellent web and mobile experience for our users.
 
-<SingleImage src="observable_2.webp" alt="Observable Framework Architecture" size="xl" postDir="observable-framework-blazing-fast" />
+
 
 ## We Have Questions
 
@@ -56,11 +50,11 @@ This left me asking a number of questions:
 
 With these questions swirling around in my mind, it was a truly fortuitous moment when I landed on the Observable website and began to get my head around Observable Framework.Because, once I understood it, bang, my entire set of questions were answered, and the solution was beautiful. Thank you [Mike Bostock](https://en.wikipedia.org/wiki/Mike_Bostock) and [team](https://observablehq.com/about).
 
-Observable describes Framework as "solving data's last mile problem." This is a reference to  the telecom world where by far the most expensive part of their network is that last mile, connecting up the actual consumers. For data, Observable is saying, that last mile is getting data onto the screen of the user in need, in a way that is highly useful and actionable---and that this is the hardest problem to solve.
+Observable describes Framework as "solving data’s last mile problem." This is a reference to  the telecom world where by far the most expensive part of their network is that last mile, connecting up the actual consumers. For data, Observable is saying, that last mile is getting data onto the screen of the user in need, in a way that is highly useful and actionable---and that this is the hardest problem to solve.
 
 Eureka! This is it! The last mile problem is exactly what my non-profit was struggling with. And wow, does Framework solve it elegantly.
 
-<SingleImage src="observable_10.webp" alt="Data Last Mile Problem" size="2xl" postDir="observable-framework-blazing-fast" />
+
 
 ## We Have Answers
 
@@ -77,7 +71,7 @@ Let's look at the answers Framework gives us:
 - **Q:** Aren't we reinventing the wheel here---hasn't somebody already figured this out? Isn't there some kind of framework that at least provides a clean separation of concerns between data and presentation?
   - **A:** Yes, someone has figured it out! In Framework, Observable have an exceptionally elegant framework, with clean separation of concerns between data and presentation among its many benefits.
 
-<SingleImage src="observable_7.webp" alt="Framework Benefits" size="2xl" postDir="observable-framework-blazing-fast" />
+
 
 ## Data Layer 1: Data Loaders
 
@@ -85,9 +79,7 @@ In Framework, [Data Loaders](https://observablehq.com/blog/data-loaders-for-the-
 
 Data Loaders can be written the language of your choice: data science languages like R, Python, and Julia, but also JavaScript, TypeScript, Java, Rust, Go, PHP, and even shell scripts. This is huge---let data scientists and developers use their tool of choice, whatever best fits the need. Mix and match at will.
 
-> **Shell Script Data Loader Example**
->
-> Does loading data with a shell script sound crazy? You might be surprised. Here's a one-line Data Loader shell script that downloads recent earthquakes from the USGS in GeoJSON format:
+> **Note:** Does loading data with a shell script sound crazy? You might be surprised. Here's a one-line Data Loader shell script that downloads recent earthquakes from the USGS in GeoJSON format:
 >
 > ```bash
 > curl https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson
@@ -107,9 +99,8 @@ The "lightning-fast" part seems to have appealed to the folks at Observable, who
 
 There's a catch, though: lightning-fast user experiences can't happen if the data's slow. And slow is typical with traditional data warehouse + dataviz / BI tools. Executing complex queries in real time against remote data can take 10s of seconds and sometimes minutes---while the user waits impatiently.
 
-<video controls width="60%" preload="metadata" loop className="mx-auto">
-  <source src="/images/blog/observable-framework-blazing-fast/static_gen_dynamic_dash.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
+<video autoplay muted loop width="60%" style="max-width: 100%">
+  <source src="/videos/static_gen_dynamic_dash.mp4" type="video/mp4" />
 </video>
 
 Well, guess what: those same Data Loaders whose elegant separation of concerns simplify the gathering of data for dynamic dashboards and reports, also solve the slow data problem. Data Loaders do the time-consuming work of querying and collecting data at ***build time***. At ***runtime***, the data is already ***pre-generated, cached, and ready to access in milliseconds***. So thanks to static generation and Data Loaders, Framework is able to deliver a near-instantaneous interactive experience *for data*.
@@ -120,11 +111,11 @@ You may still be having doubts about the idea of a data dashboard that isn't dri
 
 I love these two tips in Observable's excellent [Data Loader documentation](https://observablehq.com/framework/loaders), because they hit the nail on the head around "how fresh does my data need to be?" Tip 1:
 
-<SingleImage src="data_loader_tip1.png" alt="Data Loader Tip 1" size="2xl" postDir="observable-framework-blazing-fast" />
+
 
 I'd paraphrase the first part of this tip as "Dude, if you really want up-to-the-second data, we gotcha covered!" The second part addresses a Framework nuance that I haven't yet mentioned: databases and data warehouses aren't the only source of essential data for dashboards and reports---often times static files from various external sources can be just as essential. For example, in our proof a concept, I needed to plot soil sample locations on maps, for both the entire U.S., and then for individual states. To get the country and state outlines needed as the backdrop for my plots, I just included a publicly-available, 842K static JSON file in my Framework project. The file uses a variant of GeoJSON called [TopoJSON](https://observablehq.com/framework/lib/topojson) and includes outlines of the U.S. itself, along with every state, and every county. [Observable Plot](https://observablehq.com/plot/), which we explore below, understands TopoJSON and easily produces the geographical plot needed. Tip 2:
 
-<SingleImage src="data_loader_tip2.png" alt="Data Loader Tip 2" size="2xl" postDir="observable-framework-blazing-fast" />
+
 
 The second tip addresses a critical supporting tool for Data Loaders and data freshness in Framework: Continuous Deployment. In parallel with the tremendous progress made in static site generation through projects like Hugo, the tooling for Continuous Integration/Continuous Deployment (CI/CD) has radically improved and become ubiquitous. In fact, the two spaces intersect significantly: as an example, I rely on CI/CD tools provided as part of [Cloudflare Pages](https://pages.cloudflare.com/) to automatically redeploy this site, triggered when I push updates the `main` branch of my GitHub repo. CI/CD is all about builds, and as the tip tells us, Continuous Deployment combined with Framework Data Loaders means we can "rebuild data as often as you like, ensuring that data is always up-to-date." [GitHub Actions](https://github.com/features/actions) are probably the most widely-used CI/CD tool, and can automate [Framework builds](https://observablehq.com/framework/deploying) so they happen exactly when we need them too, whether that be time based (e.g. once an hour); event based (the new batch of sales data has been processed); or programmatically---any which way you need.
 
@@ -132,11 +123,11 @@ The second tip addresses a critical supporting tool for Data Loaders and data fr
 
 The central element of Framework's presentation layer is Markdown, which [Observable's documentation](https://observablehq.com/framework/markdown) elegantly describes:
 
-> Markdown is a language for formatting text and content; it's a lightweight, ergonomic alternative (and complement) to HTML.
+> Markdown is a language for formatting text and content; it’s a lightweight, ergonomic alternative (and complement) to HTML.
 
 In a Framework project, each Markdown file represents one page, such as an interactive dashboard or report. Framework extends Markdown in [several powerful ways](https://observablehq.com/framework/markdown):
 
-> **Framework Markdown Extensions**
+> **Framework Markdown Features:**
 >
 > Markdown in Framework extends CommonMark with a handful of features useful for data apps, including reactive JavaScript, HTML, YAML front matter, grids, cards, and notes.
 >
@@ -150,23 +141,23 @@ In a Framework project, each Markdown file represents one page, such as an inter
 
 As we [explore later](#presentation-layer-5-reactivity), Framework's powerful Markdown extensions mean than each Markdown page is equivalent to a full data notebook---actually more powerful than Observable's own Notebooks, which themselves outshine most other such as Jupyter.
 
-<SingleImage src="observable_5.webp" alt="Markdown Extensions" size="2xl" postDir="observable-framework-blazing-fast" />
+
 
 ## Presentation Layer 2: JavaScript
 
 JavaScript in Framework Markdown is like water to fish---everywhere. [From Observable's docs](https://observablehq.com/framework/javascript):
 
-> **JavaScript in Framework**
+> **JavaScript Integration:**
 >
 > Use JavaScript to render charts, inputs, and other dynamic, interactive, and graphical content on the client. JavaScript in Markdown can be expressed either as [fenced code blocks](https://observablehq.com/framework/javascript#fenced-code-blocks) or [inline expressions](https://observablehq.com/framework/javascript#inline-expressions). You can also import JavaScript modules to share code across pages.
 >
 > - JavaScript fenced code blocks (```js) are typically used to display content such as charts and inputs. They can also be used to declare top-level variables, say to load data or declare helper functions.
 >
-> - Inline expressions `${}` interpolate values into Markdown. They are typically used to display numbers such as metrics, or to arrange visual elements such as charts into rich HTML layouts.
+> - Inline expressions `${…}` interpolate values into Markdown. They are typically used to display numbers such as metrics, or to arrange visual elements such as charts into rich HTML layouts.
 
 Think of a Framework Markdown page as being wrapped in a JavaScript context, what Observable calls the runtime---not just the ability to run JavaScript code basically anywhere, but also with our full data context available to operate on and visualize.
 
-<SingleImage src="observable_8.webp" alt="JavaScript Runtime" size="2xl" postDir="observable-framework-blazing-fast" />
+
 
 ## Presentation Layer 3: Getting the Data
 
@@ -187,7 +178,7 @@ When the variable `volcano` is referenced in another code block or inline expres
 
 Here's a full list of formats that `FileAttachment` supports:
 
-<SingleImage src="file_attachment_formats.png" alt="FileAttachment Formats" size="xl" postDir="observable-framework-blazing-fast" />
+
 
 ## Presentation Layer 4: Client-side SQL
 
@@ -220,13 +211,13 @@ So, right in the browser, we're running live, superfast SQL queries on our data-
 
 (Framework's [strong Apache Parquet support](https://observablehq.com/framework/lib/arrow#apache-parquet) is a related win. Compared with other data formats, Parquet is very small, very fast, and works great with Framework's DuckDB-powered SQL.)
 
-<SingleImage src="observable_9.webp" alt="Client-side SQL" size="2xl" postDir="observable-framework-blazing-fast" />
+
 
 ## Presentation Layer 5: Reactivity
 
 JavaScript in Framework has a superpower: it's reactive. From the [docs](https://observablehq.com/framework/reactivity):
 
-> **Framework Reactivity**
+> **Reactivity Benefits:**
 >
 > Framework runs like a spreadsheet: code re-runs automatically when referenced variables change. This brings:
 >
@@ -257,9 +248,8 @@ Let's make a histogram of soil carbon values, with the width of each histogram b
 
 puts a range slider control onto our dashboard screen, with min/max values of .2 and 1. The JavaScript variable `binWidth` has an initial value of .5, and gets updated as the user moves the slider left or right. In another code block, Observable Plot's binX transform references `binWidth`, and thanks to Framework reactivity, the histogram updates in real time. Here's the result:
 
-<video controls width="75%" preload="metadata" loop className="mx-auto">
-  <source src="/images/blog/observable-framework-blazing-fast/interactive_histogram.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
+<video autoplay muted loop width="75%" style="max-width: 100%">
+  <source src="/videos/interactive_histogram.mp4" type="video/mp4" />
 </video>
 
 Voila, one line of code, and we've got our first interactive dashboard element.
@@ -268,9 +258,8 @@ Now let's take a look at a more complete and interactive dashboard ([try it live
 
 As you see below, the upper right card shows a detailed chart of mortgage rates, starting with the past year; while the bottom pane shows a full-history rate chart that covers 1971 through the present. In this case, the interaction isn't through a Framework Input, but rather through JavaScript click and drag events setting a date range variable `startEnd` when the user interacts with the lower chart. The detailed chart above right references `startEnd` and reacts instantly when it changes. All four charts in the dashboard are rendered by Observable Plot.
 
-<video controls width="75%" preload="metadata" loop className="mx-auto">
-  <source src="/images/blog/observable-framework-blazing-fast/interactive_mortgage_rates.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
+<video autoplay muted loop width="75%" style="max-width: 100%">
+  <source src="/videos/interactive_mortgage_rates.mp4" type="video/mp4" />
 </video>
 
 As you can see, Framework supports highly-interactive experiences for data consumers.
@@ -281,13 +270,12 @@ So far, we've covered the data layer including a deep dive on Data Loaders, and 
 
 Observable themselves actually created two of the most powerful libraries (both fully open source): [Observable Plot](https://observablehq.com/plot/), which is built on top of the lower-level [D3](https://d3js.org/). Just to give you a taste of what's possible, here's a tiny subset of the [available examples for Plot](https://observablehq.com/@observablehq/plot-gallery) and for [D3](https://observablehq.com/@d3/gallery):
 
-<ImageGallery images={['plot_gallery.png', 'd3_gallery.png']} alt="Observable Plot and D3 Galleries" size="xl" postDir="observable-framework-blazing-fast" />
+
 
 But Observable's own libraries are far from the only options---other widely-used general plotting libraries including [Apache ECharts](https://echarts.apache.org/en/index.html), [Plotly](https://plotly.com/javascript/), and [Vega-Lite](https://vega.github.io/vega-lite/) work great within Framework. 
 
-<video controls width="50%" preload="metadata" loop className="mx-auto">
-  <source src="/images/blog/observable-framework-blazing-fast/apache_echarts_sm.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
+<video autoplay muted loop width="50%" style="max-width: 100%">
+  <source src="/videos/apache_echarts_sm.mp4" type="video/mp4" />
 </video>
 
 Mapping-specific libraries such as [Leaflet](https://leafletjs.com/) and [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/guides/) are fully supported, as are a number of specialized viz libraries such as [DOT](https://observablehq.com/framework/lib/dot), [Deck.gl](https://observablehq.com/framework/lib/deckgl), [Mermaid](https://observablehq.com/framework/lib/mermaid), and [Mosaic vgplot](https://observablehq.com/framework/lib/mosaic).
@@ -300,7 +288,6 @@ Observable's homepage tagline is:
 
 If one considers the conventional alternatives---a massive SaaS app along the lines of Tableau, where our visualization possibilities are limited by what the SaaS vendor decides we should have---I'll take dashboards built with code, thank you very much. 
 
-<video controls width="80%" preload="metadata" loop className="mx-auto">
-  <source src="/images/blog/observable-framework-blazing-fast/dashboards_as_code.webm" type="video/webm" />
-  Your browser does not support the video tag.
+<video autoplay muted loop width="80%" style="max-width: 100%">
+  <source src="/videos/dashboards_as_code.mp4" type="video/mp4" />
 </video>

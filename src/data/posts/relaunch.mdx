@@ -1,0 +1,72 @@
+---
+author: "Jack Ivers"
+categories: ['CTO', 'blog']
+publishDate: "2023-02-08"
+description: ""
+draft: false
+tags: ['CTO', 'Hugo', 'Cloudflare']
+title: "Blog/Website Relaunch: Under the Hood of craftycto.com"
+image: "~/assets/images/posts/blog/futuristic_spaceship_launching.webp"
+---
+
+import SingleImage from '~/components/ui/SingleImage.astro';
+
+Back in 2019, I launched [ThinkFractional.blog](https://web.archive.org/web/20200406065508/https://thinkfractional.blog/) and took advantage of the opportunity to learn a new platform – [Ghost](https://ghost.org). That was fun, and I found Ghost a nice improvement over Squarespace. I decided on the same approach this time around – take the opportunity to learn something new, state of the art, and very different.
+
+<SingleImage src="ghost-logo-light.png" alt="ghost dot org logo" postDir="relaunch" size="sm" />
+
+Besides Ghost, I'd been using [Cloudflare](https://cloudflare.com) for a while. There was something DNS related I needed that Ghost couldn't handle on its own -- maybe supporting both the naked domain and the www. version -- and Ghost recommended setting up a free website on Cloudflare connected to Ghost as a solution. The Cloudflare experience solving this issue was really good -- a lot of capabilities, a well-crafted interface, for $0.
+
+It's not like ThinkFractional.blog needed Cloudflare to handle its traffic. The only post I ever created that got any traction (front page of Hacker News) was titled Secret iPad, published on the 10th anniversary of the launch of the original iPad. It described my experience at Agile Partners when we got early hands-on with the original iPad at the Cupertino campus. I figured that Apple probably wouldn't even notice the post, and after 10 years, they could care less about it. I also assumed that NDA we signed had long since expired. Wrong, wrong, and wrong -- Apple noticed (presumably someone there reads Hacker News), Apple cared, and Apple's vaguely worded NDA didn't actually specify a term, meaning its term was effectively for--ev--er. So that post lasted about a week before I had to take it down. To their credit, Apple was nice about it, friendly phone call from a long-time Apple contact as opposed to a lawyer letter.
+
+## New needs
+
+This time around, my requirements were a little broader. Yes, I needed to replatform my blog, but I also needed a web presence for [my new fractional CTOing entity](../introducing-crafty-cto/). The blog needed a new name, but I also working on naming the new entity, and realized it might be possible to find a name that would work well for both. 
+
+In the end, I found a name that I think works well for both (ask me again in 5 years): Crafty CTO / craftycto.com for the entity, with the blog living at CraftyCTO.com/blog. 
+
+<SingleImage src="combined-fox-text-20pct.png" alt="Crafty CTO logo" postDir="relaunch" size="lg" />
+
+All this to say, whatever platform I chose needed to support blogging features, but also be flexible enough to handle the rest of the Crafty CTO web presence.
+
+## What I hate about you
+
+I've been working with Content Management Systems since my days at [fast five dotcom consultancy Viant](https://en.wikipedia.org/wiki/Fast_Five_(consulting)). Back then, big names included [Vignette StoryBuilder](https://en.wikipedia.org/wiki/Vignette_Corporation) and [Interwoven TeamSite](https://en.wikipedia.org/wiki/TeamSite)--and they came with big price tags as well. Ugghh. CMSs have always been a pain for creating content, and limiting in terms of the websites they can create. 
+
+Ghost and Squarespace are ... CMSs. Nicer than their 2001 predecessors, for sure, but still a layer between my content and the bare iron of delivered HTML. They allow me go about my work without needing to know HTML or CSS. (Yes, they give me hooks to let me override things like CSS, but that carries a learning curve and kind of defeats their purpose.) I lived with what they gave me, meaning I was limited in what I could do -- in Ghost, I used the themes and components Ghost provided. Not terrible, but I had to fit into Ghost's box.
+
+As production websites, both Ghost and Squarespace deliver content dynamically, and their sheer mass of features means they tend towards bloated and slow. Not terrible, certainly  functional, but not on the snappy end of the spectrum.
+
+Ghost also wasn't free -- in fact, the plan I was on was pretty damned expensive at $30/mo. That has been bothering me for a while and was the reason I first decided to move on.
+
+## Now for something completely different
+
+So I searched, started to hear about static site generators, came across [Hugo](https://gohugo.io/), and finally a [post](https://smaller.fish/posts/hugo) on how to run a Hugo site using [Cloudflare Pages](https://pages.cloudflare.com/). 
+
+<SingleImage src="hugo-logo-wide.svg" alt="Hugo static site generator logo" postDir="relaunch" size="lg" />
+
+Hugo has a large, active, and fantastically helpful community, great themes, and extreme static build performance (currently ~1400ms for the entire craftycto.com site).
+
+Static pages, running over Cloudflare edge network -- now that was really interesting. Not only would I go from bloated-dynamic-CMS to super-fast static HTML -- but that site would be hosted on the edge via Cloudflare. Two orders of magnitude, now we're cooking. And the cost? Free. All systems go.
+
+## Content authoring, repo, and deployment
+
+But wait, you ask, the content still has to get written, stored, and deployed, how does that work? Great question, with a great answer that still costs $0.
+
+* Content is authored in Markdown. I now fully appreciate [John Gruber's contribution](https://daringfireball.net/projects/markdown/) to the open web. It's simple and direct, plenty good enough for blogging and web presence content -- especially with the option to augment Markdown using Hugo templates and shortcodes.
+* Content is stored in a git repo, GitHub in my case, and gets me all the benefits of software-engineering-grade version control.
+* Content deployment is likewise via git deployment, again with all the benefits of software-engineering-grade CI/CD tooling. That's how Cloudflare Pages operate -- connect your Git repo, and your Cloudflare Pages site auto-deploys when you push to your GitHub (or Bitbucket, etc.) repo. 
+
+## Bare iron
+
+I love the whole Hugo-with-markdown-content-via-git-over-Cloudflare solution. My little site runs in a barest-of-bare-iron way -- lightweight, static HTML, delivered at the edge. It doesn't get more bare-iron that that, in today's world.
+
+<SingleImage src="CF_logo_stacked_whitetype.png" alt="Cloudflare logo" postDir="relaunch" size="md" />
+
+[Hugo themes](https://themes.gohugo.io/) gave me a great starting place -- this site is based on the [PaperModX theme](https://github.com/reorx/hugo-PaperModX) -- but thanks to very smart content organization and a ton of powerful features including, most fundamentally, Hugo's Go-based templating language -- I can customize anything and everything and get things exactly how I want them. And did I mention that I learned HTML and CSS along the way?
+
+Tweakability, ahem, may also be the biggest downside of my new solution. I'm active in the Chicago CTO Group and recently a member was asking, what platform should I use for my new website/blog? Several of us chimed in with solutions like Hugo/git/Cloudflare but others expressed concern about the risk of forever-fiddling. We're both right, I think.
+
+## For another day
+
+Perhaps I'll do another post digging a little deeper into Hugo, and also [Tailwind CSS](https://tailwindcss.com/), something else I discovered and love. But that's for another day -- next up, I promise, will be content more core to Crafty CTO and fractional CTOing.
