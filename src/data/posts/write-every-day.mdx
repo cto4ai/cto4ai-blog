@@ -9,6 +9,8 @@ tags: ["CTO", "writing"]
 image: "~/assets/images/posts/blog/writing-man.webp"
 ---
 
+import SingleImage from '~/components/ui/SingleImage.astro';
+
 I had been struggling with wanting to write at least weekly, but failing miserably--monthly at best. The pressure-to-write would build up and up and up, and finally I would put everything else aside to spasm out a [long piece](https://craftycto.com/blog/the-emergence-s1e4/). It was not pleasant, but at least I was writing again.
 
 Then I came across Mattias Ott's commentary [Writing, Fragments, and the Memex Method](https://matthiasott.com/notes/writing-fragments-and-the-memex-method), which led me to Cory Doctorow's piece [The Memex Method](https://doctorow.medium.com/the-memex-method-238c71f2fb46). These resonated amazingly, with Ott's piece helping me better appreciate Doctorow's. Read them both!
@@ -47,6 +49,7 @@ Doctorow has [influenced me](https://pluralistic.net/2023/02/19/drei-drei-drei/#
 
 > POSSE is an abbreviation for Publish (on your) Own Site, Syndicate Elsewhere, the practice of posting content on your own site first, then publishing copies or sharing links to third parties (like social media silos) with original post links to provide viewers a path to directly interacting with your content.
 
+<SingleImage src="posse-horseback.webp" alt="Posse Horseback" size="2xl" postDir="write-every-day" />
 
 
 Early this year I set up the new [company-website-plus-blog](https://craftycto.com/), and took a relatively POSSE-compliant approach, leveraging the [Hugo](https://gohugo.io/) open-source static generation framework, with content being simple markdown, my CMS being Git / GitHub, and my hosting platform being "any of the players that let me host static content under a free plan", currently CloudFlare Pages but I could change that with minimal work. I gained control of company content, as well as the long-form essays I was posting to the blog. 
@@ -55,12 +58,14 @@ I had a major POSSE leak, however, when it came to short-form content. I post on
 
 So along with adopting a daily writing habit, I decided to plug my POSSE leaks.
 
+<SingleImage src="posse-diagram.webp" alt="POSSE Diagram" size="2xl" postDir="write-every-day" />
 
 
 ## Updating [Crafty's Illustrated](https://craftycto.com/blog) for Daily Writing and POSSE
 
 I use the [PaperModX theme](https://github.com/reorx/hugo-PaperModX) in Hugo, which is of course a fork of PaperMod, which itself is a fork of Paper. PaperModX is well suited for "normal" size blog posts, but less so for microblogging. Of course, Hugo itself is a blank slate that grants me absolute control over what gets served up to a browser--just a matter of tweaking it, in my case pulling some elements out of the theme and customizing.
 
+<SingleImage src="craftys-illustrated-micro2.webp" alt="Crafty's Illustrated Micro" size="2xl" postDir="write-every-day" />
 
 
 I've mentioned that generative AI tools like ChatGPT and MidJourney allow me to be more ambitious with my projects than I would otherwise have been. I would have hesitated if I had to devote a work week or more to enabling microblogging, but ChatGPT GPT-4 edition cut that task down enough that I was able to complete it in spare hours over the holiday weekend. I liked [Simon Willison's approach](https://simonwillison.net/) of having several flavors of micro content, and ended up implementing four:
