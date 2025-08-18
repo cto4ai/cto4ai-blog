@@ -7,6 +7,9 @@ draft: false
 image: "~/assets/images/posts/blog/observable_1.webp"
 ---
 
+import SingleImage from '~/components/ui/SingleImage.astro';
+import ImageGallery from '~/components/ui/ImageGallery.astro';
+
 ## Stumbled Upon ...
 
 I've had requests to share my [Heirloom Recipe Ingestor project](../chatgpt-4v/), but it's still in the hacked-together stage, not ready. I've been wanting to clean it up, and when I made updates to use the non-preview GPT-4-turbo model that [OpenAI released on April 9th](https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4), I began cleaning up the code.
@@ -21,7 +24,7 @@ My [Kagi](https://kagi.com/) search returned hits for [Observable Notebooks](htt
 
 So I dropped in over at [ObservableHQ](https://observablehq.com/) to get up to speed on Observable Notebooks---only to find that Observable had changed course. Though Observable Notebooks are still alive and well (and will, I suspect, [get even better](https://talk.observablehq.com/t/announcing-observable-2-0/8744/4), as of February, the company's primary focus has shifted to what they are calling [Observable Framework](https://observablehq.com/framework/). That led me down one final rabbit hole, but a very useful one, as I soon realized that Framework was a perfect fit for one of my fractional CTO client's "data science reporting and dashboard" needs.
 
-
+<SingleImage src="observable_6.webp" alt="Observable Framework" size="2xl" postDir="observable-framework-blazing-fast" />
 
 ## The Need
 
@@ -33,7 +36,7 @@ The non-profit's primary user-facing (farmer-facing!) platform, on the other han
 
 All of this deploys gracefully onto modern AWS infrastructure, and the result is capable of supporting tens of thousands of web and mobile users. Costs are low---tooling costs almost zero---and the result has been highly effective for developers and enabled us to deliver an excellent web and mobile experience for our users.
 
-
+<SingleImage src="observable_2.webp" alt="Architecture Overview" size="xl" postDir="observable-framework-blazing-fast" />
 
 ## We Have Questions
 
@@ -54,7 +57,7 @@ Observable describes Framework as "solving data’s last mile problem." This is 
 
 Eureka! This is it! The last mile problem is exactly what my non-profit was struggling with. And wow, does Framework solve it elegantly.
 
-
+<SingleImage src="observable_10.webp" alt="Framework Solution" size="2xl" postDir="observable-framework-blazing-fast" />
 
 ## We Have Answers
 
@@ -71,7 +74,7 @@ Let's look at the answers Framework gives us:
 - **Q:** Aren't we reinventing the wheel here---hasn't somebody already figured this out? Isn't there some kind of framework that at least provides a clean separation of concerns between data and presentation?
   - **A:** Yes, someone has figured it out! In Framework, Observable have an exceptionally elegant framework, with clean separation of concerns between data and presentation among its many benefits.
 
-
+<SingleImage src="observable_7.webp" alt="Observable Framework Benefits" size="2xl" postDir="observable-framework-blazing-fast" />
 
 ## Data Layer 1: Data Loaders
 
@@ -111,11 +114,11 @@ You may still be having doubts about the idea of a data dashboard that isn't dri
 
 I love these two tips in Observable's excellent [Data Loader documentation](https://observablehq.com/framework/loaders), because they hit the nail on the head around "how fresh does my data need to be?" Tip 1:
 
-
+<SingleImage src="data_loader_tip1.png" alt="Data Loader Tip 1" size="2xl" postDir="observable-framework-blazing-fast" />
 
 I'd paraphrase the first part of this tip as "Dude, if you really want up-to-the-second data, we gotcha covered!" The second part addresses a Framework nuance that I haven't yet mentioned: databases and data warehouses aren't the only source of essential data for dashboards and reports---often times static files from various external sources can be just as essential. For example, in our proof a concept, I needed to plot soil sample locations on maps, for both the entire U.S., and then for individual states. To get the country and state outlines needed as the backdrop for my plots, I just included a publicly-available, 842K static JSON file in my Framework project. The file uses a variant of GeoJSON called [TopoJSON](https://observablehq.com/framework/lib/topojson) and includes outlines of the U.S. itself, along with every state, and every county. [Observable Plot](https://observablehq.com/plot/), which we explore below, understands TopoJSON and easily produces the geographical plot needed. Tip 2:
 
-
+<SingleImage src="data_loader_tip2.png" alt="Data Loader Tip 2" size="2xl" postDir="observable-framework-blazing-fast" />
 
 The second tip addresses a critical supporting tool for Data Loaders and data freshness in Framework: Continuous Deployment. In parallel with the tremendous progress made in static site generation through projects like Hugo, the tooling for Continuous Integration/Continuous Deployment (CI/CD) has radically improved and become ubiquitous. In fact, the two spaces intersect significantly: as an example, I rely on CI/CD tools provided as part of [Cloudflare Pages](https://pages.cloudflare.com/) to automatically redeploy this site, triggered when I push updates the `main` branch of my GitHub repo. CI/CD is all about builds, and as the tip tells us, Continuous Deployment combined with Framework Data Loaders means we can "rebuild data as often as you like, ensuring that data is always up-to-date." [GitHub Actions](https://github.com/features/actions) are probably the most widely-used CI/CD tool, and can automate [Framework builds](https://observablehq.com/framework/deploying) so they happen exactly when we need them too, whether that be time based (e.g. once an hour); event based (the new batch of sales data has been processed); or programmatically---any which way you need.
 
@@ -141,7 +144,7 @@ In a Framework project, each Markdown file represents one page, such as an inter
 
 As we [explore later](#presentation-layer-5-reactivity), Framework's powerful Markdown extensions mean than each Markdown page is equivalent to a full data notebook---actually more powerful than Observable's own Notebooks, which themselves outshine most other such as Jupyter.
 
-
+<SingleImage src="observable_5.webp" alt="Framework Notebook Features" size="2xl" postDir="observable-framework-blazing-fast" />
 
 ## Presentation Layer 2: JavaScript
 
@@ -157,7 +160,7 @@ JavaScript in Framework Markdown is like water to fish---everywhere. [From Obser
 
 Think of a Framework Markdown page as being wrapped in a JavaScript context, what Observable calls the runtime---not just the ability to run JavaScript code basically anywhere, but also with our full data context available to operate on and visualize.
 
-
+<SingleImage src="observable_8.webp" alt="JavaScript Runtime" size="2xl" postDir="observable-framework-blazing-fast" />
 
 ## Presentation Layer 3: Getting the Data
 
@@ -178,7 +181,7 @@ When the variable `volcano` is referenced in another code block or inline expres
 
 Here's a full list of formats that `FileAttachment` supports:
 
-
+<SingleImage src="file_attachment_formats.png" alt="FileAttachment Supported Formats" size="xl" postDir="observable-framework-blazing-fast" />
 
 ## Presentation Layer 4: Client-side SQL
 
@@ -211,7 +214,7 @@ So, right in the browser, we're running live, superfast SQL queries on our data-
 
 (Framework's [strong Apache Parquet support](https://observablehq.com/framework/lib/arrow#apache-parquet) is a related win. Compared with other data formats, Parquet is very small, very fast, and works great with Framework's DuckDB-powered SQL.)
 
-
+<SingleImage src="observable_9.webp" alt="Client-side SQL Benefits" size="2xl" postDir="observable-framework-blazing-fast" />
 
 ## Presentation Layer 5: Reactivity
 
@@ -270,7 +273,7 @@ So far, we've covered the data layer including a deep dive on Data Loaders, and 
 
 Observable themselves actually created two of the most powerful libraries (both fully open source): [Observable Plot](https://observablehq.com/plot/), which is built on top of the lower-level [D3](https://d3js.org/). Just to give you a taste of what's possible, here's a tiny subset of the [available examples for Plot](https://observablehq.com/@observablehq/plot-gallery) and for [D3](https://observablehq.com/@d3/gallery):
 
-
+<ImageGallery images={["plot_gallery.png", "d3_gallery.png"]} postDir="observable-framework-blazing-fast" size="xl" />
 
 But Observable's own libraries are far from the only options---other widely-used general plotting libraries including [Apache ECharts](https://echarts.apache.org/en/index.html), [Plotly](https://plotly.com/javascript/), and [Vega-Lite](https://vega.github.io/vega-lite/) work great within Framework. 
 
