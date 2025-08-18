@@ -1,11 +1,22 @@
 ---
+publishDate: 2024-02-19T05:17:47-06:00
 title: "Using Multimodal AI to Capture and Enrich Heirloom Recipes"
-description: "I applied OpenAI's GPT-4 Vision model and Chat Completions API to preserve a treasure-trove of legacy family recipes."
-author: "Jack Ivers"
-publishDate: "2024-02-19T05:17:47-06:00"
-draft: false
-image: "~/assets/images/posts/blog/toms-light-bread.webp"
+excerpt: "I applied OpenAI's GPT-4 Vision model and Chat Completions API to preserve a treasure-trove of legacy family recipes."
+image: "~/assets/images/blog/chatgpt-4v/toms-light-bread.webp"
+category: "AI & Technology"
+tags:
+  - OpenAI
+  - GPT-4 Vision
+  - Recipe Management
+  - Automation
+  - Python
+metadata:
+  canonical: https://craftycto.com/blog/chatgpt-4v
 ---
+
+import { Image } from 'astro:assets';
+import ImageGallery from '~/components/ui/ImageGallery.astro';
+import SingleImage from '~/components/ui/SingleImage.astro';
 
 OpenAI is constantly [firehosing us with new capabilities](https://openai.com/sora). It's tough just to keep up with the announcements, let alone deeply understand the new offerings at depth. The only way I know to develop this kind of deep understanding is to build something real and non-trivial.
 
@@ -25,7 +36,7 @@ I'm not an OpenAI VIP, sorry. I'm just a paid ChatGPT Plus user and Tier-1-going
 
 During our August vacation at the family lake house, we uncovered a treasure-trove of recipes, which my daughter-in-law Julie was kind enough to capture using the iOS Notes app and share in PDF format. On my to-do list since then had been figuring out how to get those recipes into a recipe app. I use Paprika 3, while Julie has been trying out Recipe Keeper.
 
-
+<ImageGallery images={['PicklesBreadandButter.webp', 'picnic_cake.webp']} alt="Family recipe examples" size="xl" />
 
 What the family really needs is both a great facsimile of the original paper recipe (high resolution, correct orientation, zoomable), and a fully-digital recipe with all the goodies that apps like Paprika and Recipe Keeper give you---ingredient scaling, store lists, easy sharing, and so on.
 
@@ -41,11 +52,11 @@ So when I discovered that my ChatGPT Plus account now had the "new stuff" includ
 
 I know for sure that it was November 14th when I began toying with it. My first (failed) Vision request was:
 
-
+<SingleImage src="first_ask.png" alt="First failed Vision request" size="xl" />
 
 This first request caused GPT-4V to puke---PDFs aren't considered an image format. I used macOS Preview to export a png file from another one my recipe PDFs and fed that to Vision. This was the input:
 
-
+<SingleImage src="CheesecakeMargieJohnsons.webp" alt="Margie Johnson's Cheesecake recipe" size="xl" />
 
 I fully expected an interesting failure. I've been doing technology for over four decades, which coincidentally is just about how long OCR---optical character recognition---has been available for personal use. And OCR has sucked for all of those decades. OCRing scans of printed documents is painful and error-prone. But with our legacy recipes, we faced much worse, like Margie Johnson's Cheesecake above---typed with a worn ribbon, wrinkled, stained. 
 
@@ -55,7 +66,7 @@ My expectations were low, but on the other hand, GPT-4 blows my mind several tim
 
 This was GPT-4V's response to that image:
 
-
+<ImageGallery images={['gpt4v-response-1.png', 'gpt4v-response-2.png']} alt="GPT-4V response to recipe image" size="xl" />
 
 I was expecting "maybe a little better than your grandma's OCR" but this was shockingly far beyond that. Not only did 4V get almost everything correct from the Margie recipe, worn ribbon, wrinkles, stains and everything, but GPT-4V *understood* it and organized it for me. For example, 4V correctly "gets it" that this recipe had three main elements---crust, filling, and topping---when the recipe never uses any of those words! And then helpfully organizes its output that way.
 
@@ -75,7 +86,7 @@ Seeing that chat response, it wasn't just that I was getting better text than ol
 
 > Is there a standard interchange format for recipes?
 
-
+<SingleImage src="gpt4v-recipe-interchange.png" alt="GPT-4V response about recipe interchange formats" size="2xl" />
 
 Oh ho, I see Paprika on the list! 
 
@@ -83,11 +94,11 @@ Oh ho, I see Paprika on the list!
 
 I explored the various file formats that Paprika could import. Most of these were specific to what other recipe apps could export, to enable migration onto Paprika. But Paprika also supports a more generalized import from YAML format, and provided a couple of helpful examples. That looked like my best option, and then began the work of convincing ChatGPT to take a recipe image, and instead of giving me semi-structured text output, to instead produce Paprika-flavored YAML. It took a bit of research and several tries, but eventually I was able to feed in an image and get Paprika-compatible recipe YAML back. Here's the source image and YAML output:
 
-
+<ImageGallery images={['bettys_chocolate_frosting.webp', 'bettys-chocolate-yaml.png']} alt="Betty's chocolate frosting recipe and YAML output" size="xl" />
 
 And here's what it looks like when imported into Paprika, iPad and iPhone versions:
 
-
+<ImageGallery images={['bettys_ipad.png', 'bettys_iphone.png']} alt="Recipe imported into Paprika on iPad and iPhone" size="xl" />
 
 Now, ChatGPT was doing most of the work---image in, importable YAML out. That left me light years ahead of the mess I had been facing---laborious manual transcription or parsing garbled OCR output.
 
@@ -99,13 +110,13 @@ So automating the process was looking attractive---eliminate interactive session
 
 I picked Python as a logical choice to script in, figuring it'd have libraries for anything needed, and because GPT-4 is very good at Python coding; I was not disappointed on either front. Unfortunately I didn't have much choice about which OpenAI API I'd need to use. Back then---and still to this day---the only API that supports GPT-4 Vision is a feature-reduced Chat Completions API:
 
-
+<SingleImage src="gpt4v_no_assistants_for_you_one_year.webp" alt="GPT-4 Vision API limitations notice" size="xl" />
 
 This limited Chat Completions API available with Vision models is fine for simply automating something you've been doing using the chat interface; but it's significantly less powerful than the full-strength Chat Completions API available for text input, let alone the new Assistants API. More on this later.
 
 In any case, off I went scripting Chat Completions from Python:
 
-
+<SingleImage src="openai_call2.png" alt="Python code for OpenAI API calls" size="xl" />
 
 A few days before Christmas I had Python successfully scripting images => Chat Completions API => YAML output, and soon after added a BASE64-encoded image to the YAML output. I also added directory processing, so the script would run through an entire directory of image files and produce YAML-with-image output for each recipe, in a single script run.
 
@@ -117,7 +128,7 @@ In searching for a solution, I discovered a whole community of recipe hobbyists 
 
 I dug in and by New Years day had cloud sync operating, and had multiple photos loading into Paprika soon after:
 
-
+<SingleImage src="two_image_recipe-1.webp" alt="Recipe with multiple images in Paprika" size="xl" />
 
 ## Later January: JSON Mode to overcome structured output fragility
 
@@ -129,7 +140,7 @@ Why do I care about the new capabilities launched at DevDay? My immediate proble
 
 At the [DevDay event on Nov. 6th](https://openai.com/blog/new-models-and-developer-products-announced-at-devday), OpenAI announced JSON Mode, where using the `response_format` parameter, you tell the model to "constrain its output to generate a syntactically correct JSON object." That's exactly the solution I need to get higher reliability structured output and greatly reduce the need for constant prompt engineering.
 
-
+<SingleImage src="openai_devday.webp" alt="OpenAI DevDay announcement" size="xl" />
 
 Longer term, I'm convinced that the other new features announced on Nov. 6th, including Function Calling and Tools, will open up a whole new range of possibilities in my recipe ingestion pipeline. Check out Max Woolf's post [Pushing ChatGPT's Structured Data Support To Its Limits](https://minimaxir.com/2023/12/chatgpt-structured-data/) to get a feel for what's possible with structured data, function calling, etc.
 
@@ -144,7 +155,7 @@ I know, though, that I'm discarding a tremendous store of context by bridging be
 
 You may have noticed that the final recipes showing up in Paprika have been significantly enriched. Take this before-and-after example *(click image to zoom)*:
 
-
+<ImageGallery images={['FillingChocolateandOrange.webp', 'soft-chocolate-filling.webp', 'orange-cream-filling.webp']} alt="Recipe enrichment example" size="xl" />
 
 This a *tour de force* of GPT-4V's content extraction: it correctly parses both typewritten and handwritten content, and likewise recognizes that these are two separate recipes. I end up with JSON content ready to feed into Paprika.
 
@@ -158,7 +169,7 @@ If you've spent time with ChatGPT, you know that it loves to be creative, to che
 
 The GPT came back with:
 
-> This cherished recipe dates back to the early 20th century and was a specialty of Great Aunt Dora, a renowned baker in her small town. Legend has it that Dora won the heart of her town with this cake at the annual winter fair. She ingeniously added crushed peppermint candies from her childhood candy jar, which became her secret signature. The recipe was passed down with love through generations, each adding their touch but always keeping Dora’s spirited invention alive.
+> This cherished recipe dates back to the early 20th century and was a specialty of Great Aunt Dora, a renowned baker in her small town. Legend has it that Dora won the heart of her town with this cake at the annual winter fair. She ingeniously added crushed peppermint candies from her childhood candy jar, which became her secret signature. The recipe was passed down with love through generations, each adding their touch but always keeping Dora's spirited invention alive.
 
 I provided some real historical data to help ChatGPT create better stories
 
@@ -166,7 +177,7 @@ I provided some real historical data to help ChatGPT create better stories
 
 Before long I was getting back pretty entertaining results
 
-> The recipe is believed to have been created by Seamus's great-aunt, Eilidh McGuire Stewart, who was known in her village for her bountiful kitchen and her generous heart. Eilidh often baked this cake during the harvest season, and it became synonymous with the warmth of her home. Legend has it that Robert Burns himself enjoyed a slice of Eilidh’s cake during a visit, praising its rich flavor and the tender hands that made it.
+> The recipe is believed to have been created by Seamus's great-aunt, Eilidh McGuire Stewart, who was known in her village for her bountiful kitchen and her generous heart. Eilidh often baked this cake during the harvest season, and it became synonymous with the warmth of her home. Legend has it that Robert Burns himself enjoyed a slice of Eilidh's cake during a visit, praising its rich flavor and the tender hands that made it.
 
 Alas, the whimsical enrichment got old after a while and I ended up removing it from my instructions. But the idea that ChatGPT could enrich the recipes stuck with me and has been a focus my most recent work.
 
@@ -186,7 +197,7 @@ I actually don't prompt GPT-4 to create these---in fact I prompt significantly f
 
 Here I'm prompting for a brief essence-of-the-recipe summary, another strong GPT-4 skill. I'm still working to avoid hyperbole that creeps in sometimes.
 
-
+<SingleImage src="bread_and_butter_bernice_paprika.webp" alt="Recipe with enriched description" size="xl" />
 
 #### Recipe Tips
 
@@ -210,9 +221,10 @@ Oh, the prompting I have done. This project, which still supports both YAML and 
 
 All of this testing came at a cost---the tall green bars show days where I was actively testing, with daily API charges approaching $4:
 
-
+<SingleImage src="openai_usage_dec.webp" alt="OpenAI API usage costs during testing" size="2xl" />
 
 ## In summary
 
 In the meantime, I've got a great way to preserving our heirloom family recipes while enjoying the benefits of a modern recipe app.
 
+<SingleImage src="paprika-fig-pudding.webp" alt="Final recipe in Paprika app" size="xl" />
