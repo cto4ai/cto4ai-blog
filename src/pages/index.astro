@@ -5,6 +5,21 @@ import { fetchPosts } from '~/utils/blog';
 import { getPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
 
+// Helper function to resolve image paths
+function resolveImagePath(imagePath: string | undefined): string | undefined {
+  if (!imagePath) return undefined;
+  
+  // If it starts with ~/assets, convert to proper import path
+  if (imagePath.startsWith('~/assets/images/')) {
+    // Convert ~/assets/images/blog/post/image.png to /src/assets/images/blog/post/image.png
+    const cleanPath = imagePath.replace('~/assets/', '/src/assets/');
+    return cleanPath;
+  }
+  
+  // Return as-is for other paths (external URLs, etc.)
+  return imagePath;
+}
+
 export const prerender = true;
 
 const posts = await fetchPosts();
@@ -29,10 +44,10 @@ const metadata = {
     {featuredPost && (
       <section class="mb-12">
         <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-          {featuredPost.image && (
+          {resolveImagePath(featuredPost.image) && (
             <div class="aspect-video">
               <img 
-                src={featuredPost.image} 
+                src={resolveImagePath(featuredPost.image)} 
                 alt={featuredPost.title}
                 class="w-full h-full object-cover"
               />
@@ -83,10 +98,10 @@ const metadata = {
         {otherPosts.map((post) => (
           <article class="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0 last:pb-0">
             <div class="flex items-start gap-6">
-              {post.image && (
+              {resolveImagePath(post.image) && (
                 <div class="flex-shrink-0 w-24 h-24 sm:w-32 sm:h-32">
                   <img 
-                    src={post.image} 
+                    src={resolveImagePath(post.image)} 
                     alt={post.title}
                     class="w-full h-full object-cover rounded-lg"
                   />
