@@ -51,6 +51,7 @@ const getNormalizedPost = async (
   const rawUpdateDate = data.updateDate;
   const title = data.title;
   const excerpt = 'excerpt' in data ? data.excerpt : undefined;
+  const description = 'description' in data ? data.description : undefined;
   const image = 'image' in data ? data.image : undefined;
   const rawTags = 'tags' in data ? data.tags || [] : [];
   const rawCategory = 'category' in data ? data.category : undefined;
@@ -85,6 +86,7 @@ const getNormalizedPost = async (
 
     title: title,
     excerpt: excerpt,
+    description: description,
     image: image,
 
     category: category,

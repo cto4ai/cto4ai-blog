@@ -67,9 +67,9 @@ const metadata = {
                 {featuredPost.title}
               </a>
             </h1>
-            {featuredPost.excerpt && (
+            {(featuredPost.excerpt || featuredPost.description) && (
               <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                {featuredPost.excerpt}
+                {featuredPost.excerpt || featuredPost.description}
               </p>
             )}
             <a 
@@ -121,9 +121,9 @@ const metadata = {
                     {post.title}
                   </a>
                 </h3>
-                {post.excerpt && (
+                {(post.excerpt || post.description) && (
                   <p class="text-gray-600 dark:text-gray-300 text-sm line-clamp-2">
-                    {post.excerpt}
+                    {post.excerpt || post.description}
                   </p>
                 )}
               </div>
