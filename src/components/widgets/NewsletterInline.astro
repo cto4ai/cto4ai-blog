@@ -1,0 +1,77 @@
+---
+import type { Widget } from '~/types';
+
+interface Props extends Widget {
+  title?: string;
+  description?: string;
+  button?: string;
+  compact?: boolean;
+}
+
+const {
+  title = 'Newsletter Signup',
+  description = 'Get AI insights and technology leadership guidance delivered to your inbox.',
+  button = 'Subscribe',
+  compact = false,
+  id,
+  isDark = false,
+  classes = {},
+} = Astro.props;
+---
+
+<div 
+  class:list={[
+    'rounded-lg border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-800',
+    compact ? 'p-4' : 'p-6',
+    classes?.container
+  ]} 
+  {...id ? { id } : {}}
+>
+  <div class="text-center">
+    {
+      title && (
+        <h3 class:list={[
+          'font-bold text-gray-900 dark:text-white mb-2',
+          compact ? 'text-lg' : 'text-xl'
+        ]}>
+          {title}
+        </h3>
+      )
+    }
+    {
+      description && (
+        <p class:list={[
+          'text-gray-600 dark:text-gray-300 mb-4',
+          compact ? 'text-sm' : 'text-base'
+        ]}>
+          {description}
+        </p>
+      )
+    }
+    <form 
+      action="https://api.beehiiv.com/v2/publications/pub_YOUR_ID/subscriptions" 
+      method="post"
+      class="space-y-3"
+    >
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter your email"
+        required
+        class="w-full rounded-md border-0 bg-white px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 dark:bg-gray-700 dark:text-white dark:ring-gray-600 dark:placeholder:text-gray-400"
+      />
+      <button
+        type="submit"
+        class="w-full rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors"
+      >
+        {button}
+      </button>
+    </form>
+    <p class:list={[
+      'text-gray-500 dark:text-gray-400 mt-2',
+      compact ? 'text-xs' : 'text-sm'
+    ]}>
+      No spam, unsubscribe anytime
+    </p>
+  </div>
+</div>

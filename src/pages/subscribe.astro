@@ -1,0 +1,160 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import NewsletterSignup from '~/components/widgets/NewsletterSignup.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Subscribe to CTO4.AI Newsletter',
+  description: 'Get AI insights and technology leadership guidance delivered to your inbox. Weekly content for CTOs navigating the AI transformation.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Newsletter"
+    title="Stay Ahead of the AI Curve"
+    subtitle="Join 1,000+ technology leaders who get weekly insights on AI adoption, engineering leadership, and technology strategy delivered to their inbox."
+    actions={[
+      { 
+        variant: 'secondary', 
+        text: 'Browse Archive', 
+        href: '/archive' 
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
+      alt: 'Newsletter Subscription Hero Image',
+    }}
+  />
+
+  <!-- Newsletter Signup Widget *********** -->
+
+  <NewsletterSignup
+    title="Subscribe to CTO4.AI Newsletter"
+    subtitle="Get practical guidance on AI strategy, team leadership, and technology decisions delivered weekly. No spam, just actionable content that helps you lead technology teams successfully."
+    disclaimer="Join 1,000+ technology leaders • Weekly delivery • Unsubscribe anytime"
+  />
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    id="benefits"
+    tagline="What You'll Get"
+    title="Premium Content for Technology Leaders"
+    subtitle="Every week, you'll receive carefully curated insights and practical guidance to help you navigate the AI transformation and lead technology teams effectively."
+    items={[
+      {
+        title: 'AI Strategy Deep Dives',
+        description:
+          'Detailed analysis of AI implementation strategies, tool evaluations, and framework recommendations based on real-world experience.',
+        icon: 'tabler:brain',
+      },
+      {
+        title: 'Engineering Leadership Insights',
+        description:
+          'Proven tactics for building and scaling engineering teams, managing technical talent, and creating high-performance cultures.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Technology Architecture Guidance',
+        description:
+          'Modern architecture patterns, infrastructure decisions, and technology choices that enable scale and AI capabilities.',
+        icon: 'tabler:building',
+      },
+      {
+        title: 'Real Case Studies',
+        description:
+          'Detailed breakdowns of actual AI implementations, technology decisions, and their business outcomes - both successes and failures.',
+        icon: 'tabler:file-text',
+      },
+      {
+        title: 'Industry Trend Analysis',
+        description:
+          'Cut through the AI hype with practical analysis of tools, technologies, and trends that actually matter for technology leaders.',
+        icon: 'tabler:chart-line',
+      },
+      {
+        title: 'CTO Field Reports',
+        description:
+          'Honest perspectives from the field: lessons learned, decision frameworks, and insights from leading technology teams.',
+        icon: 'tabler:bulb',
+      },
+    ]}
+  />
+
+  <!-- Content Preview Section *********** -->
+
+  <section class="bg-gray-50 dark:bg-gray-900 py-16">
+    <div class="mx-auto max-w-4xl px-6 sm:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+          Recent Newsletter Content
+        </h2>
+        <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+          See what type of content our subscribers receive every week
+        </p>
+      </div>
+      
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="rounded-lg border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-800">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
+            Week 32: AI Implementation Framework
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            A practical 5-step framework for evaluating and implementing AI solutions in your organization, including real ROI calculations and risk assessment templates.
+          </p>
+          <span class="text-sm text-blue-600 dark:text-blue-400 font-medium">
+            + Technical architecture examples, team structure recommendations, and vendor evaluation criteria
+          </span>
+        </div>
+        
+        <div class="rounded-lg border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-800">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
+            Week 31: Engineering Team Scaling
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            How we scaled our engineering team from 12 to 45 engineers in 8 months while maintaining code quality and team culture. Includes hiring playbooks and onboarding frameworks.
+          </p>
+          <span class="text-sm text-blue-600 dark:text-blue-400 font-medium">
+            + Interview question banks, performance review templates, and team structure diagrams
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'CTO Consulting Services',
+        href: '/services',
+        icon: 'tabler:rocket',
+      },
+      {
+        variant: 'secondary',
+        text: 'Browse All Posts',
+        href: '/archive',
+        icon: 'tabler:archive',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Need More Than Weekly Insights?
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Get hands-on CTO guidance through our consulting services, or browse our complete archive of technology leadership content.
+    </Fragment>
+  </CallToAction>
+</Layout>

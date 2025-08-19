@@ -1,0 +1,101 @@
+---
+import type { Widget } from '~/types';
+
+interface Props extends Widget {
+  title?: string;
+  subtitle?: string;
+  inputs?: Array<{
+    type?: string;
+    name?: string;
+    label?: string;
+    placeholder?: string;
+    required?: boolean;
+  }>;
+  button?: string;
+  disclaimer?: string;
+  compact?: boolean;
+}
+
+const {
+  title = 'Stay Ahead of the AI Curve',
+  subtitle = 'Weekly insights on AI adoption, engineering leadership, and technology strategy. No spam, just actionable content for CTOs and tech leaders.',
+  inputs = [
+    {
+      type: 'email',
+      name: 'email',
+      label: 'Email',
+      placeholder: 'Enter your email',
+      required: true,
+    },
+  ],
+  button = 'Subscribe',
+  disclaimer = 'Join 1,000+ technology leaders • Unsubscribe anytime',
+  compact = false,
+  id,
+  isDark = false,
+  classes = {},
+  bg = compact ? '' : 'bg-blue-50 dark:bg-gray-800',
+} = Astro.props;
+---
+
+<section class:list={[{ [bg]: !!bg }, compact ? 'py-8' : 'py-16']} {...id ? { id } : {}}>
+  <div class="mx-auto max-w-4xl px-6 sm:px-6">
+    <div class="text-center">
+      {
+        title && (
+          <h2 class:list={[
+            'font-bold tracking-tight text-gray-900 dark:text-white',
+            compact ? 'text-xl sm:text-2xl' : 'text-3xl sm:text-4xl'
+          ]}>
+            {title}
+          </h2>
+        )
+      }
+      {
+        subtitle && (
+          <p class:list={[
+            'mx-auto text-gray-600 dark:text-gray-300',
+            compact ? 'mt-2 max-w-lg text-base' : 'mt-4 max-w-2xl text-lg'
+          ]}>
+            {subtitle}
+          </p>
+        )
+      }
+      <div class:list={['flex justify-center', compact ? 'mt-4' : 'mt-8']}>
+        <form 
+          action="https://api.beehiiv.com/v2/publications/pub_YOUR_ID/subscriptions" 
+          method="post"
+          class="flex w-full max-w-md"
+        >
+          {
+            inputs.map(({ type = 'text', name, placeholder, required = false }) => (
+              <input
+                type={type}
+                name={name}
+                placeholder={placeholder}
+                required={required}
+                class="min-w-0 flex-auto rounded-l-md border-0 bg-white px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 dark:bg-gray-700 dark:text-white dark:ring-gray-600 dark:placeholder:text-gray-400"
+              />
+            ))
+          }
+          <button
+            type="submit"
+            class="flex-none rounded-r-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors"
+          >
+            {button}
+          </button>
+        </form>
+      </div>
+      {
+        disclaimer && (
+          <p class:list={[
+            'text-gray-500 dark:text-gray-400',
+            compact ? 'mt-2 text-xs' : 'mt-4 text-sm'
+          ]}>
+            {disclaimer}
+          </p>
+        )
+      }
+    </div>
+  </div>
+</section>
