@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import NewsletterModal from '~/components/widgets/NewsletterModal.astro';
-import { fetchPosts } from '~/utils/blog';
+import { fetchPosts, findFeaturedPost } from '~/utils/blog';
 import { getPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
 
@@ -23,8 +23,9 @@ function resolveImagePath(imagePath: string | undefined): string | undefined {
 export const prerender = true;
 
 const posts = await fetchPosts();
-const featuredPost = posts[0]; // Latest post as featured
-const otherPosts = posts.slice(1, 7); // Next 6 posts
+const featuredPost = await findFeaturedPost();
+// Filter out the featured post from the other posts list
+const otherPosts = posts.filter(post => post.id !== featuredPost?.id).slice(0, 6);
 
 const metadata = {
   title: 'CTO4.AI - AI-Focused Insights for Technology Leaders',

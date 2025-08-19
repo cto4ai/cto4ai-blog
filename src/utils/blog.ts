@@ -56,6 +56,7 @@ const getNormalizedPost = async (
   const rawCategory = 'category' in data ? data.category : undefined;
   const author = 'author' in data ? data.author : undefined;
   const draft = data.draft || false;
+  const featured = 'featured' in data ? data.featured || false : false;
   const metadata = data.metadata || {};
 
   const slug = cleanSlug(id);
@@ -91,6 +92,7 @@ const getNormalizedPost = async (
     author: author,
 
     draft: draft,
+    featured: featured,
 
     metadata,
 
@@ -115,8 +117,15 @@ const load = async function (): Promise<Array<Post>> {
   const normalizedPosts = allContent.map(async (post) => await getNormalizedPost(post));
 
   const results = (await Promise.all(normalizedPosts))
-    .sort((a, b) => b.publishDate.valueOf() - a.publishDate.valueOf())
-    .filter((post) => !post.draft);
+    .filter((post) => !post.draft)
+    .sort((a, b) => {
+      // First, sort by featured status (featured posts first)
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      
+      // Then by publish date (newest first)
+      return b.publishDate.valueOf() - a.publishDate.valueOf();
+    });
 
   return results;
 };
@@ -181,6 +190,12 @@ export const findLatestPosts = async ({ count }: { count?: number }): Promise<Ar
   const posts = await fetchPosts();
 
   return posts ? posts.slice(0, _count) : [];
+};
+
+/** */
+export const findFeaturedPost = async (): Promise<Post | undefined> => {
+  const posts = await fetchPosts();
+  return posts.find((post) => post.featured) || posts[0];
 };
 
 /** */

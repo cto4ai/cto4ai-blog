@@ -62,6 +62,7 @@ const postsCollection = defineCollection({
     categories: z.array(z.string()).optional(),
     tags: z.array(z.string()).optional(),
     author: z.string().optional(),
+    featured: z.boolean().optional(),
 
     metadata: metadataDefinition(),
   }),
@@ -78,6 +79,7 @@ const microCollection = defineCollection({
     description: z.string().optional(),
     image: z.string().optional(),
     author: z.string().optional(),
+    featured: z.boolean().optional(),
 
     metadata: metadataDefinition(),
   }),
@@ -95,6 +97,7 @@ const elsewhereCollection = defineCollection({
     image: z.string().optional(),
     sourceLink: z.string().url().optional(),
     author: z.string().optional(),
+    featured: z.boolean().optional(),
 
     metadata: metadataDefinition(),
   }),
@@ -112,6 +115,7 @@ const quoteCollection = defineCollection({
     image: z.string().optional(),
     sourceLink: z.string().url().optional(),
     author: z.string().optional(),
+    featured: z.boolean().optional(),
     categories: z.array(z.string()).optional(),
     ShowToc: z.boolean().optional(),
     ShowBreadCrumbs: z.boolean().optional(),
