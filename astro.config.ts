@@ -37,6 +37,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   output: 'static',
+  trailingSlash: 'never',
 
   integrations: [
     tailwind({
@@ -84,7 +85,12 @@ export default defineConfig({
       config: './src/config.yaml',
     }),
 
-    pagefind(),
+    pagefind({
+      // Force development mode to use production-like URLs
+      site: './dist',
+      // Configure PageFind to not include trailing slashes
+      forceLanguage: 'en',
+    }),
   ],
 
   image: {

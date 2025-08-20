@@ -36,6 +36,45 @@ const metadata = {
       showImages: false,
       excerptLength: 30
     });
+    
+    // Fix trailing slash URLs in search results using MutationObserver
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            // Fix links in the added content
+            const links = node.querySelectorAll ? node.querySelectorAll('a[href]') : [];
+            links.forEach(fixTrailingSlash);
+            
+            // Also fix if the node itself is a link
+            if (node.tagName === 'A' && node.href) {
+              fixTrailingSlash(node);
+            }
+          }
+        });
+      });
+    });
+    
+    function fixTrailingSlash(link) {
+      if (link.href && link.href.includes(window.location.hostname)) {
+        const url = new URL(link.href);
+        if (url.pathname.endsWith('/') && url.pathname !== '/') {
+          const newPath = url.pathname.replace(/\/$/, '');
+          link.href = url.origin + newPath + url.search + url.hash;
+        }
+      }
+    }
+    
+    // Start observing
+    observer.observe(document.getElementById('search'), {
+      childList: true,
+      subtree: true
+    });
+    
+    // Also fix any existing links after a short delay to catch initial results
+    setTimeout(() => {
+      document.querySelectorAll('#search a[href]').forEach(fixTrailingSlash);
+    }, 100);
   });
 </script>
 
