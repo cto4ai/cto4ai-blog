@@ -26,17 +26,54 @@ const metadata = {
 </Layout>
 
 <script>
-  import { PagefindUI } from '@pagefind/default-ui';
-  
-  // Initialize Pagefind UI when the page loads
-  window.addEventListener('DOMContentLoaded', () => {
-    new PagefindUI({ 
-      element: "#search", 
-      showSubResults: true,
-      showImages: false,
-      excerptLength: 30
-    });
+  // Initialize Pagefind UI using Astro's lifecycle event to avoid race conditions
+  async function initializeSearch() {
+    const searchElement = document.getElementById('search');
+    if (!searchElement) return;
     
+    // Show loading state
+    searchElement.innerHTML = '<div class="p-4 text-center text-gray-500">Loading search...</div>';
+    
+    let attempts = 0;
+    const maxAttempts = 5;
+    
+    while (attempts < maxAttempts) {
+      attempts++;
+      
+      try {
+        // Dynamic import with retry logic
+        const { PagefindUI } = await import('@pagefind/default-ui');
+        
+        // Clear loading state
+        searchElement.innerHTML = '';
+        
+        // Initialize PagefindUI
+        new PagefindUI({ 
+          element: "#search", 
+          showSubResults: true,
+          showImages: false,
+          excerptLength: 30
+        });
+        
+        // Setup trailing slash fix after successful initialization
+        setupTrailingSlashFix();
+        return; // Success - exit retry loop
+        
+      } catch (error) {
+        console.warn(`Search initialization attempt ${attempts}/${maxAttempts} failed:`, error);
+        
+        if (attempts === maxAttempts) {
+          // Final fallback
+          searchElement.innerHTML = '<div class="p-4 text-center text-gray-500">Search temporarily unavailable. Please refresh the page.</div>';
+        } else {
+          // Wait before retry with exponential backoff
+          await new Promise(resolve => setTimeout(resolve, 200 * attempts));
+        }
+      }
+    }
+  }
+  
+  function setupTrailingSlashFix() {
     // Fix trailing slash URLs in search results using MutationObserver
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -66,16 +103,29 @@ const metadata = {
     }
     
     // Start observing
-    observer.observe(document.getElementById('search'), {
-      childList: true,
-      subtree: true
-    });
-    
-    // Also fix any existing links after a short delay to catch initial results
-    setTimeout(() => {
-      document.querySelectorAll('#search a[href]').forEach(fixTrailingSlash);
-    }, 100);
-  });
+    const searchElement = document.getElementById('search');
+    if (searchElement) {
+      observer.observe(searchElement, {
+        childList: true,
+        subtree: true
+      });
+      
+      // Also fix any existing links after a short delay to catch initial results
+      setTimeout(() => {
+        document.querySelectorAll('#search a[href]').forEach(fixTrailingSlash);
+      }, 100);
+    }
+  }
+  
+  // Use Astro's lifecycle event instead of DOMContentLoaded to avoid race conditions
+  document.addEventListener('astro:page-load', initializeSearch);
+  
+  // Also handle initial page load if astro:page-load already fired
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeSearch);
+  } else {
+    initializeSearch();
+  }
 </script>
 
 <style>
@@ -100,6 +150,34 @@ const metadata = {
     border-radius: 0.5rem;
     padding: 0.75rem 1rem;
     font-size: 1.125rem;
+    color: #1f2937 !important;
+    background-color: #ffffff !important;
+    border: 2px solid #d1d5db !important;
+  }
+
+  :global(.pagefind-ui__search-input:focus) {
+    border-color: #3b82f6 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+  }
+
+  :global(.pagefind-ui__search-input::placeholder) {
+    color: #6b7280 !important;
+  }
+
+  :global(.dark .pagefind-ui__search-input) {
+    color: #f9fafb !important;
+    background-color: #374151 !important;
+    border-color: #4b5563 !important;
+  }
+
+  :global(.dark .pagefind-ui__search-input:focus) {
+    border-color: #60a5fa !important;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1) !important;
+  }
+
+  :global(.dark .pagefind-ui__search-input::placeholder) {
+    color: #9ca3af !important;
   }
 
   :global(.pagefind-ui__result) {
