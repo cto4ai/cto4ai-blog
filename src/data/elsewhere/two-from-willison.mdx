@@ -1,0 +1,16 @@
+---
+title: "Two Worthwhile Reads From Simon Willison"
+description: "Claude 3 Opus and GPT-4 to Tackle a GIS 'Sidequest'; and Getting GPT-4 to Write, Compile, and Run C Code"
+sourceLink: "https://simonwillison.net/2024/Mar/22/claude-and-chatgpt-case-study/"
+author: "Jack Ivers"
+publishDate: "2024-03-25T08:42:20-05:00"
+draft: false
+---
+
+I subscribe to Simon Willison's email newsletter (really just selected blog posts via email), and his last two were excellent.
+
+Last week he talked about his casual daily use of the new Claude 3 Opus model via his own LLM tool, as well as ChatGPT GPT-4. He [describes such use as "sidequests,"](https://simonwillison.net/2024/Mar/22/claude-and-chatgpt-case-study/) a description that resonates with me and my own daily LLM use. In this example, over an elapsed time of about 6 minutes, he was able to get an accurate GeoJSON for New York State's huge Adirondack Park starting with a deeply strange shapefile.
+
+Over the weekend, he shared a [longer prototyping effort](https://simonwillison.net/2024/Mar/23/building-c-extensions-for-sqlite-with-chatgpt-code-interpreter/) using ChatGPT GPT-4 Code Interpreter, where we managed to get GPT-4 to write, compile, and run a non-trivial bit of C code: a SQLite C extension for vector similarity. Code Interpreter runs Python, not C, but Simon suspected and confirmed that he could get GPT-4 to run `gcc` from within Python, and that was enough of a shim to get the job done.
+
+Both are excellent reads that mirror my own experience in terms of the myriad ways I take advantage of LLM tools.
