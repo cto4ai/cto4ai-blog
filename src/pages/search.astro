@@ -52,7 +52,9 @@ const metadata = {
           element: "#search", 
           showSubResults: true,
           showImages: false,
-          excerptLength: 30
+          excerptLength: 30,
+          showEmptyFilters: false,
+          resetStyles: false
         });
         
         // Setup trailing slash fix after successful initialization
@@ -189,5 +191,15 @@ const metadata = {
   :global(.pagefind-ui__result-title) {
     font-weight: 600;
     margin-bottom: 0.5rem;
+  }
+
+  :global(.pagefind-ui__result-excerpt) {
+    color: #6b7280;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.dark .pagefind-ui__result-excerpt) {
+    color: #9ca3af;
   }
 </style>
