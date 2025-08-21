@@ -64,7 +64,7 @@ const metadata = {
     
     <!-- Featured Article -->
     {featuredPost && (
-      <section class="mb-12 pb-12">
+      <section class="mb-12 pb-12 border-b border-gray-200 dark:border-gray-800">
         <article class="flex flex-col md:flex-row gap-8">
           {/* Image on left */}
           {resolveImagePath(featuredPost.image) && (
@@ -105,12 +105,12 @@ const metadata = {
     )}
 
     <!-- Two Column Layout -->
-    <div class="flex flex-col lg:flex-row gap-12">
+    <div class="flex flex-col lg:flex-row gap-12 divide-x-0 lg:divide-x divide-gray-200 dark:divide-gray-800">
       <!-- Left Column: Blog Posts -->
-      <section class="lg:w-2/3">
+      <section class="lg:w-2/3 lg:pr-12">
         <div class="space-y-8">
-          {otherPosts.map((post) => (
-            <article class="pb-8 last:pb-0">
+          {otherPosts.map((post, index) => (
+            <article class={index < otherPosts.length - 1 ? "pb-8 border-b border-gray-200 dark:border-gray-800" : "pb-8"}>
               <div class="flex gap-4">
                 {/* Text content on left - narrower */}
                 <div class="flex-1 max-w-md">
@@ -164,9 +164,9 @@ const metadata = {
       </section>
 
       <!-- Right Column: Sidebar -->
-      <aside class="lg:w-1/3">
+      <aside class="lg:w-1/3 lg:pl-12">
         {/* Subscribe Section */}
-        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 pb-8 mb-8 border-b border-gray-200 dark:border-gray-700">
           <div class="mb-4">
             <Logo />
             <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">AI insights for technology leaders</p>
@@ -187,27 +187,27 @@ const metadata = {
         </div>
 
         {/* Recommendations Section */}
-        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 pb-8 mb-8 border-b border-gray-200 dark:border-gray-700">
           <div class="flex items-center justify-between mb-4">
             <h3 class="font-bold text-gray-900 dark:text-white">Recommendations</h3>
             <a href="#" class="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 uppercase">View All</a>
           </div>
-          <div class="space-y-4">
-            <a href="#" class="flex items-center hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded transition-colors">
+          <div class="divide-y divide-gray-200 dark:divide-gray-700">
+            <a href="#" class="flex items-center hover:bg-gray-50 dark:hover:bg-gray-700 p-2 pb-4 transition-colors">
               <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full mr-3"></div>
               <div>
                 <div class="font-medium text-gray-900 dark:text-white text-sm">AI Research Blog</div>
                 <div class="text-xs text-gray-500 dark:text-gray-400">Latest AI papers</div>
               </div>
             </a>
-            <a href="#" class="flex items-center hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded transition-colors">
+            <a href="#" class="flex items-center hover:bg-gray-50 dark:hover:bg-gray-700 p-2 py-4 transition-colors">
               <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full mr-3"></div>
               <div>
                 <div class="font-medium text-gray-900 dark:text-white text-sm">Tech Leadership</div>
                 <div class="text-xs text-gray-500 dark:text-gray-400">CTO insights</div>
               </div>
             </a>
-            <a href="#" class="flex items-center hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded transition-colors">
+            <a href="#" class="flex items-center hover:bg-gray-50 dark:hover:bg-gray-700 p-2 pt-4 transition-colors">
               <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full mr-3"></div>
               <div>
                 <div class="font-medium text-gray-900 dark:text-white text-sm">Engineering Excellence</div>
@@ -219,15 +219,15 @@ const metadata = {
 
         {/* Resources Section */}
         <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
-          <h3 class="font-bold text-gray-900 dark:text-white mb-4">Resources</h3>
-          <div class="space-y-3">
-            <a href="#" class="block text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm">
+          <h3 class="font-bold text-gray-900 dark:text-white mb-4 pb-3 border-b border-gray-200 dark:border-gray-700">Resources</h3>
+          <div class="divide-y divide-gray-200 dark:divide-gray-700">
+            <a href="#" class="block text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm py-3">
               AI Implementation Guide
             </a>
-            <a href="#" class="block text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm">
+            <a href="#" class="block text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm py-3">
               CTO Handbook: AI Strategy
             </a>
-            <a href="#" class="block text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm">
+            <a href="#" class="block text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm pt-3">
               Newsletter Archive
             </a>
           </div>
