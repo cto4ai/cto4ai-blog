@@ -1,25 +1,13 @@
 ---
+import type { ImageMetadata } from 'astro';
 import Layout from '~/layouts/PageLayout.astro';
 import NewsletterModal from '~/components/widgets/NewsletterModal.astro';
 import Logo from '~/components/Logo.astro';
+import Image from '~/components/common/Image.astro';
 import { fetchPosts, findFeaturedPost } from '~/utils/blog';
 import { getPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
-
-// Helper function to resolve image paths
-function resolveImagePath(imagePath: string | undefined): string | undefined {
-  if (!imagePath) return undefined;
-  
-  // If it starts with ~/assets, convert to proper import path
-  if (imagePath.startsWith('~/assets/images/')) {
-    // Convert ~/assets/images/blog/post/image.png to /src/assets/images/blog/post/image.png
-    const cleanPath = imagePath.replace('~/assets/', '/src/assets/');
-    return cleanPath;
-  }
-  
-  // Return as-is for other paths (external URLs, etc.)
-  return imagePath;
-}
+import { findImage } from '~/utils/images';
 
 // Helper function to get display name for content type
 function getContentTypeDisplay(post: any): string {
@@ -40,6 +28,15 @@ const featuredPost = await findFeaturedPost();
 // Filter out the featured post from the other posts list
 const otherPosts = posts.filter(post => post.id !== featuredPost?.id).slice(0, 6);
 
+// Find images for featured post and other posts
+const featuredPostImage = featuredPost ? await findImage(featuredPost.image) as ImageMetadata | undefined : undefined;
+const postsWithImages = await Promise.all(
+  otherPosts.map(async (post) => ({
+    ...post,
+    imageMetadata: await findImage(post.image) as ImageMetadata | undefined
+  }))
+);
+
 const metadata = {
   title: 'CTO4.AI - AI-Focused Insights for Technology Leaders',
   description: 'AI-focused insights and practical guidance for CTOs and technology leaders navigating the AI transformation.',
@@ -59,13 +56,17 @@ const metadata = {
       <section class="mb-12 pb-12 border-b border-gray-200 dark:border-gray-800">
         <article class="flex flex-col md:flex-row gap-8">
           {/* Image on left */}
-          {resolveImagePath(featuredPost.image) && (
+          {featuredPostImage && (
             <div class="md:w-1/2">
               <a href={getPermalink(featuredPost.permalink)}>
-                <img 
-                  src={resolveImagePath(featuredPost.image)} 
+                <Image
+                  src={featuredPostImage}
                   alt={featuredPost.title}
                   class="w-full h-full object-cover rounded-lg"
+                  widths={[400, 768]}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="eager"
+                  decoding="async"
                 />
               </a>
             </div>
@@ -101,7 +102,7 @@ const metadata = {
       <!-- Left Column: Blog Posts -->
       <section class="lg:w-2/3 lg:pr-12">
         <div class="space-y-8">
-          {otherPosts.map((post, index) => (
+          {postsWithImages.map((post, index) => (
             <article class={index < otherPosts.length - 1 ? "pb-8 border-b border-gray-200 dark:border-gray-800" : "pb-8"}>
               <div class="flex gap-4">
                 {/* Text content on left - narrower */}
@@ -127,12 +128,16 @@ const metadata = {
                   </div>
                 </div>
                 {/* Image on right - larger to match oneusefulthing */}
-                {resolveImagePath(post.image) && (
+                {post.imageMetadata && (
                   <div class="flex-shrink-0 w-44 h-28">
-                    <img 
-                      src={resolveImagePath(post.image)} 
+                    <Image
+                      src={post.imageMetadata}
                       alt={post.title}
                       class="w-full h-full object-cover rounded-lg"
+                      widths={[176, 352]}
+                      sizes="176px"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 )}
