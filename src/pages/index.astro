@@ -63,7 +63,7 @@ const metadata = {
     
     <!-- Featured Article -->
     {featuredPost && (
-      <section class="mb-12 border-b border-gray-200 dark:border-gray-700 pb-12">
+      <section class="mb-12 pb-12">
         <article class="flex flex-col md:flex-row gap-8">
           {/* Image on left */}
           {resolveImagePath(featuredPost.image) && (
@@ -107,24 +107,9 @@ const metadata = {
     <div class="flex flex-col lg:flex-row gap-12">
       <!-- Left Column: Blog Posts -->
       <section class="lg:w-2/3">
-        {/* Tab navigation (visual only, no functionality per requirements) */}
-        <div class="border-b border-gray-200 dark:border-gray-700 mb-8">
-          <nav class="flex space-x-8">
-            <button class="pb-3 border-b-2 border-blue-600 text-gray-900 dark:text-white font-medium">
-              Latest
-            </button>
-            <button class="pb-3 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
-              Top
-            </button>
-            <button class="pb-3 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
-              Discussions
-            </button>
-          </nav>
-        </div>
-        
         <div class="space-y-8">
           {otherPosts.map((post) => (
-            <article class="border-b border-gray-200 dark:border-gray-700 pb-8 last:border-b-0 last:pb-0">
+            <article class="pb-8 last:pb-0">
               <div class="flex gap-6">
                 {/* Text content on left */}
                 <div class="flex-1">
