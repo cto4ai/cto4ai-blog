@@ -21,24 +21,16 @@ function resolveImagePath(imagePath: string | undefined): string | undefined {
   return imagePath;
 }
 
-// Helper function to determine content type based on post characteristics
-function getContentType(post: any): string {
-  // You can customize this logic based on your content categorization
-  // For now, using simple heuristics
-  const content = post.content || '';
-  const wordCount = content.split(/\s+/).length;
+// Helper function to get display name for content type
+function getContentTypeDisplay(post: any): string {
+  const contentTypeMap: Record<string, string> = {
+    'posts': 'ESSAY',
+    'micro': 'NOTE',
+    'elsewhere': 'LINK',
+    'quote': 'QUOTE'
+  };
   
-  if (post.tags?.includes('essay') || wordCount > 2000) {
-    return 'ESSAY';
-  } else if (post.tags?.includes('tutorial') || post.tags?.includes('guide')) {
-    return 'GUIDE';
-  } else if (post.tags?.includes('news') || post.tags?.includes('announcement')) {
-    return 'NEWS';
-  } else if (wordCount < 500) {
-    return 'NOTE';
-  } else {
-    return 'ARTICLE';
-  }
+  return contentTypeMap[post.contentType || 'posts'] || 'ESSAY';
 }
 
 export const prerender = true;
@@ -97,7 +89,7 @@ const metadata = {
               <span class="mx-2">•</span>
               <span>{(featuredPost.author || 'Jack Ivers').toUpperCase()}</span>
               <span class="mx-2">•</span>
-              <span>{getContentType(featuredPost)}</span>
+              <span>{getContentTypeDisplay(featuredPost)}</span>
             </div>
           </div>
         </article>
@@ -131,7 +123,7 @@ const metadata = {
                     <span class="mx-2">•</span>
                     <span>{(post.author || 'Jack Ivers').toUpperCase()}</span>
                     <span class="mx-2">•</span>
-                    <span>{getContentType(post)}</span>
+                    <span>{getContentTypeDisplay(post)}</span>
                   </div>
                 </div>
                 {/* Image on right - larger to match oneusefulthing */}

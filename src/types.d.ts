@@ -5,7 +5,7 @@ export interface Post {
   /** A unique ID number that identifies a post. */
   id: string;
 
-  /** A post’s unique slug – part of the post’s URL based on its name, i.e. a post called “My Sample Page” has a slug “my-sample-page”. */
+  /** A post's unique slug – part of the post's URL based on its name, i.e. a post called "My Sample Page" has a slug "my-sample-page". */
   slug: string;
 
   /**  */
@@ -44,6 +44,9 @@ export interface Post {
 
   /**  */
   readingTime?: number;
+  
+  /** Content type based on the source collection */
+  contentType?: 'posts' | 'micro' | 'elsewhere' | 'quote';
 }
 
 export interface Taxonomy {

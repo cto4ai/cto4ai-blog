@@ -46,6 +46,9 @@ const getNormalizedPost = async (
   const { id, data } = post;
   const { Content, remarkPluginFrontmatter } = await render(post);
 
+  // Determine content type from collection
+  const contentType = post.collection as 'posts' | 'micro' | 'elsewhere' | 'quote';
+
   // Handle different content collection schemas
   const rawPublishDate = data.publishDate || new Date();
   const rawUpdateDate = data.updateDate;
@@ -102,6 +105,7 @@ const getNormalizedPost = async (
     // or 'content' in case you consume from API
 
     readingTime: remarkPluginFrontmatter?.readingTime,
+    contentType: contentType,
   };
 };
 
