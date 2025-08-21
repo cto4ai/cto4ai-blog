@@ -72,11 +72,15 @@ try {
     });
   }
 
-  // Initialize immediately
-  initLightbox();
+  // Use Astro's lifecycle event for navigation
+  document.addEventListener('astro:page-load', initLightbox);
 
-  // Re-initialize on navigation
-  document.addEventListener('astro:after-swap', initLightbox);
+  // Handle initial page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLightbox);
+  } else {
+    initLightbox();
+  }
 </script>
 
 <style>
