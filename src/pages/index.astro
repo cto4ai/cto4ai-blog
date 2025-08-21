@@ -138,15 +138,17 @@ const metadata = {
                 {/* Image on right - larger to match oneusefulthing */}
                 <div class="flex-shrink-0 w-44 h-28">
                   {post.imageMetadata ? (
-                    <Image
-                      src={post.imageMetadata}
-                      alt={post.title}
-                      class="w-full h-full object-cover rounded-lg"
-                      widths={[176, 352]}
-                      sizes="176px"
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    <a href={getPermalink(post.permalink)}>
+                      <Image
+                        src={post.imageMetadata}
+                        alt={post.title}
+                        class="w-full h-full object-cover rounded-lg"
+                        widths={[176, 352]}
+                        sizes="176px"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
                   ) : (
                     <a href={getPermalink(post.permalink)} class="w-full h-full rounded-lg bg-gray-200 dark:bg-gray-800 flex flex-col items-center justify-center">
                       <img src={symbolLogo.src} alt="" class="w-16 h-16 opacity-80 dark:opacity-70" style="filter: brightness(0.7)" />
