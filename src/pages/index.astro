@@ -20,6 +20,26 @@ function resolveImagePath(imagePath: string | undefined): string | undefined {
   return imagePath;
 }
 
+// Helper function to determine content type based on post characteristics
+function getContentType(post: any): string {
+  // You can customize this logic based on your content categorization
+  // For now, using simple heuristics
+  const content = post.content || '';
+  const wordCount = content.split(/\s+/).length;
+  
+  if (post.tags?.includes('essay') || wordCount > 2000) {
+    return 'ESSAY';
+  } else if (post.tags?.includes('tutorial') || post.tags?.includes('guide')) {
+    return 'GUIDE';
+  } else if (post.tags?.includes('news') || post.tags?.includes('announcement')) {
+    return 'NEWS';
+  } else if (wordCount < 500) {
+    return 'NOTE';
+  } else {
+    return 'ARTICLE';
+  }
+}
+
 export const prerender = true;
 
 const posts = await fetchPosts();
@@ -43,105 +63,194 @@ const metadata = {
     
     <!-- Featured Article -->
     {featuredPost && (
-      <section class="mb-12">
-        <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+      <section class="mb-12 border-b border-gray-200 dark:border-gray-700 pb-12">
+        <article class="flex flex-col md:flex-row gap-8">
+          {/* Image on left */}
           {resolveImagePath(featuredPost.image) && (
-            <div class="aspect-video">
-              <img 
-                src={resolveImagePath(featuredPost.image)} 
-                alt={featuredPost.title}
-                class="w-full h-full object-cover"
-              />
+            <div class="md:w-1/2">
+              <a href={getPermalink(featuredPost.permalink)}>
+                <img 
+                  src={resolveImagePath(featuredPost.image)} 
+                  alt={featuredPost.title}
+                  class="w-full h-full object-cover rounded-lg"
+                />
+              </a>
             </div>
           )}
-          <div class="p-8">
-            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-              <time datetime={featuredPost.publishDate && getFormattedDate(featuredPost.publishDate)}>
-                {featuredPost.publishDate && getFormattedDate(featuredPost.publishDate)}
-              </time>
-              <span class="mx-2">•</span>
-              <span>{featuredPost.author || 'Jack Ivers'}</span>
-            </div>
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          {/* Content on right */}
+          <div class="md:w-1/2 flex flex-col justify-center">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
               <a href={getPermalink(featuredPost.permalink)} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 {featuredPost.title}
               </a>
             </h1>
             {(featuredPost.excerpt || featuredPost.description) && (
-              <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+              <p class="text-lg text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                 {featuredPost.excerpt || featuredPost.description}
               </p>
             )}
-            <a 
-              href={getPermalink(featuredPost.permalink)} 
-              class="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-            >
-              Read more →
-            </a>
+            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+              <time datetime={featuredPost.publishDate && getFormattedDate(featuredPost.publishDate)}>
+                {featuredPost.publishDate && getFormattedDate(featuredPost.publishDate).toUpperCase().replace(',', '')}
+              </time>
+              <span class="mx-2">•</span>
+              <span>{(featuredPost.author || 'Jack Ivers').toUpperCase()}</span>
+              <span class="mx-2">•</span>
+              <span>{getContentType(featuredPost)}</span>
+            </div>
           </div>
         </article>
       </section>
     )}
 
-    <!-- Latest Posts List -->
-    <section>
-      <div class="flex items-center justify-between mb-8">
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Latest</h2>
-        <a 
-          href="/archive" 
-          class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
-        >
-          View all posts →
-        </a>
-      </div>
-      
-      <div class="space-y-6">
-        {otherPosts.map((post) => (
-          <article class="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0 last:pb-0">
-            <div class="flex items-start gap-6">
-              {resolveImagePath(post.image) && (
-                <div class="flex-shrink-0 w-24 h-24 sm:w-32 sm:h-32">
-                  <img 
-                    src={resolveImagePath(post.image)} 
-                    alt={post.title}
-                    class="w-full h-full object-cover rounded-lg"
-                  />
+    <!-- Two Column Layout -->
+    <div class="flex flex-col lg:flex-row gap-12">
+      <!-- Left Column: Blog Posts -->
+      <section class="lg:w-2/3">
+        {/* Tab navigation (visual only, no functionality per requirements) */}
+        <div class="border-b border-gray-200 dark:border-gray-700 mb-8">
+          <nav class="flex space-x-8">
+            <button class="pb-3 border-b-2 border-blue-600 text-gray-900 dark:text-white font-medium">
+              Latest
+            </button>
+            <button class="pb-3 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+              Top
+            </button>
+            <button class="pb-3 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+              Discussions
+            </button>
+          </nav>
+        </div>
+        
+        <div class="space-y-8">
+          {otherPosts.map((post) => (
+            <article class="border-b border-gray-200 dark:border-gray-700 pb-8 last:border-b-0 last:pb-0">
+              <div class="flex gap-6">
+                {/* Text content on left */}
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    <a href={getPermalink(post.permalink)} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                      {post.title}
+                    </a>
+                  </h3>
+                  {(post.excerpt || post.description) && (
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">
+                      {post.excerpt || post.description}
+                    </p>
+                  )}
+                  <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                    <time datetime={post.publishDate && getFormattedDate(post.publishDate)}>
+                      {post.publishDate && getFormattedDate(post.publishDate).toUpperCase().replace(',', '')}
+                    </time>
+                    <span class="mx-2">•</span>
+                    <span>{(post.author || 'Jack Ivers').toUpperCase()}</span>
+                    <span class="mx-2">•</span>
+                    <span>{getContentType(post)}</span>
+                  </div>
                 </div>
-              )}
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
-                  <time datetime={post.publishDate && getFormattedDate(post.publishDate)}>
-                    {post.publishDate && getFormattedDate(post.publishDate)}
-                  </time>
-                  <span class="mx-2">•</span>
-                  <span>{post.author || 'Jack Ivers'}</span>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                  <a href={getPermalink(post.permalink)} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                    {post.title}
-                  </a>
-                </h3>
-                {(post.excerpt || post.description) && (
-                  <p class="text-gray-600 dark:text-gray-300 text-sm line-clamp-2">
-                    {post.excerpt || post.description}
-                  </p>
+                {/* Image on right */}
+                {resolveImagePath(post.image) && (
+                  <div class="flex-shrink-0 w-32 h-32">
+                    <img 
+                      src={resolveImagePath(post.image)} 
+                      alt={post.title}
+                      class="w-full h-full object-cover rounded-lg"
+                    />
+                  </div>
                 )}
               </div>
-            </div>
-          </article>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
 
-      <!-- Load More -->
-      <div class="text-center mt-12">
-        <a 
-          href="/archive" 
-          class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
-        >
-          View All Posts
-        </a>
-      </div>
-    </section>
+        {/* See all link at bottom left */}
+        <div class="mt-8">
+          <a 
+            href="/archive" 
+            class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors inline-flex items-center"
+          >
+            See all 
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- Right Column: Sidebar -->
+      <aside class="lg:w-1/3">
+        {/* Subscribe Section */}
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 mb-8">
+          <div class="flex items-center mb-4">
+            <img src="/favicon.svg" alt="CTO4.AI" class="w-12 h-12 mr-3" />
+            <div>
+              <h3 class="font-bold text-gray-900 dark:text-white">CTO4.AI</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">AI insights for technology leaders</p>
+            </div>
+          </div>
+          <form class="space-y-3">
+            <input 
+              type="email" 
+              placeholder="Type your email..." 
+              class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+            />
+            <button 
+              type="submit" 
+              class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+
+        {/* Recommendations Section */}
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 mb-8">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-gray-900 dark:text-white">Recommendations</h3>
+            <a href="#" class="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 uppercase">View All</a>
+          </div>
+          <div class="space-y-4">
+            <a href="#" class="flex items-center hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded transition-colors">
+              <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full mr-3"></div>
+              <div>
+                <div class="font-medium text-gray-900 dark:text-white text-sm">AI Research Blog</div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">Latest AI papers</div>
+              </div>
+            </a>
+            <a href="#" class="flex items-center hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded transition-colors">
+              <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full mr-3"></div>
+              <div>
+                <div class="font-medium text-gray-900 dark:text-white text-sm">Tech Leadership</div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">CTO insights</div>
+              </div>
+            </a>
+            <a href="#" class="flex items-center hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded transition-colors">
+              <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full mr-3"></div>
+              <div>
+                <div class="font-medium text-gray-900 dark:text-white text-sm">Engineering Excellence</div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">Best practices</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        {/* Resources Section */}
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
+          <h3 class="font-bold text-gray-900 dark:text-white mb-4">Resources</h3>
+          <div class="space-y-3">
+            <a href="#" class="block text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm">
+              AI Implementation Guide
+            </a>
+            <a href="#" class="block text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm">
+              CTO Handbook: AI Strategy
+            </a>
+            <a href="#" class="block text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm">
+              Newsletter Archive
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
 
   </main>
 </Layout>
