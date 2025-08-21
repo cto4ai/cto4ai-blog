@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import NewsletterModal from '~/components/widgets/NewsletterModal.astro';
+import Logo from '~/components/Logo.astro';
 import { fetchPosts, findFeaturedPost } from '~/utils/blog';
 import { getPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
@@ -166,12 +167,9 @@ const metadata = {
       <aside class="lg:w-1/3">
         {/* Subscribe Section */}
         <div class="bg-white dark:bg-gray-800 rounded-lg p-6 mb-8">
-          <div class="flex items-center mb-4">
-            <img src="/favicon.svg" alt="CTO4.AI" class="w-12 h-12 mr-3" />
-            <div>
-              <h3 class="font-bold text-gray-900 dark:text-white">CTO4.AI</h3>
-              <p class="text-sm text-gray-600 dark:text-gray-400">AI insights for technology leaders</p>
-            </div>
+          <div class="mb-4">
+            <Logo />
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">AI insights for technology leaders</p>
           </div>
           <form class="space-y-3">
             <input 
