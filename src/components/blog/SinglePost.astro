@@ -33,83 +33,63 @@ function getContentTypeDisplay(contentType?: string): string {
 <section class="py-8 sm:py-16 lg:py-20 mx-auto">
   <article data-pagefind-body>
     <header
-      class={post.image
-        ? 'intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade'
-        : 'intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade'}
+      class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade max-w-5xl mx-auto px-4 sm:px-6 mb-8"
     >
-      <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
-        <p>
-          <Icon name="tabler:clock" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
-          <time datetime={String(post.publishDate)} class="inline-block">{getFormattedDate(post.publishDate)}</time>
-          {
-            post.author && (
-              <>
-                {' '}
-                · <Icon name="tabler:user" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
-                <span class="inline-block">{post.author}</span>
-              </>
-            )
-          }
-          {
-            post.contentType && (
-              <>
-                {' '}
-                · <span>{getContentTypeDisplay(post.contentType)}</span>
-              </>
-            )
-          }
-          {
-            post.category && (
-              <>
-                {' '}
-                ·{' '}
-                <a class="hover:underline inline-block" href={getPermalink(post.category.slug, 'category')}>
-                  {post.category.title}
-                </a>
-              </>
-            )
-          }
-          {
-            post.readingTime && (
-              <>
-                &nbsp;· <span>{post.readingTime}</span> min read
-              </>
-            )
-          }
-        </p>
-      </div>
-
-      <h1
-        class="px-4 sm:px-6 max-w-3xl mx-auto text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading"
-      >
-        {post.title}
-      </h1>
-      <p
-        class="max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl md:text-2xl text-muted dark:text-slate-400 text-justify"
-        data-pagefind-meta="description"
-      >
-        {post.excerpt}
-      </p>
-
-      {
-        post.image ? (
-          <Image
-            src={post.image}
-            class="max-w-full lg:max-w-[900px] mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
-            widths={[400, 900]}
-            sizes="(max-width: 900px) 400px, 900px"
-            alt={post?.excerpt || ''}
-            width={900}
-            aspectRatio="16:9"
-            loading="eager"
-            decoding="async"
-          />
-        ) : (
-          <div class="max-w-3xl mx-auto px-4 sm:px-6">
-            <div class="border-t dark:border-slate-700" />
+      <div class="flex flex-col md:flex-row gap-6">
+        {/* Text content on left */}
+        <div class="flex-1">
+          <h1
+            class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-3"
+          >
+            {post.title}
+          </h1>
+          <p
+            class="text-lg md:text-xl text-muted dark:text-slate-400 mb-3"
+            data-pagefind-meta="description"
+          >
+            {post.excerpt || post.description}
+          </p>
+          <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+            <time datetime={String(post.publishDate)}>
+              {getFormattedDate(post.publishDate).toUpperCase().replace(',', '')}
+            </time>
+            <span class="mx-2">•</span>
+            <span>{(post.author || 'Jack Ivers').toUpperCase()}</span>
+            <span class="mx-2">•</span>
+            <span>{getContentTypeDisplay(post.contentType)}</span>
+            {
+              post.readingTime && (
+                <>
+                  <span class="mx-2">•</span>
+                  <span>{post.readingTime} MIN READ</span>
+                </>
+              )
+            }
           </div>
-        )
-      }
+        </div>
+        
+        {/* Image on right */}
+        {
+          post.image && (
+            <div class="md:w-2/5 flex-shrink-0">
+              <Image
+                src={post.image}
+                class="w-full h-full object-cover rounded-lg bg-gray-400 dark:bg-slate-700"
+                widths={[400, 600]}
+                sizes="(max-width: 768px) 400px, 600px"
+                alt={post?.excerpt || ''}
+                width={600}
+                aspectRatio="16:9"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          )
+        }
+      </div>
+      
+      {/* Divider line */}
+      <div class="mt-8 border-t dark:border-slate-700" />
     </header>
     <div
       class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0"
