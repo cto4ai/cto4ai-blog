@@ -111,9 +111,9 @@ const metadata = {
         <div class="space-y-8">
           {otherPosts.map((post) => (
             <article class="pb-8 last:pb-0">
-              <div class="flex gap-6">
-                {/* Text content on left */}
-                <div class="flex-1">
+              <div class="flex gap-4">
+                {/* Text content on left - narrower */}
+                <div class="flex-1 max-w-md">
                   <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
                     <a href={getPermalink(post.permalink)} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                       {post.title}
@@ -134,9 +134,9 @@ const metadata = {
                     <span>{getContentType(post)}</span>
                   </div>
                 </div>
-                {/* Image on right */}
+                {/* Image on right - larger to match oneusefulthing */}
                 {resolveImagePath(post.image) && (
-                  <div class="flex-shrink-0 w-32 h-32">
+                  <div class="flex-shrink-0 w-44 h-28">
                     <img 
                       src={resolveImagePath(post.image)} 
                       alt={post.title}
