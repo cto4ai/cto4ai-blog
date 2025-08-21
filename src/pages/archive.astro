@@ -1,13 +1,37 @@
 ---
+import type { ImageMetadata } from 'astro';
 import Layout from '~/layouts/PageLayout.astro';
-import BlogList from '~/components/blog/List.astro';
 import Headline from '~/components/blog/Headline.astro';
+import Image from '~/components/common/Image.astro';
 
 import { fetchPosts } from '~/utils/blog';
+import { getPermalink } from '~/utils/permalinks';
+import { getFormattedDate } from '~/utils/utils';
+import { findImage } from '~/utils/images';
 
 export const prerender = true;
 
 const posts = await fetchPosts();
+
+// Helper function to get display name for content type
+function getContentTypeDisplay(post: any): string {
+  const contentTypeMap: Record<string, string> = {
+    'posts': 'ESSAY',
+    'micro': 'NOTE',
+    'elsewhere': 'LINK',
+    'quote': 'QUOTE'
+  };
+  
+  return contentTypeMap[post.contentType || 'posts'] || 'ESSAY';
+}
+
+// Find images for all posts
+const postsWithImages = await Promise.all(
+  posts.map(async (post) => ({
+    ...post,
+    imageMetadata: await findImage(post.image) as ImageMetadata | undefined
+  }))
+);
 
 const metadata = {
   title: 'Archive - All Posts',
@@ -34,6 +58,53 @@ const metadata = {
       </p>
     </div>
 
-    <BlogList posts={posts} />
+    <!-- Posts list with compact layout matching homepage -->
+    <div class="space-y-8">
+      {postsWithImages.map((post, index) => (
+        <article class={index < postsWithImages.length - 1 ? "pb-8 border-b border-gray-200 dark:border-gray-800" : "pb-8"}>
+          <div class="flex gap-4">
+            {/* Text content on left - narrower */}
+            <div class="flex-1">
+              <h3 class="text-xl font-bold leading-tight mb-2 font-heading dark:text-slate-300">
+                <a 
+                  href={getPermalink(post.permalink)} 
+                  class="hover:text-primary dark:hover:text-blue-700 transition ease-in duration-200"
+                >
+                  {post.title}
+                </a>
+              </h3>
+              <p class="text-muted dark:text-slate-400 text-base mb-2">
+                {post.excerpt || post.description}
+              </p>
+              <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                <time datetime={String(post.publishDate)}>
+                  {getFormattedDate(post.publishDate).toUpperCase().replace(',', '')}
+                </time>
+                <span class="mx-2">•</span>
+                <span>{(post.author || 'Jack Ivers').toUpperCase()}</span>
+                <span class="mx-2">•</span>
+                <span>{getContentTypeDisplay(post)}</span>
+              </div>
+            </div>
+            {/* Image on right - larger to match oneusefulthing */}
+            {post.imageMetadata && (
+              <div class="flex-shrink-0 w-44 h-28">
+                <a href={getPermalink(post.permalink)}>
+                  <Image
+                    src={post.imageMetadata}
+                    alt={post.title}
+                    class="w-full h-full object-cover rounded-lg"
+                    widths={[176, 352]}
+                    sizes="176px"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
   </section>
 </Layout>
