@@ -52,36 +52,6 @@ try {
   </div>
 )}
 
-<script>
-  import GLightbox from 'glightbox';
-  import 'glightbox/dist/css/glightbox.min.css';
-
-  function initLightbox() {
-    // Destroy any existing instances first
-    if (window.glightboxInstance) {
-      try {
-        window.glightboxInstance.destroy();
-      } catch (e) {}
-    }
-    
-    // Create new instance
-    window.glightboxInstance = GLightbox({
-      touchNavigation: true,
-      loop: false,
-      autoplayVideos: true,
-    });
-  }
-
-  // Use Astro's lifecycle event for navigation
-  document.addEventListener('astro:page-load', initLightbox);
-
-  // Handle initial page load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLightbox);
-  } else {
-    initLightbox();
-  }
-</script>
 
 <style>
   .single-image {

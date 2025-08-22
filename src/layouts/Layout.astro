@@ -44,5 +44,119 @@ const { language, textDirection } = I18N;
     <slot />
 
     <BasicScripts />
+    
+    <!-- Global Lightbox Manager -->
+    <script>
+      import GLightbox from 'glightbox';
+      import 'glightbox/dist/css/glightbox.min.css';
+      
+      // Global lightbox manager to handle GLightbox instances across page navigations
+      class LightboxManager {
+        constructor() {
+          this.instance = null;
+          this.initialized = false;
+          this.debug = true; // Set to true for debugging
+          
+          this.log('LightboxManager constructor called');
+          this.init();
+        }
+
+        log(message, data = null) {
+          if (this.debug) {
+            if (data) {
+              console.log(`[LightboxManager] ${message}`, data);
+            } else {
+              console.log(`[LightboxManager] ${message}`);
+            }
+          }
+        }
+
+        init() {
+          // Clean up on navigation start
+          document.addEventListener('astro:before-swap', () => {
+            this.log('astro:before-swap - cleaning up');
+            this.cleanup();
+          });
+
+          // Initialize on page load
+          document.addEventListener('astro:page-load', () => {
+            this.log('astro:page-load - initializing');
+            // Small delay to ensure DOM is ready
+            setTimeout(() => this.initializeLightbox(), 50);
+          });
+
+          // Also handle initial page load
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+              this.log('DOMContentLoaded - initializing');
+              setTimeout(() => this.initializeLightbox(), 50);
+            });
+          } else {
+            this.log('Document ready - initializing immediately');
+            setTimeout(() => this.initializeLightbox(), 50);
+          }
+        }
+
+        cleanup() {
+          if (this.instance) {
+            this.log('Destroying existing GLightbox instance');
+            try {
+              this.instance.destroy();
+            } catch (e) {
+              this.log('Error destroying instance', e);
+            }
+            this.instance = null;
+          }
+          this.initialized = false;
+        }
+
+        initializeLightbox() {
+          // Prevent duplicate initialization
+          if (this.initialized) {
+            this.log('Already initialized, skipping');
+            return;
+          }
+
+          // Find all lightbox triggers
+          const triggers = document.querySelectorAll('.glightbox, .glightbox-gallery');
+          
+          if (triggers.length === 0) {
+            this.log('No lightbox triggers found');
+            return;
+          }
+
+          this.log(`Found ${triggers.length} lightbox triggers`);
+
+          // Clean up any existing instance
+          this.cleanup();
+
+          // Create new instance
+          try {
+            this.instance = GLightbox({
+              touchNavigation: true,
+              loop: false,
+              autoplayVideos: true,
+              selector: '.glightbox, .glightbox-gallery'
+            });
+            this.initialized = true;
+            this.log('GLightbox instance created successfully');
+          } catch (e) {
+            this.log('Error creating GLightbox instance', e);
+          }
+        }
+
+        // Public method to force refresh
+        refresh() {
+          this.log('Manual refresh requested');
+          this.cleanup();
+          this.initializeLightbox();
+        }
+      }
+
+      // Create singleton instance
+      if (!window.lightboxManager) {
+        window.lightboxManager = new LightboxManager();
+      }
+    </script>
   </body>
 </html>
