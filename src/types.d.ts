@@ -47,6 +47,9 @@ export interface Post {
   
   /** Content type based on the source collection */
   contentType?: 'posts' | 'micro' | 'elsewhere' | 'quote';
+  
+  /** External source link for elsewhere content */
+  sourceLink?: string;
 }
 
 export interface Taxonomy {

@@ -62,6 +62,7 @@ const getNormalizedPost = async (
   const draft = data.draft || false;
   const featured = 'featured' in data ? data.featured || false : false;
   const metadata = data.metadata || {};
+  const sourceLink = 'sourceLink' in data ? data.sourceLink : undefined;
 
   const slug = cleanSlug(id);
   const publishDate = new Date(rawPublishDate);
@@ -106,6 +107,7 @@ const getNormalizedPost = async (
 
     readingTime: remarkPluginFrontmatter?.readingTime,
     contentType: contentType,
+    sourceLink: sourceLink,
   };
 };
 
