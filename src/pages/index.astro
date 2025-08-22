@@ -6,7 +6,7 @@ import Logo from '~/components/Logo.astro';
 import Image from '~/components/common/Image.astro';
 import { fetchPosts, findFeaturedPost } from '~/utils/blog';
 import { getPermalink } from '~/utils/permalinks';
-import { getFormattedDate } from '~/utils/utils';
+import { getFormattedDateConditionalYear } from '~/utils/utils';
 import { findImage } from '~/utils/images';
 import symbolLogo from '~/assets/images/logos/symbol.svg';
 
@@ -92,8 +92,8 @@ const metadata = {
               </p>
             )}
             <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-              <time datetime={featuredPost.publishDate && getFormattedDate(featuredPost.publishDate)}>
-                {featuredPost.publishDate && getFormattedDate(featuredPost.publishDate).toUpperCase().replace(',', '')}
+              <time datetime={featuredPost.publishDate && getFormattedDateConditionalYear(featuredPost.publishDate)}>
+                {featuredPost.publishDate && getFormattedDateConditionalYear(featuredPost.publishDate).toUpperCase().replace(',', '')}
               </time>
               <span class="mx-2">•</span>
               <span>{(featuredPost.author || 'Jack Ivers').toUpperCase()}</span>
@@ -126,8 +126,8 @@ const metadata = {
                     </p>
                   )}
                   <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-                    <time datetime={post.publishDate && getFormattedDate(post.publishDate)}>
-                      {post.publishDate && getFormattedDate(post.publishDate).toUpperCase().replace(',', '')}
+                    <time datetime={post.publishDate && getFormattedDateConditionalYear(post.publishDate)}>
+                      {post.publishDate && getFormattedDateConditionalYear(post.publishDate).toUpperCase().replace(',', '')}
                     </time>
                     <span class="mx-2">•</span>
                     <span>{(post.author || 'Jack Ivers').toUpperCase()}</span>

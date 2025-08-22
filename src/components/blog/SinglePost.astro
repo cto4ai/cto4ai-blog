@@ -6,7 +6,7 @@ import PostTags from '~/components/blog/Tags.astro';
 import SocialShare from '~/components/common/SocialShare.astro';
 
 import { getPermalink } from '~/utils/permalinks';
-import { getFormattedDate } from '~/utils/utils';
+import { getFormattedDateConditionalYear } from '~/utils/utils';
 
 import type { Post } from '~/types';
 import symbolLogo from '~/assets/images/logos/symbol.svg';
@@ -52,7 +52,7 @@ function getContentTypeDisplay(contentType?: string): string {
           </p>
           <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wide">
             <time datetime={String(post.publishDate)}>
-              {getFormattedDate(post.publishDate).toUpperCase().replace(',', '')}
+              {getFormattedDateConditionalYear(post.publishDate).toUpperCase().replace(',', '')}
             </time>
             <span class="mx-2">•</span>
             <span>{(post.author || 'Jack Ivers').toUpperCase()}</span>

@@ -6,7 +6,7 @@ import Image from '~/components/common/Image.astro';
 
 import { fetchPosts } from '~/utils/blog';
 import { getPermalink } from '~/utils/permalinks';
-import { getFormattedDate } from '~/utils/utils';
+import { getFormattedDateConditionalYear } from '~/utils/utils';
 import { findImage } from '~/utils/images';
 import symbolLogo from '~/assets/images/logos/symbol.svg';
 
@@ -79,7 +79,7 @@ const metadata = {
               </p>
               <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
                 <time datetime={String(post.publishDate)}>
-                  {getFormattedDate(post.publishDate).toUpperCase().replace(',', '')}
+                  {getFormattedDateConditionalYear(post.publishDate).toUpperCase().replace(',', '')}
                 </time>
                 <span class="mx-2">•</span>
                 <span>{(post.author || 'Jack Ivers').toUpperCase()}</span>
