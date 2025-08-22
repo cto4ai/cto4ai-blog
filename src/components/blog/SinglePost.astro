@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import type { ImageMetadata } from 'astro';
 
 import Image from '~/components/common/Image.astro';
 import PostTags from '~/components/blog/Tags.astro';
@@ -7,6 +8,7 @@ import SocialShare from '~/components/common/SocialShare.astro';
 
 import { getPermalink } from '~/utils/permalinks';
 import { getFormattedDateConditionalYear } from '~/utils/utils';
+import { findImage } from '~/utils/images';
 
 import type { Post } from '~/types';
 import symbolLogo from '~/assets/images/logos/symbol.svg';
@@ -17,6 +19,7 @@ export interface Props {
 }
 
 const { post, url } = Astro.props;
+const imageMetadata = await findImage(post.image) as ImageMetadata | undefined;
 
 // Helper function to get display name for content type
 function getContentTypeDisplay(contentType?: string): string {
@@ -37,6 +40,10 @@ function getContentTypeDisplay(contentType?: string): string {
       class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade max-w-5xl mx-auto px-4 sm:px-6 mb-8"
     >
       <div class="flex flex-col md:flex-row gap-6">
+        {/* Hidden image URL for Pagefind */}
+        {imageMetadata && (
+          <span data-pagefind-meta="image" style="display:none">{imageMetadata.src}</span>
+        )}
         {/* Text content on left */}
         <div class="flex-1">
           <h1
@@ -71,9 +78,9 @@ function getContentTypeDisplay(contentType?: string): string {
         
         {/* Image on right */}
         <div class="md:w-2/5 flex-shrink-0">
-          {post.image ? (
+          {imageMetadata ? (
             <Image
-              src={post.image}
+              src={imageMetadata}
               class="w-full h-full object-cover rounded-lg bg-gray-400 dark:bg-slate-700"
               widths={[400, 600]}
               sizes="(max-width: 768px) 400px, 600px"
