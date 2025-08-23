@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    scroll-padding-top: 7.5rem; /* Account for sticky header height - 120px */
+  }
+  
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 7rem; /* Desktop header height - 112px */
+    }
+  }
+}
+
 @layer utilities {
   .bg-page {
     background-color: var(--aw-color-bg-page);
