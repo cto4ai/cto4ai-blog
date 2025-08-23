@@ -11,32 +11,151 @@ const metadata = {
 };
 ---
 
-<Layout metadata={metadata}>
-  <main class="min-h-screen flex items-center justify-center px-6 py-12">
-    <div class="max-w-md w-full text-center">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-        What's your email?
-      </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{metadata.title}</title>
+  <meta name="description" content={metadata.description}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 1.875rem;
+      font-weight: bold;
+      color: #111827;
+      margin-bottom: 2rem;
+    }
+    
+    .form-wrapper {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    input[type="email"] {
+      flex: 1;
+      padding: 0.625rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    
+    input[type="email"]:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    
+    input[type="email"]::placeholder {
+      color: #9ca3af;
+    }
+    
+    button {
+      padding: 0.625rem 1.5rem;
+      background: #3b82f6;
+      color: white;
+      font-weight: 500;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    button:hover {
+      background: #2563eb;
+    }
+    
+    .footer {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-align: center;
+      max-width: 90%;
+    }
+    
+    .footer a {
+      color: #6b7280;
+      text-decoration: underline;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #111827;
+      }
       
-      <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 text-sm text-gray-600 dark:text-gray-400 mb-6">
-        No items to show
-      </div>
+      h1 {
+        color: #ffffff;
+      }
       
-      <form action="#" method="POST" class="flex gap-2">
-        <input
-          type="email"
-          name="email"
-          placeholder="Type your email..."
-          required
-          class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        />
-        <button
-          type="submit"
-          class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200"
-        >
-          Subscribe
-        </button>
-      </form>
-    </div>
-  </main>
-</Layout>
+      input[type="email"] {
+        background: #1f2937;
+        border-color: #4b5563;
+        color: #ffffff;
+      }
+      
+      input[type="email"]::placeholder {
+        color: #6b7280;
+      }
+      
+      .footer {
+        color: #9ca3af;
+      }
+      
+      .footer a {
+        color: #9ca3af;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>What's your email?</h1>
+    
+    <form action="#" method="POST" class="form-wrapper">
+      <input
+        type="email"
+        name="email"
+        placeholder="Type your email..."
+        required
+      />
+      <button type="submit">
+        Subscribe
+      </button>
+    </form>
+  </div>
+  
+  <div class="footer">
+    Lorem ipsum dolor sit amet, consectetur<br>
+    adipiscing elit, sed do eiusmod tempor<br>
+    incididunt ut labore et dolore magna
+  </div>
+</body>
+</html>
