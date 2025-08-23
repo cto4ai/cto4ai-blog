@@ -16,7 +16,7 @@ I've had requests to share my [Heirloom Recipe Ingestor project](../chatgpt-4v/)
 
 To make the project public, though, I wanted to do more significant remodeling. One example: the script currently runs in CLI mode with arguments, but it's not implemented in the latest-best-Python way, and I'd definitely want to correct that. ([Typer from Tiangolo](https://typer.tiangolo.com/) looks like a promising solution, by the way).
 
-As I was mulling this, I came across a [pair of new Vision examples](https://cookbook.openai.com/examples/multimodal/using_gpt4_vision_with_function_calling) in the OpenAI Cookbook. Besides finding the examples [very useful](/micro/openai-vision-function-calling/), I noted that OpenAI shared these as a [Jupyter Notebook](https://jupyter.org/), rather than as a traditional Python project. That got me wondering if maybe I should the same approach for Recipe Ingestor.
+As I was mulling this, I came across a [pair of new Vision examples](https://cookbook.openai.com/examples/multimodal/using_gpt4_vision_with_function_calling) in the OpenAI Cookbook. Besides finding the examples [very useful](/p/openai-vision-function-calling), I noted that OpenAI shared these as a [Jupyter Notebook](https://jupyter.org/), rather than as a traditional Python project. That got me wondering if maybe I should the same approach for Recipe Ingestor.
 
 Before I commit heavily to a particular technology or platform, I like to survey of the state of the art in that particular niche. So before committing to Jupyter Notebook / Jupyter Lab, I did a quick survey of the state of the art in data notebooks---was there an up-and-coming alternative to Jupyter I should be looking at?
 
@@ -257,7 +257,7 @@ puts a range slider control onto our dashboard screen, with min/max values of .2
 
 Voila, one line of code, and we've got our first interactive dashboard element.
 
-Now let's take a look at a more complete and interactive dashboard ([try it live here](/observable/mortgage-rates/)), which shows 15- and 30-year fixed mortgage rates from 1971 through the present, using data that is updated weekly and thoughtfully [shared by Freddie Mac](https://www.freddiemac.com/pmms/pmms_archives) as a downloadable CSV. A 15-line Node.js JavaScript Data Loader grabs the latest CSV, current to within a week.
+Now let's take a look at a more complete and interactive dashboard ([try it live here](/observable/mortgage-rates)), which shows 15- and 30-year fixed mortgage rates from 1971 through the present, using data that is updated weekly and thoughtfully [shared by Freddie Mac](https://www.freddiemac.com/pmms/pmms_archives) as a downloadable CSV. A 15-line Node.js JavaScript Data Loader grabs the latest CSV, current to within a week.
 
 As you see below, the upper right card shows a detailed chart of mortgage rates, starting with the past year; while the bottom pane shows a full-history rate chart that covers 1971 through the present. In this case, the interaction isn't through a Framework Input, but rather through JavaScript click and drag events setting a date range variable `startEnd` when the user interacts with the lower chart. The detailed chart above right references `startEnd` and reacts instantly when it changes. All four charts in the dashboard are rendered by Observable Plot.
 
