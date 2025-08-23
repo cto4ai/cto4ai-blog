@@ -59,6 +59,14 @@ const metadata = {
         
         // Setup trailing slash fix after successful initialization
         setupTrailingSlashFix();
+        
+        // Focus the search input after initialization
+        setTimeout(() => {
+          const searchInput = document.querySelector('.pagefind-ui__search-input');
+          if (searchInput) {
+            searchInput.focus();
+          }
+        }, 100);
         return; // Success - exit retry loop
         
       } catch (error) {
