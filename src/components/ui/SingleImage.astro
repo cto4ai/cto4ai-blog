@@ -21,14 +21,26 @@ const sizeClasses = {
   '2xl': 'max-w-2xl'
 };
 
-// Import the image dynamically
+// Import the image dynamically with fallback support
 let imageModule;
+
+// Try new unified content path first
+const newBasePath = '../../assets/images/content';
+const oldBasePath = basePath || '../../assets/images/blog';
+
+// Try new path first
 try {
-  const imagePath = postDir ? `${basePath}/${postDir}/${src}` : `${basePath}/${src}`;
-  imageModule = await import(imagePath);
-} catch (error) {
-  console.error(`Failed to load image: ${src}`, error);
-  imageModule = null;
+  const newImagePath = postDir ? `${newBasePath}/${postDir}/${src}` : `${newBasePath}/${src}`;
+  imageModule = await import(newImagePath);
+} catch (newError) {
+  // Fallback to old path
+  try {
+    const oldImagePath = postDir ? `${oldBasePath}/${postDir}/${src}` : `${oldBasePath}/${src}`;
+    imageModule = await import(oldImagePath);
+  } catch (oldError) {
+    console.error(`Failed to load image: ${src} from both new and old paths`, { newError, oldError });
+    imageModule = null;
+  }
 }
 ---
 
