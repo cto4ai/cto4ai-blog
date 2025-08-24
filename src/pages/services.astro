@@ -17,14 +17,11 @@ const metadata = {
 <Layout metadata={metadata}>
   <main class="px-6 sm:px-6 py-12 sm:py-20 mx-auto max-w-3xl">
     <div class="flex flex-col md:flex-row gap-8 items-center mb-12">
-      <div class="flex-1">
+      <div class="flex-1 flex flex-col justify-center">
         <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
           Jack Ivers's day job is working as a fractional CTO for other companies, through his entity 
           <a href="https://craftycto.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">Crafty CTO</a>. As fractional CTO, Jack provides the same blend of expertise as a top-tier, full-time CTO, but at a fraction of the cost. These days, Jack's strong focus is on AI adoption in engineering, product, and company leadership.
         </p>
-        <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-        Reach out to Jack
-        <a href="mailto:getintouch@craftycto.com">here</a>.
       </div>
       <a href="https://craftycto.com" target="_blank" rel="noopener noreferrer" class="flex-shrink-0">
         <Image
@@ -38,5 +35,9 @@ const metadata = {
         />
       </a>
     </div>
+    <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mt-8">
+      Reach out to Jack
+      <a href="mailto:getintouch@craftycto.com" class="text-blue-600 dark:text-blue-400 hover:underline"> here</a>.
+    </p>
   </main>
 </Layout>
