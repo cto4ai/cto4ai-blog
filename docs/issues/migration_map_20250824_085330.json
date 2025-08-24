@@ -1,0 +1,114 @@
+{
+  "timestamp": "20250824_085330",
+  "dry_run": false,
+  "test_mode": true,
+  "migrations": [
+    {
+      "content_type": "posts",
+      "slug": "a-day-to-remember",
+      "old_content_path": "src/data/posts/a-day-to-remember.mdx",
+      "new_content_path": "src/data/content/a-day-to-remember/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/a-day-to-remember",
+      "new_images_path": "src/assets/images/content/a-day-to-remember"
+    },
+    {
+      "content_type": "posts",
+      "slug": "accelerating-launch-with-ai-models",
+      "old_content_path": "src/data/posts/accelerating-launch-with-ai-models.mdx",
+      "new_content_path": "src/data/content/accelerating-launch-with-ai-models/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/accelerating-launch-with-ai-models",
+      "new_images_path": "src/assets/images/content/accelerating-launch-with-ai-models"
+    },
+    {
+      "content_type": "posts",
+      "slug": "ai-and-law",
+      "old_content_path": "src/data/posts/ai-and-law.mdx",
+      "new_content_path": "src/data/content/ai-and-law/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/ai-and-law",
+      "new_images_path": "src/assets/images/content/ai-and-law"
+    },
+    {
+      "content_type": "micro",
+      "slug": "50-llms",
+      "old_content_path": "src/data/micro/50-llms.mdx",
+      "new_content_path": "src/data/content/50-llms/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/50-llms",
+      "new_images_path": "src/assets/images/content/50-llms"
+    },
+    {
+      "content_type": "micro",
+      "slug": "a-day-late",
+      "old_content_path": "src/data/micro/a-day-late.mdx",
+      "new_content_path": "src/data/content/a-day-late/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "micro",
+      "slug": "apple-did-it",
+      "old_content_path": "src/data/micro/apple-did-it.mdx",
+      "new_content_path": "src/data/content/apple-did-it/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "ai-cant-detect-ai",
+      "old_content_path": "src/data/elsewhere/ai-cant-detect-ai.mdx",
+      "new_content_path": "src/data/content/ai-cant-detect-ai/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/elsewhere/ai-cant-detect-ai",
+      "new_images_path": "src/assets/images/content/ai-cant-detect-ai"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "ben-thompson-apple-vision",
+      "old_content_path": "src/data/elsewhere/ben-thompson-apple-vision.mdx",
+      "new_content_path": "src/data/content/ben-thompson-apple-vision/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "comparing-art-ais",
+      "old_content_path": "src/data/elsewhere/comparing-art-ais.mdx",
+      "new_content_path": "src/data/content/comparing-art-ais/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "quote",
+      "slug": "apt-description-of-react",
+      "old_content_path": "src/data/quote/apt-description-of-react.mdx",
+      "new_content_path": "src/data/content/apt-description-of-react/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "quote",
+      "slug": "camus-knowledge",
+      "old_content_path": "src/data/quote/camus-knowledge.mdx",
+      "new_content_path": "src/data/content/camus-knowledge/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "quote",
+      "slug": "gruber-ai-anxiety-at-apple",
+      "old_content_path": "src/data/quote/gruber-ai-anxiety-at-apple.mdx",
+      "new_content_path": "src/data/content/gruber-ai-anxiety-at-apple/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    }
+  ],
+  "errors": []
+}
