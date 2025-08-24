@@ -41,18 +41,22 @@ npm run check        # Check Astro configuration
 npm run format       # Format code with Prettier
 ```
 
-## Content Structure
+## Content Structure (Unified - Option 2A Implemented)
 
-### Content Types & Locations
-- **Blog Posts**: `/src/data/posts/` - Main long-form articles (ESSAY)
-- **Micro Posts**: `/src/data/micro/` - Short-form content (NOTE)
-- **Elsewhere**: `/src/data/elsewhere/` - Curated external content (LINK)
-- **Quote Posts**: `/src/data/quote/` - Quote posts (QUOTE)
+### Content Organization
+All content now uses a unified directory structure with content types defined in frontmatter:
+- **All Content**: `/src/data/content/[slug]/index.mdx` - All content types in unified structure
+- **Content Types** (defined in frontmatter `contentType` field):
+  - `essay` - Long-form articles (previously in /posts/)
+  - `brief` - Short-form content (previously in /micro/)
+  - `elsewhere` - Curated external content
+  - `quote` - Quote posts
+  - `episodes` - Podcast/video reviews (new type)
 
 ### Images
-- Blog images: `/src/assets/images/blog/[post-name]/`
-- Micro images: `/src/assets/images/micro/[post-name]/`
-- Elsewhere images: `/src/assets/images/elsewhere/[post-name]/`
+- **All Images**: `/src/assets/images/content/[slug]/` - Unified image storage
+- Each post's images are stored in a directory matching its slug
+- Components automatically look in the correct location based on postDir
 
 ## Key Custom Components
 
@@ -96,7 +100,7 @@ The migration is happening in parallel - the Hugo blog remains operational while
 - Use Astro's Image component for optimization
 - Standard aspect ratio is 44:28 for consistency
 - Always provide alt text for accessibility
-- Place images in appropriate subdirectory under `/src/assets/images/`
+- Place images in `/src/assets/images/content/[slug]/` matching the post's slug
 
 ### Component Usage
 - Prefer editing existing components over creating new ones

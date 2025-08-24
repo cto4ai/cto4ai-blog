@@ -8,10 +8,9 @@ interface Props {
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   class?: string;
   postDir?: string;
-  basePath?: string;
 }
 
-const { src, alt = '', size = 'lg', class: className = '', postDir = 'chatgpt-4v', basePath = '../../assets/images/blog' } = Astro.props;
+const { src, alt = '', size = 'lg', class: className = '', postDir = 'chatgpt-4v' } = Astro.props;
 
 const sizeClasses = {
   sm: 'max-w-sm',
@@ -24,23 +23,14 @@ const sizeClasses = {
 // Import the image dynamically with fallback support
 let imageModule;
 
-// Try new unified content path first
-const newBasePath = '../../assets/images/content';
-const oldBasePath = basePath || '../../assets/images/blog';
+// Use unified content path
+const imagePath = postDir ? `../../assets/images/content/${postDir}/${src}` : `../../assets/images/content/${src}`;
 
-// Try new path first
 try {
-  const newImagePath = postDir ? `${newBasePath}/${postDir}/${src}` : `${newBasePath}/${src}`;
-  imageModule = await import(newImagePath);
-} catch (newError) {
-  // Fallback to old path
-  try {
-    const oldImagePath = postDir ? `${oldBasePath}/${postDir}/${src}` : `${oldBasePath}/${src}`;
-    imageModule = await import(oldImagePath);
-  } catch (oldError) {
-    console.error(`Failed to load image: ${src} from both new and old paths`, { newError, oldError });
-    imageModule = null;
-  }
+  imageModule = await import(imagePath);
+} catch (error) {
+  console.error(`Failed to load image: ${src}`, error);
+  imageModule = null;
 }
 ---
 
