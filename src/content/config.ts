@@ -46,86 +46,7 @@ const metadataDefinition = () =>
     })
     .optional();
 
-const postsCollection = defineCollection({
-  loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/posts' }),
-  schema: z.object({
-    publishDate: z.coerce.date().optional(),
-    updateDate: z.coerce.date().optional(),
-    draft: z.boolean().optional(),
-
-    title: z.string(),
-    excerpt: z.string().optional(),
-    description: z.string().optional(),
-    image: z.string().optional(),
-
-    category: z.string().optional(),
-    categories: z.array(z.string()).optional(),
-    tags: z.array(z.string()).optional(),
-    author: z.string().optional(),
-    featured: z.boolean().optional(),
-
-    metadata: metadataDefinition(),
-  }),
-});
-
-const microCollection = defineCollection({
-  loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/micro' }),
-  schema: z.object({
-    publishDate: z.coerce.date().optional(),
-    updateDate: z.coerce.date().optional(),
-    draft: z.boolean().optional(),
-
-    title: z.string(),
-    description: z.string().optional(),
-    image: z.string().optional(),
-    author: z.string().optional(),
-    featured: z.boolean().optional(),
-
-    metadata: metadataDefinition(),
-  }),
-});
-
-const elsewhereCollection = defineCollection({
-  loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/elsewhere' }),
-  schema: z.object({
-    publishDate: z.coerce.date().optional(),
-    updateDate: z.coerce.date().optional(),
-    draft: z.boolean().optional(),
-
-    title: z.string(),
-    description: z.string().optional(),
-    image: z.string().optional(),
-    sourceLink: z.string().url().optional(),
-    author: z.string().optional(),
-    featured: z.boolean().optional(),
-
-    metadata: metadataDefinition(),
-  }),
-});
-
-const quoteCollection = defineCollection({
-  loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/quote' }),
-  schema: z.object({
-    publishDate: z.coerce.date().optional(),
-    updateDate: z.coerce.date().optional(),
-    draft: z.boolean().optional(),
-
-    title: z.string(),
-    description: z.string().optional(),
-    image: z.string().optional(),
-    sourceLink: z.string().url().optional(),
-    author: z.string().optional(),
-    featured: z.boolean().optional(),
-    categories: z.array(z.string()).optional(),
-    ShowToc: z.boolean().optional(),
-    ShowBreadCrumbs: z.boolean().optional(),
-    hideMeta: z.boolean().optional(),
-
-    metadata: metadataDefinition(),
-  }),
-});
-
-// New unified content collection for migrated content
+// Unified content collection - all content types in one collection
 const contentCollection = defineCollection({
   loader: glob({ pattern: ['*/index.md', '*/index.mdx'], base: 'src/data/content' }),
   schema: z.object({
@@ -159,9 +80,5 @@ const contentCollection = defineCollection({
 });
 
 export const collections = {
-  posts: postsCollection,
-  micro: microCollection,
-  elsewhere: elsewhereCollection,
-  quote: quoteCollection,
-  content: contentCollection, // New unified collection
+  content: contentCollection, // Unified collection for all content types
 };

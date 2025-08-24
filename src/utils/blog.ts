@@ -41,7 +41,7 @@ const generatePermalink = async ({
 };
 
 const getNormalizedPost = async (
-  post: CollectionEntry<'posts'> | CollectionEntry<'micro'> | CollectionEntry<'elsewhere'> | CollectionEntry<'quote'> | CollectionEntry<'content'>
+  post: CollectionEntry<'content'>
 ): Promise<Post> => {
   const { id, data } = post;
   const { Content, remarkPluginFrontmatter } = await render(post);
@@ -55,16 +55,9 @@ const getNormalizedPost = async (
     'episodes': 'posts' // treating episodes as posts for now
   };
 
-  // Determine content type from collection or frontmatter
-  let contentType: 'posts' | 'micro' | 'elsewhere' | 'quote';
-  if (post.collection === 'content') {
-    // For unified collection, use frontmatter contentType
-    const frontmatterType = data.contentType as 'essay' | 'brief' | 'elsewhere' | 'quote' | 'episodes';
-    contentType = contentTypeMap[frontmatterType] || 'posts';
-  } else {
-    // For legacy collections, use collection name
-    contentType = post.collection as 'posts' | 'micro' | 'elsewhere' | 'quote';
-  }
+  // For unified collection, use frontmatter contentType
+  const frontmatterType = data.contentType as 'essay' | 'brief' | 'elsewhere' | 'quote' | 'episodes';
+  const contentType = contentTypeMap[frontmatterType] || 'posts';
 
   // Handle different content collection schemas
   const rawPublishDate = data.publishDate || new Date();
@@ -129,19 +122,11 @@ const getNormalizedPost = async (
 };
 
 const load = async function (): Promise<Array<Post>> {
-  // Get all content types for unified blog routing
-  // Include both old collections and new unified content collection
-  const [posts, micro, elsewhere, quote, content] = await Promise.all([
-    getCollection('posts'),
-    getCollection('micro'),
-    getCollection('elsewhere'),
-    getCollection('quote'),
-    getCollection('content'), // New unified collection
-  ]);
+  // Get all content from unified collection
+  const content = await getCollection('content');
 
-  // Combine all content types with normalized processing
-  const allContent = [...posts, ...micro, ...elsewhere, ...quote, ...content];
-  const normalizedPosts = allContent.map(async (post) => await getNormalizedPost(post));
+  // Process all content with normalized processing
+  const normalizedPosts = content.map(async (post) => await getNormalizedPost(post));
 
   const results = (await Promise.all(normalizedPosts))
     .filter((post) => !post.draft)
