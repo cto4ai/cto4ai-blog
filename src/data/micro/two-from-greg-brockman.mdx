@@ -1,0 +1,84 @@
+---
+title: "Two Interviews with OpenAI President Greg Brockman"
+description: "Highlights from two recent interviews by the Latent Space team with Greg Brockman"
+author: "Jack Ivers"
+publishDate: "2025-08-19T06:01:48-05:00"
+image: "~/assets/images/blog/two-from-greg-brockman/brockman_intro.png"
+draft: false
+---
+
+import SingleImage from '~/components/ui/SingleImage.astro';
+
+I had the pleasure to see [Greg Brockman](https://en.wikipedia.org/wiki/Greg_Brockman) speak in person at [AIEWF25](https://www.youtube.com/watch?v=avWhreBUYF0)---interviewed by [Swyx](https://www.swyx.io), with assistance from Nvidia's [Jensen Huang](https://en.wikipedia.org/wiki/Jensen_Huang) via prerecorded video. The title of that talk, appropriately, was "Define AI Engineer."
+
+Then just three days ago, [Swyx](https://www.swyx.io) and his [Latent.Space](https://www.latent.space) podcast partner [Alessio Fanelli](https://x.com/fanahova) scored another interview with Brockman, this time themed "OpenAI's Road to AGI" with its focus on the huge OpenAI news over the past two weeks, [GPT-OSS](https://openai.com/blog/gpt-oss) and then [GPT-5](https://openai.com/blog/gpt-5).
+
+Here are a few highlights from each.
+
+## AIEWF25 June 3rd
+
+On how we structure codebases in the emerging AI era:
+
+> The direction is something that is like just so compelling and incredible to me. The thing that has been the most interesting to see has been when you realize that the way your structure your codebase determines how much you can get out of [Codex](https://openai.com/blog/openai-codex), right? Like all of our existing codebases are kind of matched to the strengths of humans. But if you match instead to the strength of models which are sort of very lopsided, right? Models are able to handle way more like diversity of stuff but are not able to sort of necessarily connect deep ideas as much as humans are right now. And so what you kind of want to do is make smaller modules that are well tested that have tests that can be run very quickly and then fill in the details. The model will just do that, right? And it'll run the test itself.
+> 
+> The connection between these different components, kind of the architecture diagram, that's actually pretty easy to do, and then it's like filling out all the details that is often very difficult. And if you actually do that, you know, what I described also sounds a lot like good software engineering practice. But it's just like sometimes because humans are capable of holding more of this like conceptual abstraction in our head, we just don't do it – it's a lot of work to write these tests and to flesh them out and that the model's going to run these tests like a hundred times or a thousand times more than you will and so it's going to care way way more. So in some ways the direction we want to go is build our codebases for more junior developers in order to actually get the most out of these models.
+
+<SingleImage src="swyx_brockman1.png" alt="swyx_brockman1.png" size="2xl" postDir="two-from-greg-brockman" />
+
+On domain specific agents, in some ways foreshadowing GPT-5 as router:
+
+> I think my perspective is that first of all, it's all on the table, right? Maybe we reach a world where it's just like the AIs are so capable that we all just let them write all the code. Maybe there's a world where you have like one Al in the sky. Maybe it's that you actually have a bunch of domain specific agents that require a bunch of of specific work in order to make that happen. [...]
+>
+> I think the evidence has really been shifting towards this menagerie of different models—I think that's actually really exciting. There's different inference costs, there's different trade-offs like just distillation works so well, there's actually a lot of power to be had by models that are actually able to use other models.
+
+## Latent.Space August 16
+
+Here I'm taking advantage of the amazing AI-driven podcast app [Snipd](https://www.snipd.com) and its quotes feature. If you click the link, you'll be taken directly to that spot in the podcast.
+
+On [routing between models in GPT-5](https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce):
+
+> You have a reasoning model that we know is good for applications that require this intelligence, but you're okay waiting a little bit longer. We have a non-reasoning model that is great for applications where you want the answer fast.
+
+<SingleImage src="brockman_swyx_alessio.png" alt="brockman_swyx_alessio.png" size="2xl" postDir="two-from-greg-brockman" />
+
+On [why online learning and RL amplify model value](https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce):
+
+> When the models are extremely capable, the value of a token they generate is extremely high.
+
+On [compute as the primary bottleneck for progress](https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce):
+
+> The bottleneck is always compute. If you give us a lot of compute, we will find ways to iterate that actually make the most of that compute.
+
+On [OpenAI's Dota RL scaling experience](https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce) ([Dota](https://openai.com/research/openai-five)):
+
+> You come back to the office every week, they doubled the number of cores. And suddenly the agent, the true skill was going up and to the right.
+
+<SingleImage src="brockman_ls.png" alt="brockman_ls.png" size="2xl" postDir="two-from-greg-brockman" />
+
+On [transferability of learned reasoning skills to new domains](https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce):
+
+> Learning to solve hard math problems and write proofs turns out to actually transfer to writing program and competition problems.
+
+On [the purpose and importance of publishing a model spec](https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce):
+
+> The model spec is an example of where we've made it very legible to the outside world what our intention is for this model to do.
+
+On [pricing, cost curves, and demand elasticity](https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce):
+
+> If you just make it more accessible and available to people, they will use way more of it.
+
+<SingleImage src="swyx_alessio.png" alt="swyx_alessio.png" size="2xl" postDir="two-from-greg-brockman" />
+
+On [how to structure codebases for AI integration](https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce):
+
+> You really build codebases around the strengths and weaknesses of these models. More self-contained units have very good unit tests that run super quickly and that have good documentation.
+
+On [structuring workloads and using multiple model instances](https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce):
+
+> You want to be a manager of not an agent, but of agents. And so that you need to, first of all, think about how your code base is structured.
+
+On [the desired form factor for coding agents](https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce):
+
+> You want the pair form factor. You also want the remote async form factor. And you want it to be one entity that has knowledge and memory across all of this. 
+
+I hope Brockman is as wise about navigating the political and moral minefields we face today, as he clearly is about technology.
