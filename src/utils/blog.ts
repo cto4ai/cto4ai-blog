@@ -41,13 +41,30 @@ const generatePermalink = async ({
 };
 
 const getNormalizedPost = async (
-  post: CollectionEntry<'posts'> | CollectionEntry<'micro'> | CollectionEntry<'elsewhere'> | CollectionEntry<'quote'>
+  post: CollectionEntry<'posts'> | CollectionEntry<'micro'> | CollectionEntry<'elsewhere'> | CollectionEntry<'quote'> | CollectionEntry<'content'>
 ): Promise<Post> => {
   const { id, data } = post;
   const { Content, remarkPluginFrontmatter } = await render(post);
 
-  // Determine content type from collection
-  const contentType = post.collection as 'posts' | 'micro' | 'elsewhere' | 'quote';
+  // Map new content type names to legacy collection names
+  const contentTypeMap = {
+    'essay': 'posts',
+    'brief': 'micro',
+    'elsewhere': 'elsewhere',
+    'quote': 'quote',
+    'episodes': 'posts' // treating episodes as posts for now
+  };
+
+  // Determine content type from collection or frontmatter
+  let contentType: 'posts' | 'micro' | 'elsewhere' | 'quote';
+  if (post.collection === 'content') {
+    // For unified collection, use frontmatter contentType
+    const frontmatterType = data.contentType as 'essay' | 'brief' | 'elsewhere' | 'quote' | 'episodes';
+    contentType = contentTypeMap[frontmatterType] || 'posts';
+  } else {
+    // For legacy collections, use collection name
+    contentType = post.collection as 'posts' | 'micro' | 'elsewhere' | 'quote';
+  }
 
   // Handle different content collection schemas
   const rawPublishDate = data.publishDate || new Date();

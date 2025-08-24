@@ -129,3 +129,4 @@ The site automatically deploys to production when pushing to the main branch. Pr
 - Pagefind search index is generated during build
 - The site uses View Transitions API for smooth navigation
 - Always run the dev server to test changes before committing
+- remember you have access to Playwright MCP for browser access e.g. to dev server
