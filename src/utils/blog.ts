@@ -113,15 +113,17 @@ const getNormalizedPost = async (
 
 const load = async function (): Promise<Array<Post>> {
   // Get all content types for unified blog routing
-  const [posts, micro, elsewhere, quote] = await Promise.all([
+  // Include both old collections and new unified content collection
+  const [posts, micro, elsewhere, quote, content] = await Promise.all([
     getCollection('posts'),
     getCollection('micro'),
     getCollection('elsewhere'),
     getCollection('quote'),
+    getCollection('content'), // New unified collection
   ]);
 
   // Combine all content types with normalized processing
-  const allContent = [...posts, ...micro, ...elsewhere, ...quote];
+  const allContent = [...posts, ...micro, ...elsewhere, ...quote, ...content];
   const normalizedPosts = allContent.map(async (post) => await getNormalizedPost(post));
 
   const results = (await Promise.all(normalizedPosts))

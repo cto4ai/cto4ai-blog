@@ -125,9 +125,43 @@ const quoteCollection = defineCollection({
   }),
 });
 
+// New unified content collection for migrated content
+const contentCollection = defineCollection({
+  loader: glob({ pattern: ['*/index.md', '*/index.mdx'], base: 'src/data/content' }),
+  schema: z.object({
+    publishDate: z.coerce.date().optional(),
+    updateDate: z.coerce.date().optional(),
+    draft: z.boolean().optional(),
+
+    title: z.string(),
+    excerpt: z.string().optional(),
+    description: z.string().optional(),
+    image: z.string().optional(),
+    
+    // Content type from Phase 1
+    contentType: z.enum(['essay', 'brief', 'elsewhere', 'quote', 'episodes']).optional(),
+    
+    // Common fields across all types
+    category: z.string().optional(),
+    categories: z.array(z.string()).optional(),
+    tags: z.array(z.string()).optional(),
+    author: z.string().optional(),
+    featured: z.boolean().optional(),
+    sourceLink: z.string().url().optional(),
+    
+    // Legacy fields
+    ShowToc: z.boolean().optional(),
+    ShowBreadCrumbs: z.boolean().optional(),
+    hideMeta: z.boolean().optional(),
+
+    metadata: metadataDefinition(),
+  }),
+});
+
 export const collections = {
   posts: postsCollection,
   micro: microCollection,
   elsewhere: elsewhereCollection,
   quote: quoteCollection,
+  content: contentCollection, // New unified collection
 };
