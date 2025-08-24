@@ -1,0 +1,186 @@
+---
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'CTO Services - AI-Focused Technology Leadership',
+  description: 'Professional CTO consulting services specializing in AI strategy, team leadership, and technology transformation for growing companies.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="CTO Services"
+    title="AI-Focused Technology Leadership for Growing Companies"
+    subtitle="Transform your technology strategy with expert CTO guidance. I help startups and scale-ups navigate AI adoption, build strong engineering teams, and architect scalable solutions."
+    actions={[
+      { 
+        variant: 'primary', 
+        target: '_blank', 
+        text: 'Explore Full Services', 
+        href: 'https://craftycto.com/services' 
+      },
+      { 
+        variant: 'secondary', 
+        text: 'Book a Consultation', 
+        href: 'https://craftycto.com/contact' 
+      }
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
+      alt: 'CTO Services Hero Image',
+    }}
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="Core CTO Services"
+    subtitle="Comprehensive technology leadership tailored to your company's growth stage and AI ambitions."
+    columns={3}
+    items={[
+      {
+        title: 'AI Strategy & Implementation',
+        description:
+          'Develop and execute AI roadmaps that deliver real business value. From proof-of-concepts to production deployments, I guide teams through the entire AI transformation journey.',
+        icon: 'tabler:brain',
+      },
+      {
+        title: 'Engineering Team Leadership',
+        description:
+          'Build, scale, and lead high-performing engineering teams. Establish processes, culture, and practices that enable sustainable growth and innovation.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Technology Architecture',
+        description:
+          'Design scalable, maintainable systems that support your business goals. Focus on cloud-native architectures, microservices, and AI/ML infrastructure.',
+        icon: 'tabler:building-fortress',
+      },
+      {
+        title: 'Product & Engineering Alignment',
+        description:
+          'Bridge the gap between product vision and technical execution. Ensure engineering efforts directly support business objectives and user needs.',
+        icon: 'tabler:target',
+      },
+      {
+        title: 'Technical Due Diligence',
+        description:
+          'Comprehensive technical assessments for M&A, funding rounds, or partnership evaluations. Deep-dive analysis of code quality, architecture, and team capabilities.',
+        icon: 'tabler:search',
+      },
+      {
+        title: 'Fractional CTO Services',
+        description:
+          'Part-time CTO leadership for companies not ready for a full-time executive. Strategic guidance with hands-on involvement in critical technical decisions.',
+        icon: 'tabler:clock-hour-4',
+      },
+    ]}
+  />
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isReversed
+    items={[
+      {
+        title: 'AI-First Approach',
+        description:
+          'Deep expertise in AI/ML technologies, from traditional machine learning to large language models and generative AI applications.',
+        icon: 'tabler:robot',
+      },
+      {
+        title: 'Startup Experience',
+        description:
+          'Hands-on experience scaling technology teams from 0 to 100+ engineers across multiple successful startups and growth-stage companies.',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'Modern Tech Stack',
+        description:
+          'Proficiency with cloud platforms (AWS, GCP, Azure), modern development practices, and emerging technologies that drive competitive advantage.',
+        icon: 'tabler:cloud',
+      },
+      {
+        title: 'Business-Focused',
+        description:
+          'Technology decisions grounded in business impact. I help you invest in the right technology at the right time to maximize ROI.',
+        icon: 'tabler:chart-line',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
+      alt: 'CTO Expertise Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Why Choose CTO4.AI Services</h3>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isAfterContent
+    items={[
+      {
+        title: 'Accelerated Growth',
+        description:
+          'Avoid common technical pitfalls and accelerate your product development with proven strategies and battle-tested approaches.',
+        icon: 'tabler:trending-up',
+      },
+      {
+        title: 'Cost-Effective Leadership',
+        description:
+          'Access executive-level technology leadership without the full-time commitment. Perfect for startups and growing companies.',
+        icon: 'tabler:coin',
+      },
+      {
+        title: 'AI Competitive Advantage',
+        description:
+          'Stay ahead of the curve with AI implementations that deliver real business value, not just technological novelty.',
+        icon: 'tabler:medal',
+      },
+      {
+        title: 'Proven Track Record',
+        description:
+          'Multiple successful exits and scale-ups. Extensive experience with venture-backed startups and enterprise transformations.',
+        icon: 'tabler:trophy',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+      alt: 'Benefits Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Impact & Results</h3>
+    </Fragment>
+  </Content>
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Visit CraftyCTO.com',
+        href: 'https://craftycto.com',
+        target: '_blank'
+      },
+      {
+        variant: 'secondary',
+        text: 'Book Discovery Call',
+        href: 'https://craftycto.com/contact',
+        target: '_blank'
+      },
+    ]}
+    title="Ready to Transform Your Technology Strategy?"
+    subtitle="Get detailed information about services, case studies, and client success stories on the full CraftyCTO website."
+  />
+</Layout>
