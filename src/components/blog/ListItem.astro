@@ -23,13 +23,17 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
 // Helper function to get display name for content type
 function getContentTypeDisplay(contentType?: string): string {
   const contentTypeMap: Record<string, string> = {
+    'essay': 'ESSAY',
+    'brief': 'BRIEF',
+    'elsewhere': 'ELSEWHERE',
+    'quote': 'QUOTE',
+    'episodes': 'EPISODES',
+    // Legacy mappings (for backward compatibility)
     'posts': 'ESSAY',
-    'micro': 'NOTE',
-    'elsewhere': 'LINK',
-    'quote': 'QUOTE'
+    'micro': 'BRIEF'
   };
   
-  return contentTypeMap[contentType || 'posts'] || 'ESSAY';
+  return contentTypeMap[contentType || 'essay'] || 'ESSAY';
 }
 ---
 
