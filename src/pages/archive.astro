@@ -17,13 +17,17 @@ const posts = await fetchPosts();
 // Helper function to get display name for content type
 function getContentTypeDisplay(post: any): string {
   const contentTypeMap: Record<string, string> = {
+    'essay': 'ESSAY',
+    'brief': 'BRIEF',
+    'elsewhere': 'ELSEWHERE',
+    'quote': 'QUOTE',
+    'episodes': 'EPISODES',
+    // Legacy mappings (for backward compatibility)
     'posts': 'ESSAY',
-    'micro': 'NOTE',
-    'elsewhere': 'LINK',
-    'quote': 'QUOTE'
+    'micro': 'BRIEF'
   };
   
-  return contentTypeMap[post.contentType || 'posts'] || 'ESSAY';
+  return contentTypeMap[post.contentType || 'essay'] || 'ESSAY';
 }
 
 // Find images for all posts
