@@ -111,13 +111,6 @@ I'm leaning towards a variation of option 2. Let me outline it:
 - Requires updating all existing MDX files
 - More complex component logic
 
-#### Content Types
-- For long posts, currently organized under /source/data/posts: "essay"
-- For short posts, currently organized under /source/data/micro: "brief"
-- For links to others' work with commentary, currently organized under /source/data/elsewhere: "elsewhere"
-- For sayings of others, with links to their source, currently organized under /source/data/quote: "quote"
-- For podcast or youtube episode reviews, with links to their source, new type: "episodes"
-
 ### Option 3: Smart Detection Based on File Path
 Make components detect the content type from the calling file's path:
 ```typescript
