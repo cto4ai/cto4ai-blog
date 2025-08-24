@@ -1,0 +1,98 @@
+---
+title: "Using Tailscale to Access Amazon VPCs, EC2 Instances, and RDS Clusters"
+contentType: "essay"
+description: "Tailscale has been simple to set up and manage, but also amazingly flexible."
+author: "Jack Ivers"
+publishDate: "2024-04-23T12:19:30-05:00"
+draft: false
+image: "~/assets/images/posts/blog/tailscale-logo.webp"
+---
+
+## Inception: Direct Database Access for the Data Team
+
+Our immediate need was getting the data science team programatic access to a read replica of our production database, an Amazon RDS Postgres cluster.
+
+The initial stopgap solution was to open a Postgres port, but with an RDS Security Group rule that limited inbound access to a few specific IP addresses. That solution became high-maintenance quickly, since some of our team connected from a university campus network, where IP addresses rotated every few weeks.
+
+## Better Idea: AWS Systems Manager Session Manager
+
+Our development partner suggested a better solution, AWS [Systems Manager Session Manager](https://aws.amazon.com/systems-manager/features/#Session_Manager), which enables tunneled sessions into the AWS environment and leverages AWS IAM to manage access. The result: better security and no need for manual IP whitelisting.
+
+SMSM has one significant drawback: targeted at dev and devops folks, it is configured and run through the AWS command line interface. Yikes---imagine conversations with end users that begin "OK, first, open a terminal, then run this command ..."---not the user experience we're going for. Our data team could've handled it, but the CLI interface would be an ongoing source friction and pain.
+
+More Session Manager rough edges appeared when I tried but failed to set up a quick proof of concept. The AWS docs were impenetrable, and even a third-party guide on the process wasn't help enough. All the time, I was becoming less and less convinced that Systems Manager was the best solution: "All this mucking around, just to open a tunnel to an RDS replica?" I also began to realize that Session Manager was, in effect, a limited-scope VPN for AWS services only, without much of a user interface. Why invest precious time on such a limited solution?
+
+## Bigger Picture: Other Needs
+
+When I broadened my thinking, I quickly realized we had already implemented two other one-off remote access solutions:
+
+- To enable SQL GUI tool access to the database, we set up bastion servers on our staging and production VPCs. These were Windows EC2 instances, with their own login credentials and the DBeaver SQL tool installed. We attached to the bastions using Remote Desktop. Scrolling through long tables in DBeaver via Remote Desktop is unpleasant bordering on dangerous on a write-capable connection.
+- To support miscellaneous tasks such as database migration, we had two additional Ubuntu EC2 instances, with open SSH ports.
+
+With Systems Manager Session Manager shaping up as yet another one-off remote access solution, I decided to seek a broader solution that addressed all three remote access needs, provided a better admin and user experience, and shored up security as well.
+
+## Security Goals
+
+Our desired security posture on AWS is "expose nothing we don't absolutely need to expose, and what we do expose, make it robustly secure." To drill down a bit:
+
+- Keep our AWS Virtual Private Clouds walled off and private.
+- Avoid exposing attack surfaces, such as SSH / Postgres ports and internal-only service endpoints.
+- Enable remote access in a robustly secure manner, granting specific users access to specific services, as opposed to blanket access for everyone.
+
+## VPN---or Tailscale?
+
+The default solution for secure remote access is a VPN; and there's no doubt a VPN could have worked for us. "Easy," "Low Maintenance" and "Flexible" aren't terms one usually associates with VPNs, however, so I kept solution-scanning.
+
+I'd been peripherally aware of [Tailscale](https://tailscale.com/) through background chatter on Hacker News and similar venues. My vague impression of its niche was "better than a traditional VPN, and way less painful." That sounded just perfect for our needs, so I took the opportunity to explore it more deeply, was immediately intrigued, found wonderful documentation including excellent setup guides for exactly what we needed, and before I knew it had a Tailscale-on-AWS proof of concept up and running.
+
+## What is Tailscale, Really?
+
+The very minute I sat down to write this section, Tailscale's monthly email newsletter landed in my inbox, and it highlighted [this excellent Tailscale post by Casey Liss](https://www.caseyliss.com/2024/3/27/tailscale). Casey operates the [Accidental Tech Podcast](https://atp.fm/), and has several iOS apps in the App Store including the excellent [Callsheet](https://apps.apple.com/us/app/callsheet-find-cast-crew/id1672356376) (4.9 star rating, App Store Editors Choice). So Casey already wrote it better than I could, so to get up to speed on Tailscale basics, please [read his!](https://www.caseyliss.com/2024/3/27/tailscale)
+
+## Getting Inside the VPC
+
+VPC means Virtual ***Private*** Cloud, so how do we get in there? Enabling all sort of "getting in there," in a magically simple way, is Tailscale's superpower. Still, AWS is pretty serious about the P word, and [Tailscale did the work](https://tailscale.com/kb/1296/aws-reference-architecture) to make it really work.
+
+Getting Tailscale running on an EC2 instance, bare cloud-iron that we can directly access and control, is just a quick install. Literally a minute if one can SSH in. In one minute, that EC2 instance will magically pop up on your private Tailnet. (Installing Tailscale on Mac, Windows, iOS, etc. is even easier.)
+
+But ... we're living in the age of Serverless now. Even in our smallish infrastructure, the two main pillars of our setup (compute and database, ECS-Fargate and RDS Postgres) are serverless. What do you do when you don't have bare iron, when you can't just SSH in and install Tailscale? The key here is Tailscale's subnet router, which isn't even another piece of software, but rather an argument added to the Tailscale command when you start it up. You just need a tiny EC2 instance within each VPC running Tailscale with the subnet router option enabled, and now, every device connected the VPC becomes accessible, even though they aren't even running the Tailscale client. (To be clear, Security Groups still apply so access is blocked by default.)
+
+Subnet routing gets us access to our RDS cluster, both primary writer and read replica instances. And that (along with Tailscale's robust security) meets two of our three current use cases: data team read replica access, and developer access for SQL tools. Bastion servers are gone, and DBeaver is 10X better connecting directly versus through Remote Desktop.
+
+## SSH, Solved
+
+Our third use case is SSH. Good news: just by installing Tailscale on the servers that need SSH access, and the SSH users' client devices, we have closed off the attack surface exposed by opening an SSH port to the Internet. As [Tailscale's docs state](https://tailscale.com/kb/1193/tailscale-ssh), we already have "the standard SSH experience without exposing your servers to the internet." That's a big, free win right there.
+
+We've achieved this without even implementing the [Tailscale SSH](https://tailscale.com/tailscale-ssh) feature ... so why does that feature even exist? It turns out there's more to robustly securing SSH than simply blocking network access. There's authentication---"who are you and how do I know you're telling the truth about that?"---and authorization---"what's this user allowed to do?"---namely are they allowed SSH access to this server?
+
+We all know the pitfalls of username/password security, and organizations that are serious about security (or have compliance requirements) tend to instead apply digital certificates. To quote Tailscale's docs:
+
+> Historically, to secure an SSH connection, you generate a keypair on the machine you are connecting from (known as the client), with the private key stored on the client, and the public key distributed to the device you want to connect to (known as the server). This lets the server authenticate communication from the client.
+
+So every SSH user needs to establish a keypair with every server they SSH access to. When you've got more than a handful of SSH users and servers, this gets painful fast, and opens up its own attack surfaces, such as the case where an SSH-privileged user leaves the company. The pain level and security/compliance concerns here are often large enough to drive the implementation of PKI (Public Key Infrastructure) and KMS (Key Management System) solutions. In other words, a whole new set of systems just to get secure, compliant SSH.
+
+This is where Tailscale SSH shines. Tailscale already knows, through its underlying digital certificate implementation, who its users and machines are. Tailscale SSH simply applies  Tailscale's own strong authentication and key management capabilities to SSH transactions, adding an SSH-specific Access Control List facility to cover authorization, e.g. "what's this user allowed to do?" This eliminates the whole every-user-to-every-server keypair rat race while improving security and compliance. And there are [many other benefits](https://tailscale.com/tailscale-ssh) to Tailscale SSH, from automatic key rotation to the SSH session recording.
+
+## Tricks, Tips, and Learning Moments
+
+### A Dedicated Tailscale AWS Proof of Concept Environment Is Worth It
+
+In an attempt to save time, I tried to do my Tailscale POC in our existing Staging environment. The predictable result: I actually spent more time chasing little glitches caused by unique aspects of the preexisting environment. Another result: one of my experimental changes managed to take Staging down. Eventually, I learned my lesson, went back and set up a full POC on its own VPC with its own RDS cluster and all. Getting Tailscale set up fully there was quick, and by getting that environment working, I learned what I needed to (carefully) reimplement Tailscale on Staging, and then Production.
+
+### Duplicate IPv4 CIDR Blocks on Different VPCs
+
+We used Terraform to set up our initial Staging and Production environments. One side effect of this was that the IPv4 address ranges (CIDR blocks) were identical between the two environments. This all works just fine inside the private VPCs but when Tailscale needs to route traffic from the outside, it needs to know "which 10.0.1.23 do you mean, sir?" Tailscale's subnet router includes an elegant fix for this that they call [4via6](https://tailscale.com/kb/1201/4via6-subnets). We configured our Staging environment this way.
+
+### Bad Tailscale Advice from GPT-4
+
+I adore and rely on paid ChatGPT for help and advice across many knowledge domains with great success. Its specific advice around the details of Tailscale setup on AWS, however, turned out to be faulty and sent me off in the wrong direction several times. I think this knowledge niche was small and specific enough that ChatGPT's training data wasn't up to the task. My own lack of knowledge probably had me asking the wrong questions, and prevented me from recognizing bad advice. Filed away as a caution for similar situations in the future ...
+
+### Tailscale With Pihole and Unbound
+
+I use [Pi-hole](https://pi-hole.net/) on my home network, for network-level ad and tracker blocking; it's awesome, as I always realize when I'm away from home and see what I've been "missing"!
+
+I also have been using [Unbound](https://docs.pi-hole.net/guides/dns/unbound/), a recursive DSN server, running beside Pi-hole on the same Raspberry Pi. Unbound is faster and more secure than using even one of the fast public DNS services like Cloudflare DNS. Something about how Unbound works, however, makes Tailscale---which also needs to be smart about DNS resolution---unhappy. This took quite a few hours to diagnose. I suspect it's fixable, but haven't had time to spend on it, and for now have Unbound disabled.
+
+### Tailscale Exit Nodes
+
+Speaking of the poor Internet experience I get when away from home, Tailscale has a nice fix for that, [Exit Nodes](https://tailscale.com/kb/1103/exit-nodes), which can allow me to always route my internet traffic through my well-protected home network. Another thing I haven't had time to implement, but it's on the list.

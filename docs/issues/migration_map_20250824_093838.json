@@ -1,0 +1,654 @@
+{
+  "timestamp": "20250824_093838",
+  "dry_run": false,
+  "test_mode": false,
+  "migrations": [
+    {
+      "content_type": "posts",
+      "slug": "ai-coding-all-about-context",
+      "old_content_path": "src/data/posts/ai-coding-all-about-context.mdx",
+      "new_content_path": "src/data/content/ai-coding-all-about-context/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/ai-coding-all-about-context",
+      "new_images_path": "src/assets/images/content/ai-coding-all-about-context"
+    },
+    {
+      "content_type": "posts",
+      "slug": "ai-writing-index",
+      "old_content_path": "src/data/posts/ai-writing-index.mdx",
+      "new_content_path": "src/data/content/ai-writing-index/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/ai-writing-index",
+      "new_images_path": "src/assets/images/content/ai-writing-index"
+    },
+    {
+      "content_type": "posts",
+      "slug": "aiewf2025-my-day-1-highlights",
+      "old_content_path": "src/data/posts/aiewf2025-my-day-1-highlights.mdx",
+      "new_content_path": "src/data/content/aiewf2025-my-day-1-highlights/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/aiewf2025-my-day-1-highlights",
+      "new_images_path": "src/assets/images/content/aiewf2025-my-day-1-highlights"
+    },
+    {
+      "content_type": "posts",
+      "slug": "aiewf2025-my-day-2-highlights",
+      "old_content_path": "src/data/posts/aiewf2025-my-day-2-highlights.mdx",
+      "new_content_path": "src/data/content/aiewf2025-my-day-2-highlights/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/aiewf2025-my-day-2-highlights",
+      "new_images_path": "src/assets/images/content/aiewf2025-my-day-2-highlights"
+    },
+    {
+      "content_type": "posts",
+      "slug": "alarmed-about-ai",
+      "old_content_path": "src/data/posts/alarmed-about-ai.mdx",
+      "new_content_path": "src/data/content/alarmed-about-ai/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/alarmed-about-ai",
+      "new_images_path": "src/assets/images/content/alarmed-about-ai"
+    },
+    {
+      "content_type": "posts",
+      "slug": "an-appllama-week",
+      "old_content_path": "src/data/posts/an-appllama-week.mdx",
+      "new_content_path": "src/data/content/an-appllama-week/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/an-appllama-week",
+      "new_images_path": "src/assets/images/content/an-appllama-week"
+    },
+    {
+      "content_type": "posts",
+      "slug": "astrowind-template-in-depth",
+      "old_content_path": "src/data/posts/astrowind-template-in-depth.mdx",
+      "new_content_path": "src/data/content/astrowind-template-in-depth/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "posts",
+      "slug": "ballad-of-bull-cook",
+      "old_content_path": "src/data/posts/ballad-of-bull-cook.mdx",
+      "new_content_path": "src/data/content/ballad-of-bull-cook/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/ballad-of-bull-cook",
+      "new_images_path": "src/assets/images/content/ballad-of-bull-cook"
+    },
+    {
+      "content_type": "posts",
+      "slug": "building-with-shape-up",
+      "old_content_path": "src/data/posts/building-with-shape-up.mdx",
+      "new_content_path": "src/data/content/building-with-shape-up/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/building-with-shape-up",
+      "new_images_path": "src/assets/images/content/building-with-shape-up"
+    },
+    {
+      "content_type": "posts",
+      "slug": "chatgpt-4v",
+      "old_content_path": "src/data/posts/chatgpt-4v.mdx",
+      "new_content_path": "src/data/content/chatgpt-4v/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/chatgpt-4v",
+      "new_images_path": "src/assets/images/content/chatgpt-4v"
+    },
+    {
+      "content_type": "posts",
+      "slug": "commercial-mastodon",
+      "old_content_path": "src/data/posts/commercial-mastodon.mdx",
+      "new_content_path": "src/data/content/commercial-mastodon/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/commercial-mastodon",
+      "new_images_path": "src/assets/images/content/commercial-mastodon"
+    },
+    {
+      "content_type": "posts",
+      "slug": "cto-for-the-build",
+      "old_content_path": "src/data/posts/cto-for-the-build.mdx",
+      "new_content_path": "src/data/content/cto-for-the-build/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/cto-for-the-build",
+      "new_images_path": "src/assets/images/content/cto-for-the-build"
+    },
+    {
+      "content_type": "posts",
+      "slug": "introducing-crafty-cto",
+      "old_content_path": "src/data/posts/introducing-crafty-cto.mdx",
+      "new_content_path": "src/data/content/introducing-crafty-cto/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/introducing-crafty-cto",
+      "new_images_path": "src/assets/images/content/introducing-crafty-cto"
+    },
+    {
+      "content_type": "posts",
+      "slug": "le-mans-unabridged",
+      "old_content_path": "src/data/posts/le-mans-unabridged.mdx",
+      "new_content_path": "src/data/content/le-mans-unabridged/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/le-mans-unabridged",
+      "new_images_path": "src/assets/images/content/le-mans-unabridged"
+    },
+    {
+      "content_type": "posts",
+      "slug": "march-madness-ai",
+      "old_content_path": "src/data/posts/march-madness-ai.mdx",
+      "new_content_path": "src/data/content/march-madness-ai/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/march-madness-ai",
+      "new_images_path": "src/assets/images/content/march-madness-ai"
+    },
+    {
+      "content_type": "posts",
+      "slug": "markdown-elements-demo-post",
+      "old_content_path": "src/data/posts/markdown-elements-demo-post.mdx",
+      "new_content_path": "src/data/content/markdown-elements-demo-post/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "posts",
+      "slug": "moat-busters",
+      "old_content_path": "src/data/posts/moat-busters.mdx",
+      "new_content_path": "src/data/content/moat-busters/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/moat-busters",
+      "new_images_path": "src/assets/images/content/moat-busters"
+    },
+    {
+      "content_type": "posts",
+      "slug": "observable-framework-blazing-fast",
+      "old_content_path": "src/data/posts/observable-framework-blazing-fast.mdx",
+      "new_content_path": "src/data/content/observable-framework-blazing-fast/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/observable-framework-blazing-fast",
+      "new_images_path": "src/assets/images/content/observable-framework-blazing-fast"
+    },
+    {
+      "content_type": "posts",
+      "slug": "really-openai",
+      "old_content_path": "src/data/posts/really-openai.mdx",
+      "new_content_path": "src/data/content/really-openai/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/really-openai",
+      "new_images_path": "src/assets/images/content/really-openai"
+    },
+    {
+      "content_type": "posts",
+      "slug": "relaunch",
+      "old_content_path": "src/data/posts/relaunch.mdx",
+      "new_content_path": "src/data/content/relaunch/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/relaunch",
+      "new_images_path": "src/assets/images/content/relaunch"
+    },
+    {
+      "content_type": "posts",
+      "slug": "runway-not-midjourney-for-video",
+      "old_content_path": "src/data/posts/runway-not-midjourney-for-video.mdx",
+      "new_content_path": "src/data/content/runway-not-midjourney-for-video/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/runway-not-midjourney-for-video",
+      "new_images_path": "src/assets/images/content/runway-not-midjourney-for-video"
+    },
+    {
+      "content_type": "posts",
+      "slug": "shape-up-your-agile",
+      "old_content_path": "src/data/posts/shape-up-your-agile.mdx",
+      "new_content_path": "src/data/content/shape-up-your-agile/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/shape-up-your-agile",
+      "new_images_path": "src/assets/images/content/shape-up-your-agile"
+    },
+    {
+      "content_type": "posts",
+      "slug": "simple-image-test",
+      "old_content_path": "src/data/posts/simple-image-test.mdx",
+      "new_content_path": "src/data/content/simple-image-test/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "posts",
+      "slug": "tailscale-fun",
+      "old_content_path": "src/data/posts/tailscale-fun.mdx",
+      "new_content_path": "src/data/content/tailscale-fun/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/tailscale-fun",
+      "new_images_path": "src/assets/images/content/tailscale-fun"
+    },
+    {
+      "content_type": "posts",
+      "slug": "test-native-images",
+      "old_content_path": "src/data/posts/test-native-images.mdx",
+      "new_content_path": "src/data/content/test-native-images/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "posts",
+      "slug": "the-emergence-s1e4",
+      "old_content_path": "src/data/posts/the-emergence-s1e4.mdx",
+      "new_content_path": "src/data/content/the-emergence-s1e4/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/the-emergence-s1e4",
+      "new_images_path": "src/assets/images/content/the-emergence-s1e4"
+    },
+    {
+      "content_type": "posts",
+      "slug": "unlimited-stupid-questions",
+      "old_content_path": "src/data/posts/unlimited-stupid-questions.mdx",
+      "new_content_path": "src/data/content/unlimited-stupid-questions/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/unlimited-stupid-questions",
+      "new_images_path": "src/assets/images/content/unlimited-stupid-questions"
+    },
+    {
+      "content_type": "posts",
+      "slug": "why-fractional",
+      "old_content_path": "src/data/posts/why-fractional.mdx",
+      "new_content_path": "src/data/content/why-fractional/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/why-fractional",
+      "new_images_path": "src/assets/images/content/why-fractional"
+    },
+    {
+      "content_type": "posts",
+      "slug": "write-every-day",
+      "old_content_path": "src/data/posts/write-every-day.mdx",
+      "new_content_path": "src/data/content/write-every-day/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/write-every-day",
+      "new_images_path": "src/assets/images/content/write-every-day"
+    },
+    {
+      "content_type": "micro",
+      "slug": "apple-intelligence-initial-thoughts",
+      "old_content_path": "src/data/micro/apple-intelligence-initial-thoughts.mdx",
+      "new_content_path": "src/data/content/apple-intelligence-initial-thoughts/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/apple-intelligence-initial-thoughts",
+      "new_images_path": "src/assets/images/content/apple-intelligence-initial-thoughts"
+    },
+    {
+      "content_type": "micro",
+      "slug": "auto-link-with-gpt-5-and-playwright-mcp",
+      "old_content_path": "src/data/micro/auto-link-with-gpt-5-and-playwright-mcp.mdx",
+      "new_content_path": "src/data/content/auto-link-with-gpt-5-and-playwright-mcp/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/auto-link-with-gpt-5-and-playwright-mcp",
+      "new_images_path": "src/assets/images/content/auto-link-with-gpt-5-and-playwright-mcp"
+    },
+    {
+      "content_type": "micro",
+      "slug": "chatgpt-codereview",
+      "old_content_path": "src/data/micro/chatgpt-codereview.mdx",
+      "new_content_path": "src/data/content/chatgpt-codereview/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "micro",
+      "slug": "chatgpt-images-pictorial",
+      "old_content_path": "src/data/micro/chatgpt-images-pictorial.mdx",
+      "new_content_path": "src/data/content/chatgpt-images-pictorial/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/chatgpt-images-pictorial",
+      "new_images_path": "src/assets/images/content/chatgpt-images-pictorial"
+    },
+    {
+      "content_type": "micro",
+      "slug": "chatgpt-record",
+      "old_content_path": "src/data/micro/chatgpt-record.mdx",
+      "new_content_path": "src/data/content/chatgpt-record/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "micro",
+      "slug": "cloudflare-captcha-hell",
+      "old_content_path": "src/data/micro/cloudflare-captcha-hell.mdx",
+      "new_content_path": "src/data/content/cloudflare-captcha-hell/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/cloudflare-captcha-hell",
+      "new_images_path": "src/assets/images/content/cloudflare-captcha-hell"
+    },
+    {
+      "content_type": "micro",
+      "slug": "did-code-interpreter-escape",
+      "old_content_path": "src/data/micro/did-code-interpreter-escape.mdx",
+      "new_content_path": "src/data/content/did-code-interpreter-escape/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/did-code-interpreter-escape",
+      "new_images_path": "src/assets/images/content/did-code-interpreter-escape"
+    },
+    {
+      "content_type": "micro",
+      "slug": "early-gpt-5-impressions",
+      "old_content_path": "src/data/micro/early-gpt-5-impressions.mdx",
+      "new_content_path": "src/data/content/early-gpt-5-impressions/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/early-gpt-5-impressions",
+      "new_images_path": "src/assets/images/content/early-gpt-5-impressions"
+    },
+    {
+      "content_type": "micro",
+      "slug": "giving-claude-code-context",
+      "old_content_path": "src/data/micro/giving-claude-code-context.mdx",
+      "new_content_path": "src/data/content/giving-claude-code-context/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/giving-claude-code-context",
+      "new_images_path": "src/assets/images/content/giving-claude-code-context"
+    },
+    {
+      "content_type": "micro",
+      "slug": "gpt-4o-quick-benchmark",
+      "old_content_path": "src/data/micro/gpt-4o-quick-benchmark.mdx",
+      "new_content_path": "src/data/content/gpt-4o-quick-benchmark/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/gpt-4o-quick-benchmark",
+      "new_images_path": "src/assets/images/content/gpt-4o-quick-benchmark"
+    },
+    {
+      "content_type": "micro",
+      "slug": "gpt-oss-mlx-mac-mini",
+      "old_content_path": "src/data/micro/gpt-oss-mlx-mac-mini.mdx",
+      "new_content_path": "src/data/content/gpt-oss-mlx-mac-mini/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/gpt-oss-mlx-mac-mini",
+      "new_images_path": "src/assets/images/content/gpt-oss-mlx-mac-mini"
+    },
+    {
+      "content_type": "micro",
+      "slug": "hugo-cloudflare-build",
+      "old_content_path": "src/data/micro/hugo-cloudflare-build.mdx",
+      "new_content_path": "src/data/content/hugo-cloudflare-build/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/hugo-cloudflare-build",
+      "new_images_path": "src/assets/images/content/hugo-cloudflare-build"
+    },
+    {
+      "content_type": "micro",
+      "slug": "hugo-responsive-images",
+      "old_content_path": "src/data/micro/hugo-responsive-images.mdx",
+      "new_content_path": "src/data/content/hugo-responsive-images/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/hugo-responsive-images",
+      "new_images_path": "src/assets/images/content/hugo-responsive-images"
+    },
+    {
+      "content_type": "micro",
+      "slug": "llama-2",
+      "old_content_path": "src/data/micro/llama-2.mdx",
+      "new_content_path": "src/data/content/llama-2/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/llama-2",
+      "new_images_path": "src/assets/images/content/llama-2"
+    },
+    {
+      "content_type": "micro",
+      "slug": "moxie-on-murder",
+      "old_content_path": "src/data/micro/moxie-on-murder.mdx",
+      "new_content_path": "src/data/content/moxie-on-murder/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/moxie-on-murder",
+      "new_images_path": "src/assets/images/content/moxie-on-murder"
+    },
+    {
+      "content_type": "micro",
+      "slug": "two-from-greg-brockman",
+      "old_content_path": "src/data/micro/two-from-greg-brockman.mdx",
+      "new_content_path": "src/data/content/two-from-greg-brockman/index.mdx",
+      "images_migrated": true,
+      "status": "success",
+      "old_images_path": "src/assets/images/blog/two-from-greg-brockman",
+      "new_images_path": "src/assets/images/content/two-from-greg-brockman"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "deep-rl-faster-sorting",
+      "old_content_path": "src/data/elsewhere/deep-rl-faster-sorting.mdx",
+      "new_content_path": "src/data/content/deep-rl-faster-sorting/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "eric-brooke-ownership-pt1",
+      "old_content_path": "src/data/elsewhere/eric-brooke-ownership-pt1.mdx",
+      "new_content_path": "src/data/content/eric-brooke-ownership-pt1/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "gpt4-code-interpreter-big-deal-pt1",
+      "old_content_path": "src/data/elsewhere/gpt4-code-interpreter-big-deal-pt1.mdx",
+      "new_content_path": "src/data/content/gpt4-code-interpreter-big-deal-pt1/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "gpt4-code-interpreter-big-deal-pt2",
+      "old_content_path": "src/data/elsewhere/gpt4-code-interpreter-big-deal-pt2.mdx",
+      "new_content_path": "src/data/content/gpt4-code-interpreter-big-deal-pt2/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "gruber-translates-linda-yaccarino",
+      "old_content_path": "src/data/elsewhere/gruber-translates-linda-yaccarino.mdx",
+      "new_content_path": "src/data/content/gruber-translates-linda-yaccarino/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "gruber-visionpro-visionos",
+      "old_content_path": "src/data/elsewhere/gruber-visionpro-visionos.mdx",
+      "new_content_path": "src/data/content/gruber-visionpro-visionos/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "how-to-use-ai-to-do-stuff",
+      "old_content_path": "src/data/elsewhere/how-to-use-ai-to-do-stuff.mdx",
+      "new_content_path": "src/data/content/how-to-use-ai-to-do-stuff/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "kagi-orion-browser",
+      "old_content_path": "src/data/elsewhere/kagi-orion-browser.mdx",
+      "new_content_path": "src/data/content/kagi-orion-browser/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "karl-guttag-apple-vision-pro",
+      "old_content_path": "src/data/elsewhere/karl-guttag-apple-vision-pro.mdx",
+      "new_content_path": "src/data/content/karl-guttag-apple-vision-pro/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "latent-space-george-hotz",
+      "old_content_path": "src/data/elsewhere/latent-space-george-hotz.mdx",
+      "new_content_path": "src/data/content/latent-space-george-hotz/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "lone-banana-problem",
+      "old_content_path": "src/data/elsewhere/lone-banana-problem.mdx",
+      "new_content_path": "src/data/content/lone-banana-problem/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "meta-i-jepa",
+      "old_content_path": "src/data/elsewhere/meta-i-jepa.mdx",
+      "new_content_path": "src/data/content/meta-i-jepa/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "midjourney-v52",
+      "old_content_path": "src/data/elsewhere/midjourney-v52.mdx",
+      "new_content_path": "src/data/content/midjourney-v52/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "mimestream",
+      "old_content_path": "src/data/elsewhere/mimestream.mdx",
+      "new_content_path": "src/data/content/mimestream/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "openai-plans",
+      "old_content_path": "src/data/elsewhere/openai-plans.mdx",
+      "new_content_path": "src/data/content/openai-plans/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "orta-claude-code-six-weeks",
+      "old_content_path": "src/data/elsewhere/orta-claude-code-six-weeks.mdx",
+      "new_content_path": "src/data/content/orta-claude-code-six-weeks/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "russ-cox-xz-timeline",
+      "old_content_path": "src/data/elsewhere/russ-cox-xz-timeline.mdx",
+      "new_content_path": "src/data/content/russ-cox-xz-timeline/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "simon-cli-for-llm",
+      "old_content_path": "src/data/elsewhere/simon-cli-for-llm.mdx",
+      "new_content_path": "src/data/content/simon-cli-for-llm/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "simon-deep-dives-fake-cases",
+      "old_content_path": "src/data/elsewhere/simon-deep-dives-fake-cases.mdx",
+      "new_content_path": "src/data/content/simon-deep-dives-fake-cases/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "twitter-and-successor-states",
+      "old_content_path": "src/data/elsewhere/twitter-and-successor-states.mdx",
+      "new_content_path": "src/data/content/twitter-and-successor-states/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "two-from-willison",
+      "old_content_path": "src/data/elsewhere/two-from-willison.mdx",
+      "new_content_path": "src/data/content/two-from-willison/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "willison-gemini-pro-video",
+      "old_content_path": "src/data/elsewhere/willison-gemini-pro-video.mdx",
+      "new_content_path": "src/data/content/willison-gemini-pro-video/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "elsewhere",
+      "slug": "willison-infuriating-closed-models",
+      "old_content_path": "src/data/elsewhere/willison-infuriating-closed-models.mdx",
+      "new_content_path": "src/data/content/willison-infuriating-closed-models/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "quote",
+      "slug": "how-to-ask-chatgpt-a-tech-question",
+      "old_content_path": "src/data/quote/how-to-ask-chatgpt-a-tech-question.mdx",
+      "new_content_path": "src/data/content/how-to-ask-chatgpt-a-tech-question/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "quote",
+      "slug": "mpt7b-gatsby",
+      "old_content_path": "src/data/quote/mpt7b-gatsby.mdx",
+      "new_content_path": "src/data/content/mpt7b-gatsby/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    },
+    {
+      "content_type": "quote",
+      "slug": "vivek-haldar-copilot",
+      "old_content_path": "src/data/quote/vivek-haldar-copilot.mdx",
+      "new_content_path": "src/data/content/vivek-haldar-copilot/index.mdx",
+      "images_migrated": false,
+      "status": "success"
+    }
+  ],
+  "errors": []
+}

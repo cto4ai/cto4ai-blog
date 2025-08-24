@@ -1,0 +1,23 @@
+---
+title: "A Quick Look at GPT-4o"
+contentType: "brief"
+description: "I did a quick benchmark of the new GPT-4o model versus GPT-4-turbo. Roughly twice the speed, with improved Vision accuracy."
+author: "Jack Ivers"
+publishDate: "2024-05-19T20:32:43-05:00"
+draft: false
+---
+
+Since last week's [Spring Update event](https://openai.com/index/spring-update/) from OpenAI, I've been wanting to test the new [Omni model (GPT-4o)](https://openai.com/index/hello-gpt-4o/) in my Vision-based [recipe ingestor project](/p/chatgpt-4v). This Python script processes a directory of recipe images, and using GPT-4's Vision capabilities, as well as JSON Mode, produces a structured JSON recipe that I can post directly to my Paprika Recipes app.
+
+## Benchmark Results
+
+For a batch of three recipes / four recipe images, bypassing uploading to the Paprika cloud.
+
+### Quantitative
+
+- GPT-4-turbo: 1:03 (1 min 3 secs)
+- GPT-4o: 0:38 (38 secs)
+
+### Qualitative
+
+GPT-4o's Vision capabilities seem to have improved over GPT-4-turbo. Example: GPT-4-turbo had a hard time parsing the handwritten name "Debbie Gardner", producing "Betty's Cards", "Betty Bard", "Betty Borden" etc. on different runs. GPT-4o got the name correct.
