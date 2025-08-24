@@ -33,7 +33,9 @@ Successfully completed the migration from type-based content organization to uni
 ### Phase 5: Cleanup ✅
 - Removed fallback logic from components (components now use only unified path)
 - Deleted 317 duplicate images from old `/src/assets/images/blog/` directory
-- Removed empty image directories (blog, elsewhere, micro, quote)
+- Deleted 54 additional duplicate images from `/src/assets/images/posts/blog/` directory
+- Fixed frontmatter image paths in 24 MDX files (changed posts/blog → content/[slug])
+- Removed all empty image directories (blog, elsewhere, micro, quote, posts)
 - Updated documentation in CLAUDE.md
 
 ## Final Structure
