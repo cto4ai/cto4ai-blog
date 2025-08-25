@@ -18,6 +18,10 @@ const image = await findImage(post.image) as ImageMetadata | undefined;
 
 const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : '';
 
+// Determine if drafts should be shown (same logic as in blog.ts)
+const SHOW_DRAFTS = import.meta.env.DEV || 
+                    import.meta.env.PUBLIC_SHOW_DRAFTS_IN_PREVIEW === "true";
+
 // Helper function to get display name for content type
 function getContentTypeDisplay(contentType?: string): string {
   const contentTypeMap: Record<string, string> = {
@@ -38,6 +42,13 @@ function getContentTypeDisplay(contentType?: string): string {
 <article
   class="mb-6 transition intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
 >
+  {SHOW_DRAFTS && post.draft && (
+    <div class="mb-2">
+      <span class="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider bg-amber-500 text-white rounded-full">
+        Draft
+      </span>
+    </div>
+  )}
   <div class="relative bg-gray-400 dark:bg-slate-700 rounded shadow-lg mb-6 aspect-[44/28]">
     {
       image ? (

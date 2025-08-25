@@ -128,8 +128,13 @@ const load = async function (): Promise<Array<Post>> {
   // Process all content with normalized processing
   const normalizedPosts = content.map(async (post) => await getNormalizedPost(post));
 
+  // Determine if drafts should be shown based on environment
+  // In development mode or when explicitly enabled for preview deployments
+  const SHOW_DRAFTS = import.meta.env.DEV || 
+                      import.meta.env.PUBLIC_SHOW_DRAFTS_IN_PREVIEW === "true";
+
   const results = (await Promise.all(normalizedPosts))
-    .filter((post) => !post.draft)
+    .filter((post) => SHOW_DRAFTS || !post.draft)
     .sort((a, b) => {
       // First, sort by featured status (featured posts first)
       if (a.featured && !b.featured) return -1;
