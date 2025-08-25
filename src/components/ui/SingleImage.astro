@@ -1,5 +1,6 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 
 interface Props {
@@ -20,17 +21,24 @@ const sizeClasses = {
   '2xl': 'max-w-2xl'
 };
 
-// Import the image dynamically with fallback support
-let imageModule;
+// Use Vite's glob import for production compatibility
+const images = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/content/**/*.{jpeg,jpg,png,svg,webp}');
 
-// Use unified content path
-const imagePath = postDir ? `../../assets/images/content/${postDir}/${src}` : `../../assets/images/content/${src}`;
+// Construct the full path for the image
+const imagePath = postDir 
+  ? `../../assets/images/content/${postDir}/${src}`
+  : `../../assets/images/content/${src}`;
 
-try {
-  imageModule = await import(imagePath);
-} catch (error) {
-  console.error(`Failed to load image: ${src}`, error);
-  imageModule = null;
+// Get the image module
+let imageModule = null;
+if (images[imagePath]) {
+  try {
+    imageModule = await images[imagePath]();
+  } catch (error) {
+    console.error(`Failed to load image: ${imagePath}`, error);
+  }
+} else {
+  console.warn(`Image not found: ${imagePath}`);
 }
 ---
 
