@@ -14,10 +14,10 @@ This approach lets you fix issues with real-world usage before driving traffic.
 ## Launch Requirements
 
 ### Must Have for Launch ✅
-1. **100% content migrated** and site fully functional with hosting
+1. **100% content migrated** and site fully functional with hosting ✅ **COMPLETE** - All content migrated to unified structure
 2. **Redirects** from craftycto.com/blog → cto4.ai
 3. **URL preservation** for existing blog posts
-4. **Working newsletter signup** (can collect emails)
+4. **Working newsletter signup** (can collect emails) - `/subscribe` page exists, needs Beehiiv integration
 
 ### Can Wait Until Post-Launch ⏳
 - Automated Beehiiv → Astro content flow
@@ -32,9 +32,11 @@ This approach lets you fix issues with real-world usage before driving traffic.
 
 ### Day 1: Final Content & Deploy
 
-#### Morning: Content Verification
-- [ ] Verify all blog posts migrated from craftycto.com/blog
-- [ ] Check all images are loading correctly
+#### Morning: Final QA & Verification
+- [x] ✅ **COMPLETE** - All blog posts migrated to unified `/src/data/content/[slug]/index.mdx` structure
+- [x] ✅ **IMPLEMENTED** - Draft posts show in dev mode, hidden in production (via `import.meta.env.DEV`)
+- [ ] Test production build locally: `npm run build && npm run preview`
+- [ ] Check all images are loading correctly from new `/src/assets/images/content/[slug]/` structure
 - [ ] Test internal links between posts
 - [ ] Verify RSS feeds are generating:
   - `/rss.xml` (main feed with all posts)
@@ -75,6 +77,8 @@ This approach lets you fix issues with real-world usage before driving traffic.
      Root directory: / (leave blank)
      Environment variables:
        NODE_VERSION: 20
+     Optional environment variables:
+       PUBLIC_SHOW_DRAFTS_IN_PREVIEW: true  # To show drafts in preview deployments
      ```
   6. Click "Save and Deploy"
 
@@ -155,7 +159,7 @@ This approach lets you fix issues with real-world usage before driving traffic.
 - [ ] Modal popup (after 30 seconds or scroll 50%)
 - [ ] Sidebar widget on blog posts
 - [ ] Footer signup section
-- [ ] Dedicated `/subscribe` page
+- [x] ✅ Dedicated `/subscribe` page already exists - needs Beehiiv integration
 
 ### Day 3: Redirects & Cutover
 
@@ -268,7 +272,7 @@ This approach lets you fix issues with real-world usage before driving traffic.
 GitHub Push/PR → GitHub Actions (CI) → Tests Pass → Cloudflare Pages (CD) → Live Site
                   ├── Run build test                    ├── Auto-deploy main → cto4.ai
                   ├── Check code quality                 └── Preview deploys → *.pages.dev
-                  └── Matrix testing (Node 18,20,22)
+                  └── Matrix testing (Node 20,22)
 ```
 
 ### Why This Approach
@@ -282,7 +286,7 @@ GitHub Push/PR → GitHub Actions (CI) → Tests Pass → Cloudflare Pages (CD) 
 |---------|-------|-------|
 | Build Command | `npm run build` | Runs Astro build |
 | Output Directory | `dist` | Astro's default |
-| Node Version | `20` | Set via environment variable |
+| Node Version | `20.11.0` | Set via environment variable (matches .nvmrc) |
 | Install Command | `npm ci` | Auto-detected by Cloudflare |
 | Preview Branches | All | Every branch gets preview URL |
 
@@ -370,6 +374,8 @@ curl https://cto4.ai/rss.xml | head -20
 ## Success Metrics (Day 5)
 
 ### Launch Success
+- ✅ **READY** - Content migration complete (unified structure)
+- ✅ **READY** - Draft handling implemented (show in dev, hide in prod)
 - ✅ Site live at cto4.ai
 - ✅ All content accessible
 - ✅ Newsletter signups working
