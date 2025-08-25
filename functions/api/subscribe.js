@@ -5,6 +5,8 @@ export async function onRequestPost(context) {
     const formData = await request.formData();
     const email = formData.get('email');
     
+    console.log('Email submitted:', email);
+    
     if (!email) {
       return new Response('Email is required', { status: 400 });
     }
@@ -23,15 +25,21 @@ export async function onRequestPost(context) {
       })
     });
     
+    console.log('Beehiiv API response status:', response.status);
+    
+    // Get the response text to see any error details
+    const responseText = await response.text();
+    console.log('Beehiiv API response:', responseText);
+    
     if (!response.ok) {
-      throw new Error('Subscription failed');
+      throw new Error(`Beehiiv API error: ${response.status} - ${responseText}`);
     }
     
     // Redirect to success page or back with success message
-    return Response.redirect('https://cto4.ai/subscribe-success', 302);
+    return Response.redirect('https://cto4.ai/subscribe-success', 303);
     
   } catch (error) {
-    console.error('Subscription error:', error);
-    return new Response('Subscription failed. Please try again.', { status: 500 });
+    console.error('Subscription error:', error.message);
+    return new Response(`Error: ${error.message}`, { status: 500 });
   }
 }
