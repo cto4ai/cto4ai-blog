@@ -1,5 +1,6 @@
 ---
 import '@fontsource-variable/space-grotesk';
+import logoSvg from '~/assets/images/logos/noBgColor.svg';
 
 const metadata = {
   title: 'Subscribe',
@@ -202,8 +203,8 @@ const metadata = {
   <div class="container">
     <div class="logo-section">
       <div class="logo-wrapper">
-        <img src="/src/assets/images/logos/noBgColor.svg" alt="CTO4.AI" class="dark:hidden" />
-        <img src="/src/assets/images/logos/noBgColor.svg" alt="CTO4.AI" class="hidden dark:block" />
+        <img src={logoSvg.src} alt="CTO4.AI" class="dark:hidden" />
+        <img src={logoSvg.src} alt="CTO4.AI" class="hidden dark:block" />
       </div>
       <p class="tagline">Transcend local maxima. <span class="summit">Summit.</span></p>
     </div>
