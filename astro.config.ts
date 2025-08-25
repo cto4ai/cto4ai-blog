@@ -105,6 +105,10 @@ export default defineConfig({
       site: './dist',
       // Configure PageFind to not include trailing slashes
       forceLanguage: 'en',
+      // Exclude images from search indexing
+      indexConfig: {
+        exclude_selectors: ['img', '[data-pagefind-ignore]'],
+      },
     }),
   ],
 

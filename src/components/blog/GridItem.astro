@@ -85,7 +85,7 @@ function getContentTypeDisplay(contentType?: string): string {
         link ? (
           <a href={link} class="block w-full h-full">
             <div class="w-full h-full rounded shadow-lg bg-gray-200 dark:bg-gray-800 flex flex-col items-center justify-center">
-              <img src={symbolLogo.src} alt="" class="w-20 h-20 opacity-80 dark:opacity-70" style="filter: brightness(0.7)" />
+              <img src={symbolLogo.src} alt="" class="w-20 h-20 opacity-80 dark:opacity-70" style="filter: brightness(0.7)" data-pagefind-ignore="all" />
               <span class="text-xs font-semibold text-gray-700 dark:text-gray-300 mt-2 uppercase tracking-wider">
                 {getContentTypeDisplay(post.contentType)}
               </span>
@@ -115,5 +115,5 @@ function getContentTypeDisplay(contentType?: string): string {
     }
   </h3>
 
-  <p class="text-muted dark:text-slate-400 text-lg">{post.excerpt}</p>
+  <p class="text-muted dark:text-slate-400 text-lg">{post.excerpt || post.description}</p>
 </article>

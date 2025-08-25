@@ -46,7 +46,7 @@ function getContentTypeDisplay(contentType?: string): string {
       <div class="flex flex-col md:flex-row gap-6">
         {/* Hidden image URL for Pagefind */}
         {imageMetadata && (
-          <span data-pagefind-meta="image" style="display:none">{imageMetadata.src}</span>
+          <span data-pagefind-meta="image" data-pagefind-ignore="all" style="display:none">{imageMetadata.src}</span>
         )}
         {/* Text content on left */}
         <div class="flex-1">
@@ -117,7 +117,7 @@ function getContentTypeDisplay(contentType?: string): string {
                 />
               ) : (
                 <div class="w-full h-full min-h-[200px] rounded-lg bg-gray-200 dark:bg-gray-800 flex flex-col items-center justify-center aspect-[44/28] hover:opacity-90 transition-opacity">
-                  <img src={symbolLogo.src} alt="" class="w-24 h-24 opacity-80 dark:opacity-70" style="filter: brightness(0.7)" />
+                  <img src={symbolLogo.src} alt="" class="w-24 h-24 opacity-80 dark:opacity-70" style="filter: brightness(0.7)" data-pagefind-ignore="all" />
                   <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 mt-3 uppercase tracking-wider">
                     {getContentTypeDisplay(post.contentType)}
                   </span>
@@ -139,7 +139,7 @@ function getContentTypeDisplay(contentType?: string): string {
               />
             ) : (
               <div class="w-full h-full min-h-[200px] rounded-lg bg-gray-200 dark:bg-gray-800 flex flex-col items-center justify-center aspect-[44/28]">
-                <img src={symbolLogo.src} alt="" class="w-24 h-24 opacity-80 dark:opacity-70" style="filter: brightness(0.7)" />
+                <img src={symbolLogo.src} alt="" class="w-24 h-24 opacity-80 dark:opacity-70" style="filter: brightness(0.7)" data-pagefind-ignore="all" />
                 <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 mt-3 uppercase tracking-wider">
                   {getContentTypeDisplay(post.contentType)}
                 </span>
