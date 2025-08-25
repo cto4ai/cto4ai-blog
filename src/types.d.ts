@@ -50,6 +50,9 @@ export interface Post {
   
   /** External source link for elsewhere content */
   sourceLink?: string;
+  
+  /** Whether this post is featured */
+  featured?: boolean;
 }
 
 export interface Taxonomy {

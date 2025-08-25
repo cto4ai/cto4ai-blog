@@ -50,8 +50,18 @@ const { language, textDirection } = I18N;
       import GLightbox from 'glightbox';
       import 'glightbox/dist/css/glightbox.min.css';
       
+      declare global {
+        interface Window {
+          lightboxManager: any;
+        }
+      }
+      
       // Global lightbox manager to handle GLightbox instances across page navigations
       class LightboxManager {
+        instance: any;
+        initialized: boolean;
+        debug: boolean;
+        
         constructor() {
           this.instance = null;
           this.initialized = false;
@@ -61,7 +71,7 @@ const { language, textDirection } = I18N;
           this.init();
         }
 
-        log(message, data = null) {
+        log(message: any, data: any = null) {
           if (this.debug) {
             if (data) {
               console.log(`[LightboxManager] ${message}`, data);

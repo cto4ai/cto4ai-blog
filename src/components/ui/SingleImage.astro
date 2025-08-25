@@ -30,7 +30,7 @@ const imagePath = postDir
   : `../../assets/images/content/${src}`;
 
 // Get the image module
-let imageModule = null;
+let imageModule: { default: ImageMetadata } | null = null;
 if (images[imagePath]) {
   try {
     imageModule = await images[imagePath]();

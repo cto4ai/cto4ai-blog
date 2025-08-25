@@ -116,8 +116,9 @@ const getNormalizedPost = async (
     // or 'content' in case you consume from API
 
     readingTime: remarkPluginFrontmatter?.readingTime,
-    contentType: contentType,
+    contentType: contentType as 'posts' | 'micro' | 'elsewhere' | 'quote' | undefined,
     sourceLink: sourceLink,
+    featured: featured,
   };
 };
 

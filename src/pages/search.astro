@@ -53,7 +53,7 @@ const metadata = {
         
         // Focus the search input after initialization
         setTimeout(() => {
-          const searchInput = document.querySelector('.pagefind-ui__search-input');
+          const searchInput = document.querySelector('.pagefind-ui__search-input') as HTMLInputElement;
           if (searchInput) {
             searchInput.focus();
           }
@@ -80,20 +80,21 @@ const metadata = {
       mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((node) => {
           if (node.nodeType === Node.ELEMENT_NODE) {
+            const element = node as Element;
             // Fix links in the added content
-            const links = node.querySelectorAll ? node.querySelectorAll('a[href]') : [];
+            const links = element.querySelectorAll ? element.querySelectorAll('a[href]') : [];
             links.forEach(fixTrailingSlash);
             
             // Also fix if the node itself is a link
-            if (node.tagName === 'A' && node.href) {
-              fixTrailingSlash(node);
+            if ((element as any).tagName === 'A' && (element as any).href) {
+              fixTrailingSlash(element);
             }
           }
         });
       });
     });
     
-    function fixTrailingSlash(link) {
+    function fixTrailingSlash(link: any) {
       if (link.href && link.href.includes(window.location.hostname)) {
         const url = new URL(link.href);
         if (url.pathname.endsWith('/') && url.pathname !== '/') {
