@@ -118,7 +118,6 @@ const getNormalizedPost = async (
     readingTime: remarkPluginFrontmatter?.readingTime,
     contentType: contentType as 'posts' | 'micro' | 'elsewhere' | 'quote' | undefined,
     sourceLink: sourceLink,
-    featured: featured,
   };
 };
 

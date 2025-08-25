@@ -50,7 +50,7 @@ const imageModules = await Promise.all(
   })
 );
 
-const validImages = imageModules.filter(Boolean);
+const validImages = imageModules.filter((img): img is NonNullable<typeof img> => img !== null);
 ---
 
 <div class={`image-gallery grid gap-4 ${gridClasses} ${sizeClasses[size]} mx-auto ${className}`}>
