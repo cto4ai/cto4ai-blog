@@ -51,11 +51,16 @@ export const footerData = {
       ],
     },
   ],
-  secondaryLinks: [],
+  secondaryLinks: [
+    { text: 'Terms', href: getPermalink('/terms') },
+    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+  ],
   socialLinks: [
-    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/in/jackivers/' },
+    { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
+    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
+    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/jack4git/cto4ai-blog' },
   ],
   footNote: `
-    Copyright 2019-2025 <a class="text-blue-600 underline dark:text-muted" href="https://craftycto.com"> Jack Ivers</a> · All rights reserved.
+    Copyright 2019 <a class="text-blue-600 underline dark:text-muted" href="https://craftycto.com"> Jack Ivers</a> · All rights reserved.
   `,
 };
