@@ -16,6 +16,7 @@ import astrowind from './vendor/integration';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
 import remarkSmartypants from 'remark-smartypants';
+import rehypeRaw from 'rehype-raw';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -44,7 +45,21 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     sitemap(),
-    mdx(),
+    mdx({
+      remarkPlugins: [readingTimeRemarkPlugin, [remarkSmartypants, { dashes: 'oldschool' }]],
+      rehypePlugins: [
+        [rehypeRaw, { 
+          passThrough: [
+            'mdxJsxFlowElement',
+            'mdxJsxTextElement',
+            'mdxFlowExpression',
+            'mdxTextExpression'
+          ]
+        }],
+        responsiveTablesRehypePlugin,
+        lazyImagesRehypePlugin
+      ],
+    }),
     icon({
       include: {
         tabler: ['*'],
