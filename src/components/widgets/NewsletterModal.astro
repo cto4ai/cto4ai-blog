@@ -68,8 +68,8 @@ import logoSvg from '~/assets/images/logos/noBgColor.svg';
   // Check if modal should be shown
   function shouldShowModal() {
     const hasSeenModal = localStorage.getItem('cto4ai-newsletter-modal-seen');
-    const hasSubscribed = localStorage.getItem('cto4ai-newsletter-subscribed');
-    return !hasSeenModal && !hasSubscribed;
+    // Don't show if user has already seen or dismissed the modal
+    return !hasSeenModal;
   }
   
   // Show modal
@@ -91,17 +91,10 @@ import logoSvg from '~/assets/images/logos/noBgColor.svg';
     }
   }
   
-  // Handle form submission
-  function handleSubmit(e) {
-    // Let the form submit naturally to Beehiiv
-    localStorage.setItem('cto4ai-newsletter-subscribed', 'true');
-    hideModal();
-  }
-  
   // Event listeners
   // Only allow closing via the "No thanks" button
   if (dismissBtn) dismissBtn.addEventListener('click', hideModal);
-  if (form) form.addEventListener('submit', handleSubmit);
+  // Let the form submit naturally without any JavaScript interference
   
   // Show modal on page load
   document.addEventListener('DOMContentLoaded', showModal);
