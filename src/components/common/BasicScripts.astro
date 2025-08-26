@@ -102,9 +102,6 @@ import { UI } from 'astrowind:config';
       const newlink = document.createElement('a');
       newlink.target = '_blank';
       newlink.href = href;
-      if (network === 'mail') {
-        newlink.setAttribute('data-cfasync', 'false');
-      }
       newlink.click();
     });
 
