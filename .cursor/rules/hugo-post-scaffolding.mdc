@@ -1,0 +1,74 @@
+---
+description: "Create a complete new Hugo post with full directory scaffolding including social media subdirectories; set draft=true by default."
+globs: []
+alwaysApply: false
+---
+
+# Hugo Post Scaffolding with Social Directory Structure
+
+**Task**: Create a complete new Hugo post with full directory scaffolding including social media subdirectories.
+
+**Instructions**:
+
+1. **Create Post Directory**:
+   - Use the format: `content/{post-type}/{post-slug}/`
+   - Post types: `micro`, `blog`, `elsewhere`, `imagery`, `quote`
+   - Post slug: URL-friendly version of title (lowercase, hyphens, no spaces)
+
+2. **Create Main Post File** (`index.md`):
+   - Use appropriate archetype from `archetypes/` directory
+   - Set `draft = true` by default (user preference)
+   - Use proper Hugo date format: `YYYY-MM-DDTHH:MM:SS-ZZ:ZZ`
+   - Example: `2025-08-09T08:00:00-05:00`
+   - Check today's date and set the date/time to two hours earlier than the  current date-time
+   - Fill in title, description, author
+   - Leave body content empty or minimal placeholder
+
+3. **Create Social Directory Structure**:
+
+```text
+socialposts/
+├── images/
+├── linkedin/
+│   └── post.txt
+└── mastodon/
+    └── post.txt
+```
+
+4. **Social Post Files**:
+   - `linkedin/post.txt`: Empty placeholder file
+   - `mastodon/post.txt`: Empty placeholder file
+   - `images/`: Empty directory for future social media images
+
+5. **Front Matter Requirements**:
+   - `title`: Post title
+   - `description`: Brief description (can be empty initially)
+   - `author`: "Jack Ivers"
+   - `date`: Current date in Hugo format
+   - `draft`: `true` (default)
+
+6. **Directory Permissions**: Ensure all directories are created with proper permissions
+
+**Example Structure**:
+
+```text
+content/micro/example-post/
+├── index.md
+└── socialposts/
+    ├── images/
+    ├── linkedin/
+    │   └── post.txt
+    └── mastodon/
+        └── post.txt
+```
+
+**Output**: Complete directory structure with placeholder files, ready for content creation.
+
+
+**Usage Notes**:
+- This prompt is designed for Hugo markdown content
+- Test all links with Playwright before adding them
+- Focus on enhancing reader experience with relevant, accessible information
+- Maintain the original voice and style of the content
+- Always set draft = true for new posts unless explicitly requested otherwise
+- Use current date in proper Hugo format for new posts

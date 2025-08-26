@@ -1,0 +1,71 @@
+---
+description: "Create LinkedIn post text from a Hugo post or section; write to socialposts/linkedin/post.txt; list images at the end, not inline."
+globs: []
+alwaysApply: false
+---
+
+# LinkedIn Post Creation
+
+Inputs:
+- Source: main post at `content/{post-type}/{post-slug}/index.md` or a selected section of that post.
+
+Output:
+- Write the LinkedIn copy to `content/{post-type}/{post-slug}/socialposts/linkedin/post.txt`.
+- If `post.txt` already exists, create `post-2.txt`, `post-3.txt`, etc. Do not overwrite existing files.
+
+Steps:
+1. Read front matter from the source post (`title`, `description`, `date`, optional `tags`). Determine the canonical URL for the post.
+2. Draft 1–2 variants of LinkedIn copy:
+   - Short variant: ~500 characters
+   - Longer variant: ~1,000 characters (stay under LinkedIn’s 3,000 limit)
+3. Structure each variant:
+   - Hook line (1 strong sentence)
+   - 1–3 succinct insights or takeaways (sentences or short bullets)
+   - Call to action with the post URL (plain URL, not markdown)
+   - 3–7 specific hashtags at the end
+4. Style guidelines:
+   - Professional, clear, and skimmable
+   - Use plain URLs (no markdown links)
+   - Break paragraphs with blank lines for readability
+5. Images:
+   - Select 1–3 relevant images from the post directory if available
+   - Do not place images inline within the text
+   - At the end of the file, add an “Images to attach” section listing filenames to upload in LinkedIn
+6. Hashtags:
+   - Prefer specific topics over generic ones (e.g., `#GenerativeAI` over `#AI`)
+   - Include project-relevant tags when appropriate (e.g., `#CraftyCTO`, `#Hugo`, `#TailwindCSS`, `#EngineeringLeadership`)
+7. Saving:
+   - Ensure the destination directory exists: `socialposts/linkedin/`
+   - Save using Unix line endings (LF)
+8. Emojis
+   - Use emojis on the title line and each major point
+   - Use index-finger-pointing-right for the line with link URL
+
+Recommended format (successful example):
+
+🐳 **Containing Agent Chaos: The Docker Creator's Next Act**
+
+One of my favorite talks at #AIEWF2025 was Solomon Hykes, talking about his new creation Dagger in the session "Containing Agent Chaos." No AI hype here—Hykes has creds—he created Docker.
+
+💥 **The Problem**: "An agent is an LLM **wrecking its environment** in a loop"
+
+Running 1 agent? No problem. But try scaling to 10 agents - today's options are either "YOLO mode" or expensive cloud isolation.
+
+🔧 **The Solution**: "Container use for agents" - not sandboxing, but complete isolated development environments where agents do their work entirely inside containers.
+
+⚡ **The Tech Stack**: Containers + Git + Models = everything we need already exists, just needs native integration.
+
+🎯 **The Live Demo**: Hykes spawned 6 Claude Code instances + 1 Goose instance, all iterating on a website project in complete isolation. Orchestrating developer can merge any instance's output they like.
+
+🚀 **The Grand Finale**: Open-sourced a core element of Dagger—"container-use"—live on stage while agents were still spinning away!
+
+The future of agent orchestration isn't about fancy UIs - it's about leveraging existing container/Git tech that humans barely use but agents can exploit perfectly.
+
+#AIEngineering #Docker #AgentOrchestration #Dagger #AIEWF2025
+
+👉 Full write-up: https://craftycto.com/blog/aiewf2025-my-day-2-highlights/#containing-agent-chaos-use-container-launch
+
+Notes:
+- If creating from a specific section of the post, mention the section in the opening line for context.
+- Do not modify the source post content.
+
