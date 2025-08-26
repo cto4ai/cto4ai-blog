@@ -31,7 +31,7 @@ author: "Jack Ivers"
 publishDate: "2025-08-11T10:00:00-05:00"  # ISO 8601 with timezone
 image: "~/assets/images/content/[slug]/hero-image.png"  # Hero image path
 featured: false  # Featured on homepage
-draft: true  # Set to false when publishing
+draft: false  # Set to true for unpublished
 tags: ["tag1", "tag2"]  # Optional
 categories: ["category1"]  # Optional
 ---
