@@ -29,7 +29,7 @@ contentType: "essay"  # Options: essay, brief, elsewhere, quote, episodes
 description: "Brief description for SEO and social sharing"
 author: "Jack Ivers"
 publishDate: "2025-08-11T10:00:00-05:00"  # ISO 8601 with timezone
-image: "~/assets/images/content/[slug]/hero-image.png"  # Hero image path
+image: "~/assets/images/content/[slug]/cover-image.png"  # Cover image path (optional)
 featured: false  # Featured on homepage
 draft: true  # Set to false when publishing
 tags: ["tag1", "tag2"]  # Optional
@@ -138,7 +138,7 @@ You can use JSX directly in MDX:
 - **Always provide alt text** for accessibility
 - Use descriptive filenames (not IMG_1234.jpg)
 - Optimize images before upload (compress, appropriate dimensions)
-- Hero image should be 1200x628px minimum for social sharing
+- Cover image should be 1200x628px minimum for social sharing
 - Use `postDir` parameter matching your post's slug
 
 ### Content Organization
@@ -159,9 +159,47 @@ You can use JSX directly in MDX:
 - Change to `draft: false` only when ready to publish
 - Remember drafts won't appear in production builds
 
+## Steps to Create a New Post
+
+### 1. Create Directory Structure
+For a new post with slug `my-new-post`:
+
+```bash
+# Create content directory and file
+mkdir -p src/data/content/my-new-post
+touch src/data/content/my-new-post/index.mdx
+
+# Create parallel images directory
+mkdir -p src/assets/images/content/my-new-post
+
+# Create social media scaffolding (optional, for social content planning)
+mkdir -p src/data/content/my-new-post/socialposts/images
+mkdir -p src/data/content/my-new-post/socialposts/linkedin
+mkdir -p src/data/content/my-new-post/socialposts/mastodon
+touch src/data/content/my-new-post/socialposts/linkedin/post.txt
+touch src/data/content/my-new-post/socialposts/mastodon/post.txt
+```
+
+### 2. Add Frontmatter to index.mdx
+Start with the required frontmatter template (see Required Frontmatter section above).
+**IMPORTANT**: Always set `draft: true` for new posts.
+
+### 3. Add Cover Image (Optional)
+Place your cover image in `/src/assets/images/content/my-new-post/` and reference it in frontmatter.
+
+### 4. Write Content
+Add your MDX content, including any image components as needed.
+
+### 5. Create Social Content (Optional)
+- Write LinkedIn post in `socialposts/linkedin/post.txt`
+- Write Mastodon post in `socialposts/mastodon/post.txt`
+- Add any social-specific images to `socialposts/images/`
+
+**Note**: The `socialposts/` directory is for your content planning only and will NOT be published or exposed during the Astro build process.
+
 ## Common Patterns
 
-### Blog Post with Hero Image
+### Blog Post with Cover Image
 ```mdx
 ---
 title: "My Awesome Post"
@@ -169,9 +207,9 @@ contentType: "essay"
 description: "Learn about this amazing topic"
 author: "Jack Ivers"
 publishDate: "2025-08-11T10:00:00-05:00"
-image: "~/assets/images/content/my-awesome-post/hero.png"
+image: "~/assets/images/content/my-awesome-post/cover.png"
 featured: false
-draft: false
+draft: true  # ALWAYS start with draft: true
 tags: ["technology", "ai"]
 ---
 
