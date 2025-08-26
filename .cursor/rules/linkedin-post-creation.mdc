@@ -1,5 +1,5 @@
 ---
-description: "Create LinkedIn post text from a Hugo post or section; write to socialposts/linkedin/post.txt; list images at the end, not inline."
+description: "Create LinkedIn post text from an Astro MDX post or section; write to socialposts/linkedin/post.txt; list images at the end, not inline."
 globs: []
 alwaysApply: false
 ---
@@ -7,10 +7,10 @@ alwaysApply: false
 # LinkedIn Post Creation
 
 Inputs:
-- Source: main post at `content/{post-type}/{post-slug}/index.md` or a selected section of that post.
+- Source: main post at `src/data/content/{slug}/index.mdx` or a selected section of that post.
 
 Output:
-- Write the LinkedIn copy to `content/{post-type}/{post-slug}/socialposts/linkedin/post.txt`.
+- Write the LinkedIn copy to `src/data/content/{slug}/socialposts/linkedin/post.txt`.
 - If `post.txt` already exists, create `post-2.txt`, `post-3.txt`, etc. Do not overwrite existing files.
 
 Steps:
@@ -33,7 +33,7 @@ Steps:
    - At the end of the file, add an “Images to attach” section listing filenames to upload in LinkedIn
 6. Hashtags:
    - Prefer specific topics over generic ones (e.g., `#GenerativeAI` over `#AI`)
-   - Include project-relevant tags when appropriate (e.g., `#CraftyCTO`, `#Hugo`, `#TailwindCSS`, `#EngineeringLeadership`)
+   - Include project-relevant tags when appropriate (e.g., `#CTO4AI`, `#Astro`, `#TailwindCSS`, `#EngineeringLeadership`)
 7. Saving:
    - Ensure the destination directory exists: `socialposts/linkedin/`
    - Save using Unix line endings (LF)
@@ -63,7 +63,7 @@ The future of agent orchestration isn't about fancy UIs - it's about leveraging 
 
 #AIEngineering #Docker #AgentOrchestration #Dagger #AIEWF2025
 
-👉 Full write-up: https://craftycto.com/blog/aiewf2025-my-day-2-highlights/#containing-agent-chaos-use-container-launch
+👉 Full write-up: https://cto4.ai/p/aiewf2025-my-day-2-highlights/#containing-agent-chaos-use-container-launch
 
 Notes:
 - If creating from a specific section of the post, mention the section in the opening line for context.

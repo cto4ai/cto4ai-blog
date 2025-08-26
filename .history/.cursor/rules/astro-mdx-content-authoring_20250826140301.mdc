@@ -172,7 +172,7 @@ touch src/data/content/my-new-post/index.mdx
 # Create parallel images directory
 mkdir -p src/assets/images/content/my-new-post
 
-# Create social media scaffolding (for social content authoring)
+# Create social media scaffolding (for social content planning)
 mkdir -p src/data/content/my-new-post/socialposts/images
 mkdir -p src/data/content/my-new-post/socialposts/linkedin
 mkdir -p src/data/content/my-new-post/socialposts/mastodon

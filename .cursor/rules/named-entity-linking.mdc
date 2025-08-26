@@ -1,6 +1,6 @@
 ---
 description: "Use Playwright to add markdown links for important non-obvious named entities; test accessibility; preserve other content unchanged."
-globs: ["content/**/*.md"]
+globs: ["src/data/content/**/*.mdx", "*.mdx", "*.md"]
 alwaysApply: false
 ---
 
