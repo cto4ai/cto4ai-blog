@@ -1,7 +1,7 @@
 // Handle GET requests (e.g., direct navigation to the URL)
 export async function onRequestGet(context) {
-  // Redirect GET requests to the subscribe page
-  return Response.redirect('https://cto4.ai/subscribe', 302);
+  // Redirect GET requests to the homepage instead of subscribe page to avoid confusion
+  return Response.redirect('https://cto4.ai/', 302);
 }
 
 export async function onRequestPost(context) {
