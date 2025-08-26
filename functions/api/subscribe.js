@@ -66,8 +66,7 @@ export async function onRequestPost(context) {
             data: {
               values: {
                 email_addresses: [{ 
-                  email_address: email,
-                  original_email_address: email
+                  email_address: email
                 }],
                 // Custom attributes using slugs (lowercase with underscores)
                 "newsletter_status": "Confirmed",
