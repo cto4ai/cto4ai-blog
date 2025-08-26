@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Homepage/Blog Listing",
+    "old": "https://craftycto.com/blog",
+    "new": "https://cto4.ai",
+    "mobile": null,
+    "desktop": null
+  },
+  {
+    "name": "GPT-4 Code Interpreter Article",
+    "old": "https://craftycto.com/blog/gpt4-code-interpreter-big-deal-pt1",
+    "new": "https://cto4.ai/p/gpt4-code-interpreter-big-deal-pt1",
+    "mobile": null,
+    "desktop": null
+  },
+  {
+    "name": "Shape Up Your Agile",
+    "old": "https://craftycto.com/blog/shape-up-your-agile",
+    "new": "https://cto4.ai/p/shape-up-your-agile",
+    "mobile": null,
+    "desktop": null
+  },
+  {
+    "name": "Hugo Responsive Images",
+    "old": "https://craftycto.com/blog/hugo-responsive-images",
+    "new": "https://cto4.ai/p/hugo-responsive-images",
+    "mobile": null,
+    "desktop": null
+  },
+  {
+    "name": "ChatGPT Images Pictorial",
+    "old": "https://craftycto.com/blog/chatgpt-images-pictorial",
+    "new": "https://cto4.ai/p/chatgpt-images-pictorial",
+    "mobile": null,
+    "desktop": null
+  }
+]
