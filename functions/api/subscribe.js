@@ -47,6 +47,50 @@ export async function onRequestPost(context) {
       throw new Error(`Beehiiv API error: ${response.status} - ${responseText}`);
     }
     
+    // Update Attio CRM if API key is configured
+    if (env.ATTIO_API_KEY) {
+      try {
+        console.log('Updating Attio for:', email);
+        
+        // Use PUT to assert (create or update) person record
+        const attioUrl = new URL('https://api.attio.com/v2/objects/people/records');
+        attioUrl.searchParams.append('matching_attribute', 'email_addresses');
+        
+        const attioResponse = await fetch(attioUrl.toString(), {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${env.ATTIO_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            data: {
+              values: {
+                email_addresses: [{ 
+                  email_address: email,
+                  original_email_address: email
+                }],
+                // You'll need to add these custom attributes in Attio first
+                newsletter_status: "Confirmed",
+                newsletter_source: "Website Signup"
+              }
+            }
+          })
+        });
+        
+        const attioResult = await attioResponse.text();
+        console.log('Attio response status:', attioResponse.status);
+        console.log('Attio response:', attioResult);
+        
+        if (!attioResponse.ok) {
+          // Log error but don't fail the subscription
+          console.error('Attio update failed:', attioResult);
+        }
+      } catch (attioError) {
+        // Log error but don't fail the subscription
+        console.error('Attio update error:', attioError.message);
+      }
+    }
+    
     // Redirect to success page or back with success message
     return Response.redirect('https://cto4.ai/subscribe-success', 303);
     

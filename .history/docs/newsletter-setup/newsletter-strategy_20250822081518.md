@@ -73,7 +73,7 @@ Astro Blog (cto4.ai) → Cloudflare Pages → RSS feeds
 ### 2.1 Contact Preparation
 
 - [ ] Add custom attribute in Attio: **Newsletter Status**
-  - Values: `Targeted`, `Confirmed`, `Unsubscribed`, `Bounced`
+  - Values: `Assumed`, `Confirmed`, `Unsubscribed`, `Bounced`
 - [ ] Add custom attribute: **Newsletter Source**
   - Values: `Seed List`, `Website Signup`, `Permission Pass`, `Other`
 - [ ] Review and segment existing contacts:
