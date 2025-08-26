@@ -1,0 +1,12 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#905e26;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f5ec9b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#905e26;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <g transform="translate(64, 64) scale(1.2) translate(-50, -50)">
+    <path fill="url(#goldGradient)" d="M87.499,53.748l6.302,6.301L100,53.851L69.706,23.558l-7.86,7.86l-12.299-12.3v-8.994h12.871V0H47.517v10.125h0.006v8.994L0,66.641l9.432,9.432l8.519-8.52l7.239,7.238l11.562-11.562l15.656,15.655l13.438-13.437l5.92,5.921l5.814-5.815l10.287,10.29l9.201-9.202L85.837,55.409L87.499,53.748z M69.706,26.435l0.002,0.002v12.843l-6.424-6.423L69.706,26.435z M49.552,2.034h10.835V8.09H49.552V2.034z M25.19,71.928l-7.239-7.237l-8.519,8.52l-6.571-6.57l45.674-45.673V72.15L36.753,60.367L25.19,71.928z"/>
+  </g>
+</svg>
