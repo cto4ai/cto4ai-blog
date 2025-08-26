@@ -8,7 +8,8 @@ This document describes how to configure Attio CRM to work with the CTO4.AI news
 Before the integration will work properly, you need to create the following custom attributes in your Attio workspace:
 
 ### 1. Newsletter Status
-- **Attribute Name**: `newsletter_status`
+- **Display Name**: Newsletter status
+- **Slug (API ID)**: `newsletter_status`
 - **Type**: Single Select
 - **Options**:
   - `Targeted` - Contact identified for newsletter but not yet subscribed
@@ -17,13 +18,16 @@ Before the integration will work properly, you need to create the following cust
   - `Bounced` - Email delivery failed
 
 ### 2. Newsletter Source
-- **Attribute Name**: `newsletter_source`
+- **Display Name**: Newsletter source  
+- **Slug (API ID)**: `newsletter_source`
 - **Type**: Single Select
 - **Options**:
   - `Website Signup` - Subscribed via website forms
   - `Seed List` - Initial import from existing contacts
   - `Permission Pass` - Opted in via permission pass campaign
   - `Other` - Other sources
+
+**Note**: The API uses the slug format (lowercase with underscores) while the UI shows the display name (with spaces and capitalization).
 
 ## How to Add Custom Attributes in Attio
 
@@ -74,15 +78,22 @@ The webhook handler (to be implemented) will update Attio when:
 
 ### Common Issues
 
-**Attio update fails with 404**
-- The custom attributes don't exist yet - create them in Attio first
+**"Cannot find attribute with slug/ID" error**
+- Make sure the attribute slugs are lowercase with underscores (e.g., `newsletter_status` not `Newsletter status`)
+- The API requires the slug format, not the display name
+
+**"Unrecognized key(s) in object: 'original_email_address'" error**
+- Only use `email_address` in the email_addresses array
+- Do not include `original_email_address` field
 
 **Attio update fails with 401**
-- API key is invalid or missing required permissions
+- API key (access token) is invalid or missing required permissions
+- Ensure the token has `record_permission:read-write` scope
 
 **Person not created in Attio**
 - Check Cloudflare Function logs for error messages
-- Verify the API key is correctly set in environment variables
+- Verify the ATTIO_API_KEY is correctly set in environment variables
+- Confirm the custom attributes exist in Attio with the correct slugs
 
 ## Notes
 
