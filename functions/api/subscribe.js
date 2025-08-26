@@ -69,9 +69,9 @@ export async function onRequestPost(context) {
                   email_address: email,
                   original_email_address: email
                 }],
-                // Custom attributes with correct names (with spaces)
-                "Newsletter status": "Confirmed",
-                "Newsletter source": "Website Signup"
+                // Custom attributes using slugs (lowercase with underscores)
+                "newsletter_status": "Confirmed",
+                "newsletter_source": "Website Signup"
               }
             }
           })
