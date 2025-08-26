@@ -69,9 +69,9 @@ export async function onRequestPost(context) {
                   email_address: email,
                   original_email_address: email
                 }],
-                // You'll need to add these custom attributes in Attio first
-                newsletter_status: "Confirmed",
-                newsletter_source: "Website Signup"
+                // Custom attributes with correct names (with spaces)
+                "Newsletter status": "Confirmed",
+                "Newsletter source": "Website Signup"
               }
             }
           })
