@@ -75,10 +75,8 @@ import logoSvg from '~/assets/images/logos/noBgColor.svg';
   // Show modal
   function showModal() {
     if (modal && shouldShowModal()) {
-      setTimeout(() => {
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-      }, 2000);
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
     }
   }
   
