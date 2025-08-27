@@ -1,11 +1,11 @@
 ---
 title: "Claude Code Deep Dive: Hugo to Astro+Beehiiv in 9 Days"
 contentType: "essay"
-description: "Migrating from Hugo to Astro/Beehiiv with Claude Code doing ~87% of the work"
+description: "Migrating from Hugo to Astro/Beehiiv with Claude Code doing ~84% of the work"
 author: "Jack Ivers"
 publishDate: "2025-08-27T09:00:00-05:00"
 image: "~/assets/images/content/hugo-to-astro-migration-story/cto4ai.png"
-draft: false
+draft: true
 tags: ["ai", "claude-code", "astro", "hugo", "migration", "web-development"]
 ---
 
@@ -55,7 +55,7 @@ I had been keeping tabs on other static site generators, with Astro getting a lo
 
 As [Simon Willison](https://simonwillison.net) and others have pointed out, having a great language model backing you up takes a lot of the fear out of tackling a challenging project, he said that when his AI coding tools were maybe 1/10th as powerful as they are today. There's no way I would have taken on this project at all, let alone switched platforms in the process, without an AI as co-conspirator.
 
-The results justified my confidence that the AI would help, a lot ... Claude Code was responsible for ~86.7% of commits during the project. The numbers we were able to gather, mainly via git commit logs, indicated that Claude's percentage of the lines of code+content was lower, at 63%. My guess is that, of the real code written (versus content work), Claude did much closer to 100% of the work. I didn't vibe code the project, in that I was paying close attention to what Claude Code was up to, often redirecting it, and sometimes initiating major refactoring. But I didn't actually write much code myself. Why should I, when I could turn Claude loose and its code is almost certainly have been better than what I would have written, especially with minimal knowledge of Astro and limited TypeScript chops. Architecturally, I gave a lot of help and redirection, but at the code level, very little.
+The results justified my confidence that the AI would help, a lot ... Claude Code was responsible for ~84% of commits during the project. The numbers we were able to gather, mainly via git commit logs, indicated that Claude's percentage of the lines of code+content was lower, at 63%. My guess is that, of the real code written (versus content work), Claude did much closer to 100% of the work. I didn't vibe code the project, in that I was paying close attention to what Claude Code was up to, often redirecting it, and sometimes initiating major refactoring. But I didn't actually write much code myself. Why should I, when I could turn Claude loose and its code is almost certainly have been better than what I would have written, especially with minimal knowledge of Astro and limited TypeScript chops. Architecturally, I gave a lot of help and redirection, but at the code level, very little.
 
 ## Beyond Coding: Research and Architectural Discussions
 
@@ -108,7 +108,7 @@ Cheers!
 
 This report documents the migration of the CraftyCTO blog from a Hugo-based corporate site to a standalone Astro-powered blog at cto4.ai. The migration began in August 2025 and represents a strategic separation of blog content from corporate presence. 
 
-The migration was accomplished through an AI-assisted development approach, with Claude Code handling 86.7% of commits and 90.6% of the actual code/content additions, while human guidance provided strategic direction through brief, iterative commits (13.3% of commits, 9.4% of additions). This partnership enabled rapid feature development and modernization in a compressed timeframe.
+The migration was accomplished through an AI-assisted development approach, with Claude Code handling 84% of commits while human guidance provided strategic direction through brief, iterative commits (16%). Notably, human commits accounted for 37.4% of code additions despite being fewer in number, showing a pattern of larger structural changes. This partnership enabled rapid feature development and modernization in a compressed timeframe.
 
 </div>
 </details>
@@ -122,7 +122,7 @@ The migration was accomplished through an AI-assisted development approach, with
 
 ### CTO4.AI Blog Repository
 - **Repository Created**: August 17, 2025
-- **Total Project Commits**: 173 (excluding AstroWind template history)
+- **Total Project Commits**: 81 (excluding AstroWind template history)
 - **cto4.ai Live**: August 25, 2025
 
 ### CraftyCTO Repository  
@@ -201,9 +201,9 @@ Recent improvements:
 ### Authorship Analysis
 Based on commit message patterns for YOUR actual migration work (excluding AstroWind template):
 
-- **Total Your Migration Commits**: 173
-- **Claude Code Authored**: 150 commits (86.7%)
-- **Human Authored**: 23 commits (13.3%)
+- **Total Your Migration Commits**: 81
+- **Claude Code Authored**: 68 commits (84.0%)
+- **Human Authored**: 13 commits (16.0%)
 
 ### Identifying Authorship Patterns
 
@@ -244,31 +244,24 @@ Based on commit message patterns for YOUR actual migration work (excluding Astro
 
 
 ### Overall Migration Impact
-- **Total Lines Added**: +15,740 (excluding generated files)
-- **Total Lines Deleted**: -1,528  
-- **Net Lines of Code/Content**: +14,212
+- **Total Lines Added**: +51,064
+- **Total Lines Deleted**: -5,362  
+- **Net Lines of Code/Content**: +45,702
 - **Files Changed**: ~200+
-
-### Breakdown by Type
-- **MDX Content**: 5,857 lines (83 blog posts)
-- **Documentation**: 4,331 lines (migration docs, reports)
-- **Scripts/Python**: 2,353 lines (migration tools)
-- **Code (Astro/TS/JS)**: 2,258 lines (new application code)
-- **Other Files**: 941 lines
 
 ### Contribution Breakdown by Author
 
-#### Human (Jack) - 13.3% of commits
-- **Commits**: 23
-- **Lines Added**: +1,479 (9.4% of total additions)
+#### Human (Jack) - 16.0% of commits
+- **Commits**: 13
+- **Lines Added**: +4,970 (37.4% of total additions)
 - **Lines Deleted**: -196
-- **Net Change**: +1,283
+- **Net Change**: +4,774
 
-#### Claude Code - 86.7% of commits
-- **Commits**: 150
-- **Lines Added**: +14,261 (90.6% of total additions)
-- **Lines Deleted**: -1,332
-- **Net Change**: +12,929
+#### Claude Code - 84.0% of commits
+- **Commits**: 68
+- **Lines Added**: +8,319 (62.6% of total additions)
+- **Lines Deleted**: -1,470
+- **Net Change**: +6,849
 
 ### Top 10 Largest Commits
 1. `a0b8060` (+298/-1409) - Complete Hugo-to-Astro blog migration with systematic shortcode conversion
@@ -283,8 +276,8 @@ Based on commit message patterns for YOUR actual migration work (excluding Astro
 10. `9e4e679` (+832/-1) - Add Attio CRM integration for newsletter subscribers
 
 ### Key Insights
-- Claude Code handled 86.7% of commits and 90.6% of line additions
-- Human commits (13.3%) contributed only 9.4% of lines, showing more directive than implementation work
+- While humans contributed only 16% of commits, they accounted for 37.4% of line additions, showing larger, structural changes
+- Claude Code handled 84% of commits with more focused, incremental improvements (62.6% of additions)
 - The largest single change was refactoring/cleanup (-1409/+298), showing significant optimization
 - Major human contributions included content migration ("cover images", "ng live", "wip services")
 
@@ -420,7 +413,7 @@ The cto4ai-blog repository inherits ~950 commits from the AstroWind template pro
 
 The migration from Hugo to Astro represents a successful modernization of the blog platform, with improved developer experience, better performance, and enhanced features. The separation of blog content from corporate site allows for independent evolution and optimization of each property.
 
-This migration was primarily accomplished through Claude Code assistance (86.7% of commits, 90.6% of code additions), with human guidance providing strategic direction through brief commits (13.3% of commits, 9.4% of additions). This AI-assisted approach enabled rapid implementation of complex features including newsletter integrations, CRM connectivity, and performance optimizations that might have taken significantly longer with traditional development methods.
+This migration was primarily accomplished through Claude Code assistance (84% of commits), with human guidance providing strategic direction and quick iterations (16% of commits, but 37.4% of code additions). This AI-assisted approach enabled rapid implementation of complex features including newsletter integrations, CRM connectivity, and performance optimizations that might have taken significantly longer with traditional development methods.
 
 The collaboration pattern shows an effective human-AI partnership: humans providing brief directional commits ("reorg", "ng wip", "linking") with larger structural changes, while Claude Code handled the detailed technical implementation with properly documented, descriptive commits. This approach maintained high code quality while accelerating the migration timeline.
 
