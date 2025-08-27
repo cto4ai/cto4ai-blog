@@ -27,13 +27,13 @@ ToDos:
    - If you can't find an authoritative reference, but in your opinion the item deserves a link, link to a placeholder URL.
 
 4. **Link Strategy**: 
-   - Link the first appearance of a named entity. Do not link subsequent appearances.
    - Link to **informational pages**, not direct tool access
      - Product announcement pages
      - Overview/feature pages
      - Company about pages
      - Documentation pages
      - Avoid login/signup pages
+   - Only link the first appropriately-linkable appearance of a named entity
 
 5. **Playwright Testing Process**:
    - Navigate to each potential link URL
