@@ -1,0 +1,28 @@
+---
+title: "Early GPT-5 Impressions"
+contentType: "brief"
+description: "My vibe assessment: different, powerful, bumpy launch"
+author: "Jack Ivers"
+publishDate: "2025-08-09T06:00:00-05:00"
+image: "~/assets/images/content/early-gpt-5-impressions/gpt_5.png"
+draft: false
+---
+
+import SingleImage from '~/components/ui/SingleImage.astro';
+
+I had a chance to get early experience with the new [GPT-5](https://openai.com/index/introducing-gpt-5/) model(s) yesterday and this morning:
+
+- In two flavors of [ChatGPT](https://openai.com/chatgpt/overview/): browser interface and macOS native app, including code generation inside a ChatGPT [canvas](https://openai.com/index/introducing-canvas/)
+- In [Cursor](https://www.cursor.com) as its coding model
+
+<SingleImage src="gpt5_macos.png" alt="gpt5_macos.png" size="2xl" postDir="early-gpt-5-impressions" />
+
+I had a juicy challenge for ChatGPT with the GPT-5 model: at TSIP, we hit a problem with a mathematical formula used in our advanced soil sample design process, and had to rework the formula. I had been working in [Claude](https://www.anthropic.com/claude), using [Sonnet 4](https://www.anthropic.com/claude/sonnet), then upgrading to [Anthropic](https://www.anthropic.com/)'s smartest model, [Opus 4.1](https://www.anthropic.com/claude/opus), when the going got tough, creating interactive models as [Claude Artifacts](https://support.anthropic.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them). Then I ran out of tokens in my [Claude Team](https://www.anthropic.com/team) account, and rather than waiting, picked up the work in process and jumped over to ChatGPT, where I was happy to see the GPT-5 model available, some of the time ... Part of the bumpy launch was the GPT-5 rollout. My experience was that GPT-5 appeared in my [Team accounts](https://openai.com/chatgpt/team/) first, and my personal [Plus account](https://openai.com/chatgpt/pricing/) later.
+
+Over in ChatGPT, GPT-5 was able to ingest Claude Opus's Artifact code, along with the chat transcript for context, and its first interactive canvas was already better than what Opus had produced in a couple of iterations---though GPT-5 had the benefit of Opus's work. We thought we had the formula figured out, but then ran into problems when we tested the full range of possible inputs. GPT-5 impressed with highly creative---and ultimately successful---suggested solutions.
+
+The bumpy rollout was evident in other ways during this work---at several points, GPT-5 wiped its canvas code, which fortunately I had saved off, and also lost its ability to directly edit code in the canvas.
+
+Once the formula was solved, I needed to document it and capture the proof of concept canvas code in our GitHub repo, so I jumped over to Cursor, apparently a GPT-5 launch partner as they had it integrated as soon as [OpenAI](https://openai.com/about/) unleashed GPT-5 on the world. Here, GPT-5's "different" nature became apparent; chatting with GPT-5-as-coding-model, to me, has a clearly different tone and cadence than interacting with other models. GPT-5 is, among other things, a multi-model router, and you could see it considering: "Hmmm ... how tough a question is this? Pretty tough, it seems, let me engage my hard thinking mode (model)" ... this approach worked well on all of the tasks I've sent its way so far, both in Cursor and in ChatGPT when creating the interactive canvas proof of concept.
+
+All in all: OpenAI is definitely moving the state the art forward here with GPT-5, and also giving the competitive landscape a good kick in the ass with aggressively good pricing. Welcome, GPT-5!
