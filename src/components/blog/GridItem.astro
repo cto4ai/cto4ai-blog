@@ -7,7 +7,8 @@ import Image from '~/components/common/Image.astro';
 
 import { findImage } from '~/utils/images';
 import { getPermalink } from '~/utils/permalinks';
-import symbolLogo from '~/assets/images/logos/symbol.svg';
+import symbolBlack from '~/assets/images/logos/symbolBlack.svg';
+import symbolWhite from '~/assets/images/logos/symbolWhite.svg';
 
 export interface Props {
   post: Post;
@@ -85,7 +86,8 @@ function getContentTypeDisplay(contentType?: string): string {
         link ? (
           <a href={link} class="block w-full h-full">
             <div class="w-full h-full rounded shadow-lg bg-gray-200 dark:bg-gray-800 flex flex-col items-center justify-center">
-              <img src={symbolLogo.src} alt="" class="w-20 h-20 opacity-80 dark:opacity-70" style="filter: brightness(0.7)" data-pagefind-ignore="all" />
+              <img src={symbolBlack.src} alt="" class="w-20 h-20 opacity-80 dark:hidden" data-pagefind-ignore="all" />
+              <img src={symbolWhite.src} alt="" class="w-20 h-20 opacity-70 hidden dark:block" data-pagefind-ignore="all" />
               <span class="text-xs font-semibold text-gray-700 dark:text-gray-300 mt-2 uppercase tracking-wider">
                 {getContentTypeDisplay(post.contentType)}
               </span>
@@ -93,7 +95,8 @@ function getContentTypeDisplay(contentType?: string): string {
           </a>
         ) : (
           <div class="w-full h-full rounded shadow-lg bg-gray-200 dark:bg-gray-800 flex flex-col items-center justify-center">
-            <img src={symbolLogo.src} alt="" class="w-20 h-20 opacity-80 dark:opacity-70" style="filter: brightness(0.7)" />
+            <img src={symbolBlack.src} alt="" class="w-20 h-20 opacity-80 dark:hidden" />
+            <img src={symbolWhite.src} alt="" class="w-20 h-20 opacity-70 hidden dark:block" />
             <span class="text-xs font-semibold text-gray-700 dark:text-gray-300 mt-2 uppercase tracking-wider">
               {getContentTypeDisplay(post.contentType)}
             </span>

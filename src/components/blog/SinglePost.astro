@@ -11,7 +11,8 @@ import { getFormattedDateConditionalYear } from '~/utils/utils';
 import { findImage } from '~/utils/images';
 
 import type { Post } from '~/types';
-import symbolLogo from '~/assets/images/logos/symbol.svg';
+import symbolBlack from '~/assets/images/logos/symbolBlack.svg';
+import symbolWhite from '~/assets/images/logos/symbolWhite.svg';
 
 export interface Props {
   post: Post;
@@ -117,7 +118,8 @@ function getContentTypeDisplay(contentType?: string): string {
                 />
               ) : (
                 <div class="w-full h-full min-h-[200px] rounded-lg bg-gray-200 dark:bg-gray-800 flex flex-col items-center justify-center aspect-[44/28] hover:opacity-90 transition-opacity">
-                  <img src={symbolLogo.src} alt="" class="w-24 h-24 opacity-80 dark:opacity-70" style="filter: brightness(0.7)" data-pagefind-ignore="all" />
+                  <img src={symbolBlack.src} alt="" class="w-24 h-24 opacity-80 dark:hidden" data-pagefind-ignore="all" />
+                  <img src={symbolWhite.src} alt="" class="w-24 h-24 opacity-70 hidden dark:block" data-pagefind-ignore="all" />
                   <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 mt-3 uppercase tracking-wider">
                     {getContentTypeDisplay(post.contentType)}
                   </span>
