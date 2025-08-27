@@ -1,42 +1,12 @@
 ---
-title: "Claude Code Deep Dive: Hugo to Astro+Beehiiv in 9 Days"
+title: "Building CTO4.AI: A Human-AI Migration Story"
 contentType: "essay"
-description: "Migrating from Hugo to Astro/Beehiiv with Claude Code doing ~84% of the work"
+description: "How we migrated from Hugo to Astro with 84% AI assistance - a case study in effective human-AI collaboration"
 author: "Jack Ivers"
 publishDate: "2025-08-27T09:00:00-05:00"
 draft: true
 tags: ["ai", "claude-code", "astro", "hugo", "migration", "web-development"]
 ---
-
-This wasn't my first Claude Code deep dive, but it was definitely the deepest---something that became obvious as I upgraded from pay-per-token Anthropic API use to Claude Max $100 and finally to Max $200 after seeing $10 Anthropic credit reload emails rolling in two, three, or even four times a day during the heart of this project.
-
-The project really wasn't about Hugo => Astro at all. Rather, it was about splitting out my fairly substantial, mostly-AI-themed blog from its home as a branch of my corporate site (craftycto.com/blog), to an all-new domain (cto4.ai), while at the same time setting up full-strength email newsletter capabilities.
-
-Why leave Hugo, which has served me well since 2022? The Hugo project made a breaking change sometime in 2024, during a multi-month lull in my writing; when I came back to restart publishing, I figured I'd upgrade to latest Hugo version, and kaboom---the build was broken. Even with LLM help and quite a few hours of research, no joy; so I downgraded to the last release before the breaking change and got things running. But I definitely lost some of my love for Hugo in the process.
-
-Achieving an all new look on the new standalone blog meant choosing a new Hugo theme, and then migrating all my content, plus my theme-specific customizations in the form of Hugo shortcodes and templates written with Golang templating, to the new theme. On top of the unresolved breaking change, this meant I was facing a rather unpleasant chunk of Hugo work. 
-
-I had been keeping tabs on other static site generators, with Astro getting a lot of buzz as best/most modern, and I realized it might not be that much more work to build the new site on Astro ... 
-
-## AI Coding Courage
-
-As Simon Willison and others have pointed out, having a great language model backing you up takes a lot of the fear out of tackling a challenging project, he said that when his AI coding tools were maybe 1/10th as powerful as they are today. There's no way I would have taken on this project at all, let alone switched platforms in the process, without an AI as co-conspirator.
-
-The results justified my confidence that the AI would help, a lot ... Claude Code was responsible for ~84% of commits during the project. The numbers we were able to gather, mainly via git commit logs, indicated that Claude's percentage of the lines of code+content was lower, at 63%.
-
----the power of tools like Cursor and Claude Code today 
-
-
-
-
-
-
-
-
-
-
-
-
 
 In August 2025, I embarked on an ambitious project: migrating my blog from its long-standing Hugo-based home within the CraftyCTO corporate site to a standalone, modern Astro-powered platform at CTO4.AI. What started as a typical web migration quickly evolved into something far more interesting—a case study in effective human-AI collaboration.
 
