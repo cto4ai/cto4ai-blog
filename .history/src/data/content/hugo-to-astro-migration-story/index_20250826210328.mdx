@@ -4,7 +4,6 @@ contentType: "essay"
 description: "Migrating from Hugo to Astro/Beehiiv with Claude Code doing ~84% of the work"
 author: "Jack Ivers"
 publishDate: "2025-08-27T09:00:00-05:00"
-image: "~/assets/images/content/hugo-to-astro-migration-story/cto4ai.png"
 draft: true
 tags: ["ai", "claude-code", "astro", "hugo", "migration", "web-development"]
 ---
@@ -20,36 +19,13 @@ This wasn't my first Claude Code deep dive, but it was definitely the deepest---
   postDir="hugo-to-astro-migration-story" 
 />
 
-## Why?
-
 The project really wasn't about Hugo => Astro at all. Rather, it was about splitting out my fairly substantial, mostly-AI-themed blog from its home as a branch of my corporate site (craftycto.com/blog), to an all-new domain (cto4.ai), while at the same time setting up full-strength email newsletter capabilities.
-
-<SingleImage 
-  src="newsletter.png" 
-  alt="The new cto4.ai website homepage" 
-  size="2xl" 
-  postDir="hugo-to-astro-migration-story" 
-/>
 
 Why leave Hugo, which has served me well since 2022? The Hugo project made a breaking change sometime in 2024, during a multi-month lull in my writing; when I came back to restart publishing, I figured I'd upgrade to latest Hugo version, and kaboom---the build was broken. Even with LLM help and quite a few hours of research, no joy; so I downgraded to the last release before the breaking change and got things running. But I definitely lost some of my love for Hugo in the process.
 
-<SingleImage 
-  src="hugo.png" 
-  alt="Hugo static site generator website" 
-  size="2xl" 
-  postDir="hugo-to-astro-migration-story" 
-/>
-
 Achieving an all new look on the new standalone blog would mean choosing a new Hugo theme, and then migrating all my content, plus my theme-specific customizations in the form of Hugo shortcodes and templates written with Golang templating, to the new theme. On top of the unresolved breaking change, this meant I faced a rather unpleasant chunk of Hugo work.
 
-I had been keeping tabs on other static site generators, with Astro getting a lot of buzz as best/most modern, and I realized it might not be that much more work to build the new site on Astro ...
-
-<SingleImage 
-  src="astro.png" 
-  alt="Astro static site generator website" 
-  size="2xl" 
-  postDir="hugo-to-astro-migration-story" 
-/> 
+I had been keeping tabs on other static site generators, with Astro getting a lot of buzz as best/most modern, and I realized it might not be that much more work to build the new site on Astro ... 
 
 ## AI Coding Courage
 
@@ -65,27 +41,13 @@ Probably 25% of my interactions with Claude involved sending it off to do some r
 
 Claude is tireless, and that's pretty great on not-fun tasks like migrating Hugo-flavored Markdown to Astro's Markdown + JSX (.mdx) format. With the quantity of content I was migrating, about 100 posts or so, Migrating content often found Claude on the boundary of "should I write a Python script for this?" versus "I'll just do this myself," which was an interesting model-decision-making process to see happen. Claude was also often at the boundary of being able to hold to all the threads in its mind (context)---indeed, one of my main jobs was guiding Claude back onto the path when it lost its way. The dreaded "0% context left until auto-compact" always seems to come at a bad time, and Claude Code is especially prone to losing its way post-compact. Not a perfect tool, yet.
 
-<SingleImage 
-  src="astrowind_theme.png" 
-  alt="AstroWind theme components and features" 
-  size="2xl" 
-  postDir="hugo-to-astro-migration-story" 
-/>
-
 ## Setting Up the Infrastructure
 
 Another normally-excruciating task on a project like this is setting up complex parts of the infrastructure, along with diagnosing related glitches. In my case, this involved Cloudflare DNS, Pages, Functions, and Scrape Shield configs. Each one of those might have mean hours of digging, left to my own devices, but I rarely got sidetracked for more that a few minutes with the model's help. Beehiiv and email-specific DNS settings and DMARC config were another cluster of potential pain, avoided with Claude's assistance.
 
-<SingleImage 
-  src="beehiiv.png" 
-  alt="Beehiiv newsletter platform dashboard" 
-  size="2xl" 
-  postDir="hugo-to-astro-migration-story" 
-/>
-
 Anyway: you get the idea. This was a **meaty** piece of work, and I was doing it my spare hours around my fractional CTO day job. But 9 days after the repo came into being, cto4.ai launched, not just blog- but also newsletter-ready.
 
-## Claude's Also Good At Reports
+## Claude's Also Good At Reports and Documentation
 
 I had Claude sift through various data sources, most importantly git logs, but also research we had done together earlier, such as comparing Astro vs Hugo site performance over a representative set of pages. (I always have Claude Code create a Markdown file in the /docs directory for any substantial research it does for me.) And then I had it build the report below, complete with statistics, analyses, executive summaries---the whole works. 
 
