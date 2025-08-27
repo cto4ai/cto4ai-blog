@@ -47,6 +47,7 @@ export const footerData = {
       title: 'Company',
       links: [
         { text: 'About', href: getPermalink('/about') },
+        { text: 'Privacy Policy', href: getPermalink('/privacy') },
         { text: 'CraftyCTO.com', href: 'https://craftycto.com', target: '_blank' },
       ],
     },
