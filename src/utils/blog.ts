@@ -71,6 +71,7 @@ const getNormalizedPost = async (
   const author = 'author' in data ? data.author : undefined;
   const draft = data.draft || false;
   const featured = 'featured' in data ? data.featured || false : false;
+  const featuredOrder = 'featuredOrder' in data ? data.featuredOrder : undefined;
   const metadata = data.metadata || {};
   const sourceLink = 'sourceLink' in data ? data.sourceLink : undefined;
 
@@ -109,6 +110,7 @@ const getNormalizedPost = async (
 
     draft: draft,
     featured: featured,
+    featuredOrder: featuredOrder,
 
     metadata,
 
@@ -136,11 +138,28 @@ const load = async function (): Promise<Array<Post>> {
   const results = (await Promise.all(normalizedPosts))
     .filter((post) => SHOW_DRAFTS || !post.draft)
     .sort((a, b) => {
-      // First, sort by featured status (featured posts first)
+      // Step 1: Featured posts always come before non-featured
       if (a.featured && !b.featured) return -1;
       if (!a.featured && b.featured) return 1;
       
-      // Then by publish date (newest first)
+      // Step 2: If both are featured, sort by featuredOrder
+      if (a.featured && b.featured) {
+        // If both have featuredOrder, lower number comes first
+        if (a.featuredOrder !== undefined && b.featuredOrder !== undefined) {
+          if (a.featuredOrder !== b.featuredOrder) {
+            return a.featuredOrder - b.featuredOrder;
+          }
+          // If same featuredOrder, fall through to date
+        }
+        
+        // If only one has featuredOrder, it comes first
+        if (a.featuredOrder !== undefined && b.featuredOrder === undefined) return -1;
+        if (a.featuredOrder === undefined && b.featuredOrder !== undefined) return 1;
+      }
+      
+      // Step 3: Sort by publish date (newest first) for:
+      // - Non-featured posts
+      // - Featured posts with same/missing featuredOrder
       return b.publishDate.valueOf() - a.publishDate.valueOf();
     });
 

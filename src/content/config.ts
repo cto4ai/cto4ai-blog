@@ -68,6 +68,7 @@ const contentCollection = defineCollection({
     tags: z.array(z.string()).optional(),
     author: z.string().optional(),
     featured: z.boolean().optional(),
+    featuredOrder: z.number().optional(),
     sourceLink: z.string().url().optional(),
     
     // Legacy fields

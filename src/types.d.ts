@@ -53,6 +53,9 @@ export interface Post {
   
   /** Whether this post is featured */
   featured?: boolean;
+  
+  /** Order of featured posts (lower numbers appear first) */
+  featuredOrder?: number;
 }
 
 export interface Taxonomy {
