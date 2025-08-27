@@ -168,21 +168,6 @@ const metadata = {
     button:hover {
       background: #2563eb;
     }
-    
-    .footer {
-      position: fixed;
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.75rem;
-      color: #6b7280;
-      text-align: center;
-      max-width: 90%;
-    }
-    
-    body.dark .footer {
-      color: #9ca3af;
-    }
   </style>
   <script>
     // Apply the theme from localStorage or system preference
@@ -225,13 +210,10 @@ const metadata = {
       <button type="submit">
         Subscribe
       </button>
+      <p style="text-align: center; margin-top: 0.75rem; font-size: 0.75rem; color: #6b7280;">
+        Unsubscribe any time. <a href="/privacy" style="color: #6b7280; text-decoration: underline;">Privacy Policy</a>
+      </p>
     </form>
-  </div>
-  
-  <div class="footer">
-    Lorem ipsum dolor sit amet, consectetur<br>
-    adipiscing elit, sed do eiusmod tempor<br>
-    incididunt ut labore et dolore magna
   </div>
 </body>
 </html>
