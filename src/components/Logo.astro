@@ -2,10 +2,12 @@
 import { SITE } from 'astrowind:config';
 import { Image } from 'astro:assets';
 import logoColor from '~/assets/images/logos/noBgColor.svg';
-import logoBlack from '~/assets/images/logos/noBgBlack.svg';
+import logoWhite from '~/assets/images/logos/noBgWhite.svg';
 ---
 
 <div class="flex items-center">
-  <Image src={logoColor} alt={SITE?.name || 'CTO4.AI'} width={120} height={40} class="h-12 w-auto dark:hidden" style="filter: brightness(0.8)" />
-  <Image src={logoColor} alt={SITE?.name || 'CTO4.AI'} width={120} height={40} class="h-12 w-auto hidden dark:block" />
+  <!-- Light mode: Use the color/black logo -->
+  <Image src={logoColor} alt={SITE?.name || 'CTO4.AI'} width={120} height={40} class="h-12 w-auto dark:hidden" />
+  <!-- Dark mode: Use the white logo -->
+  <Image src={logoWhite} alt={SITE?.name || 'CTO4.AI'} width={120} height={40} class="h-12 w-auto hidden dark:block" />
 </div>
