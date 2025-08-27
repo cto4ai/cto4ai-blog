@@ -57,6 +57,6 @@ export const footerData = {
     { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/in/jackivers/' },
   ],
   footNote: `
-    Copyright 2019-2025 <a class="text-blue-600 underline dark:text-muted" href="https://craftycto.com"> Jack Ivers</a> · All rights reserved.
+    Copyright 2019-2025 <a class="text-blue-600 underline dark:text-muted" href="https://craftycto.com"> Crafty CTO</a> · All rights reserved.
   `,
 };
