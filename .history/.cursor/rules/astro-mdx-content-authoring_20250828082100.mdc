@@ -56,7 +56,7 @@ categories: ["category1"]  # Optional
 - `brief`: Short-form content (under 1000 words)
 - `elsewhere`: Curated external content with commentary
 - `quote`: Quote posts with attribution
-- `episode`: Podcast or video episode commentary 
+- `episode`: Podcast or video reviews
 
 ### Date Format
 - Use ISO 8601: `YYYY-MM-DDTHH:MM:SS-ZZ:ZZ`

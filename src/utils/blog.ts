@@ -52,11 +52,11 @@ const getNormalizedPost = async (
     'brief': 'micro',
     'elsewhere': 'elsewhere',
     'quote': 'quote',
-    'episodes': 'posts' // treating episodes as posts for now
+    'episode': 'posts' // treating episode as posts for now
   };
 
   // For unified collection, use frontmatter contentType
-  const frontmatterType = data.contentType as 'essay' | 'brief' | 'elsewhere' | 'quote' | 'episodes';
+  const frontmatterType = data.contentType as 'essay' | 'brief' | 'elsewhere' | 'quote' | 'episode';
   const contentType = contentTypeMap[frontmatterType] || 'posts';
 
   // Handle different content collection schemas

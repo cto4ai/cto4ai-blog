@@ -60,7 +60,7 @@ const contentCollection = defineCollection({
     image: z.string().optional(),
     
     // Content type from Phase 1
-    contentType: z.enum(['essay', 'brief', 'elsewhere', 'quote', 'episodes']).optional(),
+    contentType: z.enum(['essay', 'brief', 'elsewhere', 'quote', 'episode']).optional(),
     
     // Common fields across all types
     category: z.string().optional(),

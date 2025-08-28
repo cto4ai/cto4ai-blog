@@ -8,20 +8,6 @@ alwaysApply: false
 
 **Task**: Create and edit MDX content for the CTO4.AI blog with proper structure, images, and formatting.
 
-## Creating a New Post
-- Pick a slug based on guidance from user in creation request
-- Scaffold directory structure
-  - Post directory based on slug
-  - Parallel image directory
-  - Social media directory structure
-- Create index.mdx with:
-  - Front matter (all fields)
-    - Set date correctly per guidelines below
-    - Draft: true
-  - Required component imports
-
-- Follow detailed guidelines below
-
 ## Content File Structure
 
 ### File Location
@@ -56,13 +42,12 @@ categories: ["category1"]  # Optional
 - `brief`: Short-form content (under 1000 words)
 - `elsewhere`: Curated external content with commentary
 - `quote`: Quote posts with attribution
-- `episode`: Podcast or video episode commentary 
+- `episodes`: Podcast or video reviews
 
 ### Date Format
 - Use ISO 8601: `YYYY-MM-DDTHH:MM:SS-ZZ:ZZ`
 - Example: `2025-08-11T14:30:00-05:00` (Central Time)
 - Always include timezone offset
-- At creation, insert the current date-time less 2 hours (two hours ago).
 
 ## Image Components
 
@@ -144,8 +129,10 @@ You can use JSX directly in MDX:
 ## Best Practices
 
 ### Named Entity Linking
-- Not part of unitial creation
-- See separate rule .cursor/rules/named-entity-linking.mdc
+- Link first appearance only (don't repeat links to same entity)
+- Focus on non-obvious terms that need context
+- Use authoritative sources (official sites, Wikipedia, documentation)
+- Verify links work before publishing
 
 ### Images
 - **Always provide alt text** for accessibility
