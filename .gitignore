@@ -19,6 +19,9 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# VS Code Local History extension
+.history/
+
 # Claude Code settings
 .claude/settings.local.json
 
