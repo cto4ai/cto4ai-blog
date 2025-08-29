@@ -86,7 +86,7 @@ def process_directory(base_path, dir_name, content_type):
 def main():
     """Main function to process all content directories."""
     # Get the project root
-    project_root = Path('/Users/jackivers/Projects/hugo/cto4ai-blog')
+    project_root = Path('/Users/jackivers/Projects/cto4ai-blog')
     
     print("=" * 60)
     print("Adding contentType to all MDX files")

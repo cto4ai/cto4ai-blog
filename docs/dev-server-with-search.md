@@ -23,7 +23,7 @@ Similar to the Hugo site's `dev_server.sh`, we can create a script that:
 
 ### Option 1: Shell Script
 
-Create `/Users/jackivers/Projects/hugo/cto4ai-blog/dev_server.sh`:
+Create `/Users/jackivers/Projects/cto4ai-blog/dev_server.sh`:
 
 ```bash
 #!/usr/bin/env zsh

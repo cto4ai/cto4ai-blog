@@ -222,7 +222,7 @@ def main():
     parser.add_argument('--test', action='store_true', help='Test mode - migrate only 3 files per type')
     parser.add_argument('--rollback', type=str, help='Rollback using specified migration map file')
     parser.add_argument('--root', type=str, 
-                       default='/Users/jackivers/Projects/hugo/cto4ai-blog',
+                       default='/Users/jackivers/Projects/cto4ai-blog',
                        help='Project root directory')
     
     args = parser.parse_args()

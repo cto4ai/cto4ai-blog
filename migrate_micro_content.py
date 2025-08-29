@@ -33,7 +33,7 @@ import argparse
 
 # Paths
 HUGO_CONTENT_DIR = Path("/Users/jackivers/Projects/hugo/craftycto/content")
-ASTRO_ASSETS_DIR = Path("/Users/jackivers/Projects/hugo/cto4ai-blog/src/assets/images")
+ASTRO_ASSETS_DIR = Path("/Users/jackivers/Projects/cto4ai-blog/src/assets/images")
 TEMP_OUTPUT_DIR = Path("/tmp/micro-migration")
 
 def ensure_temp_directories():
@@ -299,7 +299,7 @@ def main():
     
     print(f"\n🔍 REVIEW PROCESS:")
     print(f"1. Check files in: {TEMP_OUTPUT_DIR / args.content_type}")
-    print(f"2. If approved, copy to: /Users/jackivers/Projects/hugo/cto4ai-blog/src/data/{args.content_type}/")
+    print(f"2. If approved, copy to: /Users/jackivers/Projects/cto4ai-blog/src/data/{args.content_type}/")
     print(f"3. Test in browser")
     print(f"4. Git commit successful batch")
     print(f"5. Run next batch if needed")
