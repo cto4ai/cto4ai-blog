@@ -89,25 +89,60 @@ const containerStyle = maxHeight ? `max-height: ${maxHeight}; overflow-y: auto;`
 function renderMarkdown(text: string): string {
   if (!text) return '';
   
-  let html = text
-    // Escape HTML first
+  // First, temporarily replace code blocks to protect them
+  const codeBlocks: string[] = [];
+  let protectedText = text.replace(/```(\w*)\n?([\s\S]*?)```/g, (match, lang, code) => {
+    const placeholder = `__CODE_BLOCK_${codeBlocks.length}__`;
+    const trimmedCode = code.trim();
+    // Escape HTML in code blocks
+    const escapedCode = trimmedCode
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+    codeBlocks.push(`<pre class="language-${lang || 'plaintext'}"><code>${escapedCode}</code></pre>`);
+    return placeholder;
+  });
+
+  // Also protect inline code
+  const inlineCode: string[] = [];
+  protectedText = protectedText.replace(/`([^`]+)`/g, (match, code) => {
+    const placeholder = `__INLINE_CODE_${inlineCode.length}__`;
+    const escapedCode = code
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+    inlineCode.push(`<code>${escapedCode}</code>`);
+    return placeholder;
+  });
+  
+  // Now process the rest of the markdown
+  let html = protectedText
+    // Escape remaining HTML
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    // Code blocks with language
-    .replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
-      return `<pre class="language-${lang || 'plaintext'}"><code>${code.trim()}</code></pre>`;
-    })
-    // Inline code
-    .replace(/`([^`]+)`/g, '<code>$1</code>')
-    // Bold
+    // Headers (if any)
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    // Bold (now safe from code blocks)
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-    // Italic
-    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    // Lists
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
     // Links
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
     // Line breaks
     .replace(/\n/g, '<br>');
+  
+  // Restore code blocks
+  codeBlocks.forEach((block, i) => {
+    html = html.replace(`__CODE_BLOCK_${i}__`, block);
+  });
+  
+  // Restore inline code
+  inlineCode.forEach((code, i) => {
+    html = html.replace(`__INLINE_CODE_${i}__`, code);
+  });
     
   return `<div class="message-content prose prose-sm dark:prose-invert max-w-none">${html}</div>`;
 }

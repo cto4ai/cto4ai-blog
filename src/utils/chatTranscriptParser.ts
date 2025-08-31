@@ -82,71 +82,49 @@ function parseCursorExport(text: string): ChatMessage[] {
   const messages: ChatMessage[] = [];
   const { exportInfo, exportDate } = extractExportInfo(text);
   
-  // Remove the header/title and export info line
+  // Remove the header/title if present
   let cleanedText = text;
   cleanedText = cleanedText.replace(/^#.*?\n/, ''); // Remove title
   cleanedText = cleanedText.replace(/_Exported on.*?_\n?/, ''); // Remove export info
   
-  // Split by message markers (looking for **User** or **Cursor**//**Assistant** at the start of a line)
-  const messageParts: string[] = [];
-  const lines = cleanedText.split('\n');
-  let currentMessage = '';
-  let currentRole: 'user' | 'assistant' | null = null;
+  // Better approach: manually find message boundaries
+  // Look for patterns like "\n---\n\n**User**" or "\n---\n\n**Cursor**"
+  const messagePattern = /\n---\n\n\*\*(User|Cursor|Assistant)\*\*/g;
+  const boundaries: number[] = [0]; // Start of the text
   
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    
-    // Check if this line starts a new message
-    if (line.startsWith('**User**')) {
-      // Save previous message if exists
-      if (currentRole && currentMessage) {
-        messageParts.push(`**${currentRole === 'user' ? 'User' : 'Cursor'}**\n${currentMessage}`);
-      }
-      currentRole = 'user';
-      currentMessage = '';
-    } else if (line.startsWith('**Cursor**') || line.startsWith('**Assistant**')) {
-      // Save previous message if exists
-      if (currentRole && currentMessage) {
-        messageParts.push(`**${currentRole === 'user' ? 'User' : 'Cursor'}**\n${currentMessage}`);
-      }
-      currentRole = 'assistant';
-      currentMessage = '';
-    } else if (line === '---' && currentRole) {
-      // This is a separator, save current message and reset
-      if (currentMessage) {
-        messageParts.push(`**${currentRole === 'user' ? 'User' : 'Cursor'}**\n${currentMessage}`);
-      }
-      currentRole = null;
-      currentMessage = '';
-    } else if (currentRole) {
-      // Add line to current message
-      currentMessage += (currentMessage ? '\n' : '') + line;
-    }
+  let match;
+  while ((match = messagePattern.exec(cleanedText)) !== null) {
+    boundaries.push(match.index + 5); // +5 to skip past "\n---\n"
   }
+  boundaries.push(cleanedText.length); // End of the text
   
-  // Don't forget the last message
-  if (currentRole && currentMessage) {
-    messageParts.push(`**${currentRole === 'user' ? 'User' : 'Cursor'}**\n${currentMessage}`);
-  }
-  
-  // Now process each message part
-  for (const part of messageParts) {
-    const trimmedPart = part.trim();
+  // Extract messages between boundaries
+  for (let i = 0; i < boundaries.length - 1; i++) {
+    const section = cleanedText.substring(boundaries[i], boundaries[i + 1]);
+    const trimmedSection = section.trim();
     
-    if (trimmedPart.startsWith('**User**')) {
-      const content = trimmedPart.replace(/^\*\*User\*\*\n?/, '').trim();
-      messages.push({
-        role: 'user',
-        content,
-        metadata: messages.length === 0 ? { source: 'cursor', exportDate, exportInfo } : { source: 'cursor' },
-      });
-    } else if (trimmedPart.startsWith('**Cursor**') || trimmedPart.startsWith('**Assistant**')) {
-      const content = trimmedPart.replace(/^\*\*(Cursor|Assistant)\*\*\n?/, '').trim();
-      messages.push({
-        role: 'assistant',
-        content,
-        metadata: { source: 'cursor' },
-      });
+    if (!trimmedSection) continue;
+    
+    // Check if this section starts with **User** or **Cursor**/**Assistant**
+    if (trimmedSection.startsWith('**User**')) {
+      const content = trimmedSection.replace(/^\*\*User\*\*\n?/, '').trim();
+      if (content) {
+        messages.push({
+          role: 'user',
+          content,
+          metadata: messages.length === 0 ? { source: 'cursor', exportDate, exportInfo } : { source: 'cursor' },
+        });
+      }
+    } else if (trimmedSection.startsWith('**Cursor**') || trimmedSection.startsWith('**Assistant**')) {
+      // For assistant messages, capture EVERYTHING after the marker
+      const content = trimmedSection.replace(/^\*\*(Cursor|Assistant)\*\*\n?/, '').trim();
+      if (content) {
+        messages.push({
+          role: 'assistant',
+          content,
+          metadata: { source: 'cursor' },
+        });
+      }
     }
   }
   
