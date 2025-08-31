@@ -1,0 +1,308 @@
+---
+description: "Complete workflow for converting AI chat transcripts and displaying them in MDX blog posts using the ChatTranscript component"
+globs: ["*.mdx", "*.md", "*.txt", "*.ts"]
+alwaysApply: false
+---
+
+# Using Chat Transcript Component
+
+**Task**: Convert AI chat transcripts from various sources (Claude Code, Cursor, Claude.ai, ChatGPT) into TypeScript files and integrate them into MDX blog posts using the ChatTranscript component.
+
+## Complete Workflow
+
+### Step 1: Identify Transcript Source
+
+Examine the transcript file to determine its source:
+- **Claude Code**: Contains `/export` command output or "from Claude Code"
+- **Cursor**: Contains "from Cursor" or Cursor export markers
+- **Claude.ai**: Has `Human:` and `Assistant:` format
+- **ChatGPT**: Has `User:` and `ChatGPT:` or `Assistant:` format
+
+### Step 2: Create Directory Structure
+
+For a post with slug `my-post-slug`:
+```bash
+# Create the transcripts subdirectory
+mkdir -p src/data/content/my-post-slug/transcripts
+```
+
+### Step 3: Run Python Converter
+
+The converter auto-detects format and properly escapes content for TypeScript.
+
+#### For Claude Code Export
+```bash
+python3 scripts/convert-chat-transcript.py \
+  ~/Downloads/claude-export.md \
+  src/data/content/my-post-slug/transcripts/claude-code.ts \
+  --export-name claudeCodeChat
+```
+
+#### For Cursor Export
+```bash
+python3 scripts/convert-chat-transcript.py \
+  ~/Downloads/cursor-export.md \
+  src/data/content/my-post-slug/transcripts/cursor.ts \
+  --export-name cursorChat
+```
+
+#### For Claude.ai Conversation
+```bash
+python3 scripts/convert-chat-transcript.py \
+  ~/Downloads/claude-conversation.txt \
+  src/data/content/my-post-slug/transcripts/claude-ai.ts \
+  --export-name claudeAiChat
+```
+
+#### For ChatGPT Export
+```bash
+python3 scripts/convert-chat-transcript.py \
+  ~/Downloads/chatgpt-export.txt \
+  src/data/content/my-post-slug/transcripts/chatgpt.ts \
+  --export-name chatGptConversation
+```
+
+### Step 4: Add to MDX File
+
+#### Single Transcript
+```mdx
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+import { claudeCodeChat } from './transcripts/claude-code';
+
+## My Section
+
+Here's my conversation with Claude Code:
+
+<ChatTranscript 
+  transcript={claudeCodeChat} 
+  theme="adium" 
+  maxHeight="600px" 
+/>
+```
+
+#### Multiple Transcripts
+```mdx
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+import { claudeCodeChat } from './transcripts/claude-code';
+import { cursorChat } from './transcripts/cursor';
+import { chatGptConversation } from './transcripts/chatgpt';
+
+## Comparing AI Tools
+
+### Claude Code Solution
+
+<ChatTranscript 
+  transcript={claudeCodeChat} 
+  theme="adium" 
+  maxHeight="500px" 
+/>
+
+### Cursor Approach
+
+<ChatTranscript 
+  transcript={cursorChat} 
+  theme="minimal" 
+  maxHeight="500px" 
+/>
+
+### ChatGPT Alternative
+
+<ChatTranscript 
+  transcript={chatGptConversation} 
+  theme="modern" 
+  maxHeight="500px" 
+/>
+```
+
+## Converter Command Reference
+
+### Basic Syntax
+```bash
+python3 scripts/convert-chat-transcript.py <input> <output> --export-name <name>
+```
+
+### Parameters
+- `<input>`: Path to raw transcript file (any format)
+- `<output>`: Path for TypeScript output (use `.ts` extension)
+- `--export-name`: Name for the TypeScript export (camelCase recommended)
+
+### File Path Conventions
+- Always use `transcripts/` subdirectory within post directory
+- Name files by source: `claude-code.ts`, `cursor.ts`, `claude-ai.ts`, `chatgpt.ts`
+- Export names should be descriptive: `featureDiscussion`, `debuggingSession`, etc.
+
+## Component Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `transcript` | string | required | The transcript text from TypeScript file |
+| `theme` | string | 'adium' | Options: 'adium', 'minimal', 'modern', 'compact' |
+| `maxHeight` | string | - | Container height (e.g., '600px') |
+| `showTimestamps` | boolean | false | Display message timestamps |
+| `showAvatars` | boolean | true | Show user/AI avatars |
+| `showSource` | boolean | true | Show transcript source info |
+| `collapsible` | boolean | false | Make long messages collapsible |
+
+## Quick Examples
+
+### Converting a Fresh Claude Code Export
+User exports from Claude Code using `/export`, file saved as `~/Downloads/claude-code-2025-01-28.md`:
+
+```bash
+# 1. Create directory structure
+mkdir -p src/data/content/implementing-auth/transcripts
+
+# 2. Convert the transcript
+python3 scripts/convert-chat-transcript.py \
+  ~/Downloads/claude-code-2025-01-28.md \
+  src/data/content/implementing-auth/transcripts/claude-code.ts \
+  --export-name authImplementation
+
+# 3. Add to MDX (in src/data/content/implementing-auth/index.mdx)
+```
+```mdx
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+import { authImplementation } from './transcripts/claude-code';
+
+<ChatTranscript transcript={authImplementation} theme="adium" maxHeight="600px" />
+```
+
+### Converting Multiple Cursor Sessions
+User has several Cursor export files for iterative development:
+
+```bash
+# Convert each session
+python3 scripts/convert-chat-transcript.py \
+  cursor-session-1.md \
+  src/data/content/my-feature/transcripts/cursor-initial.ts \
+  --export-name initialDesign
+
+python3 scripts/convert-chat-transcript.py \
+  cursor-session-2.md \
+  src/data/content/my-feature/transcripts/cursor-refactor.ts \
+  --export-name refactorSession
+
+# Use both in MDX
+```
+```mdx
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+import { initialDesign } from './transcripts/cursor-initial';
+import { refactorSession } from './transcripts/cursor-refactor';
+
+## Initial Design Phase
+
+<ChatTranscript transcript={initialDesign} theme="adium" maxHeight="400px" />
+
+## Refactoring Discussion
+
+<ChatTranscript transcript={refactorSession} theme="minimal" maxHeight="400px" />
+```
+
+### Inline Short Transcript (No Conversion Needed)
+For very short conversations, you can embed directly:
+
+```mdx
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+
+<ChatTranscript theme="compact">
+{`**User**
+
+How do I center a div?
+
+---
+
+**Assistant**
+
+Use flexbox: \`display: flex; justify-content: center; align-items: center;\`
+
+Or CSS Grid: \`display: grid; place-items: center;\``}
+</ChatTranscript>
+```
+
+## Troubleshooting
+
+### Converter Issues
+- **Format not detected**: Check for typical markers (User/Assistant, Human/Assistant)
+- **Syntax errors in .ts file**: Re-run converter, check for unescaped backticks
+- **File not found**: Ensure input path is correct and file exists
+
+### Display Issues
+- **Transcript not showing**: Verify import paths and export names match
+- **Styling broken**: Check theme name is valid ('adium', 'minimal', 'modern', 'compact')
+- **Content cut off**: Adjust maxHeight prop or remove it for full height
+
+### Path Issues
+- **Import errors**: Ensure transcript file is in `./transcripts/` relative to MDX
+- **TypeScript errors**: Check export name matches import statement
+
+## Best Practices
+
+1. **Organization**:
+   - Keep transcripts in `transcripts/` subdirectory
+   - Use consistent naming: `[source].ts` (e.g., `claude-code.ts`)
+   - Group related conversations together
+
+2. **Performance**:
+   - Use `maxHeight` for long conversations
+   - Import from TypeScript files (not inline) for better build performance
+   - Consider splitting very long conversations
+
+3. **Readability**:
+   - Choose appropriate theme for content type
+   - Use 'adium' for nostalgic/fun posts
+   - Use 'minimal' or 'modern' for technical content
+   - Add context before/after transcripts in your post
+
+4. **Export Names**:
+   - Use descriptive camelCase names
+   - Match the conversation topic (e.g., `authImplementation`, `debugSession`)
+   - Be consistent across multiple transcripts in same post
+
+## Complete Example: Blog Post with Transcript
+
+Creating a post about implementing a feature with AI assistance:
+
+```bash
+# 1. Create post structure
+mkdir -p src/data/content/ai-pair-programming/transcripts
+
+# 2. Convert Claude Code export
+python3 scripts/convert-chat-transcript.py \
+  ~/Downloads/feature-implementation.md \
+  src/data/content/ai-pair-programming/transcripts/claude-code.ts \
+  --export-name featureImplementation
+
+# 3. Create the blog post
+```
+
+File: `src/data/content/ai-pair-programming/index.mdx`
+```mdx
+---
+title: "AI Pair Programming: Building a Real-Time Dashboard"
+contentType: "essay"
+description: "How I used Claude Code to implement a real-time dashboard feature"
+author: "Jack Ivers"
+publishDate: "2025-01-28T10:00:00-05:00"
+draft: false
+tags: ["ai", "claude-code", "pair-programming"]
+categories: ["Development"]
+---
+
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+import { featureImplementation } from './transcripts/claude-code';
+
+Today I paired with Claude Code to build a real-time dashboard. The conversation below 
+shows our iterative approach to implementing WebSocket connections and state management.
+
+<ChatTranscript 
+  transcript={featureImplementation} 
+  theme="adium" 
+  maxHeight="600px" 
+/>
+
+## Key Takeaways
+
+The AI helped identify several edge cases I hadn't considered...
+```
+
+This creates a complete, professional blog post with an embedded AI conversation transcript.
