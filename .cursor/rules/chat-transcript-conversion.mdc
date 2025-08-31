@@ -1,0 +1,107 @@
+---
+description: "Convert AI chat transcripts to ChatTranscript component usage for easy display in MDX files"
+globs: ["*.mdx", "*.md"]
+alwaysApply: false
+---
+
+# Chat Transcript Conversion
+
+**Task**: Convert pasted AI chat transcripts into ChatTranscript component usage for displaying conversations in blog posts.
+
+## Supported Formats
+
+The ChatTranscript component automatically detects and parses:
+- **Claude Code**: Exports from `/export` command
+- **Cursor**: Export feature output
+- **Claude.ai**: Copied conversations
+- **ChatGPT**: Shared conversations or copies
+
+## Conversion Steps
+
+### 1. Detect Source Format
+Look for identifying patterns:
+- `_Exported on ... from Claude Code_` → Claude Code
+- `_Exported on ... from Cursor_` → Cursor
+- `Human:` / `Assistant:` → Claude.ai
+- `User:` / `ChatGPT:` → ChatGPT
+
+### 2. Wrap in Component
+For inline usage in MDX:
+```mdx
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+
+<ChatTranscript>
+{`[paste transcript here]`}
+</ChatTranscript>
+```
+
+For external file:
+```mdx
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+import transcript from './path/to/transcript.md?raw';
+
+<ChatTranscript transcript={transcript} />
+```
+
+### 3. Add Theme Based on Context
+- Use `theme="adium"` for nostalgic messaging UI (default)
+- Use `theme="minimal"` for clean, simple display
+- Use `theme="modern"` for contemporary design
+- Use `theme="compact"` for space-efficient display
+
+### 4. Optional Props
+```mdx
+<ChatTranscript 
+  theme="adium"           // UI style
+  showTimestamps={false}  // Hide timestamps
+  showAvatars={true}      // Show user/AI avatars  
+  showSource={true}       // Show export source
+  maxHeight="600px"       // Scrollable container
+  collapsible={false}     // Collapsible messages
+>
+{`transcript content`}
+</ChatTranscript>
+```
+
+## Examples
+
+### Claude Code Export
+```mdx
+<ChatTranscript>
+{`# Scaffold post about Dharmesh podcast episode
+_Exported on 8/28/2025 at 08:25:44 CDT from Claude Code_
+
+---
+
+**User**
+OK, let's scaffold a post titled "OMG Dharmesh!"
+
+---
+
+**Assistant**
+I'll scaffold a new post for your commentary...`}
+</ChatTranscript>
+```
+
+### Cursor Export
+```mdx
+<ChatTranscript>
+{`# Building a new feature
+_Exported on 1/28/2025 at 10:30:00 EST from Cursor (1.5.5)_
+
+---
+
+**User**
+Help me implement dark mode
+
+---
+
+**Cursor**
+I'll help you implement dark mode...`}
+</ChatTranscript>
+```
+
+### Claude.ai Copy
+```mdx
+<ChatTranscript>
+{`Human: What is the best way to structure a React component?

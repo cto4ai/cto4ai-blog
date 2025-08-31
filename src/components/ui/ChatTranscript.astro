@@ -1,0 +1,323 @@
+---
+import { parseTranscript } from '~/utils/chatTranscriptParser';
+import type { ChatMessage } from '~/utils/chatTranscriptParser';
+
+export interface Props {
+  transcript?: string;
+  messages?: ChatMessage[];
+  theme?: 'adium' | 'minimal' | 'modern' | 'compact';
+  showTimestamps?: boolean;
+  showAvatars?: boolean;
+  showSource?: boolean;
+  collapsible?: boolean;
+  maxHeight?: string;
+  class?: string;
+}
+
+const {
+  transcript,
+  messages: propMessages,
+  theme = 'adium',
+  showTimestamps = false,
+  showAvatars = true,
+  showSource = true,
+  collapsible = false,
+  maxHeight,
+  class: className = '',
+} = Astro.props;
+
+// Parse transcript if provided, otherwise use messages prop
+const messages = transcript ? parseTranscript(transcript) : (propMessages || []);
+
+// Extract source info if available
+const sourceInfo = messages.length > 0 && messages[0].metadata?.exportInfo;
+
+// Theme-specific classes
+const themeClasses = {
+  adium: {
+    container: 'bg-gray-50 dark:bg-gray-900 rounded-lg p-4',
+    messageWrapper: 'flex gap-3 mb-4',
+    userBubble: 'bg-blue-500 text-white rounded-2xl px-4 py-2 max-w-[70%] shadow-sm',
+    assistantBubble: 'bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-2xl px-4 py-2 max-w-[70%] shadow-sm border border-gray-200 dark:border-gray-700',
+    avatar: 'w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold text-sm',
+    userAvatar: 'bg-blue-600',
+    assistantAvatar: 'bg-gray-600',
+    timestamp: 'text-xs text-gray-500 dark:text-gray-400 mt-1',
+  },
+  minimal: {
+    container: 'bg-white dark:bg-gray-900 rounded-lg p-4',
+    messageWrapper: 'mb-4',
+    userBubble: 'font-medium text-gray-900 dark:text-gray-100',
+    assistantBubble: 'text-gray-700 dark:text-gray-300',
+    avatar: 'hidden',
+    userAvatar: '',
+    assistantAvatar: '',
+    timestamp: 'text-xs text-gray-400 dark:text-gray-500',
+  },
+  modern: {
+    container: 'bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-xl p-6',
+    messageWrapper: 'flex gap-4 mb-6',
+    userBubble: 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl px-5 py-3 max-w-[75%] shadow-md',
+    assistantBubble: 'bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-xl px-5 py-3 max-w-[75%] shadow-md',
+    avatar: 'w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold',
+    userAvatar: 'bg-gradient-to-br from-blue-500 to-blue-700',
+    assistantAvatar: 'bg-gradient-to-br from-gray-500 to-gray-700',
+    timestamp: 'text-xs text-gray-500 dark:text-gray-400 mt-2',
+  },
+  compact: {
+    container: 'bg-white dark:bg-gray-900 rounded p-2',
+    messageWrapper: 'mb-2',
+    userBubble: 'text-sm font-medium text-blue-700 dark:text-blue-400',
+    assistantBubble: 'text-sm text-gray-700 dark:text-gray-300',
+    avatar: 'hidden',
+    userAvatar: '',
+    assistantAvatar: '',
+    timestamp: 'text-xs text-gray-400 dark:text-gray-500',
+  },
+};
+
+const currentTheme = themeClasses[theme];
+
+// Container styles with optional max height for scrolling
+const containerStyle = maxHeight ? `max-height: ${maxHeight}; overflow-y: auto;` : '';
+
+// Simple markdown to HTML converter for chat messages
+function renderMarkdown(text: string): string {
+  if (!text) return '';
+  
+  let html = text
+    // Escape HTML first
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    // Code blocks with language
+    .replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
+      return `<pre class="language-${lang || 'plaintext'}"><code>${code.trim()}</code></pre>`;
+    })
+    // Inline code
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    // Bold
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    // Italic
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    // Links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    // Line breaks
+    .replace(/\n/g, '<br>');
+    
+  return `<div class="message-content prose prose-sm dark:prose-invert max-w-none">${html}</div>`;
+}
+---
+
+<div 
+  class={`chat-transcript ${currentTheme.container} ${className}`}
+  style={containerStyle}
+  data-theme={theme}
+>
+  {showSource && sourceInfo && (
+    <div class="text-xs text-gray-500 dark:text-gray-400 mb-4 italic">
+      {sourceInfo}
+    </div>
+  )}
+
+  {messages.map((message, index) => {
+    const isUser = message.role === 'user';
+    const alignClass = theme === 'adium' ? (isUser ? 'justify-end' : 'justify-start') : '';
+    
+    return (
+      <div 
+        class={`message ${currentTheme.messageWrapper} ${alignClass}`}
+        data-role={message.role}
+      >
+        {showAvatars && theme !== 'minimal' && theme !== 'compact' && !isUser && (
+          <div class={`${currentTheme.avatar} ${currentTheme.assistantAvatar}`}>
+            A
+          </div>
+        )}
+        
+        <div class={isUser && theme === 'adium' ? 'flex flex-col items-end' : ''}>
+          <div 
+            class={`message-bubble ${isUser ? currentTheme.userBubble : currentTheme.assistantBubble}`}
+            set:html={renderMarkdown(message.content)}
+          />
+          
+          {showTimestamps && message.timestamp && (
+            <div class={currentTheme.timestamp}>
+              {message.timestamp}
+            </div>
+          )}
+        </div>
+        
+        {showAvatars && theme !== 'minimal' && theme !== 'compact' && isUser && (
+          <div class={`${currentTheme.avatar} ${currentTheme.userAvatar}`}>
+            U
+          </div>
+        )}
+      </div>
+    );
+  })}
+</div>
+
+<style>
+  .chat-transcript {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+
+  .message-content {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .message-content code {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .dark .message-content code {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .message-content pre {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 0.5rem 0;
+  }
+
+  .message-content pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  /* Adium-specific bubble styling */
+  [data-theme="adium"] .message-bubble {
+    position: relative;
+  }
+
+  [data-theme="adium"] .message[data-role="user"] .message-bubble::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid currentColor;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    color: inherit;
+  }
+
+  [data-theme="adium"] .message[data-role="assistant"] .message-bubble::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-right: 8px solid;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right-color: inherit;
+  }
+
+  /* Smooth scrolling for container */
+  .chat-transcript[style*="max-height"] {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+  }
+
+  .chat-transcript[style*="max-height"]::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .chat-transcript[style*="max-height"]::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .chat-transcript[style*="max-height"]::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+
+  .dark .chat-transcript[style*="max-height"]::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+</style>
+
+<script>
+  // Add copy button to code blocks
+  document.addEventListener('DOMContentLoaded', () => {
+    const codeBlocks = document.querySelectorAll('.chat-transcript pre');
+    
+    codeBlocks.forEach((block) => {
+      const button = document.createElement('button');
+      button.className = 'copy-code-btn';
+      button.textContent = 'Copy';
+      button.style.cssText = `
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.25rem;
+        color: #e2e8f0;
+        font-size: 0.75rem;
+        cursor: pointer;
+        transition: all 0.2s;
+      `;
+      
+      block.style.position = 'relative';
+      block.appendChild(button);
+      
+      button.addEventListener('click', async () => {
+        const code = block.querySelector('code')?.textContent || block.textContent;
+        await navigator.clipboard.writeText(code);
+        button.textContent = 'Copied!';
+        setTimeout(() => {
+          button.textContent = 'Copy';
+        }, 2000);
+      });
+    });
+  });
+
+  // Handle collapsible messages if enabled
+  const collapsibleElements = document.querySelectorAll('.chat-transcript[data-collapsible="true"] .message-content');
+  collapsibleElements.forEach((element) => {
+    if (element.scrollHeight > 200) {
+      element.style.maxHeight = '200px';
+      element.style.overflow = 'hidden';
+      element.style.cursor = 'pointer';
+      element.style.position = 'relative';
+      
+      const expandBtn = document.createElement('div');
+      expandBtn.textContent = 'Show more...';
+      expandBtn.style.cssText = `
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        background: linear-gradient(transparent, currentColor);
+        text-align: center;
+        cursor: pointer;
+      `;
+      
+      element.appendChild(expandBtn);
+      
+      element.addEventListener('click', () => {
+        if (element.style.maxHeight === '200px') {
+          element.style.maxHeight = 'none';
+          expandBtn.textContent = 'Show less';
+        } else {
+          element.style.maxHeight = '200px';
+          expandBtn.textContent = 'Show more...';
+        }
+      });
+    }
+  });
+</script>
