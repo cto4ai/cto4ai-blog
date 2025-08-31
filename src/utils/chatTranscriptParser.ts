@@ -13,7 +13,7 @@ export interface ChatMessage {
  * Detect the source of the transcript based on patterns
  */
 function detectSource(text: string): ChatMessage['metadata']['source'] {
-  if (text.includes('from Claude Code')) return 'claude-code';
+  if (text.includes('from Claude Code') || text.includes('Claude Code session')) return 'claude-code';
   if (text.includes('from Cursor')) return 'cursor';
   if (text.includes('Human:') && text.includes('Assistant:')) return 'claude-ai';
   if (text.includes('ChatGPT')) return 'chatgpt';
@@ -41,34 +41,50 @@ function parseClaudeCodeExport(text: string): ChatMessage[] {
   const messages: ChatMessage[] = [];
   const { exportInfo, exportDate } = extractExportInfo(text);
   
-  // Split by separator lines
-  const parts = text.split(/\n---\n/);
+  // Remove the header/title if present
+  let cleanedText = text;
+  cleanedText = cleanedText.replace(/^#.*?\n/, ''); // Remove title
+  cleanedText = cleanedText.replace(/_Claude Code session.*?_\n?/, ''); // Remove Claude Code session info
+  cleanedText = cleanedText.replace(/_Exported on.*?_\n?/, ''); // Remove export info
   
-  for (const part of parts) {
-    const trimmedPart = part.trim();
+  // Better approach: manually find message boundaries
+  // Look for patterns like "\n---\n\n**User**" or "\n---\n\n**Claude**"
+  const messagePattern = /\n---\n\n\*\*(User|Claude|Assistant)\*\*/g;
+  const boundaries: number[] = [0]; // Start of the text
+  
+  let match;
+  while ((match = messagePattern.exec(cleanedText)) !== null) {
+    boundaries.push(match.index + 5); // +5 to skip past "\n---\n"
+  }
+  boundaries.push(cleanedText.length); // End of the text
+  
+  // Extract messages between boundaries
+  for (let i = 0; i < boundaries.length - 1; i++) {
+    const section = cleanedText.substring(boundaries[i], boundaries[i + 1]);
+    const trimmedSection = section.trim();
     
-    // Skip empty parts or header
-    if (!trimmedPart || trimmedPart.startsWith('#') || trimmedPart.startsWith('_Exported')) {
-      continue;
-    }
+    if (!trimmedSection) continue;
     
-    // Check for user message
-    if (trimmedPart.startsWith('**User**')) {
-      const content = trimmedPart.replace(/^\*\*User\*\*\n?/, '').trim();
-      messages.push({
-        role: 'user',
-        content,
-        metadata: messages.length === 0 ? { source: 'claude-code', exportDate, exportInfo } : { source: 'claude-code' },
-      });
-    }
-    // Check for assistant message
-    else if (trimmedPart.startsWith('**Assistant**') || trimmedPart.startsWith('**Claude**')) {
-      const content = trimmedPart.replace(/^\*\*(Assistant|Claude)\*\*\n?/, '').trim();
-      messages.push({
-        role: 'assistant',
-        content,
-        metadata: { source: 'claude-code' },
-      });
+    // Check if this section starts with **User** or **Claude**/**Assistant**
+    if (trimmedSection.startsWith('**User**')) {
+      const content = trimmedSection.replace(/^\*\*User\*\*\n?/, '').trim();
+      if (content) {
+        messages.push({
+          role: 'user',
+          content,
+          metadata: messages.length === 0 ? { source: 'claude-code', exportDate, exportInfo } : { source: 'claude-code' },
+        });
+      }
+    } else if (trimmedSection.startsWith('**Claude**') || trimmedSection.startsWith('**Assistant**')) {
+      // For assistant messages, capture EVERYTHING after the marker
+      const content = trimmedSection.replace(/^\*\*(Claude|Assistant)\*\*\n?/, '').trim();
+      if (content) {
+        messages.push({
+          role: 'assistant',
+          content,
+          metadata: { source: 'claude-code' },
+        });
+      }
     }
   }
   

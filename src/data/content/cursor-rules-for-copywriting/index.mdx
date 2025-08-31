@@ -15,6 +15,7 @@ import SingleImage from '~/components/ui/SingleImage.astro';
 import ImageGallery from '~/components/ui/ImageGallery.astro';
 import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import { cursorTranscript } from './cursor-transcript';
+import { claudeCodeTranscript } from './claude-code-transcript';
 
 The rise of AI-assisted writing has been both a blessing and a curse for content creators. While tools like ChatGPT and Claude can generate copy at lightning speed, anyone who's tried to use them for serious copywriting knows the frustration: the output is often generic, off-brand, and requires extensive editing to be useful.
 
@@ -72,6 +73,14 @@ Notice how Cursor automatically:
 - Followed date formatting rules (setting it to 2 hours ago)
 
 This is the power of Cursor Rules - the AI knew exactly how to structure everything because the rules encoded my blog's specific requirements.
+
+### Planning with Claude Code
+
+Here's another example where I used Claude Code to plan the implementation of this very ChatTranscript component that's displaying these conversations:
+
+<ChatTranscript theme="adium" maxHeight="600px" transcript={claudeCodeTranscript} />
+
+Notice how Claude Code provided a comprehensive plan for creating the component, including technical approach, file structure, and implementation steps.
 
 ### Blog Post Rules
 

@@ -158,7 +158,11 @@ function renderMarkdown(text: string): string {
         <svg class="w-5 h-5 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
         </svg>
-        <span class="font-medium text-gray-700 dark:text-gray-200">Claude - {sourceInfo ? 'Cursor Export' : 'Chat Transcript'}</span>
+        <span class="font-medium text-gray-700 dark:text-gray-200">
+          {messages.length > 0 && messages[0].metadata?.source === 'cursor' ? 'Claude - Cursor Export' : 
+           messages.length > 0 && messages[0].metadata?.source === 'claude-code' ? 'Claude Code' : 
+           'Chat Transcript'}
+        </span>
       </div>
       {sourceInfo && (
         <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -195,7 +199,7 @@ function renderMarkdown(text: string): string {
             
             <div class={currentTheme.messageContent}>
               <div class="font-medium text-sm text-gray-700 dark:text-gray-300 mb-1">
-                {isUser ? 'User' : 'Claude'}
+                {isUser ? 'User' : (message.metadata?.source === 'cursor' ? 'Cursor' : 'Claude')}
               </div>
               <div 
                 class="message-text"
