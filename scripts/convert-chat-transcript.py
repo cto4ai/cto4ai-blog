@@ -118,12 +118,12 @@ class ClaudeCodeConverter(TranscriptConverter):
             line = re.sub(r'^\s*Task\([^)]+\)$', '[Running task]', line)
             
             # Escape backticks for TypeScript template literal
-            if not in_code_block:
+            if '```' in line:
+                # Replace triple backticks with a special marker to handle them properly
+                line = line.replace('```', '\\`\\`\\`')
+            elif '`' in line and not in_code_block:
+                # Only escape single backticks outside of code blocks
                 line = line.replace('`', '\\`')
-            else:
-                # In code blocks, we need to escape the backticks differently
-                if '```' in line:
-                    line = line.replace('```', '\\`\\`\\`')
             
             output.append(line + '\n')
         
@@ -151,15 +151,20 @@ class CursorConverter(TranscriptConverter):
         # Cursor format is already pretty clean
         lines = content.split('\n')
         output = []
+        in_code_block = False
         
         for line in lines:
             # Remove line numbers if present
             line = re.sub(r'^\s*\d+→', '', line)
             
+            # Track code blocks
+            if '```' in line:
+                in_code_block = not in_code_block
+            
             # Escape backticks for TypeScript template literal
             if '```' in line:
                 line = line.replace('```', '\\`\\`\\`')
-            elif '`' in line:
+            elif '`' in line and not in_code_block:
                 line = line.replace('`', '\\`')
             
             output.append(line + '\n')
