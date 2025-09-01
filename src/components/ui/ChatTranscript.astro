@@ -12,6 +12,7 @@ export interface Props {
   collapsible?: boolean;
   maxHeight?: string;
   class?: string;
+  toolName?: string; // Allow manual override of tool name
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   collapsible = false,
   maxHeight,
   class: className = '',
+  toolName,
 } = Astro.props;
 
 // Parse transcript if provided, otherwise use messages prop
@@ -31,6 +33,44 @@ const messages = transcript ? parseTranscript(transcript) : (propMessages || [])
 
 // Extract source info if available
 const sourceInfo = messages.length > 0 && messages[0].metadata?.exportInfo;
+
+// Determine the AI tool name
+const detectedSource = messages.length > 0 ? messages[0].metadata?.source : 'unknown';
+const aiToolName = toolName || {
+  'claude-code': 'Claude Code',
+  'cursor': 'Cursor',
+  'claude-ai': 'Claude.ai',
+  'chatgpt': 'ChatGPT',
+  'unknown': 'AI Assistant'
+}[detectedSource] || 'AI Assistant';
+
+// Tool logos as simple inline SVGs
+const toolLogos = {
+  'Claude Code': `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+    <circle cx="12" cy="12" r="10" fill="#D97706"/>
+    <path d="M12 7v6l4 2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </svg>`,
+  'Cursor': `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+    <rect x="3" y="3" width="18" height="18" rx="3" fill="#8B5CF6"/>
+    <path d="M9 12h6M12 9v6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </svg>`,
+  'Claude.ai': `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+    <circle cx="12" cy="12" r="10" fill="#A78BFA"/>
+    <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </svg>`,
+  'ChatGPT': `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+    <circle cx="12" cy="12" r="10" fill="#10B981"/>
+    <path d="M12 8v8M8 12h8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </svg>`,
+  'AI Assistant': `<svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+    <circle cx="12" cy="12" r="10" fill="#6B7280"/>
+    <circle cx="9" cy="10" r="1" fill="white"/>
+    <circle cx="15" cy="10" r="1" fill="white"/>
+    <path d="M9 14h6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </svg>`
+};
+
+const aiLogo = toolLogos[aiToolName] || toolLogos['AI Assistant'];
 
 // Theme-specific classes
 const themeClasses = {
@@ -152,28 +192,31 @@ function renderMarkdown(text: string): string {
   class={`chat-transcript ${currentTheme.container} ${className}`}
   data-theme={theme}
 >
-  {theme === 'adium' && (
-    <div class={currentTheme.titleBar}>
-      <div class="flex items-center gap-2">
-        <svg class="w-5 h-5 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
-        </svg>
-        <span class="font-medium text-gray-700 dark:text-gray-200">
-          {messages.length > 0 && messages[0].metadata?.source === 'cursor' ? 'Claude - Cursor Export' : 
-           messages.length > 0 && messages[0].metadata?.source === 'claude-code' ? 'Claude Code' : 
-           'Chat Transcript'}
-        </span>
+  {/* Title bar with tool name */}
+  <div class="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 px-4 py-3 border-b-2 border-gray-300 dark:border-gray-600 rounded-t-lg">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="text-gray-600 dark:text-gray-300" set:html={aiLogo} />
+        <div>
+          <h3 class="font-semibold text-gray-800 dark:text-gray-100 text-lg">
+            AI Conversation Transcript
+          </h3>
+          <span class="text-sm text-gray-600 dark:text-gray-400">
+            {aiToolName}
+          </span>
+        </div>
       </div>
-      {sourceInfo && (
-        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">
-          Conversation began {sourceInfo.replace('Exported on ', '').replace(' from Cursor (1.5.5)', '')}
+      {sourceInfo && showSource && (
+        <div class="text-xs text-gray-500 dark:text-gray-400 text-right">
+          {sourceInfo.replace('Exported on ', '').replace(/ from .+/, '')}
         </div>
       )}
     </div>
-  )}
+  </div>
   
+  {/* Messages container with enhanced border */}
   <div 
-    class={theme === 'adium' ? currentTheme.messagesContainer : ''}
+    class={`${theme === 'adium' ? currentTheme.messagesContainer : ''} border-x-2 border-b-2 border-gray-300 dark:border-gray-600 rounded-b-lg`}
     style={containerStyle}
   >
     {messages.map((message, index) => {
@@ -188,18 +231,18 @@ function renderMarkdown(text: string): string {
             {showAvatars && (
               <div class={currentTheme.avatar}>
                 {isUser ? (
-                  <span class="text-3xl">🐸</span>
+                  <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
+                    U
+                  </div>
                 ) : (
-                  <svg class="w-8 h-8 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2l10 5v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7l10-5zm0 2.2L4.5 8v8.5c0 .3.2.5.5.5h14c.3 0 .5-.2.5-.5V8L12 4.2zM8 10c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm8 0c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm-4 3c-2.2 0-4 1.8-4 4h8c0-2.2-1.8-4-4-4z"/>
-                  </svg>
+                  <div set:html={aiLogo} />
                 )}
               </div>
             )}
             
             <div class={currentTheme.messageContent}>
               <div class="font-medium text-sm text-gray-700 dark:text-gray-300 mb-1">
-                {isUser ? 'User' : (message.metadata?.source === 'cursor' ? 'Cursor' : 'Claude')}
+                {isUser ? 'User' : aiToolName}
               </div>
               <div 
                 class="message-text"
@@ -288,9 +331,18 @@ function renderMarkdown(text: string): string {
     padding: 0;
   }
 
+  /* Enhanced border visibility for scrollable area */
+  .chat-transcript {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .dark .chat-transcript {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+
   /* Adium-specific styling */
   [data-theme="adium"] {
-    border: 1px solid #e5e7eb;
+    border: none; /* Remove old border since we have new enhanced borders */
   }
 
   [data-theme="adium"] .message-text {
