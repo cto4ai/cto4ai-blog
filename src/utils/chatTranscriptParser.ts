@@ -67,7 +67,9 @@ function parseClaudeCodeExport(text: string): ChatMessage[] {
     
     // Check if this section starts with **User** or **Claude**/**Assistant**
     if (trimmedSection.startsWith('**User**')) {
-      const content = trimmedSection.replace(/^\*\*User\*\*\n?/, '').trim();
+      let content = trimmedSection.replace(/^\*\*User\*\*\n?/, '').trim();
+      // Remove trailing --- separator and excessive blank lines
+      content = content.replace(/\n?---\s*$/, '').replace(/\n{3,}/g, '\n\n').trim();
       if (content) {
         messages.push({
           role: 'user',
@@ -77,7 +79,9 @@ function parseClaudeCodeExport(text: string): ChatMessage[] {
       }
     } else if (trimmedSection.startsWith('**Claude**') || trimmedSection.startsWith('**Assistant**')) {
       // For assistant messages, capture EVERYTHING after the marker
-      const content = trimmedSection.replace(/^\*\*(Claude|Assistant)\*\*\n?/, '').trim();
+      let content = trimmedSection.replace(/^\*\*(Claude|Assistant)\*\*\n?/, '').trim();
+      // Remove trailing --- separator and excessive blank lines
+      content = content.replace(/\n?---\s*$/, '').replace(/\n{3,}/g, '\n\n').trim();
       if (content) {
         messages.push({
           role: 'assistant',
@@ -123,7 +127,9 @@ function parseCursorExport(text: string): ChatMessage[] {
     
     // Check if this section starts with **User** or **Cursor**/**Assistant**
     if (trimmedSection.startsWith('**User**')) {
-      const content = trimmedSection.replace(/^\*\*User\*\*\n?/, '').trim();
+      let content = trimmedSection.replace(/^\*\*User\*\*\n?/, '').trim();
+      // Remove trailing --- separator and excessive blank lines
+      content = content.replace(/\n?---\s*$/, '').replace(/\n{3,}/g, '\n\n').trim();
       if (content) {
         messages.push({
           role: 'user',
@@ -133,7 +139,9 @@ function parseCursorExport(text: string): ChatMessage[] {
       }
     } else if (trimmedSection.startsWith('**Cursor**') || trimmedSection.startsWith('**Assistant**')) {
       // For assistant messages, capture EVERYTHING after the marker
-      const content = trimmedSection.replace(/^\*\*(Cursor|Assistant)\*\*\n?/, '').trim();
+      let content = trimmedSection.replace(/^\*\*(Cursor|Assistant)\*\*\n?/, '').trim();
+      // Remove trailing --- separator and excessive blank lines
+      content = content.replace(/\n?---\s*$/, '').replace(/\n{3,}/g, '\n\n').trim();
       if (content) {
         messages.push({
           role: 'assistant',
@@ -160,14 +168,18 @@ function parseClaudeAI(text: string): ChatMessage[] {
     const trimmedPart = part.trim();
     
     if (trimmedPart.startsWith('Human:')) {
-      const content = trimmedPart.replace(/^Human:\s*/, '').trim();
+      let content = trimmedPart.replace(/^Human:\s*/, '').trim();
+      // Remove excessive blank lines
+      content = content.replace(/\n{3,}/g, '\n\n').trim();
       messages.push({
         role: 'user',
         content,
         metadata: messages.length === 0 ? { source: 'claude-ai' } : undefined,
       });
     } else if (trimmedPart.startsWith('Assistant:')) {
-      const content = trimmedPart.replace(/^Assistant:\s*/, '').trim();
+      let content = trimmedPart.replace(/^Assistant:\s*/, '').trim();
+      // Remove excessive blank lines
+      content = content.replace(/\n{3,}/g, '\n\n').trim();
       messages.push({
         role: 'assistant',
         content,
@@ -193,14 +205,18 @@ function parseChatGPT(text: string): ChatMessage[] {
     const trimmedPart = part.trim();
     
     if (trimmedPart.startsWith('User:')) {
-      const content = trimmedPart.replace(/^User:\s*/, '').trim();
+      let content = trimmedPart.replace(/^User:\s*/, '').trim();
+      // Remove excessive blank lines
+      content = content.replace(/\n{3,}/g, '\n\n').trim();
       messages.push({
         role: 'user',
         content,
         metadata: messages.length === 0 ? { source: 'chatgpt' } : undefined,
       });
     } else if (trimmedPart.startsWith('ChatGPT:') || trimmedPart.startsWith('Assistant:')) {
-      const content = trimmedPart.replace(/^(ChatGPT|Assistant):\s*/, '').trim();
+      let content = trimmedPart.replace(/^(ChatGPT|Assistant):\s*/, '').trim();
+      // Remove excessive blank lines
+      content = content.replace(/\n{3,}/g, '\n\n').trim();
       messages.push({
         role: 'assistant',
         content,
