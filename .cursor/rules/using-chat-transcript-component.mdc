@@ -97,6 +97,15 @@ import { chatGptConversation } from './transcripts/chatgpt';
   maxHeight="500px" 
 />
 
+### With Custom Tool Name
+
+<ChatTranscript 
+  transcript={claudeCodeChat} 
+  theme="adium" 
+  maxHeight="500px"
+  toolName="Claude 3.5 Sonnet" 
+/>
+
 ### Cursor Approach
 
 <ChatTranscript 
@@ -142,6 +151,7 @@ python3 scripts/convert-chat-transcript.py <input> <output> --export-name <name>
 | `showAvatars` | boolean | true | Show user/AI avatars |
 | `showSource` | boolean | true | Show transcript source info |
 | `collapsible` | boolean | false | Make long messages collapsible |
+| `toolName` | string | auto-detected | Manual override for AI tool name display |
 
 ## Quick Examples
 
@@ -242,18 +252,27 @@ Or CSS Grid: \`display: grid; place-items: center;\``}
    - Use consistent naming: `[source].ts` (e.g., `claude-code.ts`)
    - Group related conversations together
 
-2. **Performance**:
+2. **Tool Name Override**:
+   - Use `toolName` prop when auto-detection isn't accurate
+   - Override for better branding (e.g., "Claude 3.5 Sonnet" instead of "Claude Code")
+   - Useful when transcript source metadata is missing or incorrect
+   - Examples:
+     - `toolName="Claude 3.5 Sonnet"` for specific model versions
+     - `toolName="Cursor IDE"` for more descriptive naming
+     - `toolName="GPT-4"` when you want to specify the model
+
+3. **Performance**:
    - Use `maxHeight` for long conversations
    - Import from TypeScript files (not inline) for better build performance
    - Consider splitting very long conversations
 
-3. **Readability**:
+4. **Readability**:
    - Choose appropriate theme for content type
    - Use 'adium' for nostalgic/fun posts
    - Use 'minimal' or 'modern' for technical content
    - Add context before/after transcripts in your post
 
-4. **Export Names**:
+5. **Export Names**:
    - Use descriptive camelCase names
    - Match the conversation topic (e.g., `authImplementation`, `debugSession`)
    - Be consistent across multiple transcripts in same post
@@ -297,7 +316,8 @@ shows our iterative approach to implementing WebSocket connections and state man
 <ChatTranscript 
   transcript={featureImplementation} 
   theme="adium" 
-  maxHeight="600px" 
+  maxHeight="600px"
+  toolName="Claude Code"  // Optional: override auto-detected name
 />
 
 ## Key Takeaways

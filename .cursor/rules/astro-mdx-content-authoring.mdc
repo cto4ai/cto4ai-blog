@@ -14,6 +14,7 @@ alwaysApply: false
   - Post directory based on slug
   - Parallel image directory
   - Social media directory structure
+  - Transcripts directory for AI conversation exports
 - Create index.mdx with:
   - Front matter (all fields)
     - Set date correctly per guidelines below
@@ -28,6 +29,7 @@ alwaysApply: false
 - **Content Path**: `/src/data/content/[slug]/index.mdx`
 - **Slug Format**: URL-friendly (lowercase, hyphens, no spaces)
 - **Example**: `/src/data/content/my-awesome-post/index.mdx`
+- **Transcripts Path**: `/src/data/content/[slug]/transcripts/` (for AI conversation exports)
 
 ### Image Storage
 - **Image Path**: `/src/assets/images/content/[slug]/`
@@ -72,6 +74,7 @@ Place at the top of your MDX file after frontmatter:
 ```jsx
 import SingleImage from '~/components/ui/SingleImage.astro';
 import ImageGallery from '~/components/ui/ImageGallery.astro';
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';  // For AI conversation transcripts
 ```
 
 ### SingleImage Usage
@@ -185,6 +188,9 @@ touch src/data/content/my-new-post/index.mdx
 # Create parallel images directory
 mkdir -p src/assets/images/content/my-new-post
 
+# Create transcripts directory for AI conversation exports
+mkdir -p src/data/content/my-new-post/transcripts
+
 # Create social media scaffolding (for social content authoring)
 mkdir -p src/data/content/my-new-post/socialposts/images
 mkdir -p src/data/content/my-new-post/socialposts/linkedin
@@ -203,12 +209,18 @@ Place your cover image in `/src/assets/images/content/my-new-post/` and referenc
 ### 4. Write Content
 Add your MDX content, including any image components as needed.
 
-### 5. Create Social Content (Optional)
+### 5. Add AI Conversation Transcripts (Optional)
+- Convert AI chat exports to TypeScript files in `transcripts/` directory
+- Use the convert-chat-transcript.py script to convert exports
+- Import and display using the ChatTranscript component
+- See `.cursor/rules/using-chat-transcript-component.mdc` for detailed instructions
+
+### 6. Create Social Content (Optional)
 - Write LinkedIn post in `socialposts/linkedin/post.txt`
 - Write Mastodon post in `socialposts/mastodon/post.txt`
 - Add any social-specific images to `socialposts/images/`
 
-**Note**: The `socialposts/` directory is for your content planning only and will NOT be published or exposed during the Astro build process.
+**Note**: The `socialposts/` and `transcripts/` directories are for your content planning only. The `socialposts/` directory will NOT be published or exposed during the Astro build process. The `transcripts/` directory contains TypeScript files that can be imported into your MDX content.
 
 ## Common Patterns
 
