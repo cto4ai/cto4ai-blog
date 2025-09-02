@@ -1,0 +1,46 @@
+---
+title: "Great Rules In, Great Results Out"
+contentType: "brief"
+description: "An investment in writing great rules for your AI tools will be repaid many times over."
+author: "Jack Ivers"
+publishDate: "2025-09-01T08:00:00-05:00"
+image: "~/assets/images/content/great-rules-great-results/tablet.png"
+featured: true
+featuredOrder: 1
+draft: true
+tags: ["cursor", "copywriting", "ai", "productivity", "content-creation"]
+categories: ["AI", "Writing"]
+---
+
+import SingleImage from '~/components/ui/SingleImage.astro';
+import ImageGallery from '~/components/ui/ImageGallery.astro';
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+import { cursorTranscript } from './transcripts/cursor';
+import { claudeCodeFullTranscript } from './transcripts/claude-code-full';
+
+I've [written recently](/p/auto-link-with-gpt-5-and-playwright-mcp) about how [Cursor](https://cursor.com), the AI IDE, isn't just great for code---it's a superb copywriting tool as well.
+
+As part of my [recent implementation](/p/hugo-to-astro-migration-story) of the [Astro](https://astro.build) static site generator, I wanted to improve the instructions I give Cursor when I start writing a new post. What I need is a scaffolding consisting of a directory for the post, a skeleton content Markdown file, and subdirectories for related items: images, social media posts, and AI chat transcripts (in case I want to highlight an AI conversation). This process changed a bit when I migrated from [Hugo](https://gohugo.io) to Astro and I so I updated and refined my related Cursor rule.
+
+All I had to do was give [Cursor](https://cursor.com) the rule as @ context, and then make a very simple request. 
+
+<SingleImage 
+  src="cursor-scaffold.png" 
+  alt="Cursor conversation showing AI scaffolding a blog post structure with proper directory organization and frontmatter" 
+  size="2xl" 
+  postDir="great-rules-great-results" 
+/>
+
+Here's the full transcript of my interaction with Cursor:
+
+<ChatTranscript theme="adium" maxHeight="600px" transcript={cursorTranscript} />
+
+Note that the interaction consisted of a single, simple request, and Cursor doing all the work. That's the way, uh-huh uh-huh, I like it, uh-huh uh-huh ...
+
+But how did Cursor know what to do? That `astro-mdx-content-authoring` rules file is 287 lines long, and carefully explains everything about authoring content files within my new Astro environment, including this scaffolding process. 
+
+Creating that rules file took some work---though these days I have [Claude Code](https://www.anthropic.com/claude-code) write most of my Cursor rules. Still, I there was work involved in thinking through what was needed and in continuing to refine the rule as my Astro setup evolved and new ideas came to mind.
+
+But the payback is high: a laborious process reduced to a single, simple request. 
+
+Invest in your AI rules, and thou shalt be repaid. 
