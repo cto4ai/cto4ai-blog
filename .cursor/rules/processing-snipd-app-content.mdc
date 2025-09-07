@@ -46,7 +46,7 @@ E.g. podcast guest. These are shared as a link to the person's page on share.sni
 Examples of person links: `https://share.snipd.com/person/jeff-huber/SVjd1vxGTj600lQmoLcBcA`
 
 ##### How to Process
-Convert the person link to a markdown link, using the person's name extract from the window title from the destination page as the linked text.
+Convert the person link to a markdown link, using the person's name extracted from the window title from the destination page as the linked text.
 
 ### Quotes
 
@@ -68,16 +68,43 @@ Snipd - save & remember the best insights you hear in podcasts
 
 ##### How to Process
 
+When encountering a Snipd quote in this format:
+
+```
+"Quote text here"
+
+― [Person] on [topic description]
+
+Heard on [Podcast/Source]: [Additional context].
+https://share.snipd.com/episode/[episode-id]
+
+Snipd - save & remember the best insights you hear in podcasts
+```
+
+Transform it to:
+
+```
+On [[topic description]](https://share.snipd.com/episode/[episode-id]):
+
+> Quote text here
+```
+
 #### Quote Image
 
 An image visualizing the quote and attribution line. Examples of quote image file names: `snip_quote_snip_quote/8fa58784_da31_41d4_ba9d_f0891d8a9283_1757275854306.png`
 
+##### How to Process
 Create a SingleImage component block that references the quote's image file name in the images directory located parallel to the content directory, e.g. at `/src/assets/images/content/[slug]/[quote_image_file_name]`.
 
-
 ### Episodes 
-A link to the podcast episode page on share.snipd.com. Examples of episode links:
-- https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce
+A podcast episode. These are shared as a link to the podcast episode page on share.snipd.com. 
+
+#### Episode Link
+Examples of episode links: `https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce` 
+
+##### How To Process
+Convert the episode link to a markdown link, using the the window title from the destination linked page as the linked text.
+
 
 ## Processing Snipd Content Referenced in a Post
 
