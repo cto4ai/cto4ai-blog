@@ -31,23 +31,29 @@ Convert the snip link to a markdown link, using the window title from the destin
 An image that visualizes a point or two that the AI summarized from the snip. Examples of snip image file names: `snip_image_share_1757275196777.png`
 
 ##### How to Process
-Create a SingleImage component block that references the image file name in the images directory located parallel to the content directory, e.g. at `/src/assets/images/content/[slug]/[image_file_name]`.
+Create a SingleImage component block that references the image file name in the images directory located parallel to the content directory, e.g. at `/src/assets/images/content/[slug]/[snip_image_file_name]`.
 
 #### Snip Video
 If the podcast has video, a video of the entire snip with captions. Example snip video file name: `snip_video_snip/3a87c36a-e18e-4081-bfd6-84f563afab93.mp4`
 
 ##### How to Process
-Create an HTML video element SingleImage component block that references the file name in the images directory located parallel to the content directory, e.g. at `/src/assets/images/content/[slug]/[image_file_name]`.
+Create an HTML video element that references the video file name in the videos directory located under the post's slug name in the `/public/videos/content` directory, e.g. at `/public/videos/content/[slug]/[snip_video_file_name]`.
 
 ### People
-E.g. podcast guest. These are shared as a link to the person's page on share.snipd.com. Examples of person links:
-- https://share.snipd.com/person/jeff-huber/SVjd1vxGTj600lQmoLcBcA
+E.g. podcast guest. These are shared as a link to the person's page on share.snipd.com. 
 
+#### Person Link
+Examples of person links: `https://share.snipd.com/person/jeff-huber/SVjd1vxGTj600lQmoLcBcA`
 
-### Quotes 
+##### How to Process
+Convert the person link to a markdown link, using the person's name extract from the window title from the destination page as the linked text.
 
-A quote as created by ML / AI or a user of on the Snipd platform. These can be shared as:
-- A block of text that includes the text of the quote, an attribution line identifying the speaker, a link to the podcast episode page on Snipd's web-based sharing platform, and some promotional copy. Example quote text block (backticks added after copying quote text):
+### Quotes
+
+A quote as created by ML / AI or a user of on the Snipd platform. Quotes can be shared as:
+
+#### Block of Text
+A block of text that includes the text of the quote, an attribution line identifying the speaker, a link to the podcast episode page on Snipd's web-based sharing platform, and some promotional copy. Example quote text block (backticks added after copying):
 
 ```
 "You don't have to give an LLM 10 blue links. You can brute force a lot more. And so using an LLM as a re-ranker and brute forcing from 300 down to 30, I've seen now emerge a lot."
@@ -60,8 +66,14 @@ https://share.snipd.com/episode/e915ab63-dc66-454d-b9b6-af4a4739e72c
 Snipd - save & remember the best insights you hear in podcasts
 ```
 
-- An image visualizing the quote and attribution line. Example quote image file name:
-  - snip_quote_snip_quote/8fa58784_da31_41d4_ba9d_f0891d8a9283_1757275854306.png
+##### How to Process
+
+#### Quote Image
+
+An image visualizing the quote and attribution line. Examples of quote image file names: `snip_quote_snip_quote/8fa58784_da31_41d4_ba9d_f0891d8a9283_1757275854306.png`
+
+Create a SingleImage component block that references the quote's image file name in the images directory located parallel to the content directory, e.g. at `/src/assets/images/content/[slug]/[quote_image_file_name]`.
+
 
 ### Episodes 
 A link to the podcast episode page on share.snipd.com. Examples of episode links:
