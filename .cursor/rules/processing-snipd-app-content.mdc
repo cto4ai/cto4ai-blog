@@ -1,0 +1,90 @@
+---
+title: "Processing Snips And Other Content From The Snipd App"
+description: "Transform Snipd-created 'snips' including pull quotes and links to snips, into clean, consistent markdown format for blog posts"
+tags: ["content", "quotes", "markdown", "formatting"]
+---
+
+
+# Processing Snips Made Using The Snipd App
+
+The Snipd mobile app allows podcast listeners to "snip" small podcast segments, producing what are called "snips", which are easily shared from the app and its associated web-based sharing platform. Every snip has a link which is served via the web-based sharing platform. When a user creates a snip such as by tapping or triple-clicking an Airpod or headset control, the app uses ML / AI to automatically pick start and end times for the snip (which the user can later adjust if desired). The Snipd platform also often creates "quotes" that contain what ML / AI believes to be a core message from the larger snip.
+
+The Snipd mobile app allows these types of shares:
+
+- Snips: The snip as saved by the Snipd user. These can be shared as:
+   - a link to the snip on Snipd's web-based sharing platform
+   - an image that visualizes a point or two that the AI summarized from the snip
+   - if the podcast has video, a video of the entire snip with captions
+- People (e.g. podcast guest), which is shared as a link to the person's page on Snipd's web-based sharing platform
+- Quotes: A quote as created by ML / AI on the Snipd platform. These can be shared as:
+   - A block of text that includes the text of the quote, an attribution line identifying the speaker, a link to the podcast episode page on Snipd's web-based sharing platform, and some promotional copy
+   - An image visualizing the quote and attribution line
+- Episodes: link to the podcast episode page on Snipd's web-based sharing platform
+
+## Purpose
+Transform Snipd-created 'snips' including pull quotes and links to snips, into clean, consistent markdown format for blog posts.
+
+## Case 1: Shared Snipd Quotes via Copy Text
+
+Snip 
+
+When encountering a Snipd quote in this format:
+```
+"Quote text here"
+
+― [Person] on [topic description]
+
+Heard on [Podcast/Source]: [Additional context].
+https://share.snipd.com/episode/[episode-id]
+
+Snipd - save & remember the best insights you hear in podcasts
+```
+
+Transform it to:
+```
+On [[topic description]](https://share.snipd.com/episode/[episode-id]):
+
+> Quote text here
+```
+
+## Specific Rules
+
+1. **Quote formatting**: 
+   - Remove the surrounding quotes from the original quote text
+   - Convert to markdown blockquote using `>`
+
+2. **Topic line**: 
+   - Remove "― [Person] " from the beginning
+   - Capitalize "On" at the start
+   - Add a colon `:` at the end
+   - Hyperlink the topic description to the share.snipd.com URL
+
+3. **Remove lines**:
+   - Remove the "Heard on [Podcast/Source]: ..." line completely
+   - Remove the "Snipd - save & remember..." promotional line completely
+
+## Example
+
+**Before:**
+```
+"When the models are extremely capable, the value of a token they generate is extremely high."
+
+― Greg Brockman on why online learning and RL amplify model value
+
+Heard on Latent Space: The AI Engineer Podcast - Greg Brockman on OpenAI's Road to AGI.
+https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce
+
+Snipd - save & remember the best insights you hear in podcasts
+```
+
+**After:**
+```
+On [why online learning and RL amplify model value](https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce):
+
+> When the models are extremely capable, the value of a token they generate is extremely high.
+```
+
+## Notes
+- Preserve the exact topic description from the original attribution line
+- Maintain the share.snipd.com URL for proper attribution
+- Result should be clean and professional without promotional text

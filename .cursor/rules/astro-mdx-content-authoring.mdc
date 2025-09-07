@@ -9,7 +9,10 @@ alwaysApply: false
 **Task**: Create and edit MDX content for the CTO4.AI blog with proper structure, images, and formatting.
 
 ## Creating a New Post
-- Pick a slug based on guidance from user in creation request
+- Pick a slug based on guidance from user in creation request, such as post title
+  - Keep the slug a reasonable size
+    - Too long "chroma-rag-is-dead-long-live-context-engineering"
+    - OK "chroma-context-engineering"
 - Scaffold directory structure
   - Post directory based on slug
   - Parallel image directory

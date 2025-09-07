@@ -1,6 +1,6 @@
 ---
 title: "Chroma: RAG is Dead - Long Live Context Engineering"
-contentType: "essay"
+contentType: "episode"
 description: "Exploring how Chroma is revolutionizing context engineering and moving beyond traditional RAG approaches"
 author: "Jack Ivers"
 publishDate: "2025-01-27T07:56:00-05:00"
@@ -18,4 +18,49 @@ import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 ## Introduction
 
 Your content starts here...
+
+If RAG (Retrieval Augmented Generation) is dead, then what's alive? What's the right way of thinking about and exposing company knowledge through AIs? This Latent Space episode, featuring Chroma CEO and cofounder Jeff Huber, has compelling answers.
+
+## About Chroma
+
+## Snip: Context Engineering vs RAG
+
+https://share.snipd.com/snip/3a87c36a-e18e-4081-bfd6-84f563afab93
+
+> "Context engineering is the job of figuring out what should be in the context window, any given LLM generation step."
+
+― Jeff Huber defining context engineering.
+
+Heard on Latent Space: The AI Engineer Podcast - Long Live Context Engineering - with Jeff Huber of Chroma.
+https://share.snipd.com/episode/e915ab63-dc66-454d-b9b6-af4a4739e72c
+
+Snipd - save & remember the best insights you hear in podcasts
+
+
+
+## Snip: Context Rot
+
+https://share.snipd.com/snip/8fa58784-da31-41d4-ba9d-f0891d8a9283
+
+## Snip: Context Chunk Selection and LLM Re-ranking
+
+https://share.snipd.com/snip/f1faab7a-3205-4a1f-ab6c-f10be993b359
+
+## Snip: LLM Re-Ranking
+
+https://share.snipd.com/snip/c8fe2d6c-a352-44a7-a619-f180cc997b99
+
+"You don't have to give an LLM 10 blue links. You can brute force a lot more. And so using an LLM as a re-ranker and brute forcing from 300 down to 30, I've seen now emerge a lot."
+
+― Jeff Huber on using LLMs for re-ranking
+
+Heard on Latent Space: The AI Engineer Podcast - Long Live Context Engineering - with Jeff Huber of Chroma.
+https://share.snipd.com/episode/e915ab63-dc66-454d-b9b6-af4a4739e72c
+
+Snipd - save & remember the best insights you hear in podcasts
+
+And yeah. So maybe back up a little bit, the way that we came to work on this research was we were looking actually at agent learning. So we were very curious, like, could you give agents access to like prior successes or prior failures? And if you did, would that help boost agent performance? So we're specifically looking at a couple different data sets, Sweetbench inclusive. And we started seeing interesting patterns where like on sort of multi-turn agent interactions, we were giving it the whole conversation window, like the number of tokens explodes Extremely quickly. And instructions that were clearly in there, like we're being ignored and we're not being enacted upon. And we're like, oh, that clearly is a problem. We've now felt the pain. It was sort of a meme amongst people in the know that this was true. And I think also some of the research community's reaction to the Context of Rout Technical Report is like, yeah, we know. And that's fine. Nobody else knew. And it would be kind of nice if you can actually teach builders what is possible today versus what is not possible today. I don't blame the labs. I mean, building models is so insanely competitive. Everybody invariably is picking the benchmarks that they want to do the best on. They're training around those. Those are also the ones that, you know, find their way into their marketing. You know, most people are not motivated to come out and say, here are all the ways that our thing is great. And here are the ways that our thing is not great. You know, I don't know. I can have, I have some sympathy for, you know, why this was not reported on. But yeah, I mean, there was, bit of like this sort of implication where like, oh, look, our model is perfect on this task, needle in a haystack. Therefore, the context window you can use for whatever you want. There was an implication there. And well, I hope that that is true someday. That is not the case today. Yeah. Well, some people, at least on the YouTube video, will put this chart, which is kind of your figure one of the context route report. It seems like Sonic 4 is the
+
+Copied from Snipd AI Podcast App
+
 
