@@ -19,7 +19,7 @@ Steps:
    - Short variant: ~500 characters
    - Longer variant: ~1,000 characters
    - Very long: more than 2,500 but under the 3,000 character limit
-   - For each of these, do a version with just a single link to the original post, and another that adds 3 additional helpful links (taken from main post) with the link to the original post at the end.
+   - For each of these, do a version with just a single link to the original post, and another that adds 3 additional helpful links (items linked in the main post but not more than one of the three should be links to my own blog) with the link to the original post at the end.
 3. Structure each variant:
    - Hook line (1 strong sentence)
    - 1–3 succinct insights or takeaways (sentences or short bullets)
@@ -35,7 +35,7 @@ Steps:
    - At the end of the file, add an “Images to attach” section listing filenames to upload in LinkedIn
 6. Hashtags:
    - Prefer specific topics over generic ones (e.g., `#GenerativeAI` over `#AI`)
-   - Include project-relevant tags when appropriate (e.g., `#CTO4AI`, `#Astro`, `#TailwindCSS`, `#EngineeringLeadership`)
+   - Include project-relevant tags when appropriate (e.g.,   `#Astro`, `#TailwindCSS`, `#EngineeringLeadership`)
 7. Saving:
    - Ensure the destination directory exists: `socialposts/linkedin/`
    - Save using Unix line endings (LF)

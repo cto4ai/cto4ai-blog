@@ -1,0 +1,178 @@
+🎯 **SHORT VARIANT - SINGLE LINK**
+
+Great AI rules = great results. Period.
+
+💡 I just updated my Cursor rules for blog scaffolding - one simple request now creates entire directory structures, proper frontmatter, and social media folders automatically.
+
+🚀 The payback is massive: laborious processes reduced to single commands.
+
+👉 https://cto4.ai/p/great-rules-great-results
+
+#Cursor #AIProductivity #ContentCreation #CTO4AI #DeveloperTools
+
+---
+
+🎯 **SHORT VARIANT - MULTIPLE LINKS**
+
+Great AI rules = great results. Period.
+
+💡 I just updated my Cursor rules for blog scaffolding - one simple request now creates entire directory structures, proper frontmatter, and social media folders automatically.
+
+🚀 The payback is massive: laborious processes reduced to single commands.
+
+Additional resources:
+- Cursor as copywriting tool: https://cto4.ai/p/auto-link-with-gpt-5-and-playwright-mcp
+- My Hugo to Astro migration: https://cto4.ai/p/hugo-to-astro-migration-story
+- Claude Code official page: https://www.anthropic.com/claude-code
+
+👉 Full post: https://cto4.ai/p/great-rules-great-results
+
+#Cursor #AIProductivity #ContentCreation #CTO4AI #DeveloperTools
+
+---
+
+📝 **LONGER VARIANT - SINGLE LINK**
+
+Great AI rules in, great results out. 
+
+I've been refining my approach to AI-assisted content creation, and the results have been transformative.
+
+💡 **The Setup**: After migrating from Hugo to Astro, I needed to update my Cursor rules for blog post scaffolding. Instead of manually creating directories, files, and folder structures every time I start a new post, I wanted a single command solution.
+
+🎯 **The Result**: One simple request to Cursor now automatically creates:
+• Post directory with proper structure
+• Skeleton MDX file with complete frontmatter
+• Image directories for assets
+• Social media folders for cross-posting
+• AI transcript folders for conversation highlights
+
+⚡ **The Magic**: My 287-line astro-mdx-content-authoring rules file tells Cursor exactly how to structure everything. The AI follows specific rules for content structure, directory organization, and metadata formatting.
+
+🔄 **The Process**: Give Cursor the rule as @ context, make a simple request, and watch it work. No more manual setup, no more forgotten steps, no more inconsistent structure.
+
+The investment in writing comprehensive AI rules pays dividends every single time you use them.
+
+👉 https://cto4.ai/p/great-rules-great-results
+
+#Cursor #AIProductivity #ContentCreation #CTO4AI #DeveloperTools
+
+---
+
+📝 **LONGER VARIANT - MULTIPLE LINKS**
+
+Great AI rules in, great results out. 
+
+I've been refining my approach to AI-assisted content creation, and the results have been transformative.
+
+💡 **The Setup**: After migrating from Hugo to Astro, I needed to update my Cursor rules for blog post scaffolding. Instead of manually creating directories, files, and folder structures every time I start a new post, I wanted a single command solution.
+
+🎯 **The Result**: One simple request to Cursor now automatically creates:
+• Post directory with proper structure
+• Skeleton MDX file with complete frontmatter
+• Image directories for assets
+• Social media folders for cross-posting
+• AI transcript folders for conversation highlights
+
+⚡ **The Magic**: My 287-line astro-mdx-content-authoring rules file tells Cursor exactly how to structure everything. The AI follows specific rules for content structure, directory organization, and metadata formatting.
+
+🔄 **The Process**: Give Cursor the rule as @ context, make a simple request, and watch it work. No more manual setup, no more forgotten steps, no more inconsistent structure.
+
+The investment in writing comprehensive AI rules pays dividends every single time you use them.
+
+Additional resources:
+- Cursor as copywriting tool: https://cto4.ai/p/auto-link-with-gpt-5-and-playwright-mcp
+- My Hugo to Astro migration: https://cto4.ai/p/hugo-to-astro-migration-story
+- Claude Code official page: https://www.anthropic.com/claude-code
+
+👉 Full post: https://cto4.ai/p/great-rules-great-results
+
+#Cursor #AIProductivity #ContentCreation #CTO4AI #DeveloperTools
+
+---
+
+🚀 **VERY LONG VARIANT - SINGLE LINK**
+
+Great AI rules in, great results out. This principle has completely transformed how I approach AI-assisted content creation.
+
+💡 **The Challenge**: As someone who writes regularly about AI and technology, I found myself doing the same manual setup tasks every time I started a new blog post. Creating directories, setting up proper file structures, configuring frontmatter, organizing image folders - it was tedious and error-prone.
+
+🔧 **The Solution**: After my recent migration from Hugo to Astro static site generation, I decided to invest serious time in creating comprehensive Cursor rules. Not just basic prompts, but detailed 287-line instructions that encode everything about my content authoring workflow.
+
+⚡ **The Transformation**: What used to be a 15-20 minute manual process of:
+• Creating post directories with proper naming conventions
+• Setting up skeleton MDX files with all required frontmatter fields
+• Creating parallel image directories for assets
+• Setting up social media subdirectories for cross-posting
+• Adding AI transcript folders for conversation highlights
+• Importing the right components and setting proper metadata
+
+...is now a single, simple request: "Scaffold a post about [topic]"
+
+🎯 **The Real Magic**: Cursor automatically follows my specific rules for:
+• Content structure and directory organization
+• Frontmatter schema with all required fields (title, contentType, description, author, publishDate, image paths, draft status, tags, categories)
+• Component imports (SingleImage, ImageGallery, ChatTranscript)
+• Date formatting (set to 2 hours ago per my guidelines)
+• Social media directory scaffolding for LinkedIn and Mastodon cross-posting
+
+🔄 **The Development Process**: These days I have Claude Code write most of my Cursor rules, but there's still significant work in thinking through requirements and continuously refining as my setup evolves. The key insight: this upfront investment pays massive dividends.
+
+💰 **The ROI**: Every laborious, multi-step process I can encode into AI rules becomes a single command. The time savings compound with every use, and the consistency ensures I never miss important setup steps.
+
+🎪 **The Demo**: I include a full transcript in the post showing exactly how this works - one simple request, Cursor doing all the heavy lifting, perfect structure every time.
+
+The future of productivity isn't about working harder or faster manually - it's about investing in systems that amplify your capabilities. AI rules are one of the highest-leverage investments you can make in your creative workflow.
+
+👉 https://cto4.ai/p/great-rules-great-results
+
+#Cursor #AIProductivity #ContentCreation #CTO4AI #DeveloperTools
+
+---
+
+🚀 **VERY LONG VARIANT - MULTIPLE LINKS**
+
+Great AI rules in, great results out. This principle has completely transformed how I approach AI-assisted content creation.
+
+💡 **The Challenge**: As someone who writes regularly about AI and technology, I found myself doing the same manual setup tasks every time I started a new blog post. Creating directories, setting up proper file structures, configuring frontmatter, organizing image folders - it was tedious and error-prone.
+
+🔧 **The Solution**: After my recent migration from Hugo to Astro static site generation, I decided to invest serious time in creating comprehensive Cursor rules. Not just basic prompts, but detailed 287-line instructions that encode everything about my content authoring workflow.
+
+⚡ **The Transformation**: What used to be a 15-20 minute manual process of:
+• Creating post directories with proper naming conventions
+• Setting up skeleton MDX files with all required frontmatter fields
+• Creating parallel image directories for assets
+• Setting up social media subdirectories for cross-posting
+• Adding AI transcript folders for conversation highlights
+• Importing the right components and setting proper metadata
+
+...is now a single, simple request: "Scaffold a post about [topic]"
+
+🎯 **The Real Magic**: Cursor automatically follows my specific rules for:
+• Content structure and directory organization
+• Frontmatter schema with all required fields (title, contentType, description, author, publishDate, image paths, draft status, tags, categories)
+• Component imports (SingleImage, ImageGallery, ChatTranscript)
+• Date formatting (set to 2 hours ago per my guidelines)
+• Social media directory scaffolding for LinkedIn and Mastodon cross-posting
+
+🔄 **The Development Process**: These days I have Claude Code write most of my Cursor rules, but there's still significant work in thinking through requirements and continuously refining as my setup evolves. The key insight: this upfront investment pays massive dividends.
+
+💰 **The ROI**: Every laborious, multi-step process I can encode into AI rules becomes a single command. The time savings compound with every use, and the consistency ensures I never miss important setup steps.
+
+🎪 **The Demo**: I include a full transcript in the post showing exactly how this works - one simple request, Cursor doing all the heavy lifting, perfect structure every time.
+
+The future of productivity isn't about working harder or faster manually - it's about investing in systems that amplify your capabilities. AI rules are one of the highest-leverage investments you can make in your creative workflow.
+
+Additional resources:
+- Cursor as copywriting tool: https://cto4.ai/p/auto-link-with-gpt-5-and-playwright-mcp
+- My Hugo to Astro migration story: https://cto4.ai/p/hugo-to-astro-migration-story
+- Claude Code official page: https://www.anthropic.com/claude-code
+
+👉 Full post: https://cto4.ai/p/great-rules-great-results
+
+#Cursor #AIProductivity #ContentCreation #CTO4AI #DeveloperTools
+
+---
+
+**Images to attach:**
+- cursor-scaffold.png
+- tablet.png
