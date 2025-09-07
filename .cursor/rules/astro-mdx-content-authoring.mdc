@@ -102,6 +102,31 @@ For multiple images in a grid:
 />
 ```
 
+### ChatTranscript Usage
+For displaying AI conversation transcripts:
+
+```jsx
+<ChatTranscript 
+  transcript={transcriptVariable} 
+  theme="adium" 
+  maxHeight="600px" 
+  toolName="Claude Code" 
+/>
+```
+
+**Transcript Variable**: Import from a TypeScript file in your `transcripts/` directory:
+```jsx
+import { myConversation } from './transcripts/claude-code';
+// Then use: transcript={myConversation}
+```
+
+**Theme Options**: `adium`, `minimal`, `modern`, `compact`
+**Optional Props**: 
+- `toolName`: Override auto-detected AI tool name
+- `maxHeight`: Container height (e.g., '600px') for scrollable transcripts
+- `showTimestamps`: Display message timestamps (default: false)
+- `showAvatars`: Show user/AI avatars (default: true)
+
 ## Hyperlinking
 
 ### External Links
