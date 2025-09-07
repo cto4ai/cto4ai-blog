@@ -52,7 +52,7 @@ const getNormalizedPost = async (
     'brief': 'micro',
     'elsewhere': 'elsewhere',
     'quote': 'quote',
-    'episode': 'posts' // treating episode as posts for now
+    'episode': 'episode'
   };
 
   // For unified collection, use frontmatter contentType
@@ -118,7 +118,7 @@ const getNormalizedPost = async (
     // or 'content' in case you consume from API
 
     readingTime: remarkPluginFrontmatter?.readingTime,
-    contentType: contentType as 'posts' | 'micro' | 'elsewhere' | 'quote' | undefined,
+    contentType: contentType as 'posts' | 'micro' | 'elsewhere' | 'quote' | 'episode' | undefined,
     sourceLink: sourceLink,
   };
 };

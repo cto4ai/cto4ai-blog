@@ -46,7 +46,7 @@ export interface Post {
   readingTime?: number;
   
   /** Content type based on the source collection */
-  contentType?: 'posts' | 'micro' | 'elsewhere' | 'quote';
+  contentType?: 'posts' | 'micro' | 'elsewhere' | 'quote' | 'episode';
   
   /** External source link for elsewhere content */
   sourceLink?: string;

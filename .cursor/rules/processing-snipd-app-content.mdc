@@ -125,3 +125,6 @@ Examples of episode links: `https://share.snipd.com/episode/8dd5816c-f788-446e-9
 
 ##### How To Process
 Convert the episode link to a markdown link, using the the window title from the destination linked page as the linked text.
+
+## Use of Playwright Tool
+You may want to use the Playwright tool to, for example, extract destination link window titles.

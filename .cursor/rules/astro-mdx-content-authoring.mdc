@@ -67,7 +67,7 @@ categories: ["category1"]  # Optional
 - Use ISO 8601: `YYYY-MM-DDTHH:MM:SS-ZZ:ZZ`
 - Example: `2025-08-11T14:30:00-05:00` (Central Time)
 - Always include timezone offset
-- At creation, insert the current date-time less 2 hours (two hours ago).
+- At creation, use the shell `date` command to get the actual current date time - then insert the current date-time less 2 hours (two hours ago).
 
 ## Image Components
 
