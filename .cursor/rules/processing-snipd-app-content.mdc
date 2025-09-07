@@ -68,12 +68,12 @@ Snipd - save & remember the best insights you hear in podcasts
 
 ##### How to Process
 
-When encountering a Snipd quote in this format:
+When encountering a Snipd quote in the above format:
 
 ```
-"Quote text here"
+"[Quote text]"
 
-― [Person] on [topic description]
+― [Attribution line]
 
 Heard on [Podcast/Source]: [Additional context].
 https://share.snipd.com/episode/[episode-id]
@@ -84,73 +84,10 @@ Snipd - save & remember the best insights you hear in podcasts
 Transform it to:
 
 ```
-On [[topic description]](https://share.snipd.com/episode/[episode-id]):
+> [Quote text]
+---[[Attribution line]](https://share.snipd.com/episode/[episode-id]):
 
-> Quote text here
 ```
-
-#### Quote Image
-
-An image visualizing the quote and attribution line. Examples of quote image file names: `snip_quote_snip_quote/8fa58784_da31_41d4_ba9d_f0891d8a9283_1757275854306.png`
-
-##### How to Process
-Create a SingleImage component block that references the quote's image file name in the images directory located parallel to the content directory, e.g. at `/src/assets/images/content/[slug]/[quote_image_file_name]`.
-
-### Episodes 
-A podcast episode. These are shared as a link to the podcast episode page on share.snipd.com. 
-
-#### Episode Link
-Examples of episode links: `https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce` 
-
-##### How To Process
-Convert the episode link to a markdown link, using the the window title from the destination linked page as the linked text.
-
-
-## Processing Snipd Content Referenced in a Post
-
-
-
-
-Transform Snipd-created 'snips' including pull quotes and links to snips, into clean, consistent markdown format for blog posts.
-
-## Case 1: Shared Snipd Quotes via Copy Text
-
-Snip 
-
-When encountering a Snipd quote in this format:
-```
-"Quote text here"
-
-― [Person] on [topic description]
-
-Heard on [Podcast/Source]: [Additional context].
-https://share.snipd.com/episode/[episode-id]
-
-Snipd - save & remember the best insights you hear in podcasts
-```
-
-Transform it to:
-```
-On [[topic description]](https://share.snipd.com/episode/[episode-id]):
-
-> Quote text here
-```
-
-## Specific Rules
-
-1. **Quote formatting**: 
-   - Remove the surrounding quotes from the original quote text
-   - Convert to markdown blockquote using `>`
-
-2. **Topic line**: 
-   - Remove "― [Person] " from the beginning
-   - Capitalize "On" at the start
-   - Add a colon `:` at the end
-   - Hyperlink the topic description to the share.snipd.com URL
-
-3. **Remove lines**:
-   - Remove the "Heard on [Podcast/Source]: ..." line completely
-   - Remove the "Snipd - save & remember..." promotional line completely
 
 ## Example
 
@@ -168,12 +105,23 @@ Snipd - save & remember the best insights you hear in podcasts
 
 **After:**
 ```
-On [why online learning and RL amplify model value](https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce):
-
 > When the models are extremely capable, the value of a token they generate is extremely high.
+
+---[Greg Brockman on why online learning and RL amplify model valuewhy online learning and RL amplify model value](https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce)
 ```
 
-## Notes
-- Preserve the exact topic description from the original attribution line
-- Maintain the share.snipd.com URL for proper attribution
-- Result should be clean and professional without promotional text
+#### Quote Image
+
+An image visualizing the quote and attribution line. Examples of quote image file names: `snip_quote_snip_quote/8fa58784_da31_41d4_ba9d_f0891d8a9283_1757275854306.png`
+
+##### How to Process
+Create a SingleImage component block that references the quote's image file name in the images directory located parallel to the content directory, e.g. at `/src/assets/images/content/[slug]/[quote_image_file_name]`.
+
+### Episodes 
+A podcast episode. These are shared as a link to the podcast episode page on share.snipd.com. 
+
+#### Episode Link
+Examples of episode links: `https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce` 
+
+##### How To Process
+Convert the episode link to a markdown link, using the the window title from the destination linked page as the linked text.
