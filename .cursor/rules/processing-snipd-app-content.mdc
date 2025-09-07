@@ -5,23 +5,73 @@ tags: ["content", "quotes", "markdown", "formatting"]
 ---
 
 
-# Processing Snips Made Using The Snipd App
+# Processing Snips And Other Content From The Snipd App
 
-The Snipd mobile app allows podcast listeners to "snip" small podcast segments, producing what are called "snips", which are easily shared from the app and its associated web-based sharing platform. Every snip has a link which is served via the web-based sharing platform. When a user creates a snip such as by tapping or triple-clicking an Airpod or headset control, the app uses ML / AI to automatically pick start and end times for the snip (which the user can later adjust if desired). The Snipd platform also often creates "quotes" that contain what ML / AI believes to be a core message from the larger snip.
+## Overview
 
-The Snipd mobile app allows these types of shares:
+The Snipd mobile app allows podcast listeners to "snip" small podcast segments, producing what are called "snips", which are easily shared from the app and its associated web-based sharing platform, share.snipd.com. Every snip has a link on share.snipd.com. When a user creates a snip such as by tapping or triple-clicking an Airpod or headset control, the app uses ML / AI to automatically pick start and end times for the snip (which the user can later adjust if desired). 
 
-- Snips: The snip as saved by the Snipd user. These can be shared as:
-   - a link to the snip on Snipd's web-based sharing platform
-   - an image that visualizes a point or two that the AI summarized from the snip
-   - if the podcast has video, a video of the entire snip with captions
-- People (e.g. podcast guest), which is shared as a link to the person's page on Snipd's web-based sharing platform
-- Quotes: A quote as created by ML / AI on the Snipd platform. These can be shared as:
-   - A block of text that includes the text of the quote, an attribution line identifying the speaker, a link to the podcast episode page on Snipd's web-based sharing platform, and some promotional copy
-   - An image visualizing the quote and attribution line
-- Episodes: link to the podcast episode page on Snipd's web-based sharing platform
+The Snipd platform also often creates "quotes" that contain what ML / AI believes to be a core message from the larger snip; users can also share quotes from the app's transcript screen.
 
-## Purpose
+## Snipd Object Model and How To Process Snipd Objects
+
+The Snipd mobile app supports these shareable object types:
+
+### Snips 
+
+The snip as saved by the Snipd user. Snips can be shared as:
+
+#### Snip Link
+A link to the snip on share.snipd.com. Examples of snip links: `https://share.snipd.com/snip/3a87c36a-e18e-4081-bfd6-84f563afab93`
+
+##### How to Process
+Convert the snip link to a markdown link, using the window title from the destination page as the linked text.
+
+#### Snip Image
+An image that visualizes a point or two that the AI summarized from the snip. Examples of snip image file names: `snip_image_share_1757275196777.png`
+
+##### How to Process
+Create a SingleImage component block that references the image file name in the images directory located parallel to the content directory, e.g. at `/src/assets/images/content/[slug]/[image_file_name]`.
+
+#### Snip Video
+If the podcast has video, a video of the entire snip with captions. Example snip video file name: `snip_video_snip/3a87c36a-e18e-4081-bfd6-84f563afab93.mp4`
+
+##### How to Process
+Create an HTML video element SingleImage component block that references the file name in the images directory located parallel to the content directory, e.g. at `/src/assets/images/content/[slug]/[image_file_name]`.
+
+### People
+E.g. podcast guest. These are shared as a link to the person's page on share.snipd.com. Examples of person links:
+- https://share.snipd.com/person/jeff-huber/SVjd1vxGTj600lQmoLcBcA
+
+
+### Quotes 
+
+A quote as created by ML / AI or a user of on the Snipd platform. These can be shared as:
+- A block of text that includes the text of the quote, an attribution line identifying the speaker, a link to the podcast episode page on Snipd's web-based sharing platform, and some promotional copy. Example quote text block (backticks added after copying quote text):
+
+```
+"You don't have to give an LLM 10 blue links. You can brute force a lot more. And so using an LLM as a re-ranker and brute forcing from 300 down to 30, I've seen now emerge a lot."
+
+― Jeff Huber on using LLMs for re-ranking
+
+Heard on Latent Space: The AI Engineer Podcast - Long Live Context Engineering - with Jeff Huber of Chroma.
+https://share.snipd.com/episode/e915ab63-dc66-454d-b9b6-af4a4739e72c
+
+Snipd - save & remember the best insights you hear in podcasts
+```
+
+- An image visualizing the quote and attribution line. Example quote image file name:
+  - snip_quote_snip_quote/8fa58784_da31_41d4_ba9d_f0891d8a9283_1757275854306.png
+
+### Episodes 
+A link to the podcast episode page on share.snipd.com. Examples of episode links:
+- https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce
+
+## Processing Snipd Content Referenced in a Post
+
+
+
+
 Transform Snipd-created 'snips' including pull quotes and links to snips, into clean, consistent markdown format for blog posts.
 
 ## Case 1: Shared Snipd Quotes via Copy Text
