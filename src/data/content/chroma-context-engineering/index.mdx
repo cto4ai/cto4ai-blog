@@ -19,24 +19,25 @@ import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 
 If RAG (Retrieval Augmented Generation) is dead, then what's alive? What's the right way of thinking about and exposing company knowledge through AIs? This episode of the Latent Space poscast, featuring Chroma CEO and cofounder Jeff Huber, has compelling answers.
 
-## What is Chroma?
+## What & Who is Chroma?
 
-Chroma (the product) is an open-source vector database specifically designed to enhance large language model (LLM) applications. Chroma (the company) was founded in April 2022 by Jeff Huber (CEO) and Anton Troynikov and is headquartered in San Francisco.
+[Chroma](https://github.com/chroma-core/chroma) is an open-source embedding database purpose-built for LLM applications. The company was founded in 2022 by Jeff Huber (CEO) and Anton Troynikov.
 
 ### Core Purpose
 
-Chroma enables developers to integrate knowledge, facts, and skills into LLMs by efficiently managing embeddings - numerical representations of data that capture semantic and syntactic attributes. This helps reduce AI "hallucinations" and provides more accurate, context-aware responses.
+Chroma lets developers store embeddings alongside metadata and associated text, then run fast similarity search with filtering to ground LLM outputs in relevant, verifiable context—reducing hallucinations and improving answer quality.
 
-### Key Features
+### Core Features
 
-- Vector Search: Rapid similarity searches across large datasets
-- Embeddings Management: Efficient storage and retrieval of AI embeddings
-- Document Storage: Organized storage for various document types
-- Full-Text Search: Comprehensive search capabilities
-- Metadata Filtering: Advanced filtering based on metadata attributes
-- Multi-Modal Retrieval: Support for text, images, and audio data
+- Vector similarity search over collections
+- Metadata filtering for precise retrieval
+- Persistent storage for vectors, metadata, and associated text
+- Official client libraries: Python and JavaScript/TypeScript (first‑party); additional clients for Ruby, Java, Go, C#, Elixir, and Rust
+- Embedding-agnostic: works with text and other modalities via embeddings
 
 ## Snip: Context Engineering vs RAG
+
+Huber detests the term "RAG" and has what I believe is a far better framing of the core issue and solution in this snip.
 
 https://share.snipd.com/snip/3a87c36a-e18e-4081-bfd6-84f563afab93
 
