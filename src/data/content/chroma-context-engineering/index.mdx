@@ -1,5 +1,5 @@
 ---
-title: "Chroma: RAG is Dead - Long Live Context Engineering"
+title: "Chroma: RAG is Dead-Long Live Context Engineering"
 contentType: "episode"
 description: "Exploring how Chroma is revolutionizing context engineering and moving beyond traditional RAG approaches"
 author: "Jack Ivers"
@@ -39,13 +39,11 @@ Chroma lets developers store embeddings alongside metadata and associated text, 
 
 Beyond the core open-source capabilities, Chroma offers **Chroma Distributed**—an open-source, distributed version built in Rust that enables multi-node deployments for scalability and high-throughput requirements. For teams seeking a fully managed solution, **Chroma Cloud** provides a serverless, distributed architecture that abstracts infrastructure complexity while supporting deployment across major cloud platforms (AWS, GCP, Azure).
 
-## Snip: Context Engineering vs RAG
+## Snip: RAG => Context Engineering
 
-Huber detests the term "RAG" and actually influence Swyx to remove RAG as a track at the June AI Engineer World's Fair.
+Huber detests the term "RAG" and his opinions on the topic helped convince Swyx to remove the RAG track from the AI Engineer World's Fair event in June.
 
-> Context engineering is the job of figuring out what should be in the context window, any given LLM generation step.
-
----Jeff Huber
+<SingleImage src="snip_quote_snip_quote_3a87c36a_e18e_4081_bfd6_84f563afab93_1757294738179.png" alt="Jeff Huber defining context engineering" postDir="chroma-context-engineering" />
 
  He describes in [this snip](https://share.snipd.com/snip/3a87c36a-e18e-4081-bfd6-84f563afab93) what I believe is a far better framing of the core issue and solution---context engineering.
 
@@ -58,25 +56,22 @@ Huber detests the term "RAG" and actually influence Swyx to remove RAG as a trac
 
 Model builders like OpenAI, Anthropic, and Google DeepMind keep announcing increasingly large context windows, to 1M tokens and beyond. And with contexts getting larger and larger, who needs a retrieval solution like Chroma?
 
-> But yeah, I mean, there was, bit of like this sort of implication where like, oh, look, our model is perfect on this task, needle in a haystack. Therefore, the context window you can use for whatever you want. There was an implication there. And well, I hope that that is true someday. That is not the case today.
-
----Jeff Huber
-
 <SingleImage src="episode_transcript_quote_episode_transcript_quote_e915ab63_dc66_454d_b9b6_af4a4739e72c_1757294241344.png" alt="Jeff Huber quote about context window implications" postDir="chroma-context-engineering" />
 
-But there's a dirty little secret known only to researchers and insiders---context rot. When a large context gets repeatedly operated on repeatedly, for example in multi-turn agent interactions, the context "rots," and the model "loses its mind," tending to stop following clearly-stated instructions. Chroma researched this problem carefully, and in [this snip](https://share.snipd.com/snip/8fa58784-da31-41d4-ba9d-f0891d8a9283), Huber nicely describes the situation.
+But there's a dirty little secret known mainly among researchers---context rot. When a large context gets operated on repeatedly, for example in multi-turn agent interactions, the context "rots," and the model effectively loses its mind, most seriously the failure to follow clearly-stated instructions. Chroma researched this problem carefully, and in [this snip](https://share.snipd.com/snip/8fa58784-da31-41d4-ba9d-f0891d8a9283), Huber describes what they discovered.
 
 <video controls width="100%">
   <source src="/videos/content/chroma-context-engineering/snip_video_snip_8fa58784-da31-41d4-ba9d-f0891d8a9283.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
 
-
-
-
 ## Snip: Context Chunk Selection and LLM Re-ranking
 
+episode_transcript_quote_episode_transcript_quote/e915ab63_dc66_454d_b9b6_af4a4739e72c_1757295888624.png
+
 https://share.snipd.com/snip/f1faab7a-3205-4a1f-ab6c-f10be993b359
+
+snip_video_snip_f1faab7a-3205-4a1f-ab6c-f10be993b359.mp4
 
 ## Snip: LLM Re-Ranking
 
