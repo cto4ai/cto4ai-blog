@@ -15,6 +15,7 @@ export const prerender = true;
 const posts = await fetchPosts();
 
 // Helper function to get display name for content type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getContentTypeDisplay(post: any): string {
   const contentTypeMap: Record<string, string> = {
     essay: 'ESSAY',

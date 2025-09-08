@@ -58,7 +58,7 @@ const { language, textDirection } = I18N;
 
       // Global lightbox manager to handle GLightbox instances across page navigations
       class LightboxManager {
-        instance: any;
+        instance: any; // eslint-disable-line @typescript-eslint/no-explicit-any
         initialized: boolean;
         debug: boolean;
 

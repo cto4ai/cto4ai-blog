@@ -103,7 +103,7 @@ export default defineConfig({
       indexConfig: {
         excludeSelectors: ['img', '[data-pagefind-ignore]'],
       },
-    } as any),
+    } as any), // eslint-disable-line @typescript-eslint/no-explicit-any
   ],
 
   image: {
@@ -111,6 +111,7 @@ export default defineConfig({
   },
 
   markdown: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     remarkPlugins: [readingTimeRemarkPlugin, [remarkSmartypants as any, { dashes: 'oldschool' }]],
     rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin],
   },

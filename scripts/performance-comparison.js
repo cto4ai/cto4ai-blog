@@ -17,6 +17,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const __dirname = path.dirname(__filename);
 
 // Configuration
@@ -99,6 +100,7 @@ function extractMetrics(psiData) {
 }
 
 // Run Lighthouse CLI locally (requires lighthouse npm package)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function runLighthouse(url) {
   try {
     // Check if lighthouse is installed
@@ -130,8 +132,7 @@ async function runLighthouse(url) {
       siMs: metrics['speed-index']?.numericValue || 0,
       ttiMs: metrics['interactive']?.numericValue || 0,
     };
-  } catch (e) {
-     
+  } catch {
     console.log('  Lighthouse CLI not available, skipping local test');
     return null;
   }

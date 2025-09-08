@@ -323,7 +323,7 @@ export function autoDetectAndParse(text: string): ChatMessage[] {
       return parseClaudeAI(text);
     case 'chatgpt':
       return parseChatGPT(text);
-    default:
+    default: {
       // Try each parser and return the one with results
       let messages = parseClaudeCodeExport(text);
       if (messages.length > 0) return messages;
@@ -339,6 +339,7 @@ export function autoDetectAndParse(text: string): ChatMessage[] {
 
       // Fallback to generic parser
       return parseGeneric(text);
+    }
   }
 }
 
@@ -352,6 +353,3 @@ export function parseTranscript(text: string): ChatMessage[] {
 
   return autoDetectAndParse(text);
 }
-
-// Export individual parsers for specific use cases
-export { parseClaudeCodeExport, parseCursorExport, parseClaudeAI, parseChatGPT, parseGeneric };
