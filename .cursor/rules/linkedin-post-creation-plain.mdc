@@ -1,0 +1,64 @@
+---
+description: "Create a plain-formatted LinkedIn post text from an Astro MDX post or section; write to socialposts/linkedin/plain-post.txt; list images at the end, not inline."
+globs: []
+alwaysApply: false
+---
+
+# LinkedIn Plain Post Creation
+
+Inputs:
+- Source: main post at `src/data/content/{slug}/index.mdx` or a selected section of that post.
+
+Output:
+- Write the LinkedIn posts to `src/data/content/{slug}/socialposts/linkedin/plain-post.txt`, plain-post2.txt, etc.
+- If `plain-post.txt` already exists, create `plain-post-2.txt`, `plain-post-3.txt`, etc. Do not overwrite existing files.
+
+Steps:
+1. Read front matter from the source post (`title`, `description`, `date`, optional `tags`). Determine the canonical URL for the post. Place the link after the LinkedIn post draft text, it will be posted separately as a comment
+2. Draft a plain formatted LinkedIn post, in the 500-1000 character size range
+3. Use the plainspoken style and tone of Ethan Mollick.
+
+- Example 1:
+
+```
+GPT-5 Pro and Gemini 2.5 Pro Deep Think are both very impressive models for hard problems.
+
+I think they were both undersold during their respective launches, in part because I am not sure the labs themselves really understand the market for a slow, "deep-thinking" model, yet.
+
+One example - I gave GPT-5 Pro my published academic job market paper from 2010, which went through both peer review and the full seminar circuit. It suggested a lot of really smart methodological advances that would be applicable now, and, incidentally, identified a tiny error no one had spotted that involved seeing relationships between two different tables 
+
+The fact that my only prompt was "critique the methods of this paper, figure out better methods and apply them" and that it spontaneously checked the relationships in my tables, ran monte carlo simulations on my point estimates and did sensitivity analyses was kind of nuts,
+
+That said, one thing OpenAI needs to do is let me see the analysis being done by GPT-5 Pro. I can't confirm its work without being able to see the python code it ran and what the results were. The fact that the error it spotted was real helps, but the thinking trace is obscured.
+```
+
+- Example 2:
+
+```
+I'll note again that it seems nuts that, despite every AI lab launching a half-dozen new products, nobody is doing anything with GPTs, including OpenAI.
+
+When I talk to people at companies, this is still the way non-technical people share prompts on teams. But there has been no big change in GPTs in 2 years 
+
+Its fine if it turns out that GPTs/Gems/whatever aren't the future, but it seems important to roll out something else that makes sharing prompts useful across teams and organizations. Prompt libraries are still being used, and they are still awkward cut-and-paste things.
+
+I feel like the AI companies have the idea that AI chatbot use is something that should primarily be handled by IT & coders. But end-users are the real innovators. Approaches that make building, testing, & sharing AI uses in organizations more accessible make a big difference.
+```
+
+- Example 3:
+
+```
+The funny thing about the prediction from the CEO of Anthropic l that AI would be writing 90% of all code by now is that the prediction's failure distracts from the fact that AI adoption in code writing is actually extremely high, it was over 30% in December, 2024 according to one measure, with large financial impact.
+
+The speed at which AI has come to write a huge amount of code is pretty startling, even if it is not as fast as predicted. This is becoming a common theme in AI: boosters are often more directionally correct than those who dismiss AI, but they are usually way too early on timelines.
+```
+
+4. Images:
+   - No need to select images
+5. Hashtags:
+   - No hashtags
+6. Saving:
+   - Ensure the destination directory exists: `socialposts/linkedin/`
+   - Save using Unix line endings (LF)
+7. Emojis
+   - No emojis
+

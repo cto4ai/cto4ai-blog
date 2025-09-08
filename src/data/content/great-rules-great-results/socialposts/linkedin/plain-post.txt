@@ -1,0 +1,11 @@
+I spent time writing a 287-line rules file for Cursor, my AI code-and-content assistant. It felt like a lot of work upfront.
+
+But now when I need to scaffold a new blog post - create directories, skeleton files, proper frontmatter - I just make a single, simple request and Cursor does everything perfectly.
+
+The rule explains my entire Astro blog setup: directory structure, frontmatter requirements, image handling, social media post organization. All that context means Cursor can handle complex tasks without me having to explain anything.
+
+This is the real AI productivity win. Not the flashy demos, but the boring work of teaching your AI tools exactly how you want things done. Write good rules once, get great results forever.
+
+The investment in clear instructions pays back many times over.
+
+https://cto4.ai/p/great-rules-great-results

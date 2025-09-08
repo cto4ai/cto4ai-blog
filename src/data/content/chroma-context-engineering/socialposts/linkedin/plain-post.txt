@@ -1,0 +1,11 @@
+Jeff Huber from Chroma hates the term "RAG" so much he convinced conference organizers to drop entire RAG tracks from events.
+
+His alternative framing is much better: context engineering. Instead of thinking about retrieval and generation as separate steps, think about how to get the right information to your AI at the right time.
+
+Here's something most people don't know: large context windows have a dirty secret called "context rot." When models operate on huge contexts repeatedly, they effectively lose their minds and stop following basic instructions.
+
+This means those million-token context windows aren't the magic solution everyone thinks they are. You still need smart ways to select and rank the most relevant chunks.
+
+The practical takeaway: if you want your AI systems to work reliably, invest in proper context engineering, not just throwing everything into a giant context.
+
+https://cto4.ai/p/chroma-context-engineering
