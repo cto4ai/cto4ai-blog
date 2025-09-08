@@ -41,24 +41,28 @@ Beyond the core open-source capabilities, Chroma offers **Chroma Distributed**â€
 
 ## Snip: Context Engineering vs RAG
 
+Huber detests the term "RAG" and actually influence Swyx to remove RAG as a track at the June AI Engineer World's Fair.
 
 > Context engineering is the job of figuring out what should be in the context window, any given LLM generation step.
 
 ---Jeff Huber
 
-Huber detests the term "RAG" and describes in [this snip](https://share.snipd.com/snip/3a87c36a-e18e-4081-bfd6-84f563afab93) what I believe is a far better framing of the core issue and solution---context engineering.
+ He describes in [this snip](https://share.snipd.com/snip/3a87c36a-e18e-4081-bfd6-84f563afab93) what I believe is a far better framing of the core issue and solution---context engineering.
 
 <video controls width="100%">
   <source src="/videos/content/chroma-context-engineering/snip_video_snip:3a87c36a-e18e-4081-bfd6-84f563afab93.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
 
-
-
-
 ## Snip: Context Rot
 
-Model builders like OpenAI, Anthropic, and Google DeepMind have announce increasingly large context windows, to 1M tokens and beyond. And with contexts getting larger and larger, who needs a retrieval engine like Chroma?
+Model builders like OpenAI, Anthropic, and Google DeepMind keep announcing increasingly large context windows, to 1M tokens and beyond. And with contexts getting larger and larger, who needs a retrieval solution like Chroma?
+
+> But yeah, I mean, there was, bit of like this sort of implication where like, oh, look, our model is perfect on this task, needle in a haystack. Therefore, the context window you can use for whatever you want. There was an implication there. And well, I hope that that is true someday. That is not the case today.
+
+---Jeff Huber
+
+<SingleImage src="episode_transcript_quote_episode_transcript_quote_e915ab63_dc66_454d_b9b6_af4a4739e72c_1757294241344.png" alt="Jeff Huber quote about context window implications" postDir="chroma-context-engineering" />
 
 But there's a dirty little secret known only to researchers and insiders---context rot. When a large context gets repeatedly operated on repeatedly, for example in multi-turn agent interactions, the context "rots," and the model "loses its mind," tending to stop following clearly-stated instructions. Chroma researched this problem carefully, and in [this snip](https://share.snipd.com/snip/8fa58784-da31-41d4-ba9d-f0891d8a9283), Huber nicely describes the situation.
 
@@ -67,9 +71,7 @@ But there's a dirty little secret known only to researchers and insiders---conte
   Your browser does not support the video tag.
 </video>
 
-> But yeah, I mean, there was, bit of like this sort of implication where like, oh, look, our model is perfect on this task, needle in a haystack. Therefore, the context window you can use for whatever you want. There was an implication there. And well, I hope that that is true someday. That is not the case today.
 
----Jeff Huber
 
 
 ## Snip: Context Chunk Selection and LLM Re-ranking
