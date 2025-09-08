@@ -35,26 +35,42 @@ Chroma lets developers store embeddings alongside metadata and associated text, 
 - Official client libraries: Python and JavaScript/TypeScript (first‑party); additional clients for Ruby, Java, Go, C#, Elixir, and Rust
 - Embedding-agnostic: works with text and other modalities via embeddings
 
+### Extended Features and Commercial Offerings
+
+Beyond the core open-source capabilities, Chroma offers **Chroma Distributed**—an open-source, distributed version built in Rust that enables multi-node deployments for scalability and high-throughput requirements. For teams seeking a fully managed solution, **Chroma Cloud** provides a serverless, distributed architecture that abstracts infrastructure complexity while supporting deployment across major cloud platforms (AWS, GCP, Azure).
+
 ## Snip: Context Engineering vs RAG
 
-Huber detests the term "RAG" and has what I believe is a far better framing of the core issue and solution in this snip.
 
-https://share.snipd.com/snip/3a87c36a-e18e-4081-bfd6-84f563afab93
+> Context engineering is the job of figuring out what should be in the context window, any given LLM generation step.
 
-> "Context engineering is the job of figuring out what should be in the context window, any given LLM generation step."
+---Jeff Huber
 
-― Jeff Huber defining context engineering.
+Huber detests the term "RAG" and describes in [this snip](https://share.snipd.com/snip/3a87c36a-e18e-4081-bfd6-84f563afab93) what I believe is a far better framing of the core issue and solution---context engineering.
 
-Heard on Latent Space: The AI Engineer Podcast - Long Live Context Engineering - with Jeff Huber of Chroma.
-https://share.snipd.com/episode/e915ab63-dc66-454d-b9b6-af4a4739e72c
+<video controls width="100%">
+  <source src="/videos/content/chroma-context-engineering/snip_video_snip:3a87c36a-e18e-4081-bfd6-84f563afab93.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
-Snipd - save & remember the best insights you hear in podcasts
 
 
 
 ## Snip: Context Rot
 
-https://share.snipd.com/snip/8fa58784-da31-41d4-ba9d-f0891d8a9283
+Model builders like OpenAI, Anthropic, and Google DeepMind have announce increasingly large context windows, to 1M tokens and beyond. And with contexts getting larger and larger, who needs a retrieval engine like Chroma?
+
+But there's a dirty little secret known only to researchers and insiders---context rot. When a large context gets repeatedly operated on repeatedly, for example in multi-turn agent interactions, the context "rots," and the model "loses its mind," tending to stop following clearly-stated instructions. Chroma researched this problem carefully, and in [this snip](https://share.snipd.com/snip/8fa58784-da31-41d4-ba9d-f0891d8a9283), Huber nicely describes the situation.
+
+<video controls width="100%">
+  <source src="/videos/content/chroma-context-engineering/snip_video_snip_8fa58784-da31-41d4-ba9d-f0891d8a9283.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+> But yeah, I mean, there was, bit of like this sort of implication where like, oh, look, our model is perfect on this task, needle in a haystack. Therefore, the context window you can use for whatever you want. There was an implication there. And well, I hope that that is true someday. That is not the case today.
+
+---Jeff Huber
+
 
 ## Snip: Context Chunk Selection and LLM Re-ranking
 

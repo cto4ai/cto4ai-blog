@@ -34,7 +34,7 @@ An image that visualizes a point or two that the AI summarized from the snip. Ex
 Create a SingleImage component block that references the image file name in the images directory located parallel to the content directory, e.g. at `/src/assets/images/content/[slug]/[snip_image_file_name]`.
 
 #### Snip Video
-If the podcast has video, a video of the entire snip with captions. Example snip video file name: `snip_video_snip/3a87c36a-e18e-4081-bfd6-84f563afab93.mp4`
+If the podcast has video, a video of the entire snip with captions. Example snip video file name: `snip_video_snip/3a87c36a-e18e-4081-bfd6-84f563afab93.mp4` `snip_video_snip_8fa58784-da31-41d4-ba9d-f0891d8a9283.mp4`
 
 ##### How to Process
 Create an HTML video element that references the video file name in the videos directory located under the post's slug name in the `/public/videos/content` directory, e.g. at `/public/videos/content/[slug]/[snip_video_file_name]`.
