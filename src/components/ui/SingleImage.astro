@@ -1,5 +1,4 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 
@@ -15,19 +14,17 @@ const { src, alt = '', size = 'lg', class: className = '', postDir = 'chatgpt-4v
 
 const sizeClasses = {
   sm: 'max-w-sm',
-  md: 'max-w-md', 
+  md: 'max-w-md',
   lg: 'max-w-lg',
   xl: 'max-w-xl',
-  '2xl': 'max-w-2xl'
+  '2xl': 'max-w-2xl',
 };
 
 // Use Vite's glob import for production compatibility
 const images = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/content/**/*.{jpeg,jpg,png,svg,webp}');
 
 // Construct the full path for the image
-const imagePath = postDir 
-  ? `../../assets/images/content/${postDir}/${src}`
-  : `../../assets/images/content/${src}`;
+const imagePath = postDir ? `../../assets/images/content/${postDir}/${src}` : `../../assets/images/content/${src}`;
 
 // Get the image module
 let imageModule: { default: ImageMetadata } | null = null;
@@ -42,37 +39,33 @@ if (images[imagePath]) {
 }
 ---
 
-{imageModule && (
-  <div class={`single-image ${sizeClasses[size]} mx-auto ${className}`}>
-    <a 
-      href={imageModule.default.src}
-      class="glightbox block"
-      data-gallery="gallery"
-      data-title={alt}
-    >
-      <Image 
-        src={imageModule.default}
-        alt={alt}
-        class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-        loading="lazy"
-        width={800}
-        height={600}
-      />
-    </a>
-  </div>
-)}
-
+{
+  imageModule && (
+    <div class={`single-image ${sizeClasses[size]} mx-auto ${className}`}>
+      <a href={imageModule.default.src} class="glightbox block" data-gallery="gallery" data-title={alt}>
+        <Image
+          src={imageModule.default}
+          alt={alt}
+          class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+          loading="lazy"
+          width={800}
+          height={600}
+        />
+      </a>
+    </div>
+  )
+}
 
 <style>
   .single-image {
     margin: 2rem auto;
   }
-  
+
   .glightbox {
     display: block;
     transition: transform 0.2s ease;
   }
-  
+
   .glightbox:hover {
     transform: scale(1.02);
   }

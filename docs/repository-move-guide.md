@@ -5,11 +5,13 @@
 This guide documents the process of relocating the cto4ai-blog repository to a cleaner path structure.
 
 ### Current State
+
 - **Current location**: `/Users/jackivers/Projects/hugo/cto4ai-blog`
 - **Target location**: `/Users/jackivers/Projects/cto4ai-blog`
 - **Reason**: Cleaner directory structure (the blog is no longer Hugo-based, it's Astro-based)
 
 ### Pre-Move Checklist
+
 - [ ] Ensure all changes are committed and pushed
 - [ ] Close the project in Cursor/VS Code
 - [ ] Close any terminal sessions in the project directory
@@ -17,6 +19,7 @@ This guide documents the process of relocating the cto4ai-blog repository to a c
 ### Step 1: Move the Repository Directory
 
 Open Terminal and run:
+
 ```bash
 cd /Users/jackivers/Projects
 mv hugo/cto4ai-blog cto4ai-blog
@@ -26,16 +29,17 @@ mv hugo/cto4ai-blog cto4ai-blog
 
 After moving, update these 5 files to replace the old path with the new one:
 
-| File | Update Required |
-|------|-----------------|
-| `/docs/dev-server-with-search.md` | Replace `/Users/jackivers/Projects/hugo/cto4ai-blog` with `/Users/jackivers/Projects/cto4ai-blog` |
-| `/migrate_micro_content.py` | Update `ASTRO_ASSETS_DIR` path and print statement (2 occurrences) |
-| `/scripts/add-content-types.py` | Update `project_root` variable |
-| `/scripts/migrate-to-unified-structure.py` | Update default argument value |
+| File                                       | Update Required                                                                                   |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| `/docs/dev-server-with-search.md`          | Replace `/Users/jackivers/Projects/hugo/cto4ai-blog` with `/Users/jackivers/Projects/cto4ai-blog` |
+| `/migrate_micro_content.py`                | Update `ASTRO_ASSETS_DIR` path and print statement (2 occurrences)                                |
+| `/scripts/add-content-types.py`            | Update `project_root` variable                                                                    |
+| `/scripts/migrate-to-unified-structure.py` | Update default argument value                                                                     |
 
 #### Example changes:
 
 **migrate_micro_content.py**:
+
 ```python
 # OLD:
 ASTRO_ASSETS_DIR = Path("/Users/jackivers/Projects/hugo/cto4ai-blog/src/assets/images")
@@ -54,6 +58,7 @@ ASTRO_ASSETS_DIR = Path("/Users/jackivers/Projects/cto4ai-blog/src/assets/images
 ### Step 4: Update Claude Code
 
 When using Claude Code after the move:
+
 ```bash
 cd /Users/jackivers/Projects/cto4ai-blog
 ```
@@ -79,6 +84,7 @@ npm run build
 ### What's Preserved Automatically
 
 These items move with the repository and require no action:
+
 - ✅ All git history and configuration
 - ✅ Git remotes (GitHub connection)
 - ✅ `.cursor/rules/` directory with your AI assistance rules
@@ -125,6 +131,7 @@ If you encounter issues after moving:
 ### Post-Move Cleanup (Optional)
 
 After confirming everything works:
+
 1. Remove any old Cursor workspace entries pointing to `/Users/jackivers/Projects/hugo/cto4ai-blog`
 2. Update any documentation or README files that reference the old path
 3. Update any CI/CD configurations if they reference absolute paths
@@ -141,5 +148,5 @@ After confirming everything works:
 
 ---
 
-*Document created: August 29, 2025*
-*Last updated: August 29, 2025*
+_Document created: August 29, 2025_
+_Last updated: August 29, 2025_

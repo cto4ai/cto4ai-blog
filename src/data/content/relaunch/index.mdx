@@ -1,13 +1,13 @@
 ---
-author: "Jack Ivers"
+author: 'Jack Ivers'
 categories: ['CTO', 'blog']
-publishDate: "2023-02-08"
-description: ""
+publishDate: '2023-02-08'
+description: ''
 draft: false
 tags: ['CTO', 'Hugo', 'Cloudflare']
-title: "Blog/Website Relaunch: Under the Hood of craftycto.com"
-contentType: "essay"
-image: "~/assets/images/content/relaunch/futuristic_spaceship_launching.webp"
+title: 'Blog/Website Relaunch: Under the Hood of craftycto.com'
+contentType: 'essay'
+image: '~/assets/images/content/relaunch/futuristic_spaceship_launching.webp'
 ---
 
 import SingleImage from '~/components/ui/SingleImage.astro';
@@ -22,9 +22,9 @@ It's not like ThinkFractional.blog needed Cloudflare to handle its traffic. The 
 
 ## New needs
 
-This time around, my requirements were a little broader. Yes, I needed to replatform my blog, but I also needed a web presence for [my new fractional CTOing entity](../introducing-crafty-cto/). The blog needed a new name, but I also working on naming the new entity, and realized it might be possible to find a name that would work well for both. 
+This time around, my requirements were a little broader. Yes, I needed to replatform my blog, but I also needed a web presence for [my new fractional CTOing entity](../introducing-crafty-cto/). The blog needed a new name, but I also working on naming the new entity, and realized it might be possible to find a name that would work well for both.
 
-In the end, I found a name that I think works well for both (ask me again in 5 years): Crafty CTO / craftycto.com for the entity, with the blog living at CraftyCTO.com/blog. 
+In the end, I found a name that I think works well for both (ask me again in 5 years): Crafty CTO / craftycto.com for the entity, with the blog living at CraftyCTO.com/blog.
 
 <SingleImage src="combined-fox-text-20pct.png" alt="Crafty CTO logo" postDir="relaunch" size="lg" />
 
@@ -32,17 +32,17 @@ All this to say, whatever platform I chose needed to support blogging features, 
 
 ## What I hate about you
 
-I've been working with Content Management Systems since my days at [fast five dotcom consultancy Viant](https://en.wikipedia.org/wiki/Fast_Five_(consulting)). Back then, big names included [Vignette StoryBuilder](https://en.wikipedia.org/wiki/Vignette_Corporation) and [Interwoven TeamSite](https://en.wikipedia.org/wiki/TeamSite)--and they came with big price tags as well. Ugghh. CMSs have always been a pain for creating content, and limiting in terms of the websites they can create. 
+I've been working with Content Management Systems since my days at [fast five dotcom consultancy Viant](<https://en.wikipedia.org/wiki/Fast_Five_(consulting)>). Back then, big names included [Vignette StoryBuilder](https://en.wikipedia.org/wiki/Vignette_Corporation) and [Interwoven TeamSite](https://en.wikipedia.org/wiki/TeamSite)--and they came with big price tags as well. Ugghh. CMSs have always been a pain for creating content, and limiting in terms of the websites they can create.
 
 Ghost and Squarespace are ... CMSs. Nicer than their 2001 predecessors, for sure, but still a layer between my content and the bare iron of delivered HTML. They allow me go about my work without needing to know HTML or CSS. (Yes, they give me hooks to let me override things like CSS, but that carries a learning curve and kind of defeats their purpose.) I lived with what they gave me, meaning I was limited in what I could do -- in Ghost, I used the themes and components Ghost provided. Not terrible, but I had to fit into Ghost's box.
 
-As production websites, both Ghost and Squarespace deliver content dynamically, and their sheer mass of features means they tend towards bloated and slow. Not terrible, certainly  functional, but not on the snappy end of the spectrum.
+As production websites, both Ghost and Squarespace deliver content dynamically, and their sheer mass of features means they tend towards bloated and slow. Not terrible, certainly functional, but not on the snappy end of the spectrum.
 
 Ghost also wasn't free -- in fact, the plan I was on was pretty damned expensive at $30/mo. That has been bothering me for a while and was the reason I first decided to move on.
 
 ## Now for something completely different
 
-So I searched, started to hear about static site generators, came across [Hugo](https://gohugo.io/), and finally a [post](https://smaller.fish/posts/hugo) on how to run a Hugo site using [Cloudflare Pages](https://pages.cloudflare.com/). 
+So I searched, started to hear about static site generators, came across [Hugo](https://gohugo.io/), and finally a [post](https://smaller.fish/posts/hugo) on how to run a Hugo site using [Cloudflare Pages](https://pages.cloudflare.com/).
 
 <SingleImage src="hugo-logo-wide.svg" alt="Hugo static site generator logo" postDir="relaunch" size="lg" />
 
@@ -54,9 +54,9 @@ Static pages, running over Cloudflare edge network -- now that was really intere
 
 But wait, you ask, the content still has to get written, stored, and deployed, how does that work? Great question, with a great answer that still costs $0.
 
-* Content is authored in Markdown. I now fully appreciate [John Gruber's contribution](https://daringfireball.net/projects/markdown/) to the open web. It's simple and direct, plenty good enough for blogging and web presence content -- especially with the option to augment Markdown using Hugo templates and shortcodes.
-* Content is stored in a git repo, GitHub in my case, and gets me all the benefits of software-engineering-grade version control.
-* Content deployment is likewise via git deployment, again with all the benefits of software-engineering-grade CI/CD tooling. That's how Cloudflare Pages operate -- connect your Git repo, and your Cloudflare Pages site auto-deploys when you push to your GitHub (or Bitbucket, etc.) repo. 
+- Content is authored in Markdown. I now fully appreciate [John Gruber's contribution](https://daringfireball.net/projects/markdown/) to the open web. It's simple and direct, plenty good enough for blogging and web presence content -- especially with the option to augment Markdown using Hugo templates and shortcodes.
+- Content is stored in a git repo, GitHub in my case, and gets me all the benefits of software-engineering-grade version control.
+- Content deployment is likewise via git deployment, again with all the benefits of software-engineering-grade CI/CD tooling. That's how Cloudflare Pages operate -- connect your Git repo, and your Cloudflare Pages site auto-deploys when you push to your GitHub (or Bitbucket, etc.) repo.
 
 ## Bare iron
 

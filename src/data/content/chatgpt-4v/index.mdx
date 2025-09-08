@@ -1,10 +1,10 @@
 ---
 publishDate: 2024-02-19T05:17:47-06:00
-title: "Using Multimodal AI to Capture and Enrich Heirloom Recipes"
-contentType: "essay"
+title: 'Using Multimodal AI to Capture and Enrich Heirloom Recipes'
+contentType: 'essay'
 excerpt: "I applied OpenAI's GPT-4 Vision model and Chat Completions API to preserve a treasure-trove of legacy family recipes."
-image: "~/assets/images/content/chatgpt-4v/toms-light-bread.webp"
-category: "AI & Technology"
+image: '~/assets/images/content/chatgpt-4v/toms-light-bread.webp'
+category: 'AI & Technology'
 tags:
   - OpenAI
   - GPT-4 Vision
@@ -23,15 +23,15 @@ OpenAI is constantly [firehosing us with new capabilities](https://openai.com/so
 
 I was fortunate to have a somewhat complex personal need, just as the new GPT-4 Vision model and updated Chat Completions API landed in my OpenAI account. The tale of my exploration follows.
 
-*Note---Click any image to zoom*
+_Note---Click any image to zoom_
 
 ## Sept. 25th: "ChatGPT can now see, hear, and speak ..."
 
 OpenAI had teased vision support earlier, but the actual [announcement](https://openai.com/blog/chatgpt-can-now-see-hear-and-speak) of Vision availability happened on Sept. 25th under the above headline.
 
-I'm not an OpenAI VIP, sorry. I'm just a paid ChatGPT Plus user and Tier-1-going-on-Tier-2 API user. I don't get early access; I get *late* access. 
+I'm not an OpenAI VIP, sorry. I'm just a paid ChatGPT Plus user and Tier-1-going-on-Tier-2 API user. I don't get early access; I get _late_ access.
 
- So while OpenAI announced GPT-4 Vision on Sept 25th, it didn't show up for me until late October or early November. OpenAI doesn't communicate actual availability of features to its retail customers, and so all I know for sure is that I noticed Vision had showed up in my ChatGPT+ sometime in early November.
+So while OpenAI announced GPT-4 Vision on Sept 25th, it didn't show up for me until late October or early November. OpenAI doesn't communicate actual availability of features to its retail customers, and so all I know for sure is that I noticed Vision had showed up in my ChatGPT+ sometime in early November.
 
 ## My burning need: family heirloom recipes
 
@@ -45,7 +45,7 @@ Paprika has been around forever, and several years back I had tried importing le
 
 In the end it turned out that the current version of Paprika 3 has quite strong image support, while in limited testing, I had trouble getting Recipe Keep to handle image orientations correctly. So the recipe app I was already using looked to be the best solution. Decision made.
 
-We still had a lot of work ahead of us, though---laboriously transcribing from those torn, stained, mostly handwritten family treasures. And this particular trove is probably only 20% of the full library; my brother has the larger collection, probably at least 3X as many, and my sister and wife have others. This was shaping up to be a long side project. 
+We still had a lot of work ahead of us, though---laboriously transcribing from those torn, stained, mostly handwritten family treasures. And this particular trove is probably only 20% of the full library; my brother has the larger collection, probably at least 3X as many, and my sister and wife have others. This was shaping up to be a long side project.
 
 ## Nov. 14th: Recipe image => ChatGPT Plus with Vision
 
@@ -59,7 +59,7 @@ This first request caused GPT-4V to puke---PDFs aren't considered an image forma
 
 <SingleImage src="CheesecakeMargieJohnsons.webp" alt="Margie Johnson's Cheesecake recipe" size="xl" />
 
-I fully expected an interesting failure. I've been doing technology for over four decades, which coincidentally is just about how long OCR---optical character recognition---has been available for personal use. And OCR has sucked for all of those decades. OCRing scans of printed documents is painful and error-prone. But with our legacy recipes, we faced much worse, like Margie Johnson's Cheesecake above---typed with a worn ribbon, wrinkled, stained. 
+I fully expected an interesting failure. I've been doing technology for over four decades, which coincidentally is just about how long OCR---optical character recognition---has been available for personal use. And OCR has sucked for all of those decades. OCRing scans of printed documents is painful and error-prone. But with our legacy recipes, we faced much worse, like Margie Johnson's Cheesecake above---typed with a worn ribbon, wrinkled, stained.
 
 My expectations were low, but on the other hand, GPT-4 blows my mind several times a week, so what the heck, let's see what happens.
 
@@ -67,20 +67,24 @@ My expectations were low, but on the other hand, GPT-4 blows my mind several tim
 
 This was GPT-4V's response to that image:
 
-<ImageGallery images={['gpt4v-response-1.png', 'gpt4v-response-2.png']} alt="GPT-4V response to recipe image" size="xl" />
+<ImageGallery
+  images={['gpt4v-response-1.png', 'gpt4v-response-2.png']}
+  alt="GPT-4V response to recipe image"
+  size="xl"
+/>
 
-I was expecting "maybe a little better than your grandma's OCR" but this was shockingly far beyond that. Not only did 4V get almost everything correct from the Margie recipe, worn ribbon, wrinkles, stains and everything, but GPT-4V *understood* it and organized it for me. For example, 4V correctly "gets it" that this recipe had three main elements---crust, filling, and topping---when the recipe never uses any of those words! And then helpfully organizes its output that way.
+I was expecting "maybe a little better than your grandma's OCR" but this was shockingly far beyond that. Not only did 4V get almost everything correct from the Margie recipe, worn ribbon, wrinkles, stains and everything, but GPT-4V _understood_ it and organized it for me. For example, 4V correctly "gets it" that this recipe had three main elements---crust, filling, and topping---when the recipe never uses any of those words! And then helpfully organizes its output that way.
 
-With traditional OCR, at best I'd get most of the words, in the order they appear on the page. But this recipe isn't plain text that reads left-to-right, top-to-bottom. Take for example the initial crust block that uses the typist's trick of using a column of ")" characters to create a column separator: ingredients in the left column, instructions in the right. OCR would just give me a useless left-to-right, top-to-bottom character stream; but GPT-4V *understood* what it was *seeing* and placed the directions below the ingredients in a structured manner. Holy shit.
+With traditional OCR, at best I'd get most of the words, in the order they appear on the page. But this recipe isn't plain text that reads left-to-right, top-to-bottom. Take for example the initial crust block that uses the typist's trick of using a column of ")" characters to create a column separator: ingredients in the left column, instructions in the right. OCR would just give me a useless left-to-right, top-to-bottom character stream; but GPT-4V _understood_ what it was _seeing_ and placed the directions below the ingredients in a structured manner. Holy shit.
 
 ## "Guys? Guys? This has structure. I'm [seeing] structure."
 
-I love the scene in the movie [Contact](https://www.themoviedb.org/movie/686-contact?language=en-US) where Kent, the blind SETI researcher, says: 
+I love the scene in the movie [Contact](https://www.themoviedb.org/movie/686-contact?language=en-US) where Kent, the blind SETI researcher, says:
 
 > Guys? Guys? Um...
-> 
+>
 > You know those interlaced frames that we thought were noise?
-> 
+>
 > This has structure. I'm hearing structure.
 
 Seeing that chat response, it wasn't just that I was getting better text than old-school OCR. GPT-4V was giving me structure, without my even asking. No surprise that my next question was:
@@ -89,17 +93,25 @@ Seeing that chat response, it wasn't just that I was getting better text than ol
 
 <SingleImage src="gpt4v-recipe-interchange.png" alt="GPT-4V response about recipe interchange formats" size="2xl" />
 
-Oh ho, I see Paprika on the list! 
+Oh ho, I see Paprika on the list!
 
 ## Dec. 17th: Image => ChatGPT-4V => YAML => Paprika import
 
 I explored the various file formats that Paprika could import. Most of these were specific to what other recipe apps could export, to enable migration onto Paprika. But Paprika also supports a more generalized import from YAML format, and provided a couple of helpful examples. That looked like my best option, and then began the work of convincing ChatGPT to take a recipe image, and instead of giving me semi-structured text output, to instead produce Paprika-flavored YAML. It took a bit of research and several tries, but eventually I was able to feed in an image and get Paprika-compatible recipe YAML back. Here's the source image and YAML output:
 
-<ImageGallery images={['bettys_chocolate_frosting.webp', 'bettys-chocolate-yaml.png']} alt="Betty's chocolate frosting recipe and YAML output" size="xl" />
+<ImageGallery
+  images={['bettys_chocolate_frosting.webp', 'bettys-chocolate-yaml.png']}
+  alt="Betty's chocolate frosting recipe and YAML output"
+  size="xl"
+/>
 
 And here's what it looks like when imported into Paprika, iPad and iPhone versions:
 
-<ImageGallery images={['bettys_ipad.png', 'bettys_iphone.png']} alt="Recipe imported into Paprika on iPad and iPhone" size="xl" />
+<ImageGallery
+  images={['bettys_ipad.png', 'bettys_iphone.png']}
+  alt="Recipe imported into Paprika on iPad and iPhone"
+  size="xl"
+/>
 
 Now, ChatGPT was doing most of the work---image in, importable YAML out. That left me light years ahead of the mess I had been facing---laborious manual transcription or parsing garbled OCR output.
 
@@ -154,11 +166,15 @@ I know, though, that I'm discarding a tremendous store of context by bridging be
 
 ## Enrichment
 
-You may have noticed that the final recipes showing up in Paprika have been significantly enriched. Take this before-and-after example *(click image to zoom)*:
+You may have noticed that the final recipes showing up in Paprika have been significantly enriched. Take this before-and-after example _(click image to zoom)_:
 
-<ImageGallery images={['FillingChocolateandOrange.webp', 'soft-chocolate-filling.webp', 'orange-cream-filling.webp']} alt="Recipe enrichment example" size="xl" />
+<ImageGallery
+  images={['FillingChocolateandOrange.webp', 'soft-chocolate-filling.webp', 'orange-cream-filling.webp']}
+  alt="Recipe enrichment example"
+  size="xl"
+/>
 
-This a *tour de force* of GPT-4V's content extraction: it correctly parses both typewritten and handwritten content, and likewise recognizes that these are two separate recipes. I end up with JSON content ready to feed into Paprika.
+This a _tour de force_ of GPT-4V's content extraction: it correctly parses both typewritten and handwritten content, and likewise recognizes that these are two separate recipes. I end up with JSON content ready to feed into Paprika.
 
 But look closer---the original image doesn't have any directions---how did that get into Paprika? And what's this Description section? And those notes? That's enrichment in action.
 
@@ -192,7 +208,7 @@ This is a slam-dunk win. Categories are a feature I never got around to using in
 
 #### Instructions
 
-I actually don't prompt GPT-4 to create these---in fact I prompt significantly for it not to add content unless instructed---but it decided on its own, correctly, that this would be a useful addition in the filling recipes above. I haven't tried the instructions out yet, but superficially they appear plausible and this should be well within GPT-4's capabilities. 
+I actually don't prompt GPT-4 to create these---in fact I prompt significantly for it not to add content unless instructed---but it decided on its own, correctly, that this would be a useful addition in the filling recipes above. I haven't tried the instructions out yet, but superficially they appear plausible and this should be well within GPT-4's capabilities.
 
 #### Description
 
@@ -210,7 +226,7 @@ GPT-4 has, what, 10 million recipes in its training data? 100 million? It's pret
 
 #### Noted in the Pics
 
-In my first processing pass using the `gpt-4-vision-preview` model, besides extracting the core recipe data, I ask for a description of the physical properties of the recipe based on the images provided.  Then in the second pass with the `gpt-4-turbo-preview` model, I ask GPT-4 to comment on notable physical aspects. This isn't working well yet, and I'm sure the fact that I'm forced to use a text-only bridge between the Vision and Turbo models is reducing the value of this enrichment.
+In my first processing pass using the `gpt-4-vision-preview` model, besides extracting the core recipe data, I ask for a description of the physical properties of the recipe based on the images provided. Then in the second pass with the `gpt-4-turbo-preview` model, I ask GPT-4 to comment on notable physical aspects. This isn't working well yet, and I'm sure the fact that I'm forced to use a text-only bridge between the Vision and Turbo models is reducing the value of this enrichment.
 
 ## Prompt engineering
 

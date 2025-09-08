@@ -3,34 +3,40 @@
 ## Date: August 24, 2025
 
 ## Summary
+
 Successfully completed the migration from type-based content organization to unified content structure (Option 2A). All content and images have been consolidated into a single directory structure with content types defined in frontmatter metadata.
 
 ## What Was Done
 
 ### Phase 1: Added ContentType Metadata ✅
+
 - Added `contentType` field to all 44 MDX files
 - Mapped content types:
-  - posts → `essay` 
+  - posts → `essay`
   - micro → `brief`
   - elsewhere → `elsewhere`
   - quote → `quote`
 
 ### Phase 2: Component Updates ✅
+
 - Updated `SingleImage.astro` and `ImageGallery.astro` with fallback logic
 - Components checked both new unified path and old type-based paths
 - Ensured backward compatibility during migration
 
 ### Phase 3: Content Migration ✅
+
 - Migrated 44 content files to unified structure at `/src/data/content/[slug]/index.mdx`
 - Each post now has its own directory containing the MDX file
 - Preserved all frontmatter and content integrity
 
 ### Phase 4: Image Migration ✅
+
 - Moved 323 image files from type-based directories to `/src/assets/images/content/[slug]/`
 - Each post's images now reside in a directory matching its slug
 - Note: Migration script COPIED rather than MOVED, creating duplicates initially
 
 ### Phase 5: Cleanup ✅
+
 - Removed fallback logic from components (components now use only unified path)
 - Deleted 317 duplicate images from old `/src/assets/images/blog/` directory
 - Deleted 54 additional duplicate images from `/src/assets/images/posts/blog/` directory
@@ -41,6 +47,7 @@ Successfully completed the migration from type-based content organization to uni
 ## Final Structure
 
 ### Content
+
 ```
 /src/data/content/
   ├── [slug]/
@@ -48,6 +55,7 @@ Successfully completed the migration from type-based content organization to uni
 ```
 
 ### Images
+
 ```
 /src/assets/images/content/
   ├── [slug]/
@@ -55,6 +63,7 @@ Successfully completed the migration from type-based content organization to uni
 ```
 
 ### Legacy Directories (Preserved)
+
 - `/src/data/posts/` - Contains template .md files from theme
 - `/src/data/micro/placeholder.md` - Template placeholder
 - `/src/data/elsewhere/placeholder.md` - Template placeholder
@@ -88,19 +97,22 @@ Successfully completed the migration from type-based content organization to uni
 
 1. Consider removing legacy placeholder directories
 2. Update migration scripts to use new structure
-3. Consider adding /* @vite-ignore */ comments to suppress dynamic import warnings
+3. Consider adding /_ @vite-ignore _/ comments to suppress dynamic import warnings
 4. Document new content creation process for team
 
 ## Files Modified
 
 ### Components
+
 - `/src/components/ui/SingleImage.astro` - Removed fallback logic, uses unified path only
 - `/src/components/ui/ImageGallery.astro` - Removed fallback logic, uses unified path only
 
 ### Utilities
+
 - `/src/utils/blog.ts` - Updated to handle contentType from unified collection
 
 ### Documentation
+
 - `/CLAUDE.md` - Updated to reflect new unified structure
 - Created this completion document
 

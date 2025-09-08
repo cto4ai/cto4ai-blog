@@ -6,7 +6,6 @@ import Image from '~/components/common/Image.astro';
 import PostTags from '~/components/blog/Tags.astro';
 import SocialShare from '~/components/common/SocialShare.astro';
 
-import { getPermalink } from '~/utils/permalinks';
 import { getFormattedDateConditionalYear } from '~/utils/utils';
 import { findImage } from '~/utils/images';
 
@@ -20,22 +19,22 @@ export interface Props {
 }
 
 const { post, url } = Astro.props;
-const imageMetadata = await findImage(post.image) as ImageMetadata | undefined;
+const imageMetadata = (await findImage(post.image)) as ImageMetadata | undefined;
 
 // Helper function to get display name for content type
 function getContentTypeDisplay(contentType?: string): string {
   const contentTypeMap: Record<string, string> = {
-    'essay': 'ESSAY',
-    'brief': 'BRIEF',
-    'elsewhere': 'ELSEWHERE',
-    'quote': 'QUOTE',
-    'episode': 'EPISODE',
-    'episodes': 'EPISODES',
+    essay: 'ESSAY',
+    brief: 'BRIEF',
+    elsewhere: 'ELSEWHERE',
+    quote: 'QUOTE',
+    episode: 'EPISODE',
+    episodes: 'EPISODES',
     // Legacy mappings (for backward compatibility)
-    'posts': 'ESSAY',
-    'micro': 'BRIEF'
+    posts: 'ESSAY',
+    micro: 'BRIEF',
   };
-  
+
   return contentTypeMap[contentType || 'essay'] || 'ESSAY';
 }
 ---
@@ -47,34 +46,35 @@ function getContentTypeDisplay(contentType?: string): string {
     >
       <div class="flex flex-col md:flex-row gap-6">
         {/* Hidden image URL for Pagefind */}
-        {imageMetadata && (
-          <span data-pagefind-meta="image" data-pagefind-ignore="all" style="display:none">{imageMetadata.src}</span>
-        )}
+        {
+          imageMetadata && (
+            <span data-pagefind-meta="image" data-pagefind-ignore="all" style="display:none">
+              {imageMetadata.src}
+            </span>
+          )
+        }
         {/* Text content on left */}
         <div class="flex-1">
-          {post.contentType === 'elsewhere' && post.sourceLink ? (
-            <h1 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-3">
-              <a 
-                href={post.sourceLink} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="hover:text-primary dark:hover:text-blue-400 transition-colors inline-flex items-center gap-2"
-              >
+          {
+            post.contentType === 'elsewhere' && post.sourceLink ? (
+              <h1 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-3">
+                <a
+                  href={post.sourceLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-primary dark:hover:text-blue-400 transition-colors inline-flex items-center gap-2"
+                >
+                  {post.title}
+                  <Icon name="tabler:external-link" class="w-6 h-6 md:w-7 md:h-7" />
+                </a>
+              </h1>
+            ) : (
+              <h1 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-3">
                 {post.title}
-                <Icon name="tabler:external-link" class="w-6 h-6 md:w-7 md:h-7" />
-              </a>
-            </h1>
-          ) : (
-            <h1
-              class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-3"
-            >
-              {post.title}
-            </h1>
-          )}
-          <p
-            class="text-lg md:text-xl text-muted dark:text-slate-400 mb-3"
-            data-pagefind-meta="description"
-          >
+              </h1>
+            )
+          }
+          <p class="text-lg md:text-xl text-muted dark:text-slate-400 mb-3" data-pagefind-meta="description">
             {post.excerpt || post.description}
           </p>
           <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wide">
@@ -95,40 +95,45 @@ function getContentTypeDisplay(contentType?: string): string {
             }
           </div>
         </div>
-        
+
         {/* Image on right */}
         <div class="md:w-2/5 flex-shrink-0">
-          {post.contentType === 'elsewhere' && post.sourceLink ? (
-            <a 
-              href={post.sourceLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block w-full h-full"
-            >
-              {imageMetadata ? (
-                <Image
-                  src={imageMetadata}
-                  class="w-full h-full object-cover rounded-lg bg-gray-400 dark:bg-slate-700 hover:opacity-90 transition-opacity"
-                  widths={[400, 600]}
-                  sizes="(max-width: 768px) 400px, 600px"
-                  alt={post?.excerpt || ''}
-                  width={600}
-                  aspectRatio="44:28"
-                  loading="eager"
-                  decoding="async"
-                />
-              ) : (
-                <div class="w-full h-full min-h-[200px] rounded-lg bg-gray-200 dark:bg-gray-800 flex flex-col items-center justify-center aspect-[44/28] hover:opacity-90 transition-opacity">
-                  <img src={symbolBlack.src} alt="" class="w-24 h-24 opacity-80 dark:hidden" data-pagefind-ignore="all" />
-                  <img src={symbolWhite.src} alt="" class="w-24 h-24 opacity-70 hidden dark:block" data-pagefind-ignore="all" />
-                  <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 mt-3 uppercase tracking-wider">
-                    {getContentTypeDisplay(post.contentType)}
-                  </span>
-                </div>
-              )}
-            </a>
-          ) : (
-            imageMetadata ? (
+          {
+            post.contentType === 'elsewhere' && post.sourceLink ? (
+              <a href={post.sourceLink} target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+                {imageMetadata ? (
+                  <Image
+                    src={imageMetadata}
+                    class="w-full h-full object-cover rounded-lg bg-gray-400 dark:bg-slate-700 hover:opacity-90 transition-opacity"
+                    widths={[400, 600]}
+                    sizes="(max-width: 768px) 400px, 600px"
+                    alt={post?.excerpt || ''}
+                    width={600}
+                    aspectRatio="44:28"
+                    loading="eager"
+                    decoding="async"
+                  />
+                ) : (
+                  <div class="w-full h-full min-h-[200px] rounded-lg bg-gray-200 dark:bg-gray-800 flex flex-col items-center justify-center aspect-[44/28] hover:opacity-90 transition-opacity">
+                    <img
+                      src={symbolBlack.src}
+                      alt=""
+                      class="w-24 h-24 opacity-80 dark:hidden"
+                      data-pagefind-ignore="all"
+                    />
+                    <img
+                      src={symbolWhite.src}
+                      alt=""
+                      class="w-24 h-24 opacity-70 hidden dark:block"
+                      data-pagefind-ignore="all"
+                    />
+                    <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 mt-3 uppercase tracking-wider">
+                      {getContentTypeDisplay(post.contentType)}
+                    </span>
+                  </div>
+                )}
+              </a>
+            ) : imageMetadata ? (
               <Image
                 src={imageMetadata}
                 class="w-full h-full object-cover rounded-lg bg-gray-400 dark:bg-slate-700"
@@ -143,18 +148,23 @@ function getContentTypeDisplay(contentType?: string): string {
             ) : (
               <div class="w-full h-full min-h-[200px] rounded-lg bg-gray-200 dark:bg-gray-800 flex flex-col items-center justify-center aspect-[44/28]">
                 <img src={symbolBlack.src} alt="" class="w-24 h-24 opacity-80 dark:hidden" data-pagefind-ignore="all" />
-                <img src={symbolWhite.src} alt="" class="w-24 h-24 opacity-70 hidden dark:block" data-pagefind-ignore="all" />
+                <img
+                  src={symbolWhite.src}
+                  alt=""
+                  class="w-24 h-24 opacity-70 hidden dark:block"
+                  data-pagefind-ignore="all"
+                />
                 <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 mt-3 uppercase tracking-wider">
                   {getContentTypeDisplay(post.contentType)}
                 </span>
               </div>
             )
-          )}
+          }
         </div>
       </div>
-      
+
       {/* Divider line */}
-      <div class="mt-8 border-t dark:border-slate-700" />
+      <div class="mt-8 border-t dark:border-slate-700"></div>
     </header>
     <div
       class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-lg dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0"

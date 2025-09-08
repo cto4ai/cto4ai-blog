@@ -40,19 +40,17 @@ const generatePermalink = async ({
     .join('/');
 };
 
-const getNormalizedPost = async (
-  post: CollectionEntry<'content'>
-): Promise<Post> => {
+const getNormalizedPost = async (post: CollectionEntry<'content'>): Promise<Post> => {
   const { id, data } = post;
   const { Content, remarkPluginFrontmatter } = await render(post);
 
   // Map new content type names to legacy collection names
   const contentTypeMap = {
-    'essay': 'posts',
-    'brief': 'micro',
-    'elsewhere': 'elsewhere',
-    'quote': 'quote',
-    'episode': 'episode'
+    essay: 'posts',
+    brief: 'micro',
+    elsewhere: 'elsewhere',
+    quote: 'quote',
+    episode: 'episode',
   };
 
   // For unified collection, use frontmatter contentType
@@ -132,8 +130,7 @@ const load = async function (): Promise<Array<Post>> {
 
   // Determine if drafts should be shown based on environment
   // In development mode or when explicitly enabled for preview deployments
-  const SHOW_DRAFTS = import.meta.env.DEV || 
-                      import.meta.env.PUBLIC_SHOW_DRAFTS_IN_PREVIEW === "true";
+  const SHOW_DRAFTS = import.meta.env.DEV || import.meta.env.PUBLIC_SHOW_DRAFTS_IN_PREVIEW === 'true';
 
   const results = (await Promise.all(normalizedPosts))
     .filter((post) => SHOW_DRAFTS || !post.draft)
@@ -141,7 +138,7 @@ const load = async function (): Promise<Array<Post>> {
       // Step 1: Featured posts always come before non-featured
       if (a.featured && !b.featured) return -1;
       if (!a.featured && b.featured) return 1;
-      
+
       // Step 2: If both are featured, sort by featuredOrder
       if (a.featured && b.featured) {
         // If both have featuredOrder, lower number comes first
@@ -151,12 +148,12 @@ const load = async function (): Promise<Array<Post>> {
           }
           // If same featuredOrder, fall through to date
         }
-        
+
         // If only one has featuredOrder, it comes first
         if (a.featuredOrder !== undefined && b.featuredOrder === undefined) return -1;
         if (a.featuredOrder === undefined && b.featuredOrder !== undefined) return 1;
       }
-      
+
       // Step 3: Sort by publish date (newest first) for:
       // - Non-featured posts
       // - Featured posts with same/missing featuredOrder

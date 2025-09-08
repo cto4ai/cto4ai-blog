@@ -9,9 +9,11 @@ At cto4.ai, we respect your privacy and are committed to protecting your persona
 ## Information We Collect
 
 ### Information You Provide
+
 - **Email Address**: When you subscribe to our newsletter (this is the only personal information we collect)
 
 ### Information Automatically Collected
+
 - **Website Analytics**: We use standard web analytics tools to collect non-personal information about site usage, including:
   - Pages visited
   - Time spent on site
@@ -21,6 +23,7 @@ At cto4.ai, we respect your privacy and are committed to protecting your persona
 ## How We Use Your Information
 
 We use your information solely for the following purposes:
+
 - **Newsletter Delivery**: To send you our newsletter content
 - **Communication**: To respond to your inquiries or requests
 - **Site Improvement**: To understand how visitors use our site and improve the user experience
@@ -29,9 +32,11 @@ We use your information solely for the following purposes:
 ## Third-Party Services
 
 ### Email Service Provider
+
 We use Beehiiv to manage our newsletter subscriptions and send emails. When you subscribe, your email address is shared with Beehiiv solely for the purpose of delivering our newsletter. Beehiiv's privacy policy can be found at: https://www.beehiiv.com/privacy
 
 ### Analytics
+
 We may use privacy-focused analytics services to understand site usage. These services do not collect personally identifiable information.
 
 ## Data Storage and Security
@@ -43,6 +48,7 @@ We may use privacy-focused analytics services to understand site usage. These se
 ## Your Rights and Choices
 
 You have the right to:
+
 - **Unsubscribe**: Click the unsubscribe link in any newsletter email
 - **Access**: Request information about what data we have about you
 - **Deletion**: Request that we delete your personal information
@@ -51,14 +57,17 @@ You have the right to:
 To exercise these rights, contact us at: hello@cto4.ai
 
 ### California Residents (CCPA)
+
 California residents have additional rights under the California Consumer Privacy Act. You may request information about data collection and exercise your rights by contacting us.
 
 ### European Residents (GDPR)
+
 If you're located in the European Economic Area, you have additional rights under GDPR, including data portability and the right to lodge a complaint with your local supervisory authority.
 
 ## Cookies
 
 Our website uses minimal, essential cookies for:
+
 - Remembering your preferences
 - Basic site functionality
 

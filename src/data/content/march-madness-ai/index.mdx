@@ -1,23 +1,23 @@
 ---
-title: "March Madness, AI Style"
-contentType: "essay"
+title: 'March Madness, AI Style'
+contentType: 'essay'
 description: "Observations on AI's March acceleration"
-author: "Jack Ivers"
-publishDate: "2023-03-18T00:00:00-05:00"
+author: 'Jack Ivers'
+publishDate: '2023-03-18T00:00:00-05:00'
 draft: false
-categories: ["CTO", "Crafty CTO"]
-tags: ["CTO", "AI", "LLM"]
-image: "~/assets/images/content/march-madness-ai/ai-with-ball-1.webp"
+categories: ['CTO', 'Crafty CTO']
+tags: ['CTO', 'AI', 'LLM']
+image: '~/assets/images/content/march-madness-ai/ai-with-ball-1.webp'
 ---
 
 import SingleImage from '~/components/ui/SingleImage.astro';
 import ImageGallery from '~/components/ui/ImageGallery.astro';
 
-I've been trying to write a comprehensive, buttoned-up "AI Update," covering all this month's AI developments. But nearly every day, there's been something new that's at least important and sometimes game-changing. So I'm reluctantly giving up on comprehensive, and settling for selective commentary on a few of the more interesting bits. 
+I've been trying to write a comprehensive, buttoned-up "AI Update," covering all this month's AI developments. But nearly every day, there's been something new that's at least important and sometimes game-changing. So I'm reluctantly giving up on comprehensive, and settling for selective commentary on a few of the more interesting bits.
 
 ## First, let's define AI ...
 
-The AI label is getting slapped on a lot of things these days, and I'm actually ok with that -- it's a short, handy, evocative term, useful as long as we get its definition straight. 
+The AI label is getting slapped on a lot of things these days, and I'm actually ok with that -- it's a short, handy, evocative term, useful as long as we get its definition straight.
 
 AI does **not** mean "the machine is thinking." That's a real concept, but it has its own term: AGI or Artificial General Intelligence. AGI isn't here today, is unlikely to arrive in the near future, and is not part of the AI news I'm writing about.
 
@@ -29,14 +29,13 @@ That's a lesser achievement than an AI actually thinking; but when you grasp and
 
 <SingleImage src="friendly-ai-helping.webp" alt="Friendly AI Helping" size="2xl" postDir="march-madness-ai" />
 
-
 ## AI acceleration
 
 Looking at March AI news from high above, what stands out to me is acceleration, possibly even exponential acceleration. Today's acceleration is happening in the AI subspace I call **Text AIs**, which are based around Large Language Models (LLMs). The most famous Text AI is OpenAI's ChatGPT, initially released just four months ago--though in the current mode of acceleration, those four months seem like ages.
 
 The acceleration in the Text AI space has a precedent, from way back in August 2022, in what I call the **Art AI** space. Text AI and Art AI are close relatives within the AI family tree, both falling under the branch called Generative AI. Well known Art AIs include OpenAI's DALL-E 2, my go-to tool Midjourney, and Stability AI's Stable Diffusion.
 
-Data scientist and open source developer [Simon Willison](https://simonwillison.net) is a fellow observer of emerging AI, and he [describes](https://simonwillison.net/2023/Mar/11/llama/) the close parallels between Art AI's acceleration in August and Text AI's today: 
+Data scientist and open source developer [Simon Willison](https://simonwillison.net) is a fellow observer of emerging AI, and he [describes](https://simonwillison.net/2023/Mar/11/llama/) the close parallels between Art AI's acceleration in August and Text AI's today:
 
 > Large language models are having their Stable Diffusion moment ...
 >
@@ -48,22 +47,19 @@ I believe Text AI will follow the same "sustained explosion" trajectory of innov
 
 <SingleImage src="slender-ai-2.webp" alt="Slender AI 2" size="2xl" postDir="march-madness-ai" />
 
-
-
 ## Order of magnitude better
 
 Four days ago (Tuesday March 14th), [OpenAI released GPT-4](https://openai.com/research/gpt-4), making it available through both their ChatGPT conversational interface, and the OpenAI API. Early testers are reporting that the GPT-4 model provides a substantial, across-the-board improvement over its GPT-3.5 predecessor.
 
 My personal experience mirrors these reports. I just conducted an 11-question, 2800 word conversation with GPT-4, relating to USDA data models, available datasets, and geospatial data, including several deep dives into nuanced questions about relationships between datasets and entities. Though I'll definitely be cross-checking the results, I have high confidence in the accuracy of the responses, and I'm astonished at how well GPT-4 "recognized" the gist of my questions and how thoroughly its responses addressed them.
 
-OpenAI demonstrated visual inputs (not yet released), allowing prompts to include interspersed images and text. And this doesn;t just mean it recognizes a picture of a cat and substitutes "cat" on the prompt -- GPT-4 "understands" what kind of an image it's seeing, the context of that image: 
+OpenAI demonstrated visual inputs (not yet released), allowing prompts to include interspersed images and text. And this doesn;t just mean it recognizes a picture of a cat and substitutes "cat" on the prompt -- GPT-4 "understands" what kind of an image it's seeing, the context of that image:
 
 > Over a range of domains—including documents with text and photographs, diagrams, or screenshots—GPT-4 exhibits similar capabilities as it does on text-only inputs.
 
 Check out this example from the [GPT-4 announcement](https://openai.com/research/gpt-4):
 
 <SingleImage src="gpt4-vga-3-panel.png" alt="GPT-4 VGA 3 Panel" size="2xl" postDir="march-madness-ai" />
-
 
 How crazy is that? Other examples include interpreting a business barchart, and solving an engineering test problem (in French!) where a diagram is integral to the question. Mind-blowing.
 
@@ -73,16 +69,14 @@ Last but not least, GPT-4 delivers an eightfold increase in the size of its prom
 
 > My training data includes information up until September 2021. I do not have knowledge of events, developments, or advancements that occurred after that date.
 
-But -- with GPT-4 and 32K tokens, we can actually inject newer information ***as part of the prompt*** -- and 25,000 words is a lot of information. OpenAI demoed this, incorporating the post-2021 updated tax code in the prompt and then asking a question that required knowledge of the latest changes. GPT-4 was able to accurately address questions that factored in this updated tax code.
+But -- with GPT-4 and 32K tokens, we can actually inject newer information **_as part of the prompt_** -- and 25,000 words is a lot of information. OpenAI demoed this, incorporating the post-2021 updated tax code in the prompt and then asking a question that required knowledge of the latest changes. GPT-4 was able to accurately address questions that factored in this updated tax code.
 
 <SingleImage src="better-ai.webp" alt="Better AI" size="2xl" postDir="march-madness-ai" />
 
-
-
 ## Order of magnitude cheaper
 
-* OpenAI kicked things off on March 1st, when they [announced new ChatGPT and Whisper APIs](https://openai.com/blog/introducing-chatgpt-and-whisper-apis), along with tenfold less expensive pricing. (Caveat: a few days later, OpenAI released GPT-4, with premium prices.) 
-* Simon Willison [points out](https://simonwillison.net/2023/Mar/17/beat-chatgpt-in-a-browser/) that, thanks to Facebook Research's [LLaMA model](https://research.facebook.com/publications/llama-open-and-efficient-foundation-language-models/), Stanford's [LLaMA-based Alpaca model](https://crfm.stanford.edu/2023/03/13/alpaca.html), and related work, training our own models is getting radically cheaper:
+- OpenAI kicked things off on March 1st, when they [announced new ChatGPT and Whisper APIs](https://openai.com/blog/introducing-chatgpt-and-whisper-apis), along with tenfold less expensive pricing. (Caveat: a few days later, OpenAI released GPT-4, with premium prices.)
+- Simon Willison [points out](https://simonwillison.net/2023/Mar/17/beat-chatgpt-in-a-browser/) that, thanks to Facebook Research's [LLaMA model](https://research.facebook.com/publications/llama-open-and-efficient-foundation-language-models/), Stanford's [LLaMA-based Alpaca model](https://crfm.stanford.edu/2023/03/13/alpaca.html), and related work, training our own models is getting radically cheaper:
 
 > I think it’s now possible to train a large language model with similar functionality to GPT-3 for $85,000. And I think we might soon be able to run the resulting model entirely in the browser, and give it capabilities that leapfrog it ahead of ChatGPT.
 
@@ -98,49 +92,48 @@ This week was a crazy cascade of "Oh yeah? HOLD MY BEER!" announcements, where e
 
 But this week all that changed. First there was "Run a full GPT-3-grade model on your Mac!" (lightweight port of Facebook's LLaMA model to C [llama.cpp](https://github.com/ggerganov/llama.cpp)); then came "Get it to run on a Pixel 6 phone!" ([@thiteanish on Twitter](https://news.ycombinator.com/item?id=35171116)); next up, "Have it running on a Raspberry Pi!" ([miolini reporting on llama.cpp GitHub](https://github.com/ggerganov/llama.cpp/issues/58)); then "Run LLaMA on your computer in one step via node / npx!" ([Dalai project, leveraging LLaMA and Alpaca, by coctailpeanut](https://github.com/cocktailpeanut/dalai)); and then just yesterday, "Train LLaMA to respond like characters from The Simpsons!" (Proof of concept from [Replicate](https://replicate.com/blog/fine-tune-llama-to-speak-like-homer-simpson), trained with 12 seasons of Simpsons scripts).
 
-The point here isn't that we'll run production LLMs on our MacBook Pros; it's that, all of a sudden, we're within sight of **running ChatGPT-grade models on a low-cost server** that we cloud-rent or own outright. And of **training our own models** on a reasonable budget. 
+The point here isn't that we'll run production LLMs on our MacBook Pros; it's that, all of a sudden, we're within sight of **running ChatGPT-grade models on a low-cost server** that we cloud-rent or own outright. And of **training our own models** on a reasonable budget.
 
 And don't underestimate the value of a developer being able to run a serious LLM on their development machine. Hands-on experimentation and prototyping is the top of the new application funnel.
 
-<SingleImage src="slender-ai.webp" alt="Slender AI" size="2xl" postDir="march-madness-ai" /> 
-
-
+<SingleImage src="slender-ai.webp" alt="Slender AI" size="2xl" postDir="march-madness-ai" />
 
 ## Order of magnitude more potential applications
 
-We've described three separate order-of-magnitude developments in the Text AI / LLM space above--better, cheaper, smaller. Each of these removes roadblocks that might have killed the feasibility of interesting applications. The feasibility space just got three orders of magnitude larger, so expect three orders of magnitude more applications to start appearing. More applications feeds back demand for more innovation, so as we've seen the the Art AI space, expect the acceleration to sustain. 
+We've described three separate order-of-magnitude developments in the Text AI / LLM space above--better, cheaper, smaller. Each of these removes roadblocks that might have killed the feasibility of interesting applications. The feasibility space just got three orders of magnitude larger, so expect three orders of magnitude more applications to start appearing. More applications feeds back demand for more innovation, so as we've seen the the Art AI space, expect the acceleration to sustain.
 
 If you're a business with potential applications for Generative AI, be it the Text or Art flavors, now is a fantastic time to get hands-on and start prototyping.
 
 ## Meanwhile, at Google ...
 
-* Google made a few panicked, flop-sweat non-release announcements this week, including [PaLM and MakerSuite](https://blog.google/technology/ai/ai-developers-google-cloud-workspace/), as well as a plan to [embed generative AI within Google Workspace](https://workspace.google.com/blog/product-announcements/generative-ai). Interesting, but just announcements, not anything anyone can use today. Catch up by announcement.
+- Google made a few panicked, flop-sweat non-release announcements this week, including [PaLM and MakerSuite](https://blog.google/technology/ai/ai-developers-google-cloud-workspace/), as well as a plan to [embed generative AI within Google Workspace](https://workspace.google.com/blog/product-announcements/generative-ai). Interesting, but just announcements, not anything anyone can use today. Catch up by announcement.
 
-* In the meantime, Google's cash cow Search is under attack. In my own quest to understand the nuances of USDA data, to the degree that GPT-4 excelled, Google search stank. If GPT-4 scored an 8/10, Google was maybe a 2/10. Massively less useful; far more time-consuming and frustrating. Google search has been under self-inflicted threat for a while -- see [Google Search Is Dying](https://dkb.blog/p/google-search-is-dying?utm_source=pocket_saves) from 2022 -- but since ChatGPT launched in November, that threat's timeline has compressed.
+- In the meantime, Google's cash cow Search is under attack. In my own quest to understand the nuances of USDA data, to the degree that GPT-4 excelled, Google search stank. If GPT-4 scored an 8/10, Google was maybe a 2/10. Massively less useful; far more time-consuming and frustrating. Google search has been under self-inflicted threat for a while -- see [Google Search Is Dying](https://dkb.blog/p/google-search-is-dying?utm_source=pocket_saves) from 2022 -- but since ChatGPT launched in November, that threat's timeline has compressed.
 
 ## Meanwhile, at Apple ...
 
-Over in Cupertino, I suspect that Apple is having its own moments of panic. 
+Over in Cupertino, I suspect that Apple is having its own moments of panic.
 
 I tend to give Apple the benefit of the doubt, to believe that they're playing the long game, that they have a grand strategy, that maybe I'm just not seeing it. That often proves true; consider Apple Watch, where limited early generations led to today's incredible wrist computer / health sensor / emergency detector, in a sizable market that Apple effectively created and now dominates. Long game, grand strategy in action.
 
 <SingleImage src="ai-with-apple.webp" alt="AI With Apple" size="2xl" postDir="march-madness-ai" />
 
-
-
 But this week there were strong indications that Apple's AI mainstay, Siri, is as much of a steaming pile of unmaintainable crap as it has always appeared to be from the outside, and there may be no fixing it. When you [hear descriptions like these](https://www.nytimes.com/2023/03/15/technology/siri-alexa-google-assistant-artificial-intelligence.html), you can smell the mess from a mile away:
 
-> Siri ran into technological hurdles, including clunky code that took weeks to update with basic features, said John Burkey, a former Apple engineer who worked on the assistant.  
+> Siri ran into technological hurdles, including clunky code that took weeks to update with basic features, said John Burkey, a former Apple engineer who worked on the assistant.
 
-Apple is perhaps less screwed than Google, whose primary revenue producer is under attack. And Apple has invested heavily to make their hardware AI-capable by including Neural Engine cores (16!) in their A and M series processors. But I wonder how well Neural Engine will support the emerging AI models that we actually need instead of Siri? AI is critical for Apple's future, and it's emerging differently than Apple (and the rest of the universe) expected, so I'm guessing Apple execs are more than a little unsettled. 
+Apple is perhaps less screwed than Google, whose primary revenue producer is under attack. And Apple has invested heavily to make their hardware AI-capable by including Neural Engine cores (16!) in their A and M series processors. But I wonder how well Neural Engine will support the emerging AI models that we actually need instead of Siri? AI is critical for Apple's future, and it's emerging differently than Apple (and the rest of the universe) expected, so I'm guessing Apple execs are more than a little unsettled.
 
 ## We need open, trained models
 
-Too much of the news described above is based on closed technology and proprietary data. I've no problem with OpenAI earning back the huge investments they've made, and their APIs are a fine solution for a major swatch of application needs. But there are a multitude of other scenarios where, due to cost or privacy or need to maintain control, OpenAI isn't an option. 
+Too much of the news described above is based on closed technology and proprietary data. I've no problem with OpenAI earning back the huge investments they've made, and their APIs are a fine solution for a major swatch of application needs. But there are a multitude of other scenarios where, due to cost or privacy or need to maintain control, OpenAI isn't an option.
 
-What we need is the AI equivalent of free / open software -- open, free, community developed trained models. Just add the application and a reasonable dollop of infrastructure, and you've got an offering that's inexpensive to operate and 100% under your control. 
+What we need is the AI equivalent of free / open software -- open, free, community developed trained models. Just add the application and a reasonable dollop of infrastructure, and you've got an offering that's inexpensive to operate and 100% under your control.
 
 Such work is underway; I've not had time to research it yet but will. I'm also encouraged by Willison's point above, that training our own models is becoming increasingly cost-effective and viable.
 
-<ImageGallery images={["hyper-ai-1.webp", "hyper-ai-3.webp", "hyper-ai-4.webp", "hyper-ai-2.webp"]} postDir="march-madness-ai" size="md" />
-
+<ImageGallery
+  images={['hyper-ai-1.webp', 'hyper-ai-3.webp', 'hyper-ai-4.webp', 'hyper-ai-2.webp']}
+  postDir="march-madness-ai"
+  size="md"
+/>

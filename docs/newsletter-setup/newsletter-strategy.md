@@ -40,14 +40,14 @@ Astro Blog (cto4.ai) → Cloudflare Pages → RSS feeds
 
 **Decision Required**: Choose between Beehiiv and Kit (formerly ConvertKit)
 
-| Feature | Beehiiv | Kit |
-|---------|---------|-----|
-| Pricing | Free up to 2,500 subs | Free up to 1,000 subs |
-| RSS-to-email | ✅ Native | ✅ Via broadcast API |
-| Webhook support | ✅ | ✅ |
-| Custom domains | ✅ | ✅ |
-| GDPR/compliance | ✅ | ✅ |
-| API for automation | Limited | Extensive |
+| Feature            | Beehiiv               | Kit                   |
+| ------------------ | --------------------- | --------------------- |
+| Pricing            | Free up to 2,500 subs | Free up to 1,000 subs |
+| RSS-to-email       | ✅ Native             | ✅ Via broadcast API  |
+| Webhook support    | ✅                    | ✅                    |
+| Custom domains     | ✅                    | ✅                    |
+| GDPR/compliance    | ✅                    | ✅                    |
+| API for automation | Limited               | Extensive             |
 
 **Recommendation**: Start with **Beehiiv** for better free tier and native RSS support.
 
@@ -128,13 +128,14 @@ Astro Blog (cto4.ai) → Cloudflare Pages → RSS feeds
 - [ ] Add "Newsletter" link to blog navigation
 - [ ] Update craftycto.com to link to cto4.ai blog
 - [ ] Add "Services" link on cto4.ai pointing back to craftycto.com
-- [ ] Implement 301 redirects from craftycto.com/blog/* to cto4.ai/*
+- [ ] Implement 301 redirects from craftycto.com/blog/_ to cto4.ai/_
 
 ## Phase 4: Permission Pass Campaign (Week 2-3)
 
 ### 4.1 Email Content
 
 Create permission pass email with:
+
 - Clear value proposition for the newsletter
 - What content to expect (AI insights for CTOs)
 - Frequency (weekly digest)
@@ -142,13 +143,14 @@ Create permission pass email with:
 - Personal note explaining the transition
 
 **Template Structure**:
+
 ```
 Subject: Quick update about my new AI-focused newsletter
 
 Hi [First Name],
 
-You're receiving this because we've connected professionally through 
-Crafty CTO. I'm launching a focused newsletter about AI for technology 
+You're receiving this because we've connected professionally through
+Crafty CTO. I'm launching a focused newsletter about AI for technology
 leaders at my new site, CTO4.AI.
 
 What you'll get:
@@ -156,7 +158,7 @@ What you'll get:
 - Analysis of new AI tools and frameworks
 - Strategic guidance for CTOs navigating AI adoption
 
-If you'd like to receive these insights, no action needed - you're 
+If you'd like to receive these insights, no action needed - you're
 already on the list. If not, just click unsubscribe below.
 
 Best,
@@ -208,12 +210,14 @@ Jack
 ### 6.2 Success Metrics
 
 **Week 1 targets**:
+
 - Permission pass sent: 100-500 contacts
 - Unsubscribe rate: <10%
 - Bounce rate: <2%
 - New signups: 10-20
 
 **Month 1 targets**:
+
 - Active subscribers: 200+
 - Open rate: >40%
 - Click rate: >7%
@@ -250,11 +254,13 @@ Jack
 ### API Integrations
 
 **Attio API**:
+
 - Endpoint: `https://api.attio.com/v2`
 - Auth: Bearer token
 - Update contact attributes on email events
 
 **Beehiiv Webhooks**:
+
 - Subscribe: Update Attio with `Newsletter Status: Confirmed`
 - Unsubscribe: Update Attio with `Newsletter Status: Unsubscribed`
 - Bounce: Update Attio with `Newsletter Status: Bounced`
@@ -269,7 +275,7 @@ export default {
     }
 
     const payload = await request.json();
-    
+
     // Verify webhook signature
     if (!verifyWebhookSignature(request, payload, env.WEBHOOK_SECRET)) {
       return new Response('Unauthorized', { status: 401 });
@@ -289,25 +295,28 @@ export default {
     }
 
     return new Response('OK', { status: 200 });
-  }
+  },
 };
 ```
 
 ## Risk Mitigation
 
 ### Deliverability Risks
+
 - Start with small batches (<500)
 - Monitor complaint rates via Google Postmaster
 - Use double opt-in for new signups
 - Maintain list hygiene (remove bounces/unengaged)
 
 ### Technical Risks
+
 - Test all integrations in staging
 - Have manual CSV export/import as backup
 - Document all API endpoints and webhooks
 - Keep local backups of subscriber lists
 
 ### Compliance
+
 - Include unsubscribe link in all emails
 - Honor unsubscribes immediately
 - Document consent source for all contacts
@@ -346,5 +355,5 @@ export default {
 
 ---
 
-*Document maintained by: Jack Ivers*  
-*Last review: 2025-08-22*
+_Document maintained by: Jack Ivers_  
+_Last review: 2025-08-22_

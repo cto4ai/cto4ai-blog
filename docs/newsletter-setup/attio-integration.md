@@ -1,6 +1,7 @@
 # Attio CRM Integration Setup
 
 ## Overview
+
 This document describes how to configure Attio CRM to work with the CTO4.AI newsletter subscription system.
 
 ## Required Custom Attributes
@@ -8,6 +9,7 @@ This document describes how to configure Attio CRM to work with the CTO4.AI news
 Before the integration will work properly, you need to create the following custom attributes in your Attio workspace:
 
 ### 1. Newsletter Status
+
 - **Display Name**: Newsletter status
 - **Slug (API ID)**: `newsletter_status`
 - **Type**: Single Select
@@ -18,7 +20,8 @@ Before the integration will work properly, you need to create the following cust
   - `Bounced` - Email delivery failed
 
 ### 2. Newsletter Source
-- **Display Name**: Newsletter source  
+
+- **Display Name**: Newsletter source
 - **Slug (API ID)**: `newsletter_source`
 - **Type**: Single Select
 - **Options**:
@@ -40,11 +43,14 @@ Before the integration will work properly, you need to create the following cust
 ## API Configuration
 
 ### Required API Permissions
+
 Your Attio API key needs the following scopes:
+
 - `record_permission:read-write` - To create and update person records
 - `object_configuration:read` - To read attribute configurations
 
 ### How to Generate API Key
+
 1. Go to **Workspace Settings** (you must be an admin)
 2. Click the **Developers** tab
 3. Click **+ New access token**
@@ -55,7 +61,9 @@ Your Attio API key needs the following scopes:
 ## Integration Flow
 
 ### Website Subscription
+
 When someone subscribes via the website:
+
 1. Email is added to Beehiiv newsletter platform
 2. Person record is created/updated in Attio with:
    - Email address
@@ -63,7 +71,9 @@ When someone subscribes via the website:
    - `newsletter_source: "Website Signup"`
 
 ### Future Webhook Integration
+
 The webhook handler (to be implemented) will update Attio when:
+
 - Someone unsubscribes → `newsletter_status: "Unsubscribed"`
 - Email bounces → `newsletter_status: "Bounced"`
 
@@ -79,18 +89,22 @@ The webhook handler (to be implemented) will update Attio when:
 ### Common Issues
 
 **"Cannot find attribute with slug/ID" error**
+
 - Make sure the attribute slugs are lowercase with underscores (e.g., `newsletter_status` not `Newsletter status`)
 - The API requires the slug format, not the display name
 
 **"Unrecognized key(s) in object: 'original_email_address'" error**
+
 - Only use `email_address` in the email_addresses array
 - Do not include `original_email_address` field
 
 **Attio update fails with 401**
+
 - API key (access token) is invalid or missing required permissions
 - Ensure the token has `record_permission:read-write` scope
 
 **Person not created in Attio**
+
 - Check Cloudflare Function logs for error messages
 - Verify the ATTIO_API_KEY is correctly set in environment variables
 - Confirm the custom attributes exist in Attio with the correct slugs

@@ -23,17 +23,17 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
 // Helper function to get display name for content type
 function getContentTypeDisplay(contentType?: string): string {
   const contentTypeMap: Record<string, string> = {
-    'essay': 'ESSAY',
-    'brief': 'BRIEF',
-    'elsewhere': 'ELSEWHERE',
-    'quote': 'QUOTE',
-    'episode': 'EPISODE',
-    'episodes': 'EPISODES',
+    essay: 'ESSAY',
+    brief: 'BRIEF',
+    elsewhere: 'ELSEWHERE',
+    quote: 'QUOTE',
+    episode: 'EPISODE',
+    episodes: 'EPISODES',
     // Legacy mappings (for backward compatibility)
-    'posts': 'ESSAY',
-    'micro': 'BRIEF'
+    posts: 'ESSAY',
+    micro: 'BRIEF',
   };
-  
+
   return contentTypeMap[contentType || 'essay'] || 'ESSAY';
 }
 ---
@@ -123,7 +123,11 @@ function getContentTypeDisplay(contentType?: string): string {
       </h2>
     </header>
 
-    {(post.excerpt || post.description) && <p class="flex-grow text-muted dark:text-slate-400 text-lg">{post.excerpt || post.description}</p>}
+    {
+      (post.excerpt || post.description) && (
+        <p class="flex-grow text-muted dark:text-slate-400 text-lg">{post.excerpt || post.description}</p>
+      )
+    }
     {
       post.tags && Array.isArray(post.tags) ? (
         <footer class="mt-5">

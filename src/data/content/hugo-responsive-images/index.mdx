@@ -1,21 +1,26 @@
 ---
-title: "Hugo Responsive Images, Thanks to Bryce and ChatGPT"
-contentType: "brief"
-description: "TIL how the html `picture` element actually works ..."
-author: "Jack Ivers"
-publishDate: "2023-07-01T20:19:51-05:00"
+title: 'Hugo Responsive Images, Thanks to Bryce and ChatGPT'
+contentType: 'brief'
+description: 'TIL how the html `picture` element actually works ...'
+author: 'Jack Ivers'
+publishDate: '2023-07-01T20:19:51-05:00'
 draft: false
 ---
 
 import SingleImage from '~/components/ui/SingleImage.astro';
 
-I'd been using a community Hugo module that supposedly enabled responsive images. I discovered recently that it was always serving up the **lowest resolution** images being served up. 
+I'd been using a community Hugo module that supposedly enabled responsive images. I discovered recently that it was always serving up the **lowest resolution** images being served up.
 
- Active Hugo community member [Bryce Wray](https://www.brycewray.com/) has written about Hugo responsive images. So yesterday I made an attempt to implement his approach and was 75% there when I discovered that it was, ironically, always serving up the **highest resolution** images. (My problem, not Bryce's).
+Active Hugo community member [Bryce Wray](https://www.brycewray.com/) has written about Hugo responsive images. So yesterday I made an attempt to implement his approach and was 75% there when I discovered that it was, ironically, always serving up the **highest resolution** images. (My problem, not Bryce's).
 
- Today I learned how all the subelements and attributes of the html `picture` element actually work, and have my own image shortcode and underlying partial that makes it all work deliciously. The approach is Bryce's, adapted for my special needs, primarily the need to support 1 to N images; multiple images render horizontally such as:
+Today I learned how all the subelements and attributes of the html `picture` element actually work, and have my own image shortcode and underlying partial that makes it all work deliciously. The approach is Bryce's, adapted for my special needs, primarily the need to support 1 to N images; multiple images render horizontally such as:
 
-<SingleImage src="images/moat.png,images/moat-busters-1.png,images/moat-busters-2.png" alt="images/moat.png,images/moat-busters-1.png,images/moat-busters-2.png" size="xl" postDir="hugo-responsive-images" />
+<SingleImage
+  src="images/moat.png,images/moat-busters-1.png,images/moat-busters-2.png"
+  alt="images/moat.png,images/moat-busters-1.png,images/moat-busters-2.png"
+  size="xl"
+  postDir="hugo-responsive-images"
+/>
 
 Takeways:
 
@@ -23,5 +28,15 @@ Takeways:
 - ChatGPT (GPT-4 model) continues to be incredibly powerful as [my pair programmer](/p/unlimited-stupid-questions). For example, when I needed to really understand why my `picture` output wasn't doing what it should, it gave very accurate guidance. I'd guess that my speed was at least doubled on this little project.
 - Midjourney 5.2's zoom out function is a lot of fun. Here's the right image above at 2x and 4x zoom out:
 
-<SingleImage src="images/moat-busters-2-zoom-out-2.png" alt="images/moat-busters-2-zoom-out-2.png" size="2xl" postDir="hugo-responsive-images" />
-<SingleImage src="images/moat-busters-2-zoom-out-4.png" alt="images/moat-busters-2-zoom-out-4.png" size="2xl" postDir="hugo-responsive-images" />
+<SingleImage
+  src="images/moat-busters-2-zoom-out-2.png"
+  alt="images/moat-busters-2-zoom-out-2.png"
+  size="2xl"
+  postDir="hugo-responsive-images"
+/>
+<SingleImage
+  src="images/moat-busters-2-zoom-out-4.png"
+  alt="images/moat-busters-2-zoom-out-4.png"
+  size="2xl"
+  postDir="hugo-responsive-images"
+/>

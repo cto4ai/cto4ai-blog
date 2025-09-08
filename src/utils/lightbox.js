@@ -12,12 +12,12 @@ export function initializeLightbox() {
   lightboxInstance = GLightbox({
     touchNavigation: true,
     loop: false,
-    autoplayVideos: true
+    autoplayVideos: true,
   });
 
   // Mark as initialized
   window.glightboxInitialized = true;
-  
+
   return lightboxInstance;
 }
 
@@ -32,7 +32,7 @@ export function refreshLightbox() {
     lightboxInstance = null;
     window.glightboxInitialized = false;
   }
-  
+
   // Create new instance
   setTimeout(() => {
     initializeLightbox();

@@ -22,33 +22,35 @@ const {
   showTimestamps = false,
   showAvatars = true,
   showSource = true,
-  collapsible = false,
+  collapsible = false, // eslint-disable-line @typescript-eslint/no-unused-vars
   maxHeight,
   class: className = '',
   toolName,
 } = Astro.props;
 
 // Parse transcript if provided, otherwise use messages prop
-const messages = transcript ? parseTranscript(transcript) : (propMessages || []);
+const messages = transcript ? parseTranscript(transcript) : propMessages || [];
 
 // Extract source info if available
 const sourceInfo = messages.length > 0 && messages[0].metadata?.exportInfo;
 
 // Determine the AI tool name
 const detectedSource = messages.length > 0 ? messages[0].metadata?.source : 'unknown';
-const aiToolName = toolName || {
+const sourceNames = {
   'claude-code': 'Claude Code',
-  'cursor': 'Cursor',
+  cursor: 'Cursor',
   'claude-ai': 'Claude.ai',
-  'chatgpt': 'ChatGPT',
-  'unknown': 'AI Assistant'
-}[detectedSource] || 'AI Assistant';
+  chatgpt: 'ChatGPT',
+  unknown: 'AI Assistant',
+};
+const aiToolName = toolName || sourceNames[detectedSource as keyof typeof sourceNames] || 'AI Assistant';
 
 // Theme-specific classes
 const themeClasses = {
   adium: {
     container: 'bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg',
-    titleBar: 'bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 px-4 py-2 border-b border-gray-300 dark:border-gray-600',
+    titleBar:
+      'bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 px-4 py-2 border-b border-gray-300 dark:border-gray-600',
     messagesContainer: 'bg-white dark:bg-gray-950',
     messageWrapper: 'flex gap-3 border-b border-gray-100 dark:border-gray-800',
     userMessage: 'bg-white dark:bg-gray-900',
@@ -74,7 +76,8 @@ const themeClasses = {
     container: 'bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-xl p-6',
     messageWrapper: 'flex gap-4 mb-6',
     userBubble: 'bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl px-5 py-3 max-w-[75%] shadow-md',
-    assistantBubble: 'bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-xl px-5 py-3 max-w-[75%] shadow-md',
+    assistantBubble:
+      'bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-xl px-5 py-3 max-w-[75%] shadow-md',
     avatar: 'w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold',
     userAvatar: 'bg-gradient-to-br from-blue-500 to-blue-700',
     assistantAvatar: 'bg-gradient-to-br from-gray-500 to-gray-700',
@@ -92,7 +95,11 @@ const themeClasses = {
   },
 };
 
-const currentTheme = themeClasses[theme];
+const currentTheme = themeClasses[theme] as
+  | typeof themeClasses.adium
+  | typeof themeClasses.minimal
+  | typeof themeClasses.modern
+  | typeof themeClasses.compact;
 
 // Container styles with optional max height for scrolling
 const containerStyle = maxHeight ? `max-height: ${maxHeight}; overflow-y: auto;` : '';
@@ -100,20 +107,17 @@ const containerStyle = maxHeight ? `max-height: ${maxHeight}; overflow-y: auto;`
 // Simple markdown to HTML converter for chat messages
 function renderMarkdown(text: string): string {
   if (!text) return '';
-  
+
   // Remove excessive blank lines (more than 2 consecutive newlines become 2)
   text = text.replace(/\n{3,}/g, '\n\n');
-  
+
   // First, temporarily replace code blocks to protect them
   const codeBlocks: string[] = [];
   let protectedText = text.replace(/```(\w*)\n?([\s\S]*?)```/g, (match, lang, code) => {
     const placeholder = `__CODE_BLOCK_${codeBlocks.length}__`;
     const trimmedCode = code.trim();
     // Escape HTML in code blocks
-    const escapedCode = trimmedCode
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+    const escapedCode = trimmedCode.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     codeBlocks.push(`<pre class="language-${lang || 'plaintext'}"><code>${escapedCode}</code></pre>`);
     return placeholder;
   });
@@ -122,14 +126,11 @@ function renderMarkdown(text: string): string {
   const inlineCode: string[] = [];
   protectedText = protectedText.replace(/`([^`]+)`/g, (match, code) => {
     const placeholder = `__INLINE_CODE_${inlineCode.length}__`;
-    const escapedCode = code
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+    const escapedCode = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     inlineCode.push(`<code>${escapedCode}</code>`);
     return placeholder;
   });
-  
+
   // Now process the rest of the markdown
   let html = protectedText
     // Escape remaining HTML
@@ -147,134 +148,123 @@ function renderMarkdown(text: string): string {
     // Links
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
     // Convert double line breaks to paragraph breaks, single line breaks to spaces
-    .split(/\n\n+/).map(para => `<p>${para.replace(/\n/g, ' ')}</p>`).join('')
+    .split(/\n\n+/)
+    .map((para) => `<p>${para.replace(/\n/g, ' ')}</p>`)
+    .join('')
     // Remove empty paragraphs
     .replace(/<p>\s*<\/p>/g, '');
-  
+
   // Restore code blocks
   codeBlocks.forEach((block, i) => {
     html = html.replace(`__CODE_BLOCK_${i}__`, block);
   });
-  
+
   // Restore inline code
   inlineCode.forEach((code, i) => {
     html = html.replace(`__INLINE_CODE_${i}__`, code);
   });
-    
+
   return `<div class="message-content prose prose-sm dark:prose-invert max-w-none">${html}</div>`;
 }
 ---
 
-<div 
-  class={`chat-transcript ${currentTheme.container} ${className}`}
-  data-theme={theme}
->
+<div class={`chat-transcript ${currentTheme.container} ${className}`} data-theme={theme}>
   {/* Title bar with tool name - styled as part of component */}
-  <div class="bg-gray-100 dark:bg-gray-800 px-4 py-3 border-2 border-b-0 border-gray-400 dark:border-gray-600 rounded-t-lg flex items-baseline justify-between">
+  <div
+    class="bg-gray-100 dark:bg-gray-800 px-4 py-3 border-2 border-b-0 border-gray-400 dark:border-gray-600 rounded-t-lg flex items-baseline justify-between"
+  >
     <h3 class="font-semibold text-gray-900 dark:text-gray-100 text-base">
-      AI Conversation Transcript: 
+      AI Conversation Transcript:
       <span class="font-bold text-lg text-blue-700 dark:text-blue-400">{aiToolName}</span>
     </h3>
-    {sourceInfo && showSource && (
-      <span class="text-xs text-gray-600 dark:text-gray-400">
-        {sourceInfo.replace('Exported on ', '').replace(/ from .+/, '')}
-      </span>
-    )}
+    {
+      sourceInfo && showSource && (
+        <span class="text-xs text-gray-600 dark:text-gray-400">
+          {sourceInfo.replace('Exported on ', '').replace(/ from .+/, '')}
+        </span>
+      )
+    }
   </div>
   {/* Separator cell border */}
   <div class="h-0.5 bg-gray-400 dark:bg-gray-600 border-x-2 border-gray-400 dark:border-gray-600"></div>
-  
+
   {/* Messages container with connected border */}
-  <div 
-    class={`${theme === 'adium' ? currentTheme.messagesContainer : ''} border-2 border-t-0 border-gray-400 dark:border-gray-600 rounded-b-lg`}
+  <div
+    class={`${theme === 'adium' ? (currentTheme as typeof themeClasses.adium).messagesContainer : ''} border-2 border-t-0 border-gray-400 dark:border-gray-600 rounded-b-lg`}
     style={containerStyle}
   >
-    {messages.map((message, index) => {
-      const isUser = message.role === 'user';
-      
-      if (theme === 'adium') {
-        return (
-          <div 
-            class={`${currentTheme.messageWrapper} ${isUser ? currentTheme.userMessage : currentTheme.assistantMessage} ${currentTheme.messagePadding}`}
-            data-role={message.role}
-          >
-            {showAvatars && (
-              <div class={currentTheme.avatar}>
-                <div class={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                  isUser 
-                    ? 'bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600'
-                    : 'bg-blue-100 dark:bg-blue-900 border border-blue-300 dark:border-blue-700'
-                }`}>
-                  <span class={`text-xs font-bold ${
-                    isUser
-                      ? 'text-gray-700 dark:text-gray-300'
-                      : 'text-blue-700 dark:text-blue-300'
-                  }`}>
-                    {isUser ? 'U' : 'AI'}
+    {
+      messages.map((message) => {
+        const isUser = message.role === 'user';
+
+        if (theme === 'adium') {
+          return (
+            <div
+              class={`${currentTheme.messageWrapper} ${isUser ? (currentTheme as typeof themeClasses.adium).userMessage : (currentTheme as typeof themeClasses.adium).assistantMessage} ${(currentTheme as typeof themeClasses.adium).messagePadding}`}
+              data-role={message.role}
+            >
+              {showAvatars && (
+                <div class={currentTheme.avatar}>
+                  <div
+                    class={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                      isUser
+                        ? 'bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600'
+                        : 'bg-blue-100 dark:bg-blue-900 border border-blue-300 dark:border-blue-700'
+                    }`}
+                  >
+                    <span
+                      class={`text-xs font-bold ${
+                        isUser ? 'text-gray-700 dark:text-gray-300' : 'text-blue-700 dark:text-blue-300'
+                      }`}
+                    >
+                      {isUser ? 'U' : 'AI'}
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              <div class={(currentTheme as typeof themeClasses.adium).messageContent}>
+                <div class="mb-2">
+                  <span
+                    class={`font-semibold text-sm ${
+                      isUser ? 'text-gray-700 dark:text-gray-300' : 'text-blue-700 dark:text-blue-300'
+                    }`}
+                  >
+                    {isUser ? 'User' : aiToolName}
                   </span>
                 </div>
+                <div class="message-text" set:html={renderMarkdown(message.content)} />
+                {showTimestamps && message.timestamp && <div class={currentTheme.timestamp}>{message.timestamp}</div>}
               </div>
-            )}
-            
-            <div class={currentTheme.messageContent}>
-              <div class="mb-2">
-                <span class={`font-semibold text-sm ${
-                  isUser 
-                    ? 'text-gray-700 dark:text-gray-300' 
-                    : 'text-blue-700 dark:text-blue-300'
-                }`}>
-                  {isUser ? 'User' : aiToolName}
-                </span>
+            </div>
+          );
+        } else {
+          // Original bubble layout for other themes
+          const alignClass = isUser ? 'justify-end' : 'justify-start';
+
+          return (
+            <div class={`message ${currentTheme.messageWrapper} ${alignClass}`} data-role={message.role}>
+              {showAvatars && theme !== 'minimal' && theme !== 'compact' && !isUser && (
+                <div class={`${currentTheme.avatar} ${currentTheme.assistantAvatar}`}>A</div>
+              )}
+
+              <div class={isUser ? 'flex flex-col items-end' : ''}>
+                <div
+                  class={`message-bubble ${isUser ? (currentTheme as typeof themeClasses.modern).userBubble : (currentTheme as typeof themeClasses.modern).assistantBubble}`}
+                  set:html={renderMarkdown(message.content)}
+                />
+
+                {showTimestamps && message.timestamp && <div class={currentTheme.timestamp}>{message.timestamp}</div>}
               </div>
-              <div 
-                class="message-text"
-                set:html={renderMarkdown(message.content)}
-              />
-              {showTimestamps && message.timestamp && (
-                <div class={currentTheme.timestamp}>
-                  {message.timestamp}
-                </div>
+
+              {showAvatars && theme !== 'minimal' && theme !== 'compact' && isUser && (
+                <div class={`${currentTheme.avatar} ${currentTheme.userAvatar}`}>U</div>
               )}
             </div>
-          </div>
-        );
-      } else {
-        // Original bubble layout for other themes
-        const alignClass = (isUser ? 'justify-end' : 'justify-start');
-        
-        return (
-          <div 
-            class={`message ${currentTheme.messageWrapper} ${alignClass}`}
-            data-role={message.role}
-          >
-            {showAvatars && theme !== 'minimal' && theme !== 'compact' && !isUser && (
-              <div class={`${currentTheme.avatar} ${currentTheme.assistantAvatar}`}>
-                A
-              </div>
-            )}
-            
-            <div class={isUser ? 'flex flex-col items-end' : ''}>
-              <div 
-                class={`message-bubble ${isUser ? currentTheme.userBubble : currentTheme.assistantBubble}`}
-                set:html={renderMarkdown(message.content)}
-              />
-              
-              {showTimestamps && message.timestamp && (
-                <div class={currentTheme.timestamp}>
-                  {message.timestamp}
-                </div>
-              )}
-            </div>
-            
-            {showAvatars && theme !== 'minimal' && theme !== 'compact' && isUser && (
-              <div class={`${currentTheme.avatar} ${currentTheme.userAvatar}`}>
-                U
-              </div>
-            )}
-          </div>
-        );
-      }
-    })}
+          );
+        }
+      })
+    }
   </div>
 </div>
 
@@ -286,15 +276,15 @@ function renderMarkdown(text: string): string {
   .message-content {
     word-break: break-word;
   }
-  
+
   .message-content p {
     margin: 0.5rem 0;
   }
-  
+
   .message-content p:first-child {
     margin-top: 0;
   }
-  
+
   .message-content p:last-child {
     margin-bottom: 0;
   }
@@ -326,61 +316,65 @@ function renderMarkdown(text: string): string {
 
   /* Enhanced border visibility for scrollable area */
   .chat-transcript {
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+    box-shadow:
+      0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      0 1px 2px -1px rgba(0, 0, 0, 0.04);
     margin: 1.5rem 0;
   }
 
   .dark .chat-transcript {
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0 1px 2px -1px rgba(0, 0, 0, 0.1);
   }
 
   /* Adium-specific styling */
-  [data-theme="adium"] {
+  [data-theme='adium'] {
     border: none; /* Remove old border since we have new enhanced borders */
   }
 
-  [data-theme="adium"] .message-text {
+  [data-theme='adium'] .message-text {
     color: #374151;
   }
 
-  .dark [data-theme="adium"] {
+  .dark [data-theme='adium'] {
     border: 1px solid #374151;
   }
 
-  .dark [data-theme="adium"] .message-text {
+  .dark [data-theme='adium'] .message-text {
     color: #e5e7eb;
   }
 
-  [data-theme="adium"] .message-text pre {
+  [data-theme='adium'] .message-text pre {
     background-color: #f3f4f6;
     border: 1px solid #e5e7eb;
   }
 
-  .dark [data-theme="adium"] .message-text pre {
+  .dark [data-theme='adium'] .message-text pre {
     background-color: #1f2937;
     border: 1px solid #374151;
   }
 
   /* Smooth scrolling for container */
-  .chat-transcript[style*="max-height"] {
+  .chat-transcript[style*='max-height'] {
     scroll-behavior: smooth;
     scrollbar-width: thin;
   }
 
-  .chat-transcript[style*="max-height"]::-webkit-scrollbar {
+  .chat-transcript[style*='max-height']::-webkit-scrollbar {
     width: 6px;
   }
 
-  .chat-transcript[style*="max-height"]::-webkit-scrollbar-track {
+  .chat-transcript[style*='max-height']::-webkit-scrollbar-track {
     background: transparent;
   }
 
-  .chat-transcript[style*="max-height"]::-webkit-scrollbar-thumb {
+  .chat-transcript[style*='max-height']::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 3px;
   }
 
-  .dark .chat-transcript[style*="max-height"]::-webkit-scrollbar-thumb {
+  .dark .chat-transcript[style*='max-height']::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.2);
   }
 </style>
@@ -389,7 +383,7 @@ function renderMarkdown(text: string): string {
   // Add copy button to code blocks
   document.addEventListener('DOMContentLoaded', () => {
     const codeBlocks = document.querySelectorAll('.chat-transcript pre');
-    
+
     codeBlocks.forEach((block) => {
       const button = document.createElement('button');
       button.className = 'copy-code-btn';
@@ -407,12 +401,12 @@ function renderMarkdown(text: string): string {
         cursor: pointer;
         transition: all 0.2s;
       `;
-      
-      block.style.position = 'relative';
+
+      (block as HTMLElement).style.position = 'relative';
       block.appendChild(button);
-      
+
       button.addEventListener('click', async () => {
-        const code = block.querySelector('code')?.textContent || block.textContent;
+        const code = block.querySelector('code')?.textContent || block.textContent || '';
         await navigator.clipboard.writeText(code);
         button.textContent = 'Copied!';
         setTimeout(() => {
@@ -425,12 +419,13 @@ function renderMarkdown(text: string): string {
   // Handle collapsible messages if enabled
   const collapsibleElements = document.querySelectorAll('.chat-transcript[data-collapsible="true"] .message-content');
   collapsibleElements.forEach((element) => {
-    if (element.scrollHeight > 200) {
-      element.style.maxHeight = '200px';
-      element.style.overflow = 'hidden';
-      element.style.cursor = 'pointer';
-      element.style.position = 'relative';
-      
+    const el = element as HTMLElement;
+    if (el.scrollHeight > 200) {
+      el.style.maxHeight = '200px';
+      el.style.overflow = 'hidden';
+      el.style.cursor = 'pointer';
+      el.style.position = 'relative';
+
       const expandBtn = document.createElement('div');
       expandBtn.textContent = 'Show more...';
       expandBtn.style.cssText = `
@@ -443,15 +438,15 @@ function renderMarkdown(text: string): string {
         text-align: center;
         cursor: pointer;
       `;
-      
-      element.appendChild(expandBtn);
-      
-      element.addEventListener('click', () => {
-        if (element.style.maxHeight === '200px') {
-          element.style.maxHeight = 'none';
+
+      el.appendChild(expandBtn);
+
+      el.addEventListener('click', () => {
+        if (el.style.maxHeight === '200px') {
+          el.style.maxHeight = 'none';
           expandBtn.textContent = 'Show less';
         } else {
-          element.style.maxHeight = '200px';
+          el.style.maxHeight = '200px';
           expandBtn.textContent = 'Show more...';
         }
       });

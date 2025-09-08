@@ -11,10 +11,10 @@ export const getFormattedDate = (date: Date): string => (date ? formatter.format
 
 export const getFormattedDateConditionalYear = (date: Date): string => {
   if (!date) return '';
-  
+
   const currentYear = new Date().getFullYear();
   const dateYear = date.getFullYear();
-  
+
   if (currentYear === dateYear) {
     // Format without year for current year
     const monthDayFormatter = new Intl.DateTimeFormat(I18N?.language, {

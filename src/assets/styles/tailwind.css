@@ -6,7 +6,7 @@
   html {
     scroll-padding-top: 7.5rem; /* Account for sticky header height - 120px */
   }
-  
+
   @media (min-width: 768px) {
     html {
       scroll-padding-top: 7rem; /* Desktop header height - 112px */

@@ -1,6 +1,7 @@
 # CTO4.AI Content Routes Plan
 
 ## Overview
+
 CTO4.AI will be a newsletter-first blog site focused on AI and technology leadership, with Beehiiv integration for newsletter management. The site will maintain a simple, clean URL structure inspired by successful newsletter platforms like Substack.
 
 ## URL Structure
@@ -8,6 +9,7 @@ CTO4.AI will be a newsletter-first blog site focused on AI and technology leader
 ### Primary Content Routes
 
 #### 1. Posts (All Content Types)
+
 - **Pattern**: `/p/[slug]`
 - **Examples**:
   - `/p/early-gpt-5-impressions` (blog post)
@@ -17,6 +19,7 @@ CTO4.AI will be a newsletter-first blog site focused on AI and technology leader
 - **Rationale**: Follows Substack's proven pattern. Simple, clean, content-type agnostic.
 
 #### 2. Homepage
+
 - **Route**: `/`
 - **Features**:
   - Newsletter signup hero/modal (prominent CTA)
@@ -25,6 +28,7 @@ CTO4.AI will be a newsletter-first blog site focused on AI and technology leader
   - Simple pagination
 
 #### 3. Archive
+
 - **Route**: `/archive`
 - **Features**:
   - Chronological list of all posts
@@ -33,6 +37,7 @@ CTO4.AI will be a newsletter-first blog site focused on AI and technology leader
   - Content type indicators (icon/badge)
 
 #### 4. Services
+
 - **Route**: `/services`
 - **Purpose**: CTO consulting services overview
 - **Features**:
@@ -41,6 +46,7 @@ CTO4.AI will be a newsletter-first blog site focused on AI and technology leader
   - "For detailed information and booking, visit [CraftyCTO.com](https://craftycto.com)"
 
 #### 5. About
+
 - **Route**: `/about`
 - **Features**:
   - Author bio
@@ -51,22 +57,27 @@ CTO4.AI will be a newsletter-first blog site focused on AI and technology leader
 ### Secondary Routes
 
 #### 6. Newsletter Subscribe
+
 - **Route**: `/subscribe`
 - **Purpose**: Dedicated signup page with value proposition
 - **Integration**: Beehiiv embed or API
 
 #### 7. Welcome/Confirmation
+
 - **Route**: `/welcome`
 - **Purpose**: Post-subscription confirmation and onboarding
 
 #### 8. Search
+
 - **Route**: `/search`
 - **Features**: Full-text search using Pagefind
 
 ### Technical Implementation
 
 #### URL Generation Logic
+
 Update `/src/utils/permalinks.ts`:
+
 ```typescript
 // Line 76-78 modification
 case 'post':
@@ -75,17 +86,20 @@ case 'post':
 ```
 
 #### Config Updates
+
 Update `/src/config.yaml`:
+
 ```yaml
 apps:
   blog:
     post:
-      permalink: '/p/%slug%'  # Substack-style URLs
+      permalink: '/p/%slug%' # Substack-style URLs
 ```
 
 ### Navigation Structure
 
 **Primary Navigation:**
+
 1. Home (logo/brand)
 2. Archive
 3. Services
@@ -93,6 +107,7 @@ apps:
 5. Subscribe (CTA button)
 
 **Footer Navigation:**
+
 - Archive
 - Services
 - About
@@ -104,12 +119,14 @@ apps:
 ### Content Organization
 
 #### Content Collections (unchanged)
+
 - `posts` - Long-form articles
 - `micro` - Short updates
 - `elsewhere` - Curated links
 - `quote` - Notable quotes
 
 All content types share the same URL pattern (`/p/[slug]`) but can be visually differentiated in listings with:
+
 - Icons (📝 Article, 🔗 Link, 💭 Quote, 📌 Note)
 - Badges or tags
 - Different card styles
@@ -117,6 +134,7 @@ All content types share the same URL pattern (`/p/[slug]`) but can be visually d
 ### Newsletter Integration
 
 #### Homepage Newsletter Signup
+
 - **Position**: Above the fold
 - **Style**: Either:
   - Hero section with email input
@@ -126,6 +144,7 @@ All content types share the same URL pattern (`/p/[slug]`) but can be visually d
   - "Weekly analysis of AI's impact on software development"
 
 #### Beehiiv Integration Points
+
 1. Subscribe forms (homepage, /subscribe)
 2. Past issues archive (potentially)
 3. Subscriber-only content (future consideration)
@@ -133,12 +152,14 @@ All content types share the same URL pattern (`/p/[slug]`) but can be visually d
 ### SEO & Social Optimization
 
 #### Meta Tags Strategy
+
 - Open Graph optimized for social sharing
 - Twitter Cards for all posts
 - Canonical URLs: `https://cto4.ai/p/[slug]`
 - Newsletter-specific meta tags
 
 #### Sitemap
+
 - All `/p/*` posts
 - Static pages (/services, /about, /archive)
 - RSS feed at `/rss.xml`
@@ -146,6 +167,7 @@ All content types share the same URL pattern (`/p/[slug]`) but can be visually d
 ### Migration Considerations
 
 #### Content Migration from CraftyCTO
+
 1. Map existing URLs to new structure:
    - `/blog/[slug]` → `/p/[slug]`
    - `/micro/[slug]` → `/p/[slug]`
@@ -159,6 +181,7 @@ All content types share the same URL pattern (`/p/[slug]`) but can be visually d
 ### Performance & UX
 
 #### Key Features
+
 - Fast page loads (static generation)
 - Smooth navigation
 - Mobile-first responsive design
@@ -176,17 +199,20 @@ All content types share the same URL pattern (`/p/[slug]`) but can be visually d
 ## Implementation Priority
 
 ### Phase 1: Core Routes
+
 1. Update permalink structure to `/p/[slug]`
 2. Create Services page
 3. Update homepage with newsletter focus
 4. Implement Archive page
 
 ### Phase 2: Newsletter Integration
+
 1. Beehiiv integration
 2. Subscribe/Welcome pages
 3. Newsletter signup components
 
 ### Phase 3: Enhancement
+
 1. Search improvements
 2. Related posts
 3. Content filtering in Archive

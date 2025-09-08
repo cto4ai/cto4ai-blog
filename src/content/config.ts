@@ -58,10 +58,10 @@ const contentCollection = defineCollection({
     excerpt: z.string().optional(),
     description: z.string().optional(),
     image: z.string().optional(),
-    
+
     // Content type from Phase 1
     contentType: z.enum(['essay', 'brief', 'elsewhere', 'quote', 'episode']).optional(),
-    
+
     // Common fields across all types
     category: z.string().optional(),
     categories: z.array(z.string()).optional(),
@@ -70,7 +70,7 @@ const contentCollection = defineCollection({
     featured: z.boolean().optional(),
     featuredOrder: z.number().optional(),
     sourceLink: z.string().url().optional(),
-    
+
     // Legacy fields
     ShowToc: z.boolean().optional(),
     ShowBreadCrumbs: z.boolean().optional(),

@@ -1,11 +1,11 @@
 ---
-title: "Using Tailscale to Access Amazon VPCs, EC2 Instances, and RDS Clusters"
-contentType: "essay"
-description: "Tailscale has been simple to set up and manage, but also amazingly flexible."
-author: "Jack Ivers"
-publishDate: "2024-04-23T12:19:30-05:00"
+title: 'Using Tailscale to Access Amazon VPCs, EC2 Instances, and RDS Clusters'
+contentType: 'essay'
+description: 'Tailscale has been simple to set up and manage, but also amazingly flexible.'
+author: 'Jack Ivers'
+publishDate: '2024-04-23T12:19:30-05:00'
 draft: false
-image: "~/assets/images/content/tailscale-fun/tailscale-logo.webp"
+image: '~/assets/images/content/tailscale-fun/tailscale-logo.webp'
 ---
 
 ## Inception: Direct Database Access for the Data Team
@@ -51,7 +51,7 @@ The very minute I sat down to write this section, Tailscale's monthly email news
 
 ## Getting Inside the VPC
 
-VPC means Virtual ***Private*** Cloud, so how do we get in there? Enabling all sort of "getting in there," in a magically simple way, is Tailscale's superpower. Still, AWS is pretty serious about the P word, and [Tailscale did the work](https://tailscale.com/kb/1296/aws-reference-architecture) to make it really work.
+VPC means Virtual **_Private_** Cloud, so how do we get in there? Enabling all sort of "getting in there," in a magically simple way, is Tailscale's superpower. Still, AWS is pretty serious about the P word, and [Tailscale did the work](https://tailscale.com/kb/1296/aws-reference-architecture) to make it really work.
 
 Getting Tailscale running on an EC2 instance, bare cloud-iron that we can directly access and control, is just a quick install. Literally a minute if one can SSH in. In one minute, that EC2 instance will magically pop up on your private Tailnet. (Installing Tailscale on Mac, Windows, iOS, etc. is even easier.)
 
@@ -71,7 +71,7 @@ We all know the pitfalls of username/password security, and organizations that a
 
 So every SSH user needs to establish a keypair with every server they SSH access to. When you've got more than a handful of SSH users and servers, this gets painful fast, and opens up its own attack surfaces, such as the case where an SSH-privileged user leaves the company. The pain level and security/compliance concerns here are often large enough to drive the implementation of PKI (Public Key Infrastructure) and KMS (Key Management System) solutions. In other words, a whole new set of systems just to get secure, compliant SSH.
 
-This is where Tailscale SSH shines. Tailscale already knows, through its underlying digital certificate implementation, who its users and machines are. Tailscale SSH simply applies  Tailscale's own strong authentication and key management capabilities to SSH transactions, adding an SSH-specific Access Control List facility to cover authorization, e.g. "what's this user allowed to do?" This eliminates the whole every-user-to-every-server keypair rat race while improving security and compliance. And there are [many other benefits](https://tailscale.com/tailscale-ssh) to Tailscale SSH, from automatic key rotation to the SSH session recording.
+This is where Tailscale SSH shines. Tailscale already knows, through its underlying digital certificate implementation, who its users and machines are. Tailscale SSH simply applies Tailscale's own strong authentication and key management capabilities to SSH transactions, adding an SSH-specific Access Control List facility to cover authorization, e.g. "what's this user allowed to do?" This eliminates the whole every-user-to-every-server keypair rat race while improving security and compliance. And there are [many other benefits](https://tailscale.com/tailscale-ssh) to Tailscale SSH, from automatic key rotation to the SSH session recording.
 
 ## Tricks, Tips, and Learning Moments
 

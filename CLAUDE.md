@@ -18,24 +18,31 @@ This is "CTO4.AI" - a new Astro-based blog being migrated from the Hugo-based Cr
 ## Development Commands
 
 ### Start Development Server
+
 ```bash
 npm run dev
 ```
+
 Starts the Astro development server with hot reload on port 4321.
 
 ### Build for Production
+
 ```bash
 npm run build
 ```
+
 Builds the site for production deployment.
 
 ### Preview Production Build
+
 ```bash
 npm run preview
 ```
+
 Preview the production build locally.
 
 ### Other Commands
+
 ```bash
 npm run check        # Check Astro configuration
 npm run format       # Format code with Prettier
@@ -44,7 +51,9 @@ npm run format       # Format code with Prettier
 ## Content Structure (Unified - Option 2A Implemented)
 
 ### Content Organization
+
 All content now uses a unified directory structure with content types defined in frontmatter:
+
 - **All Content**: `/src/data/content/[slug]/index.mdx` - All content types in unified structure
 - **Content Types** (defined in frontmatter `contentType` field):
   - `essay` - Long-form articles (previously in /posts/)
@@ -54,6 +63,7 @@ All content now uses a unified directory structure with content types defined in
   - `episodes` - Podcast/video reviews (new type)
 
 ### Images
+
 - **All Images**: `/src/assets/images/content/[slug]/` - Unified image storage
 - Each post's images are stored in a directory matching its slug
 - Components automatically look in the correct location based on postDir
@@ -61,12 +71,14 @@ All content now uses a unified directory structure with content types defined in
 ## Key Custom Components
 
 ### Image Components
+
 - **SingleImage**: Display single images with lightbox support
   - Usage: `<SingleImage src="image.png" alt="Description" size="2xl" postDir="post-name" />`
 - **ImageGallery**: Display multiple images in a grid with lightbox
   - Usage: `<ImageGallery images={["img1.png", "img2.png"]} postDir="post-name" size="xl" />`
 
 ### Layout Components
+
 - **SinglePost.astro**: Main blog post layout with header image
 - **GridItem.astro**: Blog post cards with 44:28 aspect ratio
 - **RelatedPosts.astro**: Shows related posts based on tags/categories
@@ -83,6 +95,7 @@ All content now uses a unified directory structure with content types defined in
 ## Migration Context
 
 This repository is part of a dual-repository setup:
+
 1. **craftycto** (Hugo) - Original blog at craftycto.com/blog
 2. **cto4ai-blog** (Astro) - New blog at cto4.ai (this repo)
 
@@ -91,24 +104,28 @@ The migration is happening in parallel - the Hugo blog remains operational while
 ## Development Guidelines
 
 ### When Working with Content
+
 - **NEVER** overwrite existing MDX files without explicit user permission
 - Always check if a file exists before migrating content
 - Preserve all frontmatter when editing posts
 - Images from Hugo should come from source directories, not `_gen` folders
 
 ### Image Handling
+
 - Use Astro's Image component for optimization
 - Standard aspect ratio is 44:28 for consistency
 - Always provide alt text for accessibility
 - Place images in `/src/assets/images/content/[slug]/` matching the post's slug
 
 ### Component Usage
+
 - Prefer editing existing components over creating new ones
 - Follow existing patterns in the codebase
 - Use Tailwind classes for styling
 - Maintain dark mode compatibility
 
 ### Testing
+
 - Always verify changes with Playwright when available
 - Check both light and dark modes
 - Test navigation and interactive elements
@@ -117,6 +134,7 @@ The migration is happening in parallel - the Hugo blog remains operational while
 ## Migration Scripts
 
 Several Python scripts assist with content migration:
+
 - `complete-conversion.py` - Full content migration
 - `convert-hugo-shortcodes.py` - Convert Hugo shortcodes to MDX
 - `patch-existing-mdx.py` - Update existing MDX files

@@ -3,6 +3,7 @@
 ## Current Behavior
 
 The Astro dev server (`npm run dev`) uses the Pagefind search index from the last production build (`npm run build`). This means:
+
 - Draft posts are visible in the dev server (due to `import.meta.env.DEV` being true)
 - But draft posts are NOT searchable because the search index was built without them
 - The search index becomes stale as you add/edit content during development
@@ -17,6 +18,7 @@ The Astro dev server (`npm run dev`) uses the Pagefind search index from the las
 ## Proposed Solution: Dev Server Script
 
 Similar to the Hugo site's `dev_server.sh`, we can create a script that:
+
 1. Builds the site with drafts included
 2. Generates a fresh search index
 3. Starts the dev server
@@ -51,8 +53,7 @@ Add to `package.json`:
 1. The `PUBLIC_SHOW_DRAFTS_IN_PREVIEW=true` environment variable tells the build to include draft posts
 2. This is checked in `/src/utils/blog.ts`:
    ```typescript
-   const SHOW_DRAFTS = import.meta.env.DEV || 
-                       import.meta.env.PUBLIC_SHOW_DRAFTS_IN_PREVIEW === "true";
+   const SHOW_DRAFTS = import.meta.env.DEV || import.meta.env.PUBLIC_SHOW_DRAFTS_IN_PREVIEW === 'true';
    ```
 3. The build creates a search index that includes draft content
 4. The dev server then uses this fresh, complete index

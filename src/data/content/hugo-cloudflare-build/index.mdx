@@ -1,20 +1,21 @@
 ---
-title: "A Gnarly Hugo-Cloudflare Build Problem, Resolved"
-contentType: "brief"
-description: "I had Hugo builds running on Cloudflare for a day. Then, mysteriously, they stopped working."
-author: "Jack Ivers"
-publishDate: "2023-06-18T23:06:00"
+title: 'A Gnarly Hugo-Cloudflare Build Problem, Resolved'
+contentType: 'brief'
+description: 'I had Hugo builds running on Cloudflare for a day. Then, mysteriously, they stopped working.'
+author: 'Jack Ivers'
+publishDate: '2023-06-18T23:06:00'
 draft: false
 ---
 
 I've been upgrading this site, piece by piece. The latest major series of changes had to do with supporting micro content types, such as the one you're reading right now, which is a "micro." As part of this, I wanted to start running my Hugo site builds on Cloudflare Pages where this site is hosted. So rather than building locally and then sending the complete, fully-generated `/public` directory up to GitHub (which Cloudflare automatically picks up and publishes), I can send content updates only in the form of markdown files, and all the associated html etc. gets generated over on Cloudflare. And it worked! I was happy, for about a day. Then, for no apparent reason, it stopped working.
 
 I was doing a lot of changes all at once, including upgrading Hugo versions and implementing the New Better Version of Tailwind CSS support in Hugo. And the build error message I was getting just didn't make sense:
+
 ```
-22:00:23.069	ERROR 2023/06/06 03:00:23 render of "page" failed: 
-"/opt/buildhome/repo/layouts/_default/baseof.html:5:8": execute of template failed: template: _default/single.html:5:8: executing "_default/single.html" at <partial "head.html" .>: 
-error calling partial: partial "head.html" timed out after 30s. 
-This is most likely due to infinite recursion. If this is just a slow template, 
+22:00:23.069	ERROR 2023/06/06 03:00:23 render of "page" failed:
+"/opt/buildhome/repo/layouts/_default/baseof.html:5:8": execute of template failed: template: _default/single.html:5:8: executing "_default/single.html" at <partial "head.html" .>:
+error calling partial: partial "head.html" timed out after 30s.
+This is most likely due to infinite recursion. If this is just a slow template,
 you can try to increase the 'timeout' config setting.
 22:00:25.922	Total in 49821 ms
 ```
@@ -22,20 +23,20 @@ you can try to increase the 'timeout' config setting.
 Now, my local builds happen in a few hundred milliseconds, maybe as long as a couple of seconds; but timing out after 30 seconds? That can't be real! But the build does work fine and fast locally, so why would there be infinite recursion on Cloudflare? I assumed there must be some kind of environment difference, or some failure pulling my repo, etc. Chased that for days ... finally reached out to the incredible [Bryce Wray](https://www.brycewray.com/) who went way beyond the call of duty to help. Finally Bryce suggested, "Why don't you increase the Hugo timeout to a really high number just to see what happens?" And it worked! My builds on Cloudflare took something like 60-70 seconds versus milliseconds locally, but they worked. I showed Bryce the build stats:
 
 ```
-16:02:02.470                       | EN   
+16:02:02.470                       | EN
 16:02:02.470    -------------------+------
-16:02:02.470      Pages            | 108  
-16:02:02.470      Paginator pages  |  10  
-16:02:02.470      Non-page files   |  65  
-16:02:02.470      Static files     |  13  
-16:02:02.470      Processed images | 329  
-16:02:02.471      Aliases          |  29  
-16:02:02.471      Sitemaps         |   1  
-16:02:02.471      Cleaned          |   0  
-16:02:02.471    
+16:02:02.470      Pages            | 108
+16:02:02.470      Paginator pages  |  10
+16:02:02.470      Non-page files   |  65
+16:02:02.470      Static files     |  13
+16:02:02.470      Processed images | 329
+16:02:02.471      Aliases          |  29
+16:02:02.471      Sitemaps         |   1
+16:02:02.471      Cleaned          |   0
+16:02:02.471
 16:02:02.471    Total in 61877 ms
 ```
 
-He took one look, and said "Oh, I see what it is, it's all those images." Hugo does some wonderful image processing magic, and that logic is normally only triggered incrementally when a new image asset is added. But, thanks to an ill-advised entry in `.gitignore`, I had Cloudflare regenerating all my images from scratch on each build. So that little gitignore change was the root cause, the change that broken the build. Sheesh. 
+He took one look, and said "Oh, I see what it is, it's all those images." Hugo does some wonderful image processing magic, and that logic is normally only triggered incrementally when a new image asset is added. But, thanks to an ill-advised entry in `.gitignore`, I had Cloudflare regenerating all my images from scratch on each build. So that little gitignore change was the root cause, the change that broken the build. Sheesh.
 
 I fixed the gitignore issue, now image processing is back to incremental only, and builds are roughly 5 seconds.

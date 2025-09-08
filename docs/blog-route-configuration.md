@@ -3,6 +3,7 @@
 ## Current State
 
 The site currently has two routes that display the blog listing:
+
 - `/blog` - Active but considered obsolete
 - `/archive` - The preferred route for viewing all blog posts
 
@@ -29,38 +30,42 @@ The `/blog` route is created by the interaction between:
 Since the site hasn't launched yet, there's no need for backward compatibility. Here are the options:
 
 ### Option 1: Disable the listing route entirely
+
 ```yaml
 # In src/config.yaml
 apps:
   blog:
     list:
-      isEnabled: false  # This disables the blog listing route
-      pathname: 'blog'  # Becomes irrelevant when disabled
+      isEnabled: false # This disables the blog listing route
+      pathname: 'blog' # Becomes irrelevant when disabled
 ```
 
 ### Option 2: Set empty pathname
+
 ```yaml
 # In src/config.yaml
 apps:
   blog:
     list:
       isEnabled: true
-      pathname: ''  # Empty string = no blog listing route created
+      pathname: '' # Empty string = no blog listing route created
 ```
 
 ### Option 3: Set to unused path
+
 ```yaml
 # In src/config.yaml
 apps:
   blog:
     list:
       isEnabled: true
-      pathname: '_disabled'  # Route would be /_disabled (effectively hidden)
+      pathname: '_disabled' # Route would be /_disabled (effectively hidden)
 ```
 
 ## Impact of Changes
 
 Disabling or changing the blog pathname will:
+
 - ✅ Remove the `/blog` route
 - ✅ Keep `/archive` as the only blog listing page
 - ✅ Maintain all individual post routes at `/p/[slug]`
@@ -77,6 +82,7 @@ Disabling or changing the blog pathname will:
 ## Recommendation
 
 When ready to implement, Option 1 (disabling the list route) is cleanest since:
+
 - We have `/archive` as the dedicated blog listing page
 - Categories and tags can still function if needed
 - No confusing hidden routes
@@ -84,6 +90,7 @@ When ready to implement, Option 1 (disabling the list route) is cleanest since:
 ## Implementation Checklist
 
 When ready to disable the /blog route:
+
 - [ ] Update `src/config.yaml` to disable or modify the blog list pathname
 - [ ] Test that `/archive` still works correctly
 - [ ] Verify category and tag pages still function if needed

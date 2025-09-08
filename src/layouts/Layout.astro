@@ -44,34 +44,34 @@ const { language, textDirection } = I18N;
     <slot />
 
     <BasicScripts />
-    
+
     <!-- Global Lightbox Manager -->
     <script>
       import GLightbox from 'glightbox';
       import 'glightbox/dist/css/glightbox.min.css';
-      
+
       declare global {
         interface Window {
-          lightboxManager: any;
+          lightboxManager: LightboxManager;
         }
       }
-      
+
       // Global lightbox manager to handle GLightbox instances across page navigations
       class LightboxManager {
         instance: any;
         initialized: boolean;
         debug: boolean;
-        
+
         constructor() {
           this.instance = null;
           this.initialized = false;
           this.debug = true; // Set to true for debugging
-          
+
           this.log('LightboxManager constructor called');
           this.init();
         }
 
-        log(message: any, data: any = null) {
+        log(message: string, data: unknown = null) {
           if (this.debug) {
             if (data) {
               console.log(`[LightboxManager] ${message}`, data);
@@ -129,7 +129,7 @@ const { language, textDirection } = I18N;
 
           // Find all lightbox triggers
           const triggers = document.querySelectorAll('.glightbox, .glightbox-gallery');
-          
+
           if (triggers.length === 0) {
             this.log('No lightbox triggers found');
             return;
@@ -146,7 +146,7 @@ const { language, textDirection } = I18N;
               touchNavigation: true,
               loop: false,
               autoplayVideos: true,
-              selector: '.glightbox, .glightbox-gallery'
+              selector: '.glightbox, .glightbox-gallery',
             });
             this.initialized = true;
             this.log('GLightbox instance created successfully');

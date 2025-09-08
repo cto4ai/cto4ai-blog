@@ -14,15 +14,18 @@ Which approach should be used for launching the CTO4.AI newsletter?
 ---
 
 ## "Assume Yes" (Negative Option)
-*"You're on the list unless you unsubscribe"*
+
+_"You're on the list unless you unsubscribe"_
 
 ### Pros
+
 - **Higher initial subscriber count** - Most won't take action
 - **Momentum** - You launch with a real list, not starting from zero
 - **Industry norm** for B2B - Many business newsletters use this for existing relationships
 - **Easier emotional ask** - "I'm including you" feels warmer than "please sign up"
 
 ### Cons
+
 - **Legal risk** - Violates GDPR, CASL, and potentially CAN-SPAM
 - **Deliverability damage** - Higher unsubscribe/complaint rates hurt sender reputation
 - **Relationship risk** - Can feel presumptuous, especially for dormant contacts
@@ -31,9 +34,11 @@ Which approach should be used for launching the CTO4.AI newsletter?
 ---
 
 ## "Assume No" (Positive Option)
-*"Click here if you'd like to subscribe"*
+
+_"Click here if you'd like to subscribe"_
 
 ### Pros
+
 - **Legally bulletproof** - Explicit consent meets all regulations
 - **High-quality list** - Only genuinely interested subscribers
 - **Better deliverability** - ISPs favor confirmed opt-in lists
@@ -41,6 +46,7 @@ Which approach should be used for launching the CTO4.AI newsletter?
 - **Clean metrics** - Real engagement rates, not inflated numbers
 
 ### Cons
+
 - **Much smaller initial list** - Expect 5-15% conversion rate
 - **Slow start** - Launching with possibly <50 subscribers
 - **Extra friction** - Requires action from busy people
@@ -57,6 +63,7 @@ Which approach should be used for launching the CTO4.AI newsletter?
 - **CAN-SPAM (US)**: More lenient, but FTC is tightening enforcement
 
 Even with all US-based contacts, you risk:
+
 - Beehiiv account suspension
 - Spam complaints damaging deliverability
 - Professional reputation damage
@@ -70,7 +77,7 @@ Subject: Quick question about my new AI newsletter
 
 Hi [Name],
 
-I'm launching a focused newsletter about AI for CTOs at CTO4.AI, 
+I'm launching a focused newsletter about AI for CTOs at CTO4.AI,
 separate from my consulting work at Crafty CTO.
 
 Since we've connected professionally, I wanted to invite you first.
@@ -89,16 +96,19 @@ P.S. - This is a one-time invitation. I won't ask again.
 ### Segmented Approach
 
 **Group A: Hot Contacts** (recent clients, active relationships)
+
 - Send personalized emails
 - Expect 20-30% opt-in rate
 - Follow up individually with key people
 
 **Group B: Warm Contacts** (past clients, met at conferences)
+
 - Send semi-personalized batch
 - Expect 10-15% opt-in rate
 - No follow-up
 
 **Group C: Cold Contacts** (old database, loose connections)
+
 - Maybe skip entirely
 - Or send very soft invitation
 - Expect <5% opt-in rate
@@ -115,11 +125,13 @@ P.S. - This is a one-time invitation. I won't ask again.
 ## The Hard Truth
 
 **Starting with "Assume Yes"** feels easier but creates technical debt:
+
 - Months spent cleaning the list
 - Deliverability issues compound
 - Unengaged subscribers are worthless
 
 **Starting with "Assume No"** feels harder but builds a foundation:
+
 - Every subscriber actually wants your content
 - Open rates stay high (good for deliverability)
 - You can be bolder with content knowing they opted in
@@ -129,21 +141,25 @@ P.S. - This is a one-time invitation. I won't ask again.
 ## Implementation Action Plan
 
 ### Week 1
+
 - Send permission pass with "Assume No" to best 100 contacts
 - Track open and click rates
 - Note any replies or feedback
 
 ### Week 2
+
 - Based on response rate, adjust messaging
 - Send to next 200 contacts
 - Begin preparing public launch
 
 ### Week 3
+
 - Launch publicly with earned subscriber base
 - Announce on social media
 - Add signup forms to website
 
 ### Ongoing
+
 - Focus on organic growth from great content
 - Leverage existing subscribers for referrals
 - Build reputation through consistent value
@@ -152,9 +168,10 @@ P.S. - This is a one-time invitation. I won't ask again.
 
 ## Key Principle
 
-**Permission is an asset, not an obstacle.** 
+**Permission is an asset, not an obstacle.**
 
 The people who actively choose to subscribe are the ones who will actually:
+
 - Read your content
 - Share with colleagues
 - Provide valuable feedback
@@ -167,12 +184,13 @@ Those are the subscribers worth having.
 ## Alternative Templates
 
 ### For Recent Active Clients
+
 ```
 Subject: Continuing our AI conversations at CTO4.AI
 
 Hi [Name],
 
-Following up on our recent work together, I'm launching CTO4.AI - 
+Following up on our recent work together, I'm launching CTO4.AI -
 a weekly newsletter focused on practical AI guidance for CTOs.
 
 Would you like me to include you?
@@ -181,12 +199,13 @@ Would you like me to include you?
 ```
 
 ### For Conference Connections
+
 ```
 Subject: From [Conference Name] - new AI newsletter
 
 Hi [Name],
 
-Great meeting you at [Conference]. I'm launching CTO4.AI, 
+Great meeting you at [Conference]. I'm launching CTO4.AI,
 a newsletter about AI implementation for technology leaders.
 
 Interested in joining?
@@ -195,12 +214,13 @@ Interested in joining?
 ```
 
 ### For Dormant Contacts
+
 ```
 Subject: Still interested in AI insights?
 
 Hi [Name],
 
-It's been a while! I'm launching something new that might interest you - 
+It's been a while! I'm launching something new that might interest you -
 CTO4.AI, focused on AI strategy for technology leaders.
 
 If you'd like to check it out:

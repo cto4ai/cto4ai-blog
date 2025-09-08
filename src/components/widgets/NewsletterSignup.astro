@@ -32,8 +32,8 @@ const {
   disclaimer = 'Join 1,000+ technology leaders • Unsubscribe anytime',
   compact = false,
   id,
-  isDark = false,
-  classes = {},
+  isDark = false, // eslint-disable-line @typescript-eslint/no-unused-vars
+  classes = {}, // eslint-disable-line @typescript-eslint/no-unused-vars
   bg = compact ? '' : 'bg-blue-50 dark:bg-gray-800',
 } = Astro.props;
 ---
@@ -43,34 +43,38 @@ const {
     <div class="text-center">
       {
         title && (
-          <h2 class:list={[
-            'font-bold tracking-tight text-gray-900 dark:text-white',
-            compact ? 'text-xl sm:text-2xl' : 'text-3xl sm:text-4xl'
-          ]}>
+          <h2
+            class:list={[
+              'font-bold tracking-tight text-gray-900 dark:text-white',
+              compact ? 'text-xl sm:text-2xl' : 'text-3xl sm:text-4xl',
+            ]}
+          >
             {title}
           </h2>
         )
       }
       {
         subtitle && (
-          <p class:list={[
-            'mx-auto text-gray-600 dark:text-gray-300',
-            compact ? 'mt-2 max-w-lg text-base' : 'mt-4 max-w-2xl text-lg'
-          ]}>
+          <p
+            class:list={[
+              'mx-auto text-gray-600 dark:text-gray-300',
+              compact ? 'mt-2 max-w-lg text-base' : 'mt-4 max-w-2xl text-lg',
+            ]}
+          >
             {subtitle}
           </p>
         )
       }
       <div class:list={['flex justify-center', compact ? 'mt-4' : 'mt-8']}>
-        <form 
-          action="https://api.beehiiv.com/v2/publications/pub_YOUR_ID/subscriptions" 
+        <form
+          action="https://api.beehiiv.com/v2/publications/pub_YOUR_ID/subscriptions"
           method="post"
           class="flex w-full max-w-md"
         >
           {
             inputs.map(({ type = 'text', name, placeholder, required = false }) => (
               <input
-                type={type}
+                type={type as any}
                 name={name}
                 placeholder={placeholder}
                 required={required}
@@ -88,10 +92,7 @@ const {
       </div>
       {
         disclaimer && (
-          <p class:list={[
-            'text-gray-500 dark:text-gray-400',
-            compact ? 'mt-2 text-xs' : 'mt-4 text-sm'
-          ]}>
+          <p class:list={['text-gray-500 dark:text-gray-400', compact ? 'mt-2 text-xs' : 'mt-4 text-sm']}>
             {disclaimer}
           </p>
         )

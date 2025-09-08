@@ -21,36 +21,36 @@ const metadata = {
   async function initializeSearch() {
     const searchElement = document.getElementById('search');
     if (!searchElement) return;
-    
+
     // Show loading state
     searchElement.innerHTML = '<div class="p-4 text-center text-gray-500">Loading search...</div>';
-    
+
     let attempts = 0;
     const maxAttempts = 5;
-    
+
     while (attempts < maxAttempts) {
       attempts++;
-      
+
       try {
         // Dynamic import with retry logic
         const { PagefindUI } = await import('@pagefind/default-ui');
-        
+
         // Clear loading state
         searchElement.innerHTML = '';
-        
+
         // Initialize PagefindUI
-        new PagefindUI({ 
-          element: "#search", 
+        new PagefindUI({
+          element: '#search',
           showSubResults: true,
-          showImages: false,  // Disable images - we'll handle placeholders ourselves
+          showImages: false, // Disable images - we'll handle placeholders ourselves
           excerptLength: 30,
           showEmptyFilters: false,
-          resetStyles: false
+          resetStyles: false,
         });
-        
+
         // Setup trailing slash fix after successful initialization
         setupTrailingSlashFix();
-        
+
         // Focus the search input after initialization
         setTimeout(() => {
           const searchInput = document.querySelector('.pagefind-ui__search-input') as HTMLInputElement;
@@ -59,21 +59,21 @@ const metadata = {
           }
         }, 100);
         return; // Success - exit retry loop
-        
       } catch (error) {
         console.warn(`Search initialization attempt ${attempts}/${maxAttempts} failed:`, error);
-        
+
         if (attempts === maxAttempts) {
           // Final fallback
-          searchElement.innerHTML = '<div class="p-4 text-center text-gray-500">Search temporarily unavailable. Please refresh the page.</div>';
+          searchElement.innerHTML =
+            '<div class="p-4 text-center text-gray-500">Search temporarily unavailable. Please refresh the page.</div>';
         } else {
           // Wait before retry with exponential backoff
-          await new Promise(resolve => setTimeout(resolve, 200 * attempts));
+          await new Promise((resolve) => setTimeout(resolve, 200 * attempts));
         }
       }
     }
   }
-  
+
   function setupTrailingSlashFix() {
     // Fix trailing slash URLs in search results using MutationObserver
     const observer = new MutationObserver((mutations) => {
@@ -84,7 +84,7 @@ const metadata = {
             // Fix links in the added content
             const links = element.querySelectorAll ? element.querySelectorAll('a[href]') : [];
             links.forEach(fixTrailingSlash);
-            
+
             // Also fix if the node itself is a link
             if ((element as any).tagName === 'A' && (element as any).href) {
               fixTrailingSlash(element);
@@ -93,7 +93,7 @@ const metadata = {
         });
       });
     });
-    
+
     function fixTrailingSlash(link: any) {
       if (link.href && link.href.includes(window.location.hostname)) {
         const url = new URL(link.href);
@@ -103,25 +103,25 @@ const metadata = {
         }
       }
     }
-    
+
     // Start observing
     const searchElement = document.getElementById('search');
     if (searchElement) {
       observer.observe(searchElement, {
         childList: true,
-        subtree: true
+        subtree: true,
       });
-      
+
       // Also fix any existing links after a short delay to catch initial results
       setTimeout(() => {
         document.querySelectorAll('#search a[href]').forEach(fixTrailingSlash);
       }, 100);
     }
   }
-  
+
   // Use Astro's lifecycle event instead of DOMContentLoaded to avoid race conditions
   document.addEventListener('astro:page-load', initializeSearch);
-  
+
   // Also handle initial page load if astro:page-load already fired
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeSearch);
@@ -250,7 +250,7 @@ const metadata = {
   }
 
   :global(.pagefind-ui__result-nested-title::before) {
-    content: "↪";
+    content: '↪';
     margin-right: 0.5rem;
     font-size: 0.75rem;
   }

@@ -48,16 +48,14 @@ export default defineConfig({
     mdx({
       remarkPlugins: [readingTimeRemarkPlugin, [remarkSmartypants, { dashes: 'oldschool' }]],
       rehypePlugins: [
-        [rehypeRaw, { 
-          passThrough: [
-            'mdxJsxFlowElement',
-            'mdxJsxTextElement',
-            'mdxFlowExpression',
-            'mdxTextExpression'
-          ]
-        }],
+        [
+          rehypeRaw,
+          {
+            passThrough: ['mdxJsxFlowElement', 'mdxJsxTextElement', 'mdxFlowExpression', 'mdxTextExpression'],
+          },
+        ],
         responsiveTablesRehypePlugin,
-        lazyImagesRehypePlugin
+        lazyImagesRehypePlugin,
       ],
     }),
     icon({
@@ -101,15 +99,11 @@ export default defineConfig({
     }),
 
     pagefind({
-      // Force development mode to use production-like URLs
-      site: './dist',
-      // Configure PageFind to not include trailing slashes
-      forceLanguage: 'en',
       // Exclude images from search indexing
       indexConfig: {
-        exclude_selectors: ['img', '[data-pagefind-ignore]'],
+        excludeSelectors: ['img', '[data-pagefind-ignore]'],
       },
-    }),
+    } as any),
   ],
 
   image: {
@@ -117,7 +111,7 @@ export default defineConfig({
   },
 
   markdown: {
-    remarkPlugins: [readingTimeRemarkPlugin, [remarkSmartypants, { dashes: 'oldschool' }]],
+    remarkPlugins: [readingTimeRemarkPlugin, [remarkSmartypants as any, { dashes: 'oldschool' }]],
     rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin],
   },
 

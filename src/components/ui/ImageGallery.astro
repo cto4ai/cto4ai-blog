@@ -1,5 +1,4 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 
@@ -15,26 +14,29 @@ const { images, alt = '', size = 'lg', class: className = '', postDir = 'chatgpt
 
 const sizeClasses = {
   sm: 'max-w-sm',
-  md: 'max-w-md', 
+  md: 'max-w-md',
   lg: 'max-w-lg',
   xl: 'max-w-xl',
-  '2xl': 'max-w-2xl'
+  '2xl': 'max-w-2xl',
 };
 
-const gridClasses = images.length === 2 
-  ? 'grid-cols-1 sm:grid-cols-2' 
-  : images.length === 3
-  ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-  : 'grid-cols-1 sm:grid-cols-2';
+const gridClasses =
+  images.length === 2
+    ? 'grid-cols-1 sm:grid-cols-2'
+    : images.length === 3
+      ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+      : 'grid-cols-1 sm:grid-cols-2';
 
 // Use Vite's glob import for production compatibility
-const allImages = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/content/**/*.{jpeg,jpg,png,svg,webp}');
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/images/content/**/*.{jpeg,jpg,png,svg,webp}'
+);
 
 // Import all images dynamically from unified content path
 const imageModules = await Promise.all(
   images.map(async (img) => {
     const imagePath = `../../assets/images/content/${postDir}/${img}`;
-    
+
     if (allImages[imagePath]) {
       try {
         const imageModule = await allImages[imagePath]();
@@ -54,36 +56,32 @@ const validImages = imageModules.filter((img): img is NonNullable<typeof img> =>
 ---
 
 <div class={`image-gallery grid gap-4 ${gridClasses} ${sizeClasses[size]} mx-auto ${className}`}>
-  {validImages.map((imgData, index) => (
-    <a 
-      href={imgData.src.src}
-      class="glightbox block"
-      data-gallery="gallery"
-      data-title={alt || `Image ${index + 1}`}
-    >
-      <Image 
-        src={imgData.src}
-        alt={alt || `Image ${index + 1}`}
-        class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-        loading="lazy"
-        width={800}
-        height={600}
-      />
-    </a>
-  ))}
+  {
+    validImages.map((imgData, index) => (
+      <a href={imgData.src.src} class="glightbox block" data-gallery="gallery" data-title={alt || `Image ${index + 1}`}>
+        <Image
+          src={imgData.src}
+          alt={alt || `Image ${index + 1}`}
+          class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+          loading="lazy"
+          width={800}
+          height={600}
+        />
+      </a>
+    ))
+  }
 </div>
-
 
 <style>
   .image-gallery {
     margin: 2rem auto;
   }
-  
+
   .glightbox {
     display: block;
     transition: transform 0.2s ease;
   }
-  
+
   .glightbox:hover {
     transform: scale(1.02);
   }

@@ -16,7 +16,7 @@ This guide shows how to replicate Hugo’s `draft=true` behavior in Astro: draft
 
 ```ts
 // src/content.config.ts
-import { defineCollection, z } from "astro:content";
+import { defineCollection, z } from 'astro:content';
 
 const blog = defineCollection({
   schema: z.object({
@@ -38,13 +38,10 @@ This ensures typed `data.draft` for filtering.
 
 ```ts
 // src/utils/blog.ts
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content';
 
 export async function getPosts() {
-  const posts = await getCollection(
-    "blog",
-    ({ data }) => (import.meta.env.PROD ? data.draft !== true : true)
-  );
+  const posts = await getCollection('blog', ({ data }) => (import.meta.env.PROD ? data.draft !== true : true));
   return posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 ```
@@ -58,13 +55,10 @@ export async function getPosts() {
 
 ```ts
 // src/pages/blog/[slug].astro
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection(
-    "blog",
-    ({ data }) => (import.meta.env.PROD ? data.draft !== true : true)
-  );
+  const posts = await getCollection('blog', ({ data }) => (import.meta.env.PROD ? data.draft !== true : true));
   return posts.map((p) => ({ params: { slug: p.slug }, props: { post: p } }));
 }
 ```
@@ -85,13 +79,9 @@ Result: Drafts are never built into production HTML.
 By default, Cloudflare Pages (like Netlify/Vercel) runs **production builds** for preview deployments, meaning drafts will be hidden. To show drafts in previews:
 
 ```ts
-const SHOW_DRAFTS =
-  import.meta.env.DEV || import.meta.env.SHOW_DRAFTS_IN_PREVIEW === "true";
+const SHOW_DRAFTS = import.meta.env.DEV || import.meta.env.SHOW_DRAFTS_IN_PREVIEW === 'true';
 
-const posts = await getCollection(
-  "blog",
-  ({ data }) => (SHOW_DRAFTS ? true : data.draft !== true)
-);
+const posts = await getCollection('blog', ({ data }) => (SHOW_DRAFTS ? true : data.draft !== true));
 ```
 
 In Cloudflare Pages:
@@ -145,4 +135,3 @@ This replicates Hugo’s workflow: drafts visible locally and in preview builds,
 ---
 
 ✅ This replicates Hugo’s draft workflow in Astro and aligns with Cloudflare Pages deployment best practices.
-

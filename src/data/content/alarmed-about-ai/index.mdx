@@ -1,13 +1,13 @@
 ---
-author: "Jack Ivers"
+author: 'Jack Ivers'
 categories: ['CTO', 'Crafty CTO']
-publishDate: "2023-02-20"
-description: "John Seely Brown, former director of Xerox PARC, has helpful advice—from April 2000!"
+publishDate: '2023-02-20'
+description: 'John Seely Brown, former director of Xerox PARC, has helpful advice—from April 2000!'
 draft: false
 tags: ['CTO', 'AI']
-title: "Alarmed About AI?"
-contentType: "essay"
-image: "~/assets/images/content/alarmed-about-ai/humanoid-ai-attack2@0.5x.webp"
+title: 'Alarmed About AI?'
+contentType: 'essay'
+image: '~/assets/images/content/alarmed-about-ai/humanoid-ai-attack2@0.5x.webp'
 ---
 
 import SingleImage from '~/components/ui/SingleImage.astro';
@@ -15,9 +15,9 @@ import ImageGallery from '~/components/ui/ImageGallery.astro';
 
 We're currently experiencing a wave of AI news stories, including:
 
-* Uproar over artists' work being used without permission by art AIs like Midjourney and DALL-E 2
-* A flood of ChatGPT stories, including the phenomenon of ChatGPT confidently presenting information that proves to be completely erroneous, and even hallucinating non-existent references
-* Microsoft's just released Bing AI, acquired through a 10 or 11 figure investment in ChatGPT maker OpenAI, is spawning multiple personalities and going way off the rails
+- Uproar over artists' work being used without permission by art AIs like Midjourney and DALL-E 2
+- A flood of ChatGPT stories, including the phenomenon of ChatGPT confidently presenting information that proves to be completely erroneous, and even hallucinating non-existent references
+- Microsoft's just released Bing AI, acquired through a 10 or 11 figure investment in ChatGPT maker OpenAI, is spawning multiple personalities and going way off the rails
 
 I recently had a [brief interchange on Mastodon](https://fedi.simonwillison.net/@simon/109869541023506346) about Bing's troubles. [Simon Willison](https://simonwillison.net/), maker of the excellent [Datasette](https://datasette.io/) open source data exploration tool, had commented on [a post by Stratechery's Ben Thompson](https://stratechery.com/2023/from-bing-to-sydney-search-as-distraction-sentient-ai/), who had captured Bing in the act of misbehaving. ([John Gruber](https://mastodon.social/@gruber) chimed in shortly after with a nice follow up, "[Bing, the Most Exciting Product in Tech](https://daringfireball.net/2023/02/bing_the_most_exciting_product_in_tech)," that calls out further commentary by New York Times columnist Kevin Roose.) Willison expressed alarm at Bing's off-the-tracks behavior, with good cause--his comment to me was, in part:
 
@@ -31,38 +31,43 @@ And Kurzweil's use of the term "singularity" was drawn from CS professor and sci
 
 > I argue in this paper that we are on the edge of change comparable to the rise of human life on Earth.
 
-In April 2000, [Bill Joy](https://en.wikipedia.org/wiki/Bill_Joy), CEO of Sun Microsystems, penned an article on wired.com titled "[Why the Future Doesn't Need Us](https://archive.is/hQjhB)." Joy broadened the commentary to indict technologies ranging from robotics to genetic engineering to nanotech: 
+In April 2000, [Bill Joy](https://en.wikipedia.org/wiki/Bill_Joy), CEO of Sun Microsystems, penned an article on wired.com titled "[Why the Future Doesn't Need Us](https://archive.is/hQjhB)." Joy broadened the commentary to indict technologies ranging from robotics to genetic engineering to nanotech:
 
 > The new Pandora's boxes of genetics, nanotechnology, and robotics are almost open, yet we seem hardly to have noticed. Ideas can't be put back in a box; unlike uranium or plutonium, they don't need to be mined and refined, and they can be freely copied. Once they are out, they are out.
 
 Kurzweil, Vinge, and Joy all painted bleak visions of the future of humanity--in a nutshell:
 
-> **We're doomed.** 
+> **We're doomed.**
 
-<ImageGallery images={['humanoid-head1@0.5x.webp', 'humanoid-head2@0.5x.webp', 'humanoid-head3@0.5x.webp']} alt="Gallery of 3 images" size="sm" postDir="alarmed-about-ai" />
+<ImageGallery
+  images={['humanoid-head1@0.5x.webp', 'humanoid-head2@0.5x.webp', 'humanoid-head3@0.5x.webp']}
+  alt="Gallery of 3 images"
+  size="sm"
+  postDir="alarmed-about-ai"
+/>
 
 ## Pushback
 
-One contemporary, however, pushed back--[John Seely Brown](https://en.wikipedia.org/wiki/John_Seely_Brown), then Chief Scientist at Xerox and director of [Xerox PARC](https://en.wikipedia.org/wiki/PARC_(company)). Yeah, **that** Xerox PARC. Within a week of Joy's article, JSB, along with PARC collaborator and Cal Berkeley researcher [Paul Duguid](https://www.ischool.berkeley.edu/people/paul-duguid), published a rebuttal, "[A Response to Bill Joy and the Doom-and-Gloom Technofuturists](https://web.cs.ucdavis.edu/~koehl/Teaching/ECS188_W16/Reprints/Response_to_BillJoy.pdf)." A few excerpts from their rebuttal:
+One contemporary, however, pushed back--[John Seely Brown](https://en.wikipedia.org/wiki/John_Seely_Brown), then Chief Scientist at Xerox and director of [Xerox PARC](<https://en.wikipedia.org/wiki/PARC_(company)>). Yeah, **that** Xerox PARC. Within a week of Joy's article, JSB, along with PARC collaborator and Cal Berkeley researcher [Paul Duguid](https://www.ischool.berkeley.edu/people/paul-duguid), published a rebuttal, "[A Response to Bill Joy and the Doom-and-Gloom Technofuturists](https://web.cs.ucdavis.edu/~koehl/Teaching/ECS188_W16/Reprints/Response_to_BillJoy.pdf)." A few excerpts from their rebuttal:
 
 > These self-unfulfilling prophecies failed to see that, once warned, society could galvanize itself into action .... Social and technological systems do not develop independently; the two evolve together in complex feedback loops, wherein each drives, restrains and accelerates change in the other. Malthus and Wells—and now Joy—are, indeed, critical parts of these complex loops. Each knew when and how to sound the alarm. But each thought little about how to respond to that alarm.
-> 
+>
 > Once the social system is factored back into the equation like this, the road ahead becomes harder to navigate. Ultimately we should be grateful to Joy for saying, at the least, that there could be trouble ahead when so many of his fellow digerati will only tell us complacently that
-the road is clear.
+> the road is clear.
 
-Not long after, I had a chance to see JSB speak in person, where he was asked, "Are you pessimistic or optimistic about the future of humanity?" My recollection of his reply: 
+Not long after, I had a chance to see JSB speak in person, where he was asked, "Are you pessimistic or optimistic about the future of humanity?" My recollection of his reply:
 
 > I'm optimistic. The pessimistic visions don't take into account the fact that humans adapt--once we perceive and understand the risks of emerging technologies, we adapt.
 
-JSB again expressed gratitude for the work of Bill Joy and others, as providing critical input to the human adaptation loop. 
+JSB again expressed gratitude for the work of Bill Joy and others, as providing critical input to the human adaptation loop.
 
-Returning to today's AI stories and our attitudes towards them. First off, let's set aside the misinformed--or Fox News / Meta / Vichy Twitter disinformed--that's a topic for another day. Among the informed, some (like Simon Willison did in a small way) will raise alarms, which are liable to be genuinely useful as input to the feedback loop. But they won't be good prophesies. There, as JSB suggests, they're likely to be self-unfulfilling. 
+Returning to today's AI stories and our attitudes towards them. First off, let's set aside the misinformed--or Fox News / Meta / Vichy Twitter disinformed--that's a topic for another day. Among the informed, some (like Simon Willison did in a small way) will raise alarms, which are liable to be genuinely useful as input to the feedback loop. But they won't be good prophesies. There, as JSB suggests, they're likely to be self-unfulfilling.
 
-My own attitude and reaction? Predominately curiosity, with a side of WTF-surprise and a good helping of amusement: 
+My own attitude and reaction? Predominately curiosity, with a side of WTF-surprise and a good helping of amusement:
 
-> Wow! What the ***actual hell*** is Bing doing here?! I bet the M$ execs are losing it! What is emerging here? What does this tell us about what's likely to happen next in the AI space?
+> Wow! What the **_actual hell_** is Bing doing here?! I bet the M$ execs are losing it! What is emerging here? What does this tell us about what's likely to happen next in the AI space?
 
-Based on what I read, I suspect that Ben Thompson and John Gruber might share this mindset. 
+Based on what I read, I suspect that Ben Thompson and John Gruber might share this mindset.
 
 History repeats itself. I [personally believe](/p/accelerating-launch-with-ai-models) that today's AIs are already useful and usable, but just scratch the surface of what will emerge in coming years. We're at the start of an emergence like the Industrial Revolution, but if you think you can predict how this will play out? Popcorn please!
 

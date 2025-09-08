@@ -1,6 +1,5 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import { SITE } from 'astrowind:config';
 
 const metadata = {
   title: 'Subscription Successful',
@@ -12,24 +11,28 @@ const metadata = {
     <div class="text-center max-w-lg mx-auto px-6">
       <div class="mb-6">
         <svg class="w-20 h-20 mx-auto text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
       </div>
-      
+
       <h1 class="text-3xl font-bold mb-4">Welcome to CTO4.AI!</h1>
-      
+
       <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
         You're all set! Thank you for subscribing to our newsletter.
       </p>
-      
+
       <div class="space-y-4">
-        <a 
-          href="/" 
+        <a
+          href="/"
           class="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
         >
           Return to Homepage
         </a>
-        
+
         <p class="text-sm text-gray-500 dark:text-gray-400">
           You'll receive our next newsletter at the email address you provided.
         </p>

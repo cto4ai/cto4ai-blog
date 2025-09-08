@@ -139,32 +139,32 @@ import { UI } from 'astrowind:config';
       }
     });
     // Handle anchor link clicks for proper positioning with sticky header
-    attachEvent('a[href^="#"]', 'click', function(e, elem) {
+    attachEvent('a[href^="#"]', 'click', function (e, elem) {
       const targetId = elem.getAttribute('href').slice(1);
       if (!targetId) return;
-      
+
       const targetElement = document.getElementById(targetId);
       if (!targetElement) return;
-      
+
       e.preventDefault();
-      
+
       // Temporarily disable smooth scrolling for precise positioning
       document.documentElement.style.scrollBehavior = 'auto';
-      
+
       // Calculate position accounting for sticky header
       const headerHeight = 96; // Header height
       const offset = 20; // Additional offset for better visual spacing
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerHeight - offset;
-      
+
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'auto'
+        behavior: 'auto',
       });
-      
+
       // Update URL hash
       history.pushState(null, null, '#' + targetId);
-      
+
       // Re-enable smooth scrolling after a brief delay
       setTimeout(() => {
         document.documentElement.style.scrollBehavior = '';
@@ -285,4 +285,3 @@ import { UI } from 'astrowind:config';
     Observer.start();
   });
 </script>
-

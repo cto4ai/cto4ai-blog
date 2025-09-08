@@ -1,15 +1,15 @@
 ---
-title: "Chroma: RAG is Dead; Long Live Context Engineering"
-contentType: "episode"
-description: "Jeff Huber explores how Chroma is changing the conversation away from RAG to context engineering"
-author: "Jack Ivers"
-publishDate: "2025-09-07T14:13:00-05:00"
-image: "~/assets/images/content/chroma-context-engineering/huber_chroma.png"
+title: 'Chroma: RAG is Dead; Long Live Context Engineering'
+contentType: 'episode'
+description: 'Jeff Huber explores how Chroma is changing the conversation away from RAG to context engineering'
+author: 'Jack Ivers'
+publishDate: '2025-09-07T14:13:00-05:00'
+image: '~/assets/images/content/chroma-context-engineering/huber_chroma.png'
 featured: true
 featuredOrder: 1
 draft: false
-tags: ["ai", "rag", "chroma", "context-engineering", "vector-databases"]
-categories: ["ai-and-technology"]
+tags: ['ai', 'rag', 'chroma', 'context-engineering', 'vector-databases']
+categories: ['ai-and-technology']
 ---
 
 import SingleImage from '~/components/ui/SingleImage.astro';
@@ -42,12 +42,19 @@ Beyond the core open-source capabilities, Chroma offers Chroma Distributed--—a
 
 Huber detests the term "RAG" and his opinions on the topic helped convince [Swyx](https://x.com/swyx) to remove the RAG track from the [AI Engineer World's Fair](https://www.ai.engineer) event in June.
 
-<SingleImage src="snip_quote_snip_quote_3a87c36a_e18e_4081_bfd6_84f563afab93_1757294738179.png" alt="Jeff Huber defining context engineering" postDir="chroma-context-engineering" />
+<SingleImage
+  src="snip_quote_snip_quote_3a87c36a_e18e_4081_bfd6_84f563afab93_1757294738179.png"
+  alt="Jeff Huber defining context engineering"
+  postDir="chroma-context-engineering"
+/>
 
- He describes in [this snip](https://share.snipd.com/snip/3a87c36a-e18e-4081-bfd6-84f563afab93) what I believe is a far better framing of the core issue and solution---context engineering.
+He describes in [this snip](https://share.snipd.com/snip/3a87c36a-e18e-4081-bfd6-84f563afab93) what I believe is a far better framing of the core issue and solution---context engineering.
 
 <video controls width="100%">
-  <source src="/videos/content/chroma-context-engineering/snip_video_snip:3a87c36a-e18e-4081-bfd6-84f563afab93.mp4" type="video/mp4" />
+  <source
+    src="/videos/content/chroma-context-engineering/snip_video_snip:3a87c36a-e18e-4081-bfd6-84f563afab93.mp4"
+    type="video/mp4"
+  />
   Your browser does not support the video tag.
 </video>
 
@@ -55,12 +62,19 @@ Huber detests the term "RAG" and his opinions on the topic helped convince [Swyx
 
 Model builders like OpenAI, Anthropic, and [Google DeepMind](https://deepmind.google) keep announcing increasingly large context windows, to 1M tokens and beyond. And with contexts getting larger and larger, who needs a retrieval solution like Chroma?
 
-<SingleImage src="episode_transcript_quote_episode_transcript_quote_e915ab63_dc66_454d_b9b6_af4a4739e72c_1757294241344.png" alt="Jeff Huber quote about context window implications" postDir="chroma-context-engineering" />
+<SingleImage
+  src="episode_transcript_quote_episode_transcript_quote_e915ab63_dc66_454d_b9b6_af4a4739e72c_1757294241344.png"
+  alt="Jeff Huber quote about context window implications"
+  postDir="chroma-context-engineering"
+/>
 
 But there's a dirty little secret known mainly among researchers---context rot. When a large context gets operated on repeatedly, for example in multi-turn agent interactions, the context "rots," and the model effectively loses its mind, most seriously the failure to follow clearly-stated instructions. Chroma researched this problem carefully, and in [this snip](https://share.snipd.com/snip/8fa58784-da31-41d4-ba9d-f0891d8a9283), Huber describes what they discovered.
 
 <video controls width="100%">
-  <source src="/videos/content/chroma-context-engineering/snip_video_snip_8fa58784-da31-41d4-ba9d-f0891d8a9283.mp4" type="video/mp4" />
+  <source
+    src="/videos/content/chroma-context-engineering/snip_video_snip_8fa58784-da31-41d4-ba9d-f0891d8a9283.mp4"
+    type="video/mp4"
+  />
   Your browser does not support the video tag.
 </video>
 
@@ -68,12 +82,19 @@ But there's a dirty little secret known mainly among researchers---context rot. 
 
 Huber and Chroma definitely have their finger on the pulse of "latest context engineering tips and tricks" ...
 
-<SingleImage src="episode_transcript_quote_episode_transcript_quote_e915ab63_dc66_454d_b9b6_af4a4739e72c_1757295888624.png" alt="Context chunk selection process" postDir="chroma-context-engineering" />
+<SingleImage
+  src="episode_transcript_quote_episode_transcript_quote_e915ab63_dc66_454d_b9b6_af4a4739e72c_1757295888624.png"
+  alt="Context chunk selection process"
+  postDir="chroma-context-engineering"
+/>
 
 In [this snip](https://share.snipd.com/snip/f1faab7a-3205-4a1f-ab6c-f10be993b359) he shares emerging practices around getting from 1M or 100K down to 30 using LLM brute-forcing.
 
 <video controls width="100%">
-  <source src="/videos/content/chroma-context-engineering/snip_video_snip_f1faab7a-3205-4a1f-ab6c-f10be993b359.mp4" type="video/mp4" />
+  <source
+    src="/videos/content/chroma-context-engineering/snip_video_snip_f1faab7a-3205-4a1f-ab6c-f10be993b359.mp4"
+    type="video/mp4"
+  />
   Your browser does not support the video tag.
 </video>
 
@@ -81,24 +102,38 @@ In [this snip](https://share.snipd.com/snip/f1faab7a-3205-4a1f-ab6c-f10be993b359
 
 There's an ongoing debate around whether, in the AI coding world, does using embeddings via a vector database like Chroma make sense, versus simpler, very-widely-used approaches like plain old grepping.
 
-<SingleImage src="episode_transcript_quote_episode_transcript_quote_e915ab63_dc66_454d_b9b6_af4a4739e72c_1757297455202.png" alt="Code embeddings discussion" postDir="chroma-context-engineering" />
+<SingleImage
+  src="episode_transcript_quote_episode_transcript_quote_e915ab63_dc66_454d_b9b6_af4a4739e72c_1757297455202.png"
+  alt="Code embeddings discussion"
+  postDir="chroma-context-engineering"
+/>
 
 [Here](https://share.snipd.com/snip/f62bdafa-407e-41be-8120-e977cf43bf43) Huber addresses this question; the answer, in short, is yes, if you want to get the full 100% rather than settling for 80%.
 
 <video controls width="100%">
-  <source src="/videos/content/chroma-context-engineering/snip_video_snip_f62bdafa-407e-41be-8120-e977cf43bf43.mp4" type="video/mp4" />
+  <source
+    src="/videos/content/chroma-context-engineering/snip_video_snip_f62bdafa-407e-41be-8120-e977cf43bf43.mp4"
+    type="video/mp4"
+  />
   Your browser does not support the video tag.
 </video>
 
 ## Snip: Evals and Golden Datasets
 
-If you want your AI-driven knowledge access application to start good and stay good, constant evaluation of whether queries are returning the right answers is table stakes. And accurate evals require "golden datasets" with human-curated sets of "this query should serve up these documents." 
+If you want your AI-driven knowledge access application to start good and stay good, constant evaluation of whether queries are returning the right answers is table stakes. And accurate evals require "golden datasets" with human-curated sets of "this query should serve up these documents."
 
-<SingleImage src="episode_transcript_quote_episode_transcript_quote_e915ab63_dc66_454d_b9b6_af4a4739e72c_1757299074482.png" alt="Data labeling party discussion" postDir="chroma-context-engineering" />
+<SingleImage
+  src="episode_transcript_quote_episode_transcript_quote_e915ab63_dc66_454d_b9b6_af4a4739e72c_1757299074482.png"
+  alt="Data labeling party discussion"
+  postDir="chroma-context-engineering"
+/>
 
-In [this snip](https://share.snipd.com/snip/80c9e0ed-10c7-43ba-b7f6-97d2d2deaa0d), Huber talks through just how non-painful the process of creating a golden dataset can be. 
+In [this snip](https://share.snipd.com/snip/80c9e0ed-10c7-43ba-b7f6-97d2d2deaa0d), Huber talks through just how non-painful the process of creating a golden dataset can be.
 
 <video controls width="100%">
-  <source src="/videos/content/chroma-context-engineering/snip_video_snip_80c9e0ed-10c7-43ba-b7f6-97d2d2deaa0d.mp4" type="video/mp4" />
+  <source
+    src="/videos/content/chroma-context-engineering/snip_video_snip_80c9e0ed-10c7-43ba-b7f6-97d2d2deaa0d.mp4"
+    type="video/mp4"
+  />
   Your browser does not support the video tag.
 </video>

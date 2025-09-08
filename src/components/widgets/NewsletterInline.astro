@@ -14,45 +14,31 @@ const {
   button = 'Subscribe',
   compact = false,
   id,
-  isDark = false,
+  isDark = false, // eslint-disable-line @typescript-eslint/no-unused-vars
   classes = {},
 } = Astro.props;
 ---
 
-<div 
+<div
   class:list={[
     'rounded-lg border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-800',
     compact ? 'p-4' : 'p-6',
-    classes?.container
-  ]} 
+    classes?.container,
+  ]}
   {...id ? { id } : {}}
 >
   <div class="text-center">
     {
       title && (
-        <h3 class:list={[
-          'font-bold text-gray-900 dark:text-white mb-2',
-          compact ? 'text-lg' : 'text-xl'
-        ]}>
-          {title}
-        </h3>
+        <h3 class:list={['font-bold text-gray-900 dark:text-white mb-2', compact ? 'text-lg' : 'text-xl']}>{title}</h3>
       )
     }
     {
       description && (
-        <p class:list={[
-          'text-gray-600 dark:text-gray-300 mb-4',
-          compact ? 'text-sm' : 'text-base'
-        ]}>
-          {description}
-        </p>
+        <p class:list={['text-gray-600 dark:text-gray-300 mb-4', compact ? 'text-sm' : 'text-base']}>{description}</p>
       )
     }
-    <form 
-      action="https://api.beehiiv.com/v2/publications/pub_YOUR_ID/subscriptions" 
-      method="post"
-      class="space-y-3"
-    >
+    <form action="https://api.beehiiv.com/v2/publications/pub_YOUR_ID/subscriptions" method="post" class="space-y-3">
       <input
         type="email"
         name="email"
@@ -67,10 +53,7 @@ const {
         {button}
       </button>
     </form>
-    <p class:list={[
-      'text-gray-500 dark:text-gray-400 mt-2',
-      compact ? 'text-xs' : 'text-sm'
-    ]}>
+    <p class:list={['text-gray-500 dark:text-gray-400 mt-2', compact ? 'text-xs' : 'text-sm']}>
       No spam, unsubscribe anytime
     </p>
   </div>

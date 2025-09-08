@@ -44,16 +44,16 @@ export interface Post {
 
   /**  */
   readingTime?: number;
-  
+
   /** Content type based on the source collection */
   contentType?: 'posts' | 'micro' | 'elsewhere' | 'quote' | 'episode';
-  
+
   /** External source link for elsewhere content */
   sourceLink?: string;
-  
+
   /** Whether this post is featured */
   featured?: boolean;
-  
+
   /** Order of featured posts (lower numbers appear first) */
   featuredOrder?: number;
 }

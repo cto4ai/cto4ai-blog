@@ -8,7 +8,7 @@ import logoWhite from '~/assets/images/logos/noBgWhite.svg';
   :root {
     --aw-color-text-muted: #6b7280;
   }
-  
+
   .dark {
     --aw-color-text-muted: #9ca3af;
   }
@@ -16,7 +16,6 @@ import logoWhite from '~/assets/images/logos/noBgWhite.svg';
 
 <div id="newsletter-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
   <div class="bg-white dark:bg-gray-900 rounded-lg shadow-xl max-w-md w-full mx-4 relative">
-    
     <!-- Modal content -->
     <div class="p-8">
       <!-- Logo and tagline -->
@@ -25,31 +24,36 @@ import logoWhite from '~/assets/images/logos/noBgWhite.svg';
           <img src={logoColor.src} alt="CTO4.AI" class="h-16 w-auto dark:hidden" />
           <img src={logoWhite.src} alt="CTO4.AI" class="h-16 w-auto hidden dark:block" />
         </div>
-        <p class="text-center text-base" style="font-family: 'Space Grotesk Variable', sans-serif; color: var(--aw-color-text-muted); font-weight: 700;">
+        <p
+          class="text-center text-base"
+          style="font-family: 'Space Grotesk Variable', sans-serif; color: var(--aw-color-text-muted); font-weight: 700;"
+        >
           Transcend local maxima. <span class="italic" style="font-weight: 900;">Summit.</span>
         </p>
       </div>
-      
+
       <!-- Email form -->
       <form id="newsletter-form" class="space-y-3" action="/api/subscribe" method="POST" data-astro-reload>
-        <input 
-          type="email" 
+        <input
+          type="email"
           name="email"
-          placeholder="Type your email..." 
+          placeholder="Type your email..."
           required
           class="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           class="w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
         >
           Subscribe
         </button>
         <p class="text-xs text-gray-500 dark:text-gray-400 text-center mt-2">
-          Unsubscribe any time. <a href="/privacy" class="underline hover:text-gray-700 dark:hover:text-gray-300">Privacy Policy</a>
+          Unsubscribe any time. <a href="/privacy" class="underline hover:text-gray-700 dark:hover:text-gray-300"
+            >Privacy Policy</a
+          >
         </p>
       </form>
-      
+
       <!-- Dismiss button -->
       <div class="mt-6 text-center">
         <button
@@ -67,15 +71,15 @@ import logoWhite from '~/assets/images/logos/noBgWhite.svg';
   // Modal functionality
   const modal = document.getElementById('newsletter-modal');
   const dismissBtn = document.getElementById('modal-dismiss');
-  const form = document.getElementById('newsletter-form');
-  
+  // const form = document.getElementById('newsletter-form');
+
   // Check if modal should be shown
   function shouldShowModal() {
     const hasSeenModal = localStorage.getItem('cto4ai-newsletter-modal-seen');
     // Don't show if user has already seen or dismissed the modal
     return !hasSeenModal;
   }
-  
+
   // Show modal
   function showModal() {
     if (modal && shouldShowModal()) {
@@ -83,7 +87,7 @@ import logoWhite from '~/assets/images/logos/noBgWhite.svg';
       document.body.style.overflow = 'hidden';
     }
   }
-  
+
   // Hide modal
   function hideModal() {
     if (modal) {
@@ -92,12 +96,12 @@ import logoWhite from '~/assets/images/logos/noBgWhite.svg';
       localStorage.setItem('cto4ai-newsletter-modal-seen', 'true');
     }
   }
-  
+
   // Event listeners
   // Only allow closing via the "No thanks" button
   if (dismissBtn) dismissBtn.addEventListener('click', hideModal);
   // Let the form submit naturally without any JavaScript interference
-  
+
   // Show modal on page load
   document.addEventListener('DOMContentLoaded', showModal);
 </script>

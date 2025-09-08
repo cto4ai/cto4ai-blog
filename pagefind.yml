@@ -1,4 +1,4 @@
 exclude_selectors:
-  - "img"
-  - "[data-pagefind-ignore]"
+  - 'img'
+  - '[data-pagefind-ignore]'
   - "[data-pagefind-ignore='all']"

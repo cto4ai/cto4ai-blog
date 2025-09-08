@@ -1,11 +1,13 @@
 # Migration Testing Results
 
 ## Summary
+
 Successfully migrated and tested 3 representative Hugo posts to Astro MDX format. All posts render correctly with native Astro Image components replacing Hugo `imgs` shortcodes.
 
 ## Test Posts
 
 ### ✅ Blog Post: `aiewf2025-my-day-1-highlights`
+
 - **Source**: `/Hugo/craftycto/content/blog/aiewf2025-my-day-1-highlights/index.md`
 - **Target**: `/src/data/posts/aiewf2025-my-day-1-highlights.mdx`
 - **URL**: `http://localhost:4321/aiewf2025-my-day-1-highlights`
@@ -13,6 +15,7 @@ Successfully migrated and tested 3 representative Hugo posts to Astro MDX format
 - **Complexity**: High (20+ images, complex content structure)
 
 ### ✅ Micro Post: `auto-link-with-gpt-5-and-playwright-mcp`
+
 - **Source**: `/Hugo/craftycto/content/micro/auto-link-with-gpt-5-and-playwright-mcp/index.md`
 - **Target**: `/src/data/micro/auto-link-with-gpt-5-and-playwright-mcp.mdx`
 - **URL**: `http://localhost:4321/auto-link-with-gpt-5-and-playwright-mcp`
@@ -20,6 +23,7 @@ Successfully migrated and tested 3 representative Hugo posts to Astro MDX format
 - **Complexity**: Medium (1 image, footnotes, code blocks)
 
 ### ✅ Elsewhere Post: `orta-claude-code-six-weeks`
+
 - **Source**: `/Hugo/craftycto/content/elsewhere/orta-claude-code-six-weeks/index.md`
 - **Target**: `/src/data/elsewhere/orta-claude-code-six-weeks.mdx`
 - **URL**: `http://localhost:4321/orta-claude-code-six-weeks`
@@ -29,6 +33,7 @@ Successfully migrated and tested 3 representative Hugo posts to Astro MDX format
 ## Migration Workflow
 
 ### 1. Frontmatter Conversion (TOML → YAML)
+
 ```toml
 # Hugo TOML format
 +++
@@ -44,25 +49,26 @@ image = "cover.webp"
 ```yaml
 # Astro YAML format
 ---
-title: "Post Title"
+title: 'Post Title'
 publishDate: 2025-06-18T16:36:00-04:00
-categories: ["AI", "Technology"]
-tags: ["tag1", "tag2"]
-image: "/images/blog/post-slug/cover.webp"
+categories: ['AI', 'Technology']
+tags: ['tag1', 'tag2']
+image: '/images/blog/post-slug/cover.webp'
 ---
 ```
 
 ### 2. Image Handling Strategy
 
 #### Hugo `imgs` Shortcode Replacement
+
 ```hugo
 {{< imgs kind="page" size="2xl" imgs="image.png" >}}
 ```
 
 #### Native Astro Image Components
+
 ```astro
-import { Image } from 'astro:assets';
-import imageName from '/public/images/blog/post-slug/image.png';
+import {Image} from 'astro:assets'; import imageName from '/public/images/blog/post-slug/image.png';
 
 <Image src={imageName} alt="Description" width={800} height={600} />
 ```
@@ -70,6 +76,7 @@ import imageName from '/public/images/blog/post-slug/image.png';
 ### 3. File Organization
 
 #### Hugo Page Bundle Structure
+
 ```
 content/
   blog/
@@ -79,7 +86,8 @@ content/
       image2.png
 ```
 
-#### Astro Structure  
+#### Astro Structure
+
 ```
 src/
   data/
@@ -122,8 +130,9 @@ All content types use unified blog routing under `/blog/` list but individual po
 ## Migration Success Patterns
 
 ### ✅ What Works Well
+
 - TOML to YAML frontmatter conversion
-- Image copying from page bundles to public directory  
+- Image copying from page bundles to public directory
 - Native Astro Image component responsive handling
 - Content collection unified routing
 - MDX import statements for images
@@ -131,6 +140,7 @@ All content types use unified blog routing under `/blog/` list but individual po
 - Standard markdown content (unchanged)
 
 ### ⚠️ Minor Issues Resolved
+
 - **Image dimensions warning**: Frontmatter images need full paths or `inferSize={true}`
 - **Import paths**: Must import from `/public/` directory correctly
 - **URL structure**: Posts accessible at root level, not `/blog/post-slug`
@@ -155,6 +165,7 @@ The migrated posts demonstrate significant improvements over Hugo shortcodes:
 ## Migration Timeline Estimate
 
 Based on testing results:
+
 - **Manual migration**: ~10-15 minutes per post
-- **With automation**: ~1-2 minutes per post  
+- **With automation**: ~1-2 minutes per post
 - **Total content (~100 posts)**: 2-3 hours with automation tools

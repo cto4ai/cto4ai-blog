@@ -8,6 +8,7 @@
 - **Pagefind index size**: ~1MB
 
 ### Build Time Breakdown
+
 ```
 - Vite bundling: ~5.3s
 - Static entrypoints: ~5.4s
@@ -19,22 +20,26 @@
 ## Performance Bottlenecks
 
 ### 1. Image Processing (Primary Issue)
+
 - 243MB of images being processed during build
 - Astro's image optimization runs at build time
 - Significant overhead for 335 image files
 
 ### 2. Compression Overhead
+
 - `astro-compress` processes all HTML, CSS, and JS files
 - Cloudflare already provides automatic compression
 - Redundant compression adding ~6s to build time
 
 ### 3. Dependency Installation
+
 - Full `npm install` on each build
 - No caching of node_modules between builds
 
 ## Optimization Recommendations
 
 ### Priority 1: Disable Build-Time Image Processing
+
 **Impact**: Could save 30-50% of build time
 
 ```typescript
@@ -44,16 +49,17 @@ export default defineConfig({
     service: {
       entrypoint: 'astro/assets/services/sharp',
       config: {
-        limitInputPixels: false // Skip processing
-      }
-    }
-  }
+        limitInputPixels: false, // Skip processing
+      },
+    },
+  },
 });
 ```
 
 Alternative: Use Cloudflare Image Resizing service for on-demand optimization.
 
 ### Priority 2: Remove Redundant Compression
+
 **Impact**: Save ~6 seconds
 
 ```typescript
@@ -65,23 +71,27 @@ compress({
   Image: false,
   SVG: false,
   Logger: 0,
-})
+});
 ```
 
 ### Priority 3: Optimize Build Command
+
 **Impact**: Minor improvements
 
 Current in `package.json`:
+
 ```json
 "build": "astro build"
 ```
 
 Optimized:
+
 ```json
 "build": "NODE_ENV=production astro build --no-stats"
 ```
 
 For Cloudflare Pages, use:
+
 ```bash
 npm ci && npm run build
 ```
@@ -89,6 +99,7 @@ npm ci && npm run build
 ### Priority 4: Image Strategy Improvements
 
 1. **Pre-optimize images locally**:
+
    ```bash
    # Convert PNGs to WebP before commit
    find src/assets/images -name "*.png" -exec cwebp {} -o {}.webp \;
@@ -116,6 +127,7 @@ Consider moving Pagefind indexing to post-build or using Cloudflare Workers for 
 ## Expected Results
 
 With all optimizations:
+
 - **Current**: ~21s local, likely 30-45s on Cloudflare
 - **Optimized**: ~10-12s local, 15-20s on Cloudflare
 - **Reduction**: 40-50% faster builds

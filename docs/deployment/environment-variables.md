@@ -13,10 +13,12 @@ This document describes the environment variables used in the CTO4.AI blog appli
 **Type:** String
 
 **Values:**
+
 - `"true"` - Show draft posts in preview deployments
 - `undefined` or any other value - Hide draft posts
 
 **Default Behavior:**
+
 - **Development Mode (`npm run dev`):** Draft posts are always visible
 - **Production Build (`npm run build`):** Draft posts are always hidden unless this variable is set
 - **Preview Deployments:** Draft posts are hidden by default, visible when set to `"true"`
@@ -80,8 +82,7 @@ The application uses Astro's built-in environment detection:
 
 ```typescript
 // Determine if drafts should be shown
-const SHOW_DRAFTS = import.meta.env.DEV || 
-                    import.meta.env.PUBLIC_SHOW_DRAFTS_IN_PREVIEW === "true";
+const SHOW_DRAFTS = import.meta.env.DEV || import.meta.env.PUBLIC_SHOW_DRAFTS_IN_PREVIEW === 'true';
 ```
 
 ### Available Environment Flags
@@ -94,6 +95,7 @@ const SHOW_DRAFTS = import.meta.env.DEV ||
 ## Testing Draft Visibility
 
 ### Local Development
+
 ```bash
 npm run dev
 # Drafts are always visible
@@ -101,6 +103,7 @@ npm run dev
 ```
 
 ### Production Preview
+
 ```bash
 npm run build
 npm run preview
@@ -109,6 +112,7 @@ npm run preview
 ```
 
 ### With Environment Variable
+
 ```bash
 PUBLIC_SHOW_DRAFTS_IN_PREVIEW=true npm run build
 npm run preview
