@@ -210,31 +210,88 @@ function parseClaudeAI(text: string): ChatMessage[] {
 function parseChatGPT(text: string): ChatMessage[] {
   const messages: ChatMessage[] = [];
 
-  // Try to parse various ChatGPT formats
-  // Format 1: "User:" and "ChatGPT:" or "Assistant:"
-  const parts = text.split(/\n(?=User:|ChatGPT:|Assistant:)/);
+  // Remove the header/title if present
+  let cleanedText = text;
+  cleanedText = cleanedText.replace(/^#.*?\n/, ''); // Remove title
+  cleanedText = cleanedText.replace(/_ChatGPT session.*?_\n?/, ''); // Remove ChatGPT session info
 
-  for (const part of parts) {
-    const trimmedPart = part.trim();
+  // First try the ** format (like **User** and **Assistant**)
+  const messagePattern = /\n---\n\n\*\*(User|Assistant)\*\*/g;
+  const boundaries: number[] = [0]; // Start of the text
 
-    if (trimmedPart.startsWith('User:')) {
-      let content = trimmedPart.replace(/^User:\s*/, '').trim();
-      // Remove excessive blank lines
-      content = content.replace(/\n{3,}/g, '\n\n').trim();
-      messages.push({
-        role: 'user',
-        content,
-        metadata: messages.length === 0 ? { source: 'chatgpt' } : undefined,
-      });
-    } else if (trimmedPart.startsWith('ChatGPT:') || trimmedPart.startsWith('Assistant:')) {
-      let content = trimmedPart.replace(/^(ChatGPT|Assistant):\s*/, '').trim();
-      // Remove excessive blank lines
-      content = content.replace(/\n{3,}/g, '\n\n').trim();
-      messages.push({
-        role: 'assistant',
-        content,
-        metadata: { source: 'chatgpt' },
-      });
+  let match;
+  while ((match = messagePattern.exec(cleanedText)) !== null) {
+    boundaries.push(match.index + 5); // +5 to skip past "\n---\n"
+  }
+
+  if (boundaries.length > 1) {
+    // We found ** format messages
+    boundaries.push(cleanedText.length); // End of the text
+
+    // Extract messages between boundaries
+    for (let i = 0; i < boundaries.length - 1; i++) {
+      const section = cleanedText.substring(boundaries[i], boundaries[i + 1]);
+      const trimmedSection = section.trim();
+
+      if (!trimmedSection) continue;
+
+      // Check if this section starts with **User** or **Assistant**
+      if (trimmedSection.startsWith('**User**')) {
+        let content = trimmedSection.replace(/^\*\*User\*\*\n?/, '').trim();
+        // Remove trailing --- separator and excessive blank lines
+        content = content
+          .replace(/\n?---\s*$/, '')
+          .replace(/\n{3,}/g, '\n\n')
+          .trim();
+        if (content) {
+          messages.push({
+            role: 'user',
+            content,
+            metadata: messages.length === 0 ? { source: 'chatgpt' } : undefined,
+          });
+        }
+      } else if (trimmedSection.startsWith('**Assistant**')) {
+        let content = trimmedSection.replace(/^\*\*Assistant\*\*\n?/, '').trim();
+        // Remove trailing --- separator and excessive blank lines
+        content = content
+          .replace(/\n?---\s*$/, '')
+          .replace(/\n{3,}/g, '\n\n')
+          .trim();
+        if (content) {
+          messages.push({
+            role: 'assistant',
+            content,
+            metadata: { source: 'chatgpt' },
+          });
+        }
+      }
+    }
+  } else {
+    // Fall back to traditional format: "User:" and "ChatGPT:" or "Assistant:"
+    const parts = text.split(/\n(?=User:|ChatGPT:|Assistant:)/);
+
+    for (const part of parts) {
+      const trimmedPart = part.trim();
+
+      if (trimmedPart.startsWith('User:')) {
+        let content = trimmedPart.replace(/^User:\s*/, '').trim();
+        // Remove excessive blank lines
+        content = content.replace(/\n{3,}/g, '\n\n').trim();
+        messages.push({
+          role: 'user',
+          content,
+          metadata: messages.length === 0 ? { source: 'chatgpt' } : undefined,
+        });
+      } else if (trimmedPart.startsWith('ChatGPT:') || trimmedPart.startsWith('Assistant:')) {
+        let content = trimmedPart.replace(/^(ChatGPT|Assistant):\s*/, '').trim();
+        // Remove excessive blank lines
+        content = content.replace(/\n{3,}/g, '\n\n').trim();
+        messages.push({
+          role: 'assistant',
+          content,
+          metadata: { source: 'chatgpt' },
+        });
+      }
     }
   }
 

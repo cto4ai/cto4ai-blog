@@ -13,6 +13,7 @@ Supports multiple formats:
 import re
 import sys
 import argparse
+from datetime import datetime
 from pathlib import Path
 from typing import List, Tuple, Optional
 from abc import ABC, abstractmethod
@@ -207,25 +208,72 @@ class ChatGPTConverter(TranscriptConverter):
     
     def detect(self, content: str) -> bool:
         """Detect ChatGPT format."""
-        indicators = [
-            "ChatGPT",
-            "GPT-4",
-            "GPT-3.5",
-            "OpenAI"
+        # Look for the specific patterns in ChatGPT transcripts
+        patterns = [
+            r'\*\*User:\*\*\s*',
+            r'\*\*Assistant:\*\*\s*',
+            r'\*\*ChatGPT:\*\*\s*',
         ]
-        # Look for common ChatGPT patterns
-        return any(indicator in content for indicator in indicators)
+        return any(re.search(pattern, content) for pattern in patterns)
     
     def convert(self, content: str) -> str:
-        """Convert ChatGPT transcript to markdown."""
-        # ChatGPT exports vary, but often use "User" and "ChatGPT" or similar
-        content = re.sub(r'^User\s*$', '\n---\n\n**User**\n', content, flags=re.MULTILINE)
-        content = re.sub(r'^ChatGPT\s*$', '\n---\n\n**ChatGPT**\n', content, flags=re.MULTILINE)
+        """Convert ChatGPT transcript to markdown with proper conversation turns."""
+        lines = content.split('\n')
+        output = []
+        in_code_block = False
+        skip_next_separator = True  # Skip the first separator since we start fresh
         
-        # Escape backticks
-        content = content.replace('`', '\\`')
+        for line in lines:
+            # Track code blocks to avoid escaping backticks inside them
+            if '```' in line:
+                in_code_block = not in_code_block
+            
+            # Handle User turns
+            if re.match(r'^\*\*User:\*\*\s*$', line.strip()):
+                if not skip_next_separator:
+                    output.append('\n---\n')
+                output.append('\n**User**\n')
+                skip_next_separator = False
+                continue
+            
+            # Handle Assistant/ChatGPT turns  
+            if re.match(r'^\*\*(Assistant|ChatGPT):\*\*\s*$', line.strip()):
+                if not skip_next_separator:
+                    output.append('\n---\n')
+                output.append('\n**Assistant**\n')
+                skip_next_separator = False
+                continue
+            
+            # Skip existing separators and empty lines right after role declarations
+            if line.strip() == '---':
+                continue
+                
+            # Skip header lines and metadata
+            if line.startswith('#') and ('Conversation Transcript' in line or 'Date:' in line):
+                continue
+            if line.strip().startswith('_Date:') or line.strip().startswith('_ChatGPT') or line.strip().startswith('_('):
+                continue
+            
+            # Handle content lines
+            if line.strip():  # Non-empty lines
+                # Escape backticks for TypeScript template literal
+                if '```' in line:
+                    line = line.replace('```', '\\`\\`\\`')
+                elif '`' in line and not in_code_block:
+                    line = line.replace('`', '\\`')
+                
+                output.append(line + '\n')
+            else:
+                # Preserve empty lines for formatting
+                output.append('\n')
         
-        return content.strip()
+        # Clean up the output
+        result = ''.join(output).strip()
+        
+        # Remove multiple consecutive newlines
+        result = re.sub(r'\n{3,}', '\n\n', result)
+        
+        return result
     
     def get_source_name(self) -> str:
         return "ChatGPT"
@@ -242,7 +290,7 @@ class TranscriptProcessor:
             ChatGPTConverter(),
         ]
     
-    def process(self, input_file: Path, output_file: Path, export_name: str = None) -> None:
+    def process(self, input_file: Path, output_file: Path, export_name: str = None, format: str = "auto") -> None:
         """Process a transcript file and convert it to TypeScript format."""
         
         # Read input file
@@ -253,13 +301,28 @@ class TranscriptProcessor:
             print(f"Error reading {input_file}: {e}")
             sys.exit(1)
         
+        # Format mapping for forced formats
+        format_mapping = {
+            "claude-code": ClaudeCodeConverter,
+            "cursor": CursorConverter,
+            "claude-ai": ClaudeAIConverter,
+            "chatgpt": ChatGPTConverter,
+        }
+        
         # Detect format and convert
         converter = None
-        for conv in self.converters:
-            if conv.detect(content):
-                converter = conv
-                print(f"Detected format: {conv.get_source_name()}")
-                break
+        
+        if format != "auto" and format in format_mapping:
+            # Use forced format
+            converter = format_mapping[format]()
+            print(f"Using forced format: {converter.get_source_name()}")
+        else:
+            # Auto-detect format
+            for conv in self.converters:
+                if conv.detect(content):
+                    converter = conv
+                    print(f"Detected format: {conv.get_source_name()}")
+                    break
         
         if not converter:
             print("Warning: Could not detect format, using generic conversion")
@@ -277,8 +340,10 @@ class TranscriptProcessor:
             export_name = re.sub(r'[^a-zA-Z0-9_]', '', export_name)
             export_name = f"{export_name}Transcript"
         
+        date_str = datetime.now().strftime("%m/%d/%Y")
+        
         typescript_content = f"""export const {export_name} = `# {source} Conversation
-_{source} session_
+_{source} session from {date_str}_
 
 ---
 
@@ -323,7 +388,7 @@ def main():
     args = parser.parse_args()
     
     processor = TranscriptProcessor()
-    processor.process(args.input, args.output, args.export_name)
+    processor.process(args.input, args.output, args.export_name, args.format)
 
 
 if __name__ == "__main__":
