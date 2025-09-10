@@ -238,10 +238,13 @@ function parseChatGPT(text: string): ChatMessage[] {
       // Check if this section starts with **User** or **Assistant**
       if (trimmedSection.startsWith('**User**')) {
         let content = trimmedSection.replace(/^\*\*User\*\*\n?/, '').trim();
+        // Clean up ChatGPT citation markers (including Unicode private use area chars)
+        content = content.replace(/[\ue200-\ue202]*cite[\ue200-\ue202]*turn\d+[\w\d\ue200-\ue202]*/g, '');
         // Remove trailing --- separator and excessive blank lines
         content = content
           .replace(/\n?---\s*$/, '')
           .replace(/\n{3,}/g, '\n\n')
+          .replace(/  +/g, ' ')
           .trim();
         if (content) {
           messages.push({
@@ -252,10 +255,13 @@ function parseChatGPT(text: string): ChatMessage[] {
         }
       } else if (trimmedSection.startsWith('**Assistant**')) {
         let content = trimmedSection.replace(/^\*\*Assistant\*\*\n?/, '').trim();
+        // Clean up ChatGPT citation markers (including Unicode private use area chars)
+        content = content.replace(/[\ue200-\ue202]*cite[\ue200-\ue202]*turn\d+[\w\d\ue200-\ue202]*/g, '');
         // Remove trailing --- separator and excessive blank lines
         content = content
           .replace(/\n?---\s*$/, '')
           .replace(/\n{3,}/g, '\n\n')
+          .replace(/  +/g, ' ')
           .trim();
         if (content) {
           messages.push({
@@ -275,8 +281,10 @@ function parseChatGPT(text: string): ChatMessage[] {
 
       if (trimmedPart.startsWith('User:')) {
         let content = trimmedPart.replace(/^User:\s*/, '').trim();
+        // Clean up ChatGPT citation markers (including Unicode private use area chars)
+        content = content.replace(/[\ue200-\ue202]*cite[\ue200-\ue202]*turn\d+[\w\d\ue200-\ue202]*/g, '');
         // Remove excessive blank lines
-        content = content.replace(/\n{3,}/g, '\n\n').trim();
+        content = content.replace(/\n{3,}/g, '\n\n').replace(/  +/g, ' ').trim();
         messages.push({
           role: 'user',
           content,
@@ -284,8 +292,10 @@ function parseChatGPT(text: string): ChatMessage[] {
         });
       } else if (trimmedPart.startsWith('ChatGPT:') || trimmedPart.startsWith('Assistant:')) {
         let content = trimmedPart.replace(/^(ChatGPT|Assistant):\s*/, '').trim();
+        // Clean up ChatGPT citation markers (including Unicode private use area chars)
+        content = content.replace(/[\ue200-\ue202]*cite[\ue200-\ue202]*turn\d+[\w\d\ue200-\ue202]*/g, '');
         // Remove excessive blank lines
-        content = content.replace(/\n{3,}/g, '\n\n').trim();
+        content = content.replace(/\n{3,}/g, '\n\n').replace(/  +/g, ' ').trim();
         messages.push({
           role: 'assistant',
           content,

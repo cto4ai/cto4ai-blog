@@ -218,6 +218,9 @@ class ChatGPTConverter(TranscriptConverter):
     
     def convert(self, content: str) -> str:
         """Convert ChatGPT transcript to markdown with proper conversation turns."""
+        # Clean up citation markers from entire content first (including Unicode private use area chars)
+        content = re.sub(r'[\ue200-\ue202]*cite[\ue200-\ue202]*turn\d+[\w\d\ue200-\ue202]*', '', content)
+        
         lines = content.split('\n')
         output = []
         in_code_block = False
@@ -256,6 +259,8 @@ class ChatGPTConverter(TranscriptConverter):
             
             # Handle content lines
             if line.strip():  # Non-empty lines
+                # Citations already cleaned up at the beginning
+                
                 # Escape backticks for TypeScript template literal
                 if '```' in line:
                     line = line.replace('```', '\\`\\`\\`')
@@ -272,6 +277,11 @@ class ChatGPTConverter(TranscriptConverter):
         
         # Remove multiple consecutive newlines
         result = re.sub(r'\n{3,}', '\n\n', result)
+        
+        # Citations should already be cleaned up
+        
+        # Clean up extra spaces
+        result = re.sub(r'  +', ' ', result)
         
         return result
     
