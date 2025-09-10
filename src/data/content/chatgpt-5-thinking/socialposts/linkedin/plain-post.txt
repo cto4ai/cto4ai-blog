@@ -1,0 +1,9 @@
+OpenAI's ChatGPT 5 Thinking - and in fact reasoning models in general - are crazy smart. 
+
+I had massive gaps in my knowledge about Pydantic AI when their v1 announcement dropped yesterday. I asked ChatGPT 5 Thinking to get me up to speed. The result was remarkable - not just surface-level explanations, but deep, contextualized understanding that connected the dots between what I already knew and what I needed to learn.
+
+What struck me most was how the model structured the learning journey. It didn't just dump information; it built scaffolding that made complex concepts stick. This is exactly the kind of AI use case that actually matters for knowledge work.
+
+We're still early in understanding how reasoning models like GPT-5 Thinking change the game for professionals who need to rapidly acquire domain expertise. The speed and quality of knowledge transfer here was genuinely impressive.
+
+https://cto4.ai/p/chatgpt-5-thinking

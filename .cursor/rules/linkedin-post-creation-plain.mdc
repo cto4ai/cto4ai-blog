@@ -15,8 +15,8 @@ Output:
 
 Steps:
 1. Read front matter from the source post (`title`, `description`, `date`, optional `tags`). Determine the canonical URL for the post. Place the link after the LinkedIn post draft text, it will be posted separately as a comment
-2. Draft a plain formatted LinkedIn post, in the 500-1000 character size range
-3. Use the plainspoken style and tone of Ethan Mollick.
+2. Draft a plain formatted LinkedIn post, in the 500-1000 character size range, based on both the front matter (title and description are very key information for the linkedin post) and the body of the mdx file.
+3. Use the plainspoken style and tone of Ethan Mollick. Examples:
 
 - Example 1:
 
