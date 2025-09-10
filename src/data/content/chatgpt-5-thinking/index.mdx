@@ -1,10 +1,10 @@
 ---
 title: "ChatGPT 5 Thinking Is So Damn Smart"
 contentType: "brief"
-description: "I needed to round out my knowledge of Pydantic AI, and ChatGPT 5 Thinking delivered an astoundingly great response."
+description: "I needed to round out my knowledge of Pydantic AI. ChatGPT 5 Thinking absolutely nailed it."
 author: "Jack Ivers"
 publishDate: "2025-09-09T16:58:38-05:00"
-image: "~/assets/images/content/chatgpt-5-thinking/cover-image.png"
+image: "~/assets/images/content/chatgpt-5-thinking/pydantic_ai_v1.png"
 featured: false
 draft: true
 tags: ["ai", "gpt-5", "reasoning"]
@@ -16,11 +16,11 @@ import ImageGallery from '~/components/ui/ImageGallery.astro';
 import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import { pydanticAiConversation } from './transcripts/pydantic-ai-conversation';
 
-Content starts here...
+I spent some time at the Pydantic booth at the AI Engineer World's Fair in SF this June. Today, I got their announcement that Pydantic AI v1 is out, and decided to write about it.
 
-## My Conversation with ChatGPT 5 Thinking
+I had Grand Canyon sized gaps in my knowledge about Pydantic AI, though, and decided to ask ChatGPT 5 Thinking to help me get up to speed. 
 
-I had an enlightening conversation with ChatGPT 5 Thinking about Pydantic AI v1. Here's the full transcript:
+**NAILED IT.** Here's the chat transcript. 
 
 <ChatTranscript
   theme="adium"
@@ -28,3 +28,8 @@ I had an enlightening conversation with ChatGPT 5 Thinking about Pydantic AI v1.
   transcript={pydanticAiConversation}
   toolName="ChatGPT 5 Thinking"
 />
+
+Two notes:
+
+1. The idea of having a component to render chat transcripts inside blog posts was stolen from [Orta Therox](https://blog.puzzmo.com/posts/2025/07/30/six-weeks-of-claude-code/). I worked with Claude Code to vibe code my version from scratch.
+2. ChatGPT 5 Thinking believed it was writing the blog post itself. It was not; I'll be doing that by hand.
