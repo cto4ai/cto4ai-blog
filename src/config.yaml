@@ -1,5 +1,5 @@
 site:
-  name: CTO4.AI
+  name: cto4.ai
   site: 'https://cto4.ai'
   base: '/'
   trailingSlash: false
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: CTO4.AI
-    template: '%s — CTO4.AI'
+    default: cto4.ai
+    template: '%s — cto4.ai'
   description: 'Transcend local maxima. Summit.'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: CTO4.AI
+    site_name: cto4.ai
     images:
       - url: '~/assets/images/default.png'
         width: 1200
