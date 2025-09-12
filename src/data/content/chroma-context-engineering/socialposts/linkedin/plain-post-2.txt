@@ -1,0 +1,11 @@
+A Hacker News user perfectly captured something most AI builders don't want to admit: "When models are exposed to extremely long contexts—sometimes stretching into tens or even hundreds of thousands of tokens—they don't consistently leverage that additional information in a productive way. Instead of getting smarter with scale, they start to lose their grip."
+
+Another user responded with an even better insight: "Context rot is the downside of scale without precision. It reminds us that bigger isn't always better, and that understanding requires more than just access—it demands clarity."
+
+This is exactly what researchers have been quietly observing. Those million-token context windows that get announced with great fanfare? They have a dirty secret. When operated on repeatedly, especially in multi-turn conversations, the context "rots" and models stop following basic instructions.
+
+The AI companies keep promoting bigger context windows like they're the solution to everything. But context rot shows us that throwing more data at a problem doesn't automatically make it better.
+
+Smart context engineering—carefully selecting what information to include—beats brute force every time.
+
+https://cto4.ai/p/chroma-context-engineering
