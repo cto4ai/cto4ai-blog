@@ -1,11 +1,12 @@
-A Hacker News user perfectly captured something most AI builders don't want to admit: "When models are exposed to extremely long contexts—sometimes stretching into tens or even hundreds of thousands of tokens—they don't consistently leverage that additional information in a productive way. Instead of getting smarter with scale, they start to lose their grip."
+I recently wrote about Jeff Huber, Chroma, and Context Engineering; and highlighted Chroma's research into the phenomenon of "context rot."
 
-Another user responded with an even better insight: "Context rot is the downside of scale without precision. It reminds us that bigger isn't always better, and that understanding requires more than just access—it demands clarity."
+Just this morning, I noticed this point reinforced in a Hacker News comment thread. User gizmodo59 noted: "My take on long context for many frontier models is not about support but the accuracy drops drastically as you increase the context. Even if a model claims to support 10M context, reality is it doesn't perform well when you saturate."
 
-This is exactly what researchers have been quietly observing. Those million-token context windows that get announced with great fanfare? They have a dirty secret. When operated on repeatedly, especially in multi-turn conversations, the context "rots" and models stop following basic instructions.
+User kridsdale3 responded: "This is my experience with Gemini. Yes, I really can put an entire codebase and all the docs and pre-dev discussions and all the inter-engineer chat logs in there. I still see the model becoming more intoxicated as turn count gets high."
 
-The AI companies keep promoting bigger context windows like they're the solution to everything. But context rot shows us that throwing more data at a problem doesn't automatically make it better.
-
-Smart context engineering—carefully selecting what information to include—beats brute force every time.
+The AI companies keep promoting bigger context windows like they're the solution to everything. But large contexts don't actually work yet, as gizmodo59 notes, "when you saturate." Which is exactly what multi-turn agent interactions do. 
 
 https://cto4.ai/p/chroma-context-engineering
+
+gizmodo59's comment: https://news.ycombinator.com/item?id=45221099
+kridsdale3's comment: https://news.ycombinator.com/item?id=45221318
