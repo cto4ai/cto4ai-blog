@@ -92,6 +92,42 @@ All content now uses a unified directory structure with content types defined in
 - `/tag/[tag]` - Posts by tag
 - `/category/[category]` - Posts by category
 
+## Routing Architecture
+
+### Blog Post URL Generation
+- **Pattern**: `/p/%slug%` (defined in `config.yaml` line 41: `permalink: '/p/%slug%'`)
+- **Content Location**: `/src/data/content/[slug]/index.mdx`
+- **Processing Flow**:
+  1. Content collection system reads from `/src/data/content/` (`src/utils/blog.ts:126`)
+  2. `generatePermalink()` applies `POST_PERMALINK_PATTERN` to create URLs (`src/utils/blog.ts:26`)
+  3. Directory name becomes the slug (e.g., `pydantic-ai-reaches-v1/` → `/p/pydantic-ai-reaches-v1`)
+
+### File Accessibility Rules
+- **Routable Files**: Only files in `/src/pages/` with extensions `.astro`, `.md`, `.mdx`, `.js`, `.ts`
+- **Content Files**: `/src/data/content/**/*` are processed by blog system, NOT directly accessible as URLs
+- **Static Imports**: Files anywhere can be imported as content (e.g., `/src/privacy-policy.md`)
+- **Blog Routes**: `/src/pages/[...blog]/` files redirect to `/archive` - individual posts rendered via content collection
+
+### MD File Embedding Options
+1. **Direct Import** (recommended for post-specific files):
+   ```js
+   import { Content as Part1 } from './pydantic_ai_part_1.md';
+   ```
+2. **Root Import** (for site-wide content):
+   ```js
+   import { Content as Privacy } from '~/privacy-policy.md';
+   ```
+3. **Separate Pages** (for standalone URLs):
+   - Create files in `/src/pages/` to make them directly accessible
+4. **Custom Components** (for styled embedding):
+   - Create reusable components that import and style MD content
+
+### Content Collection Processing
+- Unified content structure with `contentType` field in frontmatter
+- All content types (essay, brief, elsewhere, quote, episodes) processed identically
+- Permalinks generated via `POST_PERMALINK_PATTERN` replacement
+- Draft filtering based on environment (`SHOW_DRAFTS` in development)
+
 ## Migration Context
 
 This repository is part of a dual-repository setup:
