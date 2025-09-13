@@ -18,7 +18,7 @@ metadata:
   openGraph:
     site_name: cto4.ai
     images:
-      - url: '~/assets/images/social-preview-v3.png'
+      - url: '~/assets/images/social-preview-v5.png'
         width: 1200
         height: 630
     type: website

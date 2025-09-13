@@ -1,0 +1,86 @@
+---
+import '@fontsource-variable/space-grotesk';
+import logoColor from '~/assets/images/logos/noBgColor.svg';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1200, height=630, initial-scale=1.0" />
+    <title>OpenGraph Preview - Pure White</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        font-family: 'Space Grotesk Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+
+      body {
+        background: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .logo-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo-wrapper img {
+        height: 120px;
+        width: auto;
+      }
+
+      .tagline {
+        font-family: 'Space Grotesk Variable', sans-serif;
+        color: #1e293b;
+        font-weight: 400;
+        font-size: 3.5rem;
+        line-height: 1.1;
+        text-align: center;
+        max-width: 1000px;
+      }
+
+      .tagline .summit {
+        font-style: italic;
+        font-weight: 900;
+      }
+
+      /* Ensure crisp text rendering */
+      .tagline {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo-wrapper">
+        <img src={logoColor.src} alt="cto4.ai" />
+      </div>
+      <p class="tagline">Transcend local maxima. <span class="summit">Summit.</span></p>
+    </div>
+  </body>
+</html>
