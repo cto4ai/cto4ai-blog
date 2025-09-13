@@ -14,8 +14,9 @@ categories: ["AI", "Technology"]
 import SingleImage from '~/components/ui/SingleImage.astro';
 import ImageGallery from '~/components/ui/ImageGallery.astro';
 import ChatTranscript from '~/components/ui/ChatTranscript.astro';
-import { Content as Part1Content } from '~/data/content/pydantic_ai_v_1_cto_field_guide_part_1_core.md';
-import { Content as Part2Content } from '~/data/content/pydantic_ai_v_1_cto_field_guide_part_2_links_media_editors_angle.md';
+import MDContent from '~/components/ui/MDContent.astro';
+import { Content as Part1Content } from './embedded/pydantic_ai_v_1_cto_field_guide_part_1_core.md';
+import { Content as Part2Content } from './embedded/pydantic_ai_v_1_cto_field_guide_part_2_links_media_editors_angle.md';
 
 Pydantic AI has reached version 1.0, marking a significant milestone in the Python AI development ecosystem. This release brings API stability, enhanced features, and production-ready capabilities to the type-safe agent framework.
 
@@ -23,41 +24,17 @@ Pydantic AI has reached version 1.0, marking a significant milestone in the Pyth
 
 To provide comprehensive coverage of this important release, I've prepared detailed field guides covering both the technical aspects and strategic considerations for CTOs and engineering leaders.
 
-### Part 1: Core Features & Framework Comparison
+<MDContent 
+  title="Part 1: Core Features & Framework Comparison" 
+  Content={Part1Content}
+  description="Deep dive into Pydantic AI's core capabilities, architecture, and comparison with competing frameworks like LangGraph, LlamaIndex, and Semantic Kernel."
+/>
 
-<section class="my-8 p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700">
-  <div class="prose prose-lg dark:prose-invert max-w-none
-              prose-headings:text-gray-900 dark:prose-headings:text-white
-              prose-p:text-gray-700 dark:prose-p:text-gray-300
-              prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-gray-900 dark:prose-strong:text-white
-              prose-code:text-pink-600 dark:prose-code:text-pink-400
-              prose-pre:bg-gray-100 dark:prose-pre:bg-gray-900
-              prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50/50 dark:prose-blockquote:bg-blue-900/20
-              prose-table:text-sm
-              prose-th:bg-gray-100 dark:prose-th:bg-gray-800
-              prose-td:border-gray-200 dark:prose-td:border-gray-700">
-    <Part1Content />
-  </div>
-</section>
-
-### Part 2: Links, Resources & Strategic Analysis
-
-<section class="my-8 p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700">
-  <div class="prose prose-lg dark:prose-invert max-w-none
-              prose-headings:text-gray-900 dark:prose-headings:text-white
-              prose-p:text-gray-700 dark:prose-p:text-gray-300
-              prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-gray-900 dark:prose-strong:text-white
-              prose-code:text-pink-600 dark:prose-code:text-pink-400
-              prose-pre:bg-gray-100 dark:prose-pre:bg-gray-900
-              prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50/50 dark:prose-blockquote:bg-blue-900/20
-              prose-table:text-sm
-              prose-th:bg-gray-100 dark:prose-th:bg-gray-800
-              prose-td:border-gray-200 dark:prose-td:border-gray-700">
-    <Part2Content />
-  </div>
-</section>
+<MDContent 
+  title="Part 2: Links, Resources & Strategic Analysis" 
+  Content={Part2Content}
+  description="Curated resources, industry perspectives, and strategic considerations for adopting Pydantic AI in your organization."
+/>
 
 ## Conclusion
 
