@@ -37,7 +37,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
-  site: 'https://cto4.ai',
+  site: process.env.CF_PAGES_URL || 'https://cto4.ai',
   output: 'static',
   trailingSlash: 'never',
 
