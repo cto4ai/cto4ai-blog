@@ -11,11 +11,11 @@ const { title, Content, description, className = '' } = Astro.props;
 
 <section class={`my-8 p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 ${className}`}>
   <header class="mb-6">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-3 border-b border-gray-200 dark:border-gray-600 pb-2">
       {title}
     </h2>
     {description && (
-      <p class="text-gray-600 dark:text-gray-300 text-sm">
+      <p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
         {description}
       </p>
     )}
@@ -31,7 +31,8 @@ const { title, Content, description, className = '' } = Astro.props;
               prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50/50 dark:prose-blockquote:bg-blue-900/20
               prose-table:text-sm
               prose-th:bg-gray-100 dark:prose-th:bg-gray-800
-              prose-td:border-gray-200 dark:prose-td:border-gray-700">
+              prose-td:border-gray-200 dark:prose-td:border-gray-700
+              [&>*:first-child]:hidden">
     <Content />
   </div>
 </section>
