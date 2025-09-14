@@ -1,0 +1,17 @@
+I spent time at the Pydantic booth at the AI Engineer World's Fair in SF this June. A few days ago, I got their announcement that Pydantic AI v1 is out.
+
+As I sat down to write about it, I realized something interesting. I had asked ChatGPT 5 Thinking to fill in my knowledge gaps around Pydantic AI, and what came back was a comprehensive briefing document. It had already done most of the heavy lifting for me.
+
+That document was a joint effort. I conceived the need, I asked the questions, I played critic and editor through dozens of iterations. But GPT-5 Thinking did the research, drafting and rewriting.
+
+I write as a learning exercise, but spending hours or days to improve upon what the AI had already produced would have impeded rather than furthered my learning.
+
+This reminds me of Ethan Mollick's recent experience with Claude's Excel features. Just as Claude had produced a very solid solution that would have taken his team of MBA students a week to reproduce, so too had ChatGPT 5 Thinking produced a very solid Field Guide to Pydantic AI.
+
+So I decided to just post the jointly-created Guide and move on to the next learning exercise in my long queue, having learned plenty in my role as its editor.
+
+The meta-lesson here is about the changing nature of knowledge work. When AI can produce comprehensive technical analysis that would take human experts days or weeks, the value shifts to asking the right questions, providing good editorial judgment, and knowing when to trust the output.
+
+Sometimes the best move is to let the AI do what it does best and focus your human effort on the parts that actually need human insight.
+
+https://cto4.ai/p/pydantic-ai-reaches-v1

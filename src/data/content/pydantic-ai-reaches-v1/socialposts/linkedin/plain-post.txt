@@ -1,0 +1,17 @@
+Pydantic AI just reached v1, and I think it's worth paying attention to.
+
+I spent time at their booth at the AI Engineer World's Fair in SF this June, and when I got their v1 announcement, I decided to dig deeper. What I found was that ChatGPT 5 Thinking had already done most of the heavy lifting for me.
+
+I gave GPT-5 a simple prompt: "critique the methods of this paper, figure out better methods and apply them" about Pydantic AI. What came back was a comprehensive CTO Field Guide that would have taken me days to research and write myself.
+
+The thing about Pydantic AI is that it brings FastAPI-style ergonomics to AI agents. You get type-safe I/O, dependency injection, and provider-agnostic model support. It's positioned as the "software-engineering-friendly" choice for typed, testable, production-grade agents.
+
+What makes it interesting is the observability story. It has native OpenTelemetry integration plus Pydantic Logfire for deep tracing and cost analysis. Plus it bakes in open standards like MCP, AG-UI, and A2A.
+
+The v1 release brings API stability until at least April 2026, which matters when you're building production systems. They've also added durable execution patterns with Temporal and DBOS integration.
+
+I think the real insight here is that we're seeing AI tooling mature to the point where the frameworks themselves are becoming as sophisticated as the applications they enable. Pydantic AI feels like it's solving the "how do we build reliable AI systems" problem rather than just the "how do we call an LLM" problem.
+
+The fact that I could get a comprehensive technical analysis from an AI model, then use that analysis as the foundation for my own writing, suggests we're in a different era of AI-assisted development than we were even six months ago.
+
+https://cto4.ai/p/pydantic-ai-reaches-v1
