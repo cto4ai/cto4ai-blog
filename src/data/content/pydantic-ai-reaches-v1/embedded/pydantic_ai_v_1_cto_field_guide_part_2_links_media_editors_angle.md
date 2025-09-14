@@ -55,8 +55,3 @@
 
 ## Editor’s angle (for cto4.ai)
 If you like **FastAPI** and **Pydantic**, this is the closest thing to that experience for agents: you get **deterministic interfaces** (types), **clean injection** of real services, **model portability**, and **production add‑ons** (OTel, Logfire, MCP, AG‑UI, Temporal/DBOS) that reduce time‑to‑prod. The trade‑off vs. a heavy orchestration platform is that you’ll compose more of your own workflow control—by design, it keeps you in normal Python.
-
----
-
-*END OF DOCUMENT*
-
