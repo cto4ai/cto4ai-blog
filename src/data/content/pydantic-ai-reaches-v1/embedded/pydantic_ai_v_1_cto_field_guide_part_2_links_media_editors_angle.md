@@ -32,11 +32,11 @@
 
 ## Recent podcast & video appearances (last ~60–90 days)
 - **Software Engineering Radio #676** — *Samuel Colvin on Pydantic & Pydantic AI* (2025‑07‑10).  
-  Links: [Episode page](https://www.se-radio.net/2025/07/se-radio-episode-676-samuel-colvin-on-pydantic-and-pydantic-ai/), [Apple Podcasts](https://podcasts.apple.com/us/podcast/se-radio-episode-676-samuel-colvin-on-pydantic-and/id120906714?i=1000673312981)
+  Links: [Episode page](https://se-radio.net/2025/07/se-radio-676-samuel-colvin-on-the-pydantic-ecosystem/), [Apple Podcasts](https://podcasts.apple.com/tt/podcast/se-radio-676-samuel-colvin-on-the-pydantic-ecosystem/id120906714?i=1000716721772)
 - **YouTube (Pydantic channel):** *Pydantic AI — MCP Sampling* (published ~2 months ago).  
-  Link: [Video](https://www.youtube.com/watch?v=DduQNX9P1zk)
+  Link: [Video](https://www.youtube.com/watch?v=3AK7kznOl3k)
 - **YouTube (AI Engineer World’s Fair):** *MCP is all you need — Samuel Colvin* (published ~2–3 months ago).  
-  Link: [Video](https://www.youtube.com/watch?v=0a76UPtM1DM)
+  Link: [Video](https://www.youtube.com/watch?v=bmWZk9vTze0)
 
 > If you want a tighter 60–90 day window by exact publish date, use the timestamps above.
 
