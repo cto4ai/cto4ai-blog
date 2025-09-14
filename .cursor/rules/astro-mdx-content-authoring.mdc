@@ -33,6 +33,7 @@ alwaysApply: false
 - **Slug Format**: URL-friendly (lowercase, hyphens, no spaces)
 - **Example**: `/src/data/content/my-awesome-post/index.mdx`
 - **Transcripts Path**: `/src/data/content/[slug]/transcripts/` (for AI conversation exports)
+- **Embedded Content Path**: `/src/data/content/[slug]/embedded/` (for external Markdown files)
 
 ### Image Storage
 - **Image Path**: `/src/assets/images/content/[slug]/`
@@ -78,6 +79,7 @@ Place at the top of your MDX file after frontmatter:
 import SingleImage from '~/components/ui/SingleImage.astro';
 import ImageGallery from '~/components/ui/ImageGallery.astro';
 import ChatTranscript from '~/components/ui/ChatTranscript.astro';  // For AI conversation transcripts
+import MDContent from '~/components/ui/MDContent.astro';  // For embedding external Markdown content
 ```
 
 ### SingleImage Usage
@@ -130,6 +132,28 @@ import { myConversation } from './transcripts/claude-code';
 - `showTimestamps`: Display message timestamps (default: false)
 - `showAvatars`: Show user/AI avatars (default: true)
 
+### MDContent Usage
+For embedding external Markdown files with styled sections:
+
+```jsx
+// First, import the Markdown file's Content
+import { Content as Part1Content } from './embedded/part1.md';
+
+// Then use MDContent to display it
+<MDContent 
+  title="Section Title" 
+  Content={Part1Content}
+  description="Optional description for this section"
+  className="custom-classes" 
+/>
+```
+
+**Props**:
+- `title` (required): Section heading
+- `Content` (required): The imported Content component from a Markdown file
+- `description` (optional): Subtitle or description text
+- `className` (optional): Additional CSS classes
+
 ## Hyperlinking
 
 ### External Links
@@ -153,6 +177,50 @@ This needs a citation[^1].
 
 [^1]: This is the footnote content.
 ```
+
+## Markdown Embedding Patterns
+
+### Embedding External Markdown Files
+You can embed external Markdown files into your MDX content using several approaches:
+
+#### 1. Direct Import from Embedded Directory (Recommended)
+For post-specific content sections:
+```jsx
+import { Content as SectionContent } from './embedded/section.md';
+
+<MDContent 
+  title="My Section" 
+  Content={SectionContent}
+  description="Description of this section"
+/>
+```
+
+#### 2. Root Import for Site-Wide Content
+For shared content like privacy policies:
+```jsx
+import { Content as Privacy } from '~/privacy-policy.md';
+
+<Privacy />
+```
+
+#### 3. Multiple Sections Pattern
+For complex posts with multiple embedded sections:
+```jsx
+import { Content as Part1 } from './embedded/part1.md';
+import { Content as Part2 } from './embedded/part2.md';
+import { Content as Appendix } from './embedded/appendix.md';
+
+// In your content:
+<MDContent title="Part 1: Introduction" Content={Part1} />
+<MDContent title="Part 2: Deep Dive" Content={Part2} />
+<MDContent title="Appendix" Content={Appendix} />
+```
+
+### Important Routing Notes
+- Content files in `/src/data/content/` are NOT directly accessible as URLs
+- They are processed by the blog system and rendered at `/p/[slug]`
+- Only files in `/src/pages/` become routable pages
+- The permalink pattern `/p/%slug%` is applied to all blog posts
 
 ## MDX-Specific Features
 
@@ -219,6 +287,9 @@ mkdir -p src/assets/images/content/my-new-post
 # Create transcripts directory for AI conversation exports
 mkdir -p src/data/content/my-new-post/transcripts
 
+# Create embedded directory for external Markdown files
+mkdir -p src/data/content/my-new-post/embedded
+
 # Create social media scaffolding (for social content authoring)
 mkdir -p src/data/content/my-new-post/socialposts/images
 mkdir -p src/data/content/my-new-post/socialposts/linkedin
@@ -237,18 +308,27 @@ Place your cover image in `/src/assets/images/content/my-new-post/` and referenc
 ### 4. Write Content
 Add your MDX content, including any image components as needed.
 
-### 5. Add AI Conversation Transcripts (Optional)
+### 5. Add Embedded Content Sections (Optional)
+- Create Markdown files in `embedded/` directory for long-form sections
+- Import them into your MDX file using `import { Content } from './embedded/file.md'`
+- Display using the MDContent component for styled sections
+- Useful for breaking up very long posts or including AI-generated content
+
+### 6. Add AI Conversation Transcripts (Optional)
 - Convert AI chat exports to TypeScript files in `transcripts/` directory
 - Use the convert-chat-transcript.py script to convert exports
 - Import and display using the ChatTranscript component
 - See `.cursor/rules/using-chat-transcript-component.mdc` for detailed instructions
 
-### 6. Create Social Content (Optional)
+### 7. Create Social Content (Optional)
 - Write LinkedIn post in `socialposts/linkedin/post.txt`
 - Write Mastodon post in `socialposts/mastodon/post.txt`
 - Add any social-specific images to `socialposts/images/`
 
-**Note**: The `socialposts/` and `transcripts/` directories are for your content planning only. The `socialposts/` directory will NOT be published or exposed during the Astro build process. The `transcripts/` directory contains TypeScript files that can be imported into your MDX content.
+**Note**: 
+- The `socialposts/` directory is for content planning only and will NOT be published
+- The `transcripts/` directory contains TypeScript files that can be imported into your MDX
+- The `embedded/` directory contains Markdown files that can be imported and rendered within your post
 
 ## Common Patterns
 
@@ -292,6 +372,42 @@ Quick intro text...
   postDir="quick-update" 
   size="lg" 
 />
+```
+
+### Essay with Embedded Content Sections
+```mdx
+---
+title: "Comprehensive Analysis"
+contentType: "essay"
+# ... other frontmatter
+---
+
+import SingleImage from '~/components/ui/SingleImage.astro';
+import MDContent from '~/components/ui/MDContent.astro';
+import { Content as TechnicalDetails } from './embedded/technical-details.md';
+import { Content as CaseStudy } from './embedded/case-study.md';
+
+Introduction paragraph explaining the topic...
+
+<SingleImage src="overview.png" alt="Topic overview" size="2xl" postDir="comprehensive-analysis" />
+
+Some bridging content between sections...
+
+<MDContent 
+  title="Technical Deep Dive" 
+  Content={TechnicalDetails}
+  description="Detailed technical analysis and implementation details"
+/>
+
+More content discussing the technical aspects...
+
+<MDContent 
+  title="Real-World Case Study" 
+  Content={CaseStudy}
+  description="How this technology was applied in production"
+/>
+
+Conclusion and key takeaways...
 ```
 
 ## Troubleshooting
