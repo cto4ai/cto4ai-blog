@@ -1,12 +1,13 @@
 ---
 title: "Pydantic AI Reaches v1"
 contentType: "essay"
-description: "Here's an in-depth Field Guide to Pydantic AI"
+description: "Which, for me, begged the question, what exactly is Pydantic AI?"
 author: "Jack Ivers"
-publishDate: "2025-09-13T07:52:00-05:00"
+publishDate: "2025-09-14T07:48:00-05:00"
 image: "~/assets/images/content/pydantic-ai-reaches-v1/pydantic-ai-light.png"
-featured: false
-draft: true
+featured: true
+featuredOrder: 1
+draft: false
 tags: ["pydantic", "ai", "python", "machine-learning"]
 categories: ["AI", "Technology"]
 ---
@@ -18,19 +19,15 @@ import MDContent from '~/components/ui/MDContent.astro';
 import { Content as Part1Content } from './embedded/pydantic_ai_v1_cto_field_guide_part1_UPDATED.md';
 import { Content as Part2Content } from './embedded/pydantic_ai_v_1_cto_field_guide_part_2_links_media_editors_angle.md';
 
-As I wrote recently in a post titled [ChatGPT 5 Thinking Is So Damn Smart](/p/chatgpt-5-thinking):
+As I wrote recently in [ChatGPT 5 Thinking Is So Damn Smart](/p/chatgpt-5-thinking):
 
 > I spent some time at the [Pydantic](https://pydantic.dev/) booth at the [AI Engineer World's Fair](https://www.ai.engineer/) in SF this June. Today, I got their announcement that [Pydantic AI v1](https://ai.pydantic.dev/) is out, and decided to write about it.
 
-The point of that post was how superbly 5 Thinking filled in my knowledge gaps around Pydantic AI. As I sat down to write *this* post, using ChatGPT's briefing document as background, I realized that, with a bit of refinement, that document wasn't just suitable as background for this post---it should actually **BE** the core of this post. It was a joint effort---I conceived the need, I asked the questions, I played the role of critic and editor through dozens of iterations---GPT5 Thinking did the research, drafting and rewriting.
+The point of that post was how superbly GPT-5 Thinking filled in my knowledge gaps around Pydantic AI. As I sat down to write *this* post, however, I realized that ChatGPT's briefing document should actually **BE** the core of this post. That document was a joint effort---I conceived the need, I asked the questions, I played critic and editor through dozens of iterations---GPT5 Thinking did the research, drafting and rewriting.
 
-I write as a learning exercise, but spending hours or days to improve upon the CTO's Field Guide to Pydantic AI below would have impeded rather than furthered my learning. I resonate with Ethan Mollick's experience working with [Claude's new Excel-spreadsheet-editing features](https://www.linkedin.com/posts/emollick_claudes-surprise-new-ability-to-work-with-activity-7371375383125889024-3C9Y?utm_source=share&utm_medium=member_desktop&rcm=ACoAAABcNZsBSiPCgo2Gr9o5anU48UXl131Q-_M):
+I write as a learning exercise, but spending hours or days to improve upon the [cto4ai's Field Guide to Pydantic AI](#cto4ais-field-guide-to-pydantic-ai) below would have impeded rather than furthered my learning. 
 
-> Claude's surprise new ability to work with Excel files is the best I have seen so far.
->
-> I have given it existing spreadsheets to work with and asked it to create new ones. Good use of formatting, formulas, etc.
-> 
-> It created all of this, including 406 formulas, from one prompt (& its very solid, would be a good result of a week-long team project for my MBA class). 
+Ethan Mollick recently shared his experience working with [Claude's new Excel-spreadsheet-editing features](https://www.linkedin.com/posts/emollick_claudes-surprise-new-ability-to-work-with-activity-7371375383125889024-3C9Y?utm_source=share&utm_medium=member_desktop&rcm=ACoAAABcNZsBSiPCgo2Gr9o5anU48UXl131Q-_M):
 
 <SingleImage 
   src="mollick_claude_excel.png" 
@@ -39,12 +36,11 @@ I write as a learning exercise, but spending hours or days to improve upon the C
   postDir="pydantic-ai-reaches-v1" 
 />
 
- Instead of embarking on my own week-long project to do a better Field Guide, I'll post this one, having learned plenty in the role of editor, and move on to the next learning exercise in my very long queue. 
+Just as Claude had produced a very solid solution that would have taken Mollick's team of MBA students a week to reproduce, so too had ChatGPT 5 Thinking produced a very solid Field Guide to Pydantic AI. So I'll just post this Guide and move on to the next learning exercise in my very long queue, having learned plenty my the role as its editor.
 
+## cto4ai's Field Guide to Pydantic AI
 
-## CTO's Field Guide to Pydantic AI
-
-This Field Guide covering both the technical aspects and strategic considerations for CTOs, engineering leaders, and company leadership.
+This Field Guide covers the technical aspects and strategic considerations of Pydantic AI, for CTOs, engineering leaders, and company leadership.
 
 <MDContent 
   title="Part 1: Core Features & Framework Comparison" 
