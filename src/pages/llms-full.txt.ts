@@ -30,8 +30,8 @@ export const GET: APIRoute = async () => {
   const posts = allContent
     .filter(post => SHOW_DRAFTS || !post.data.draft)
     .sort((a, b) => {
-      const dateA = new Date(a.data.publishDate || a.data.date || 0);
-      const dateB = new Date(b.data.publishDate || b.data.date || 0);
+      const dateA = new Date(a.data.publishDate || 0);
+      const dateB = new Date(b.data.publishDate || 0);
       return dateB.getTime() - dateA.getTime();
     });
 
@@ -51,7 +51,7 @@ export const GET: APIRoute = async () => {
     const slug = post.id.replace('/index.mdx', '').replace('index.mdx', '');
     const url = `https://cto4.ai/p/${slug}`;
     const title = post.data.title;
-    const date = new Date(post.data.publishDate || post.data.date || Date.now()).toISOString().split('T')[0];
+    const date = new Date(post.data.publishDate || Date.now()).toISOString().split('T')[0];
     const description = post.data.description || post.data.excerpt || '';
     const contentType = post.data.contentType || 'post';
     const tags = post.data.tags ? post.data.tags.join(', ') : '';

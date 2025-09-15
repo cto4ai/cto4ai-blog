@@ -12,8 +12,8 @@ export const GET: APIRoute = async () => {
   const posts = allContent
     .filter(post => SHOW_DRAFTS || !post.data.draft)
     .sort((a, b) => {
-      const dateA = new Date(a.data.publishDate || a.data.date || 0);
-      const dateB = new Date(b.data.publishDate || b.data.date || 0);
+      const dateA = new Date(a.data.publishDate || 0);
+      const dateB = new Date(b.data.publishDate || 0);
       return dateB.getTime() - dateA.getTime();
     });
 
@@ -59,7 +59,7 @@ ${recentPosts.map(post => {
   const url = `https://cto4.ai/p/${slug}`;
   const title = post.data.title;
   const description = post.data.description || post.data.excerpt || '';
-  const date = new Date(post.data.publishDate || post.data.date || Date.now()).toISOString().split('T')[0];
+  const date = new Date(post.data.publishDate || Date.now()).toISOString().split('T')[0];
   return `- [${title}](${url}) (${date}): ${description}`;
 }).join('\n')}
 
