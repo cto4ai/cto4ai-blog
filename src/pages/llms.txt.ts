@@ -25,7 +25,7 @@ export const GET: APIRoute = async () => {
   const briefs = posts.filter(p => p.data.contentType === 'brief');
   const elsewhere = posts.filter(p => p.data.contentType === 'elsewhere');
   const quotes = posts.filter(p => p.data.contentType === 'quote');
-  const episodes = posts.filter(p => p.data.contentType === 'episodes');
+  const episodes = posts.filter(p => p.data.contentType === 'episode');
 
   // Collect unique tags and categories
   const tags = new Set<string>();
