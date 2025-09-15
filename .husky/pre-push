@@ -1,0 +1,23 @@
+#!/bin/sh
+
+echo "🔍 Running CI checks before push..."
+
+# Run type checking and linting
+echo "📋 Running npm run check..."
+npm run check
+if [ $? -ne 0 ]; then
+  echo "❌ CI checks failed! Fix the issues above before pushing."
+  echo "💡 Tip: Run 'npm run check' to see all issues"
+  exit 1
+fi
+
+# Run build to ensure it works
+echo "🏗️  Running npm run build..."
+npm run build
+if [ $? -ne 0 ]; then
+  echo "❌ Build failed! Fix the build errors before pushing."
+  echo "💡 Tip: Run 'npm run build' to see the errors"
+  exit 1
+fi
+
+echo "✅ All CI checks passed! Proceeding with push..."

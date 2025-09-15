@@ -193,3 +193,52 @@ The site automatically deploys to production when pushing to the main branch. Pr
 - Always run the dev server to test changes before committing
 - remember you have access to Playwright MCP for browser access e.g. to dev server
 - this site will be deployed to Cloudflare Pages
+
+## CI Requirements - MUST READ
+
+**IMPORTANT: Pre-push hooks are configured to prevent CI failures**
+
+The repository uses git hooks to ensure code quality before pushing to GitHub. A pre-push hook automatically runs these checks:
+
+### Checks Run Before Push
+
+1. **`npm run check`** - Runs all validation:
+   - `astro check` - TypeScript and Astro component validation
+   - `eslint` - Code quality and style rules
+   - `prettier --check` - Code formatting validation
+
+2. **`npm run build`** - Ensures the site builds successfully
+
+### Common CI Failure Causes
+
+- **TypeScript errors**: Missing types, wrong property names, non-existent properties
+  - Example: Using `post.data.date` when only `post.data.publishDate` exists
+- **ESLint errors**: `no-explicit-any`, unused variables
+  - Fix: Use proper types or add ESLint disable comments when necessary
+- **Component type errors**: Invalid component types in Astro
+  - Fix: Use `any` with ESLint disable for dynamic components
+- **Prettier formatting**: Inconsistent formatting
+  - Fix: Run `npm run fix:prettier` to auto-format
+- **Build errors**: Missing images, broken imports
+  - Fix: Verify all imports and file paths
+
+### Manual Testing
+
+If you need to run checks manually:
+
+```bash
+npm run check       # Run all checks (TypeScript, ESLint, Prettier)
+npm run build       # Test the build
+npm run fix:prettier # Auto-fix formatting issues
+```
+
+### If Push is Blocked
+
+If the pre-push hook blocks your push:
+
+1. Read the error message carefully
+2. Fix the reported issues
+3. Run `npm run check` locally to verify fixes
+4. Try pushing again
+
+The pre-push hook ensures CI will pass on GitHub, preventing regression failures.
