@@ -1,0 +1,11 @@
+AI alarm isn't new. Ray Kurzweil predicted the singularity in 2005. Vernor Vinge warned of post-human era changes in 1993. They all painted bleak visions.
+
+But here's what I found interesting from a 2000 piece: John Seely Brown, the former director of Xerox PARC, pushed back against the doom-and-gloom predictions. His key insight was that humans adapt once we understand risks.
+
+Brown was grateful for the alarmists because they're critical input to the human adaptation loop. But he thought they were wrong about the outcomes because they ignored social feedback systems.
+
+This feels relevant as we watch current AI behaviors like Bing going off the rails or ChatGPT hallucinating. The pattern repeats: alarm, then adaptation.
+
+I'm mostly curious about what emerges next, rather than worried about doom scenarios. History suggests Brown was right about our ability to adapt to technological risks once we see them coming.
+
+https://cto4.ai/p/alarmed-about-ai

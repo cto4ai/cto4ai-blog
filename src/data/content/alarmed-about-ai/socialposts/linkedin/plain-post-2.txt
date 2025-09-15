@@ -1,0 +1,11 @@
+Back in February 2023, when ChatGPT was breaking everyone's brains and Bing AI was having multiple personality episodes, I wrote about the recurring pattern of alarm over AI.
+
+The post traced how Ray Kurzweil, Vernor Vinge, and Bill Joy all predicted doom from emerging technologies. But John Seely Brown, former director of Xerox PARC, had the best take: humans adapt once we understand the risks.
+
+Brown - who I was fortunate enough to see speak during this era - saw alarmists as critical input to our adaptation loop, but thought doom predictions ignore how social and technological systems evolve together.
+
+Looking back at 2023's AI alarm two and a half years later, JSB's message feels evergreen. We're still seeing the same cycle: new AI capabilities emerge, people sound alarms, then we adapt and integrate them into society.
+
+The pattern JSB identified in 2000 about technological adaptation continues to play out with every AI breakthrough. We're not doomed - we're adapting. But alarmists, please keep setting off those alarms ...
+
+https://cto4.ai/p/alarmed-about-ai
