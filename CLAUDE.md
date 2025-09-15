@@ -95,6 +95,7 @@ All content now uses a unified directory structure with content types defined in
 ## Routing Architecture
 
 ### Blog Post URL Generation
+
 - **Pattern**: `/p/%slug%` (defined in `config.yaml` line 41: `permalink: '/p/%slug%'`)
 - **Content Location**: `/src/data/content/[slug]/index.mdx`
 - **Processing Flow**:
@@ -103,12 +104,14 @@ All content now uses a unified directory structure with content types defined in
   3. Directory name becomes the slug (e.g., `pydantic-ai-reaches-v1/` → `/p/pydantic-ai-reaches-v1`)
 
 ### File Accessibility Rules
+
 - **Routable Files**: Only files in `/src/pages/` with extensions `.astro`, `.md`, `.mdx`, `.js`, `.ts`
 - **Content Files**: `/src/data/content/**/*` are processed by blog system, NOT directly accessible as URLs
 - **Static Imports**: Files anywhere can be imported as content (e.g., `/src/privacy-policy.md`)
 - **Blog Routes**: `/src/pages/[...blog]/` files redirect to `/archive` - individual posts rendered via content collection
 
 ### MD File Embedding Options
+
 1. **Direct Import** (recommended for post-specific files):
    ```js
    import { Content as Part1 } from './pydantic_ai_part_1.md';
@@ -123,6 +126,7 @@ All content now uses a unified directory structure with content types defined in
    - Create reusable components that import and style MD content
 
 ### Content Collection Processing
+
 - Unified content structure with `contentType` field in frontmatter
 - All content types (essay, brief, elsewhere, quote, episodes) processed identically
 - Permalinks generated via `POST_PERMALINK_PATTERN` replacement

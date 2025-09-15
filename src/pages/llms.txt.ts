@@ -10,7 +10,7 @@ export const GET: APIRoute = async () => {
 
   // Filter and sort posts
   const posts = allContent
-    .filter(post => SHOW_DRAFTS || !post.data.draft)
+    .filter((post) => SHOW_DRAFTS || !post.data.draft)
     .sort((a, b) => {
       const dateA = new Date(a.data.publishDate || 0);
       const dateB = new Date(b.data.publishDate || 0);
@@ -21,17 +21,17 @@ export const GET: APIRoute = async () => {
   const recentPosts = posts.slice(0, 30);
 
   // Group posts by content type
-  const essays = posts.filter(p => p.data.contentType === 'essay');
-  const briefs = posts.filter(p => p.data.contentType === 'brief');
-  const elsewhere = posts.filter(p => p.data.contentType === 'elsewhere');
-  const quotes = posts.filter(p => p.data.contentType === 'quote');
-  const episodes = posts.filter(p => p.data.contentType === 'episode');
+  const essays = posts.filter((p) => p.data.contentType === 'essay');
+  const briefs = posts.filter((p) => p.data.contentType === 'brief');
+  const elsewhere = posts.filter((p) => p.data.contentType === 'elsewhere');
+  const quotes = posts.filter((p) => p.data.contentType === 'quote');
+  const episodes = posts.filter((p) => p.data.contentType === 'episode');
 
   // Collect unique tags and categories
   const tags = new Set<string>();
   const categories = new Set<string>();
 
-  posts.forEach(post => {
+  posts.forEach((post) => {
     if (post.data.tags) {
       post.data.tags.forEach((tag: string) => tags.add(tag));
     }
@@ -54,14 +54,16 @@ CTO4.AI is a technology blog focused on AI engineering, developer tools, and ins
 
 ## Recent Posts
 
-${recentPosts.map(post => {
-  const slug = post.id.replace('/index.mdx', '').replace('index.mdx', '');
-  const url = `https://cto4.ai/p/${slug}`;
-  const title = post.data.title;
-  const description = post.data.description || post.data.excerpt || '';
-  const date = new Date(post.data.publishDate || Date.now()).toISOString().split('T')[0];
-  return `- [${title}](${url}) (${date}): ${description}`;
-}).join('\n')}
+${recentPosts
+  .map((post) => {
+    const slug = post.id.replace('/index.mdx', '').replace('index.mdx', '');
+    const url = `https://cto4.ai/p/${slug}`;
+    const title = post.data.title;
+    const description = post.data.description || post.data.excerpt || '';
+    const date = new Date(post.data.publishDate || Date.now()).toISOString().split('T')[0];
+    return `- [${title}](${url}) (${date}): ${description}`;
+  })
+  .join('\n')}
 
 ## Content Types
 
@@ -84,14 +86,17 @@ Podcast and video reviews and analysis.
 ## Topics
 
 ### Popular Tags
-${Array.from(tags).slice(0, 20).sort().map(tag =>
-  `- [${tag}](https://cto4.ai/tag/${tag.toLowerCase().replace(/\s+/g, '-')})`
-).join('\n')}
+${Array.from(tags)
+  .slice(0, 20)
+  .sort()
+  .map((tag) => `- [${tag}](https://cto4.ai/tag/${tag.toLowerCase().replace(/\s+/g, '-')})`)
+  .join('\n')}
 
 ### Categories
-${Array.from(categories).sort().map(category =>
-  `- [${category}](https://cto4.ai/category/${category.toLowerCase().replace(/\s+/g, '-')})`
-).join('\n')}
+${Array.from(categories)
+  .sort()
+  .map((category) => `- [${category}](https://cto4.ai/category/${category.toLowerCase().replace(/\s+/g, '-')})`)
+  .join('\n')}
 
 ## Site Navigation
 

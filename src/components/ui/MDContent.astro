@@ -1,7 +1,8 @@
 ---
 interface Props {
   title: string;
-  Content: unknown; // Pre-imported Content component
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Content: any; // Pre-imported Content component from markdown
   description?: string;
   className?: string;
 }
@@ -9,19 +10,20 @@ interface Props {
 const { title, Content, description, className = '' } = Astro.props;
 ---
 
-<section class={`my-8 p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 ${className}`}>
+<section
+  class={`my-8 p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 ${className}`}
+>
   <header class="mb-6">
-    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-3 border-b border-gray-200 dark:border-gray-600 pb-2">
+    <h2
+      class="text-3xl font-bold text-gray-900 dark:text-white mb-3 border-b border-gray-200 dark:border-gray-600 pb-2"
+    >
       {title}
     </h2>
-    {description && (
-      <p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
-        {description}
-      </p>
-    )}
+    {description && <p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed">{description}</p>}
   </header>
-  
-  <div class="prose prose-lg dark:prose-invert max-w-none
+
+  <div
+    class="prose prose-lg dark:prose-invert max-w-none
               prose-headings:text-gray-900 dark:prose-headings:text-white
               prose-p:text-gray-700 dark:prose-p:text-gray-300
               prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
@@ -32,7 +34,8 @@ const { title, Content, description, className = '' } = Astro.props;
               prose-table:text-sm
               prose-th:bg-gray-100 dark:prose-th:bg-gray-800
               prose-td:border-gray-200 dark:prose-td:border-gray-700
-              [&>*:first-child]:hidden">
+              [&>*:first-child]:hidden"
+  >
     <Content />
   </div>
 </section>

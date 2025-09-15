@@ -28,7 +28,7 @@ export const GET: APIRoute = async () => {
 
   // Filter and sort posts
   const posts = allContent
-    .filter(post => SHOW_DRAFTS || !post.data.draft)
+    .filter((post) => SHOW_DRAFTS || !post.data.draft)
     .sort((a, b) => {
       const dateA = new Date(a.data.publishDate || 0);
       const dateB = new Date(b.data.publishDate || 0);
