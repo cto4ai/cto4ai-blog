@@ -24,6 +24,8 @@ export const GET: APIRoute = async () => {
   const essays = posts.filter(p => p.data.contentType === 'essay');
   const briefs = posts.filter(p => p.data.contentType === 'brief');
   const elsewhere = posts.filter(p => p.data.contentType === 'elsewhere');
+  const quotes = posts.filter(p => p.data.contentType === 'quote');
+  const episodes = posts.filter(p => p.data.contentType === 'episodes');
 
   // Collect unique tags and categories
   const tags = new Set<string>();
@@ -72,6 +74,12 @@ Short-form thoughts and quick observations.
 
 ### Elsewhere (${elsewhere.length} posts)
 Curated content and commentary on external articles.
+
+### Quotes (${quotes.length} posts)
+Notable quotes and reflections.
+
+### Episodes (${episodes.length} posts)
+Podcast and video reviews and analysis.
 
 ## Topics
 
