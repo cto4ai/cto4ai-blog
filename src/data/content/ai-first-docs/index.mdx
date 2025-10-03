@@ -1,5 +1,5 @@
 ---
-title: 'AI-First Docs: Beyond Docs-As-Code'
+title: 'AI-First Docs: Where To Put The Knowledge'
 contentType: 'essay'
 description: 'Exploring how AI is transforming documentation from static code artifacts to dynamic, intelligent knowledge systems.'
 author: 'Jack Ivers'
@@ -19,10 +19,15 @@ import MDContent from '~/components/ui/MDContent.astro';
 A progression of insights:
 
 - "Docs-as-code" AKA "Markdown[^1] in a repo" is the best replacement for whatever closed documentation platform you're currently using and hate (looking at you, Confluence)
-- In the AI world that's emerging, The Knowledge needs to be written down (that is, in electronic documents) in a format that language models digest and understand accurately and efficiently, stored in a place that language models are highly trained to use, and carefully managed.
-- "Docs-as-code" AKA "Markdown in a repo" is a perfect fit for this. Markdown is arguably the content format most naturally understood by a language model, and a Git/GitHub repo a very robust content store and version control system that every LLM can interact with naturally. Stretch "docs-as-code" to mean "documents" and we have a winner.
-- Uh oh. Having The Knowledge in Markdown in a repo is great, but it's only part of the solution. How do my non-coder business users create and edit those documents? How do everyday users get to those documents? How do I cross-link documents? Start chasing solutions like MkDocs published to GitHub Pages. See our simple, elegant solution grow complex and awkward.
-- Whoa. We're doing this Because AI, right? What if AI was the missing link here? What if our primary interface to our documents became the AI?
+- In the AI world that's emerging, The Knowledge needs to be written down (that is, captured in electronic documents) in a format that language models digest and understand accurately and efficiently, stored in a place that language models are highly trained to use, and carefully managed.
+- Whoa. "Docs-as-code" AKA "Markdown in a repo" is a perfect fit for this. Markdown is arguably the content format most naturally understood by a language model, and a Git/GitHub repo a very robust content store and version control system that every LLM can interact with naturally. Stretch "docs-as-code" to mean "documents" and we have a winner.
+- Uh oh. Having The Knowledge in Markdown in a repo is a start, but it's got huge gaps. How do my non-coder business users create and edit those documents? How do everyday users get to those documents? How do I cross-link documents? Start chasing solutions like MkDocs published to GitHub Pages. See our simple, elegant solution grow complex and awkward.
+- Whoa. We're doing this Because AI, right? What if AI were the missing link here? What if our primary interface to our documents became the AI?
+- I should try building this. But beware of The Bitter Lesson.
+
+## Into Action: Building the "AI First Docs" Framework
+
+Early on in the above progression, I had recommended the docs-as-code approach as a better place to manage their documents (starting with their AI policies!) and promised to set them up. One's a Claude shop, the other ChatGPT--- though in both cases I've been careful to make sure they both are also keeping tabs on "the other guy" and be prepared to switch if needed. two of my fractional CTO clients have been in need of a traditional docs-as-code solution
 
 Now we have arrived at the subject of our post: AI First Docs.
 
