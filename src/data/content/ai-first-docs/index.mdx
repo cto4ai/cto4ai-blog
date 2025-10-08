@@ -18,21 +18,21 @@ import MDContent from '~/components/ui/MDContent.astro';
 
 A progression of insights into the AI world that's emerging:
 
-1. London cabbies must memorize approximately 25,000 streets within a six-mile radius of Charing Cross, along with thousands of landmarks, hotels, theaters, clubs, hospitals, parks, and other points of interest, in a process known as **The Knowledge**. Apply this encyclopedic standard of knowledge, but replace those 25,000 streets, those thousands of landmarks, hotels, theaters, clubs, hospitals, parks, with your organization's essential knowledge. This **Org Knowledge** is within our grasp today using AI.
+1. London cabbies must memorize approximately 25,000 streets within a six-mile radius of Charing Cross, along with thousands of landmarks, hotels, theaters, clubs, hospitals, parks, and other points of interest, in a process known as **The Knowledge**. Apply this encyclopedic standard of knowledge, but replace those 25,000 streets, those thousands of landmarks, hotels, theaters, clubs, hospitals, parks, with your organization's essential knowledge. This **Org Knowledge** is within our grasp today using AI, and the payoff of having it will be immense.
 1. "Docs-as-code," whereby content in a simple text format such as Markdown[^1] is housed in a decentralized, version-controlled repository (e.g. Git/GitHub), is a superior replacement for whatever closed documentation platform you're currently using and hate (looking at you, Confluence).
 1. The documents that make up our Org Knowledge need to be electronic, represented in a format that language models can easily digest, stored in a repository that language models are highly trained to use, and carefully managed.
 1. The docs-as-code philosophy applies beautifully to Org Knowledge. Markdown is arguably the content format most naturally understood by a language model. A Git/GitHub repo a very robust content store with powerful revision control and tracking, and one that every LLM can interact with naturally.
-1. Org Knowledge as Markdown in a repo doesn't provide a n a start, but it's got huge gaps. How do my non-coder business users create and edit those documents? How do everyday users get to those documents? How do I cross-link documents? Start chasing solutions like MkDocs published to GitHub Pages. See our simple, elegant solution grow complex and awkward.
-1. Whoa. We're doing this Because AI, right? What if AI were the missing link here? What if our primary interface to our documents became the AI?
-1. If AI can be our primary interface for the organization's AI users---which **should be** every knowledge worker in the organization---the solution for Everyone Else can be kept simple and minimal.
-1. I should try building this. It's worth the effort even if I fail.
-1. Beware The Bitter Lesson.
+1. Docs-as-code by itself doesn't solve Org Knowledge. Business users interacting with Git? Nope. Even Markdown, straightforward as it is for those used to code editing, is likely a bridge too far. The AI may have no problem digesting Markdown in a repo, but how do everyday users get to those documents? How do they edit, cross-link, publish?
+1. We're doing this Because AI, right? What if AI were the missing link here? What if our primary interface to the document-atoms of Org Knowledge became the AI?
+1. If AI can serve as the primary interface for all of the organization's knowledge workers---they're all using AI all day, every day, right?---the solution for Everyone Else can be simple and minimal.
 
-## Into Action: Building the "AI First Docs" Framework
+## Building a Docs-as-code Framework
 
-Early on in the above progression---maybe around step 2---I had recommended the docs-as-code approach to a couple of my fractional CTO clients as a better place to manage their documents (starting with their AI policies) and promised to set them up. One's a Claude shop, the other ChatGPT---though in both cases I've been careful to make sure they both are also keeping tabs on "the other guy" and be prepared to switch if needed. For unrelated random reasons, I started with the Claude shop and ended up creating a decently-designed docs-as-code repo, which I published as a GitHub Template.
+Once I made it through this sequence of insights, I knew I needed to trying building it.
 
-Once I was done, though, I began to have misgivings about the gaps that developer-oriented docs-as-code left for non-dev users---see item 4 above. Things did indeed start to grow complex and awkward.
+Sick to death of Yet Another Proprietary Content Platform Soon To Be Enshittified, I'd been thinking about and exploring docs-as-code for a while. I had begun recommending the docs-as-code approach to my fractional CTO clients as a better place to manage their documents (starting with their AI policies) and promised to set them up. I looked for a good open source starting place we could reuse, but everything I found seemed to be married to some niche framework or another that I didn't really want to depend on, as opposed to Just Plain Git / Just Plain Markdown.
+
+Well, what the heck, code is cheap these days, so leveraging Claude Code, I created a decent docs-as-code repo, which I published as a GitHub Template. I had achieved Level 4 above. But even as I was doing the final polishing and publishing, I began to have misgivings. The tragedy that is Level 5 came into view.
 
 ## What If ...
 
