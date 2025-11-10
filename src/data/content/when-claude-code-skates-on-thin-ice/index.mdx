@@ -1,0 +1,74 @@
+---
+title: 'When Claude Code Skates on Thin Ice'
+contentType: 'brief'
+description: I love Claude Code and Sonnet 4.5, but when training data is thin, the failures are hilarious
+author: 'Jack Ivers'
+publishDate: '2025-10-10T11:43:52-06:00'
+image: '~/assets/images/content/when-claude-code-skates-on-thin-ice/frog_beaker.png'
+featured: false
+draft: true
+tags: ['claude-code', 'ai', 'developer-tools']
+categories: ['ai-and-technology']
+---
+
+import SingleImage from '~/components/ui/SingleImage.astro';
+import ImageGallery from '~/components/ui/ImageGallery.astro';
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+import MDContent from '~/components/ui/MDContent.astro';
+
+## Frogs and Scientists
+
+There's a very old joke about scientists and frogs ...
+
+<aside class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 border-l-4 border-indigo-500 p-6 my-8 rounded-r-lg shadow-md">
+  <div class="prose prose-lg dark:prose-invert max-w-none">
+    <p class="text-lg italic mb-4">
+      A scientist was interested in studying how far bullfrogs can jump. He brought a bullfrog into his laboratory, set
+      it down, and commanded, "Jump, frog, jump!"
+    </p>
+
+    <p class="mb-4">The frog jumped.</p>
+
+    <p class="mb-4">
+      The scientist measured the distance, then noted in his journal, <em>"Frog with four legs jumped six feet."</em>
+    </p>
+
+    <p class="mb-4">Then he cut the frog's front legs off and ordered, "Jump, frog, jump!"</p>
+
+    <p class="mb-4">The frog struggled and jumped.</p>
+
+    <p class="mb-4">
+      The scientist noted in his journal, <em>"Frog with two legs jumped two feet."</em>
+    </p>
+
+    <p class="mb-4">Next, the scientist cut off the frog's back legs. Once more, he shouted, "Jump, frog, jump!"</p>
+
+    <p class="mb-4">The frog just lay there.</p>
+
+    <p class="mb-4">"Jump, frog, jump!" the scientist repeated.</p>
+
+    <p class="mb-4">Nothing.</p>
+
+    <p class="text-lg font-semibold mt-6">
+      The scientist noted in his journal, <em>"Frog with no legs is deaf."</em>
+    </p>
+
+  </div>
+</aside>
+
+## Vision Model
+
+I've been on a deep-dive working with vision models over the past few weeks; specifically Qwen3 VL, which just launched the last week of October. We're running inference on the model using OpenRouter. Claude Code has been my go-to AI Coding tool on this project.
+
+Two consequences of working with an extremely new model like Qwen3 VL:
+
+- The coding model (Sonnet 4.5 for me) will have literally no training data to help ground its reasoning
+- There will be lots of complex problems to work through
+
+<SingleImage src="frog_alarmed.png" alt="Alarmed frog" size="2xl" postDir="when-claude-code-skates-on-thin-ice" />
+
+## "Frog with no legs is deaf"
+
+The old frog joke came to mind multiple times over the weekend, when I had asked Claude to assist in diagnosing a problem. It would step through a valid chain of reasoning, and then at the very end, out would pop a ridiculous conclusion, like the joke's "frog with no legs is deaf."
+
+The takeaway: When your model skating on thin ice---little or no context to ground its reasoning---be suspicious of its conclusions.
