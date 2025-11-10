@@ -5,8 +5,9 @@ description: I love Claude Code and Sonnet 4.5, but when training data is thin, 
 author: 'Jack Ivers'
 publishDate: '2025-10-10T11:43:52-06:00'
 image: '~/assets/images/content/when-claude-code-skates-on-thin-ice/frog_beaker.png'
-featured: false
-draft: true
+featured: true
+featuredOrder: 1
+draft: false
 tags: ['claude-code', 'ai', 'developer-tools']
 categories: ['ai-and-technology']
 ---
@@ -58,11 +59,11 @@ There's a very old joke about scientists and frogs ...
 
 ## Vision Model
 
-I've been on a deep-dive working with vision models over the past few weeks; specifically Qwen3 VL, which just launched the last week of October. We're running inference on the model using OpenRouter. Claude Code has been my go-to AI Coding tool on this project.
+I've been on a deep-dive working with vision models over the past few weeks; specifically [Qwen3 VL](https://github.com/QwenLM/Qwen3-VL), which just launched the last week of October. We're running inference on the model via [OpenRouter](https://openrouter.ai) providers. [Claude Code](https://www.anthropic.com/claude-code/) has been my go-to AI Coding tool for this project.
 
 Two consequences of working with an extremely new model like Qwen3 VL:
 
-- The coding model (Sonnet 4.5 for me) will have literally no training data to help ground its reasoning
+- The coding model ([Sonnet 4.5](https://www.anthropic.com/news/claude-sonnet-4-5) for me) will have literally no training data to help ground its reasoning
 - There will be lots of complex problems to work through
 
 <SingleImage src="frog_alarmed.png" alt="Alarmed frog" size="2xl" postDir="when-claude-code-skates-on-thin-ice" />
