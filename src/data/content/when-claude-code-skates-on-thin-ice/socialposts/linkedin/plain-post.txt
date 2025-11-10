@@ -1,0 +1,8 @@
+I've been working with Qwen3 VL, a vision model that launched just a few weeks ago. When you're working with any extremely new subject matter, language models have no training data to help ground their reasoning. The coding models used by AI coding tools like Claude Code are no exception. 
+
+This led to some pretty funny failures over the weekend. Claude Sonnet 4.5 would step through what seemed like a completely valid chain of reasoning, working through the problem logically, and then at the very end, out would pop a ridiculous conclusion. I was reminded of an old joke whose punchline is "frog with no legs is deaf."
+
+The takeaway seems obvious but it's worth saying: when your model is skating on thin context—be suspicious of its conclusions. The reasoning chain may look perfectly sound, but if the model doesn't have enough training data to anchor its thinking, its conclusion can be completely wrong.
+
+https://cto4.ai/p/when-claude-code-skates-on-thin-ice
+
