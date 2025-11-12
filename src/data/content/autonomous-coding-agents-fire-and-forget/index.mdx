@@ -4,7 +4,7 @@ contentType: 'essay'
 description: 'Exploring the promise and perils of fully autonomous AI coding agents'
 author: 'Jack Ivers'
 publishDate: '2025-11-11T16:57:45-06:00'
-image: '~/assets/images/content/autonomous-coding-agents-fire-and-forget/cover.png'
+image: '~/assets/images/content/autonomous-coding-agents-fire-and-forget/cruise_missiles.png'
 featured: false
 draft: true
 tags: ['ai', 'coding-agents', 'developer-tools']
@@ -19,7 +19,14 @@ import { terminologyDiscussion } from './transcripts/terminology-discussion';
 
 ## Introduction
 
-This [post from Simon Willison](https://simonwillison.net/2025/Nov/6/async-code-research/) appeared on my radar yesterday morning and it struck a chord with me. AI coding tools are a research sweet spot for me--that is, I try very hard to stay up--and I've been working the new cloud-based tools from OpenAI and Anthropic into my workflows as much as possible. Willison covers
+This [post from Simon Willison](https://simonwillison.net/2025/Nov/6/async-code-research/) appeared on my radar yesterday morning and it struck a chord with me. AI coding tools are a research sweet spot for me--that is, I try very hard to stay up--and I've been working the new cloud-based tools from OpenAI and Anthropic into my workflows as much as possible.
+
+<SingleImage
+  src="willison_code_research.png"
+  alt="Simon Willison's code research post"
+  size="2xl"
+  postDir="autonomous-coding-agents-fire-and-forget"
+/>
 
 ## What to Call These Things?
 
@@ -31,7 +38,7 @@ Willison uses the term "asynchronous coding agents" for the tool category exempi
 
 Anthropic has invested heavily in the AI coding space. Its langauge models surprised many of us by jumping into the coding-model lead in June 2024 with the release of Claude 3.5 Sonnet, and marched ahead with follow-on releases including Sonnet 4.5 just over a month ago. I have used Anthropic coding models almost exclusively since 3.5 Sonnet arrived.
 
-Earlier this year, Anthropic jumped deeper into the fray with an actual coding tool, the minimalist coding agent Claude Code whose motto might be "get out of the way and let our great models do their thing." Not long after Claude Code arrived, it supplanted Cursor as my primary AI coding interface.
+Earlier this year, Anthropic jumped deeper into the fray with an actual coding tool, the minimalist coding agent Claude Code whose motto might be "get out of the way and let our great models do their thing." Not long after Claude Code arrived, it supplanted Cursor[^1] as my primary AI coding interface.
 
 Where was OpenAI, the biggest AI player all, in all of this? Since 3.5 Sonnet arrived, playing catch-up. I had a lot of respect for OpenAI models generally, for ChatGPT as a product, and for the robustness of their APIs and inference services. But coding belonged to Anthropic.
 
@@ -41,29 +48,38 @@ OpenAI wasn't, by any measure, standing still. Their release of GPT-5 in August 
 
 What caused me to reconsider was a series of podcasts and YouTubes where someone from OpenAI (including president Greg Brockman) would be talking about other topics, and they'd get onto the subject of using Codex internally to build OpenAI's own products. Internal dogfooding. Here's an example from OpenAI DevDay on October 7th, where Sherwin Wu and Christina Cai of the OpenAI Platform Team https://www.youtube.com/watch?v=ImBGzWS1qd0 get onto the subject of Codex. Clearly, OpenAI's internal teams were using Codex, heavily, in autonomous agent mode; fire-and-forget. I heard stories from team leaders about going into meetings, and being asked "give me a couple minutes here ..." so people could fire off a few Codex Cloud cruise missles that would work away during the meeting, and have results waiting with them when the meeting finished.
 
-Hearing a series of clearly legit, unstaged anecdotes like this repeatedly, my attitude about Codex went from "nah" to "crap, I need to work this in alongside Claude Code ASAP ...." (As you'll see in a minute, the "alongside" part ended up being literally accurate.) As I was suffering with "gotta get Codex set up" anxiety two weeks ago, Anthropic went and launched "Claude Code on the Web" (it's hilarious how bad both OpenAI and Anthropic are with product names). Since I was double deep with Claude Code already, getting its web counterpart set up was low effort, and CCOTW ended up being my first Autonomous Coding Agent experience. https://simonwillison.net/2025/Oct/20/claude-code-for-web/
+Hearing a series of clearly legit, unstaged anecdotes like this repeatedly, my attitude about Codex went from "nah" to "crap, I need to work this in alongside Claude Code ASAP ...." (As you'll see in a minute, the "alongside" part ended up being literally accurate.) As I was suffering with "gotta get Codex set up" anxiety two weeks ago, Anthropic went and launched "Claude Code on the Web" (it's hilarious how bad both OpenAI and Anthropic are with product names). Since I was double deep with Claude Code already, getting its web counterpart set up was low effort, and [CCOTW](https://simonwillison.net/2025/Oct/20/claude-code-for-web/) ended up being my first Autonomous Coding Agent experience.
 
-But I didn't really get to my point yet: why are ACAs a big deal?
+<SingleImage
+  src="cruise_missiles.png"
+  alt="Codex Cloud cruise missiles"
+  size="2xl"
+  postDir="autonomous-coding-agents-fire-and-forget"
+/>
 
 ## Fire-and-forget That Works
 
-In Claude Code the coding agent, you can already fire-and-forget. It's called YOLO mode. You turn off all protections, and let Claude do whatever it choose to, which in a command line or terminal interface, is pretty much anything. Nuke the system drive? Sure thing. Wipe the GitHub repo or more it public? Yep. Shut down your AWS cloud? Uh huh. Claude is a good AI-person, better than most, but YOLO mode is dangerous and developers understand the need to use it carefully. So we mostly do our important work in non-YOLO mode, which is a lot of carefully watching what the agent is doing in real time, with regular requests from the agent "can I take this potentially destructive action please?". I get a lot of code written when I pair with Claude Code, but while doing so I'm close to 100% occupied keeping close tabs on what Claude is up to.
+In Claude Code the coding agent, you can already fire-and-forget. It's called YOLO mode. You turn off all protections, and let Claude do whatever it chooses to, which in a command line or terminal interface, is pretty much anything. Nuke the system drive? Sure thing. Wipe the GitHub repo? Yep. Shut down your AWS cloud? No problem. Claude is a good AI-person, better than most, but YOLO mode is dangerous and developers understand the need to use it carefully.
 
-What OpenAI and Anthropic really did with ACAs is give us (fairly) safe YOLO mode by equiping their agents with reasonably secure environments that the agent can go to town in, without risking much. "Go to town" means "run whatever you want, safely" -- usually called sandboxing -- but also "code whatever you want, safely -- you can't break anything." This works because the agent does its work in its own personal code space (technically a Git branch). Nothing there impacts our real code, until we've had a chance to carefully look at it and let it in (to be merged).
+So we mostly do our important work in non-YOLO mode, which is a lot of carefully watching what the agent is doing in real time, and way too much respodning to the agent's polite requests "can I use this dangerous tool, please?" I get a lot of code written when I pair with Claude Code, but while doing so I'm close to 100% occupied keeping close tabs on what Claude is up to.
 
-## Well-defined Specs, Well-equipped Environments
+What OpenAI and Anthropic really did with ACAs is give us (fairly) safe YOLO mode by equiping their agents with reasonably secure environments that the agent can go to town in, without risking much. "Go to town" means "run whatever you want, safely" -- usually called sandboxing -- but also "code whatever you want, safely -- you can't break anything." This works because the agent does its work in its own personal code space, kept safely separate from the current codebase and other work-in-process. Nothing there impacts our real code, until we've had a chance to carefully look at it and let it in (to be merged).
 
-Willison's piece is pulling me the rest of the way into Autonomous Coding Agents; I did the research and set up my first custom Codex Cloud environment just now. Until now, I've been living with Codex's default setup with no customization and conservative default protections.
+## Well-equipped Environments, Well-defined Specs
 
-Unlimited network access; separate GH repo for "code research projects"
+Willison's piece has pulled me the rest of the way into Autonomous Coding Agents; I did the research and set up my first custom Codex Cloud environment just now. Until now, I've been living with Codex's default setup with no customization and conservative default protections.
 
-Claude coding model bandwagon (initially via Cursor) and more recently, the Claude Code bandwagon pretty hard during this period. I was most struct by comments made by in this in a pretty committed way pro-Claude and GOnly recently has GPT-5 (specifically its coding-specific model GPT-5 Codex) begun to win back some mindshare. coding-speciistarted to take away a bit of I've been a bit skeptical of OpenAI
+The point of Willison's post is really using autonomous coding agents for coding _research projects_ and he walks us through several real-life examples. I like his suggestion to have a separate Git repo for this kind of research---one more layer of "don't worry, you can't break anything."
 
-naand and powerful in different (I like the term
+The human work in this autonomous new world? Clear, well-thought-out specs that precisely communicate what the agent should build for you. There's nothing preventing you from having 10 or 20 agents working away---except 10 or 20 good, clear specs.
 
-Podcast with OpenAI person talking about spinning up Codex before the meeting starts.
+---
 
-Environments
-What I hadn't gotten to yet wa
+[^1]: Well, not really. My current insane, wonderful dev setup looks like this: container app: Cursor; left pane: Codex CLI; center pane: source files; right pane: Claude Code
 
-Codex PR reviews
+<SingleImage
+  src="crazy_panes.png"
+  alt="Crazy panes dev setup"
+  size="2xl"
+  postDir="autonomous-coding-agents-fire-and-forget"
+/>
