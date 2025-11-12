@@ -19,29 +19,29 @@ import { terminologyDiscussion } from './transcripts/terminology-discussion';
 
 ## Introduction
 
-This [post from Simon Willison](https://simonwillison.net/2025/Nov/6/async-code-research/) appeared on my radar yesterday morning and it hit a chord with me. AI coding tools are a research sweet spot for me--that is, I try very hard to stay up--and I've been working the new cloud-based tools from OpenAI and Anthropic into my workflows as much as possible.
+This [post from Simon Willison](https://simonwillison.net/2025/Nov/6/async-code-research/) appeared on my radar yesterday morning and it struck a chord with me. AI coding tools are a research sweet spot for me--that is, I try very hard to stay up--and I've been working the new cloud-based tools from OpenAI and Anthropic into my workflows as much as possible. Willison covers
 
 ## What to Call These Things?
 
-Willison uses the term "asynchronous coding agents" and introduces that name by first introducing "coding agents" such as Claude Code and Codex CLI, and then explaining why their cloud siblings---OpenAI's Codex Cloud and Anthropic’s Claude Code on the web---open up a very different mode of operation. He uses the term "fire-and-forget" (apparently also used by Martin Fowler), and I think that's spot on.
-
-I had misgivings about the mouth-feel of Willison's name, and decide to check in with a smart friend of mine. Opus 4.1, it turns out, has a solid understanding of the concept and how people are referring to it, and suggested that "autonomous coding agents" was in wide use and might be preferable. I concur.
+Willison uses the term "asynchronous coding agents" for the tool category exempified by OpenAI's Codex Cloud and Anthropic’s Claude Code on the web. I didn't like the mouth-feel of that name, and decided to check in with a smart friend of mine, Opus 4.1, who had a solid understanding of the concept and how its being described. Opus and I prefer autonomous to asynchronous, so: "autonomous coding agents."
 
 <ChatTranscript transcript={terminologyDiscussion} theme="adium" maxHeight="600px" />
 
-## Coding Wars
+## Background: The Coding Wars
 
 Anthropic has invested heavily in the AI coding space. Its langauge models surprised many of us by jumping into the coding-model lead in June 2024 with the release of Claude 3.5 Sonnet, and marched ahead with follow-on releases including Sonnet 4.5 just over a month ago. I have used Anthropic coding models almost exclusively since 3.5 Sonnet arrived.
 
 Earlier this year, Anthropic jumped deeper into the fray with an actual coding tool, the minimalist coding agent Claude Code whose motto might be "get out of the way and let our great models do their thing." Not long after Claude Code arrived, it supplanted Cursor as my primary AI coding interface.
 
-Where was OpenAI, the biggest AI player all, in all of this? Since 3.5 Sonnet arrived, playing catch-up. I had a lot of respect for OpenAI models generally, for ChatGPT as a productfor their strength with consumers and the robustness of their APIs and inference services, but coding belonged to Anthropic.
+Where was OpenAI, the biggest AI player all, in all of this? Since 3.5 Sonnet arrived, playing catch-up. I had a lot of respect for OpenAI models generally, for ChatGPT as a product, and for the robustness of their APIs and inference services. But coding belonged to Anthropic.
 
-Over the past three months, though, the picture has been changing. OpenAI's GPT-5 release in August was huge, clearly a big step forward, and some were saying it rivaled Claude models for coding. OpenAI followed up with a coding-tuned model, GPT-5 Codex, in mid-September, and the coding buzz grew. OpenAI also released their own minimalist coding interface Codex in 2025.Anthropic struck back in late September with Sonnet 4.5, a substantial jump ahead of Sonnet 4 and still arguably the best coding model.
+## Sea Change: Autonomy
 
-I might have ; generally and peopleand a big jump forward, Codex began to shown up on the radar, and what really grabbed me was hearing various OpenAI folks from CEO Greg Brockman to 's xxx, head of xxx, on the xxx podcast, talk about how OpenAI's internal team were using Codex in autonomous agent mode; fire-and-forget. She (was it brockman??) talked about going into meetings and people wanting a couple of minutes before the meeting started to fire off several Codex Cloud cruise missles that would work away during the meeting and be waiting with them when it finished with a pull request. Hearing stories like this repeatedly, my attitude about Codex went from "nah" to "crap, I need to work this in, alongside Claude Code ...." (As you'll see in a minute, the "alongside" part ended up being literally accurate.) t OpenAI DevDay, we sit down with Sherwin Wu and Christina Cai from the OpenAI Platform Team https://www.youtube.com/watch?v=ImBGzWS1qd0
+OpenAI wasn't, by any measure, standing still. Their release of GPT-5 in August was huge, clearly a substantial step forward, and some were saying it rivaled Claude models for coding. OpenAI followed on up with a coding-tuned model, GPT-5 Codex, in mid-September. OpenAI also released their own minimalist coding agent, Codex CLI. But to me, this all felt like catch-up, like a lot of me-too, we-do-everything action from OpenAI.
 
-As I was suffering with "gotta get Codex set up" anxiety, Anthropic went and launched "Claude Code on the web" (it's hilarious how bad both OpenAI and Anthropic are with product names). Since I was double deep with Claude Code, getting its web counterpart set up was low effort, and CCOTW ended up being my first Autonomous Coding Agent experience. https://simonwillison.net/2025/Oct/20/claude-code-for-web/
+What caused me to reconsider was a series of podcasts and YouTubes where someone from OpenAI (including president Greg Brockman) would be talking about other topics, and they'd get onto the subject of using Codex internally to build OpenAI's own products. Internal dogfooding. Here's an example from OpenAI DevDay on October 7th, where Sherwin Wu and Christina Cai of the OpenAI Platform Team https://www.youtube.com/watch?v=ImBGzWS1qd0 get onto the subject of Codex. Clearly, OpenAI's internal teams were using Codex, heavily, in autonomous agent mode; fire-and-forget. I heard stories from team leaders about going into meetings, and being asked "give me a couple minutes here ..." so people could fire off a few Codex Cloud cruise missles that would work away during the meeting, and have results waiting with them when the meeting finished.
+
+Hearing a series of clearly legit, unstaged anecdotes like this repeatedly, my attitude about Codex went from "nah" to "crap, I need to work this in alongside Claude Code ASAP ...." (As you'll see in a minute, the "alongside" part ended up being literally accurate.) As I was suffering with "gotta get Codex set up" anxiety two weeks ago, Anthropic went and launched "Claude Code on the Web" (it's hilarious how bad both OpenAI and Anthropic are with product names). Since I was double deep with Claude Code already, getting its web counterpart set up was low effort, and CCOTW ended up being my first Autonomous Coding Agent experience. https://simonwillison.net/2025/Oct/20/claude-code-for-web/
 
 But I didn't really get to my point yet: why are ACAs a big deal?
 
