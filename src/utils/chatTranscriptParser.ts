@@ -15,6 +15,7 @@ export interface ChatMessage {
 function detectSource(text: string): 'cursor' | 'claude-code' | 'claude-ai' | 'chatgpt' | 'unknown' {
   if (text.includes('from Claude Code') || text.includes('Claude Code session')) return 'claude-code';
   if (text.includes('from Cursor')) return 'cursor';
+  if (text.includes('Claude.ai Conversation') || text.includes('Claude.ai session')) return 'claude-ai';
   if (text.includes('Human:') && text.includes('Assistant:')) return 'claude-ai';
   if (text.includes('ChatGPT')) return 'chatgpt';
   return 'unknown';
@@ -174,30 +175,89 @@ function parseCursorExport(text: string): ChatMessage[] {
 function parseClaudeAI(text: string): ChatMessage[] {
   const messages: ChatMessage[] = [];
 
-  // Split by role markers
-  const parts = text.split(/\n(?=Human:|Assistant:)/);
+  // Check if it uses the **User**/**Assistant** format (newer exports)
+  if (text.includes('**User**') && text.includes('**Assistant**')) {
+    // Use the Claude Code parser logic which handles this format
+    const { exportInfo, exportDate } = extractExportInfo(text);
+    
+    // Remove the header/title if present
+    let cleanedText = text;
+    cleanedText = cleanedText.replace(/^#.*?\n/, ''); // Remove title
+    cleanedText = cleanedText.replace(/_Claude\.ai session.*?_\n?/, ''); // Remove session info
+    cleanedText = cleanedText.replace(/_Exported on.*?_\n?/, ''); // Remove export info
 
-  for (const part of parts) {
-    const trimmedPart = part.trim();
+    // Find message boundaries
+    const messagePattern = /\n---\n\n\*\*(User|Assistant)\*\*/g;
+    const boundaries: number[] = [0];
 
-    if (trimmedPart.startsWith('Human:')) {
-      let content = trimmedPart.replace(/^Human:\s*/, '').trim();
-      // Remove excessive blank lines
-      content = content.replace(/\n{3,}/g, '\n\n').trim();
-      messages.push({
-        role: 'user',
-        content,
-        metadata: messages.length === 0 ? { source: 'claude-ai' } : undefined,
-      });
-    } else if (trimmedPart.startsWith('Assistant:')) {
-      let content = trimmedPart.replace(/^Assistant:\s*/, '').trim();
-      // Remove excessive blank lines
-      content = content.replace(/\n{3,}/g, '\n\n').trim();
-      messages.push({
-        role: 'assistant',
-        content,
-        metadata: { source: 'claude-ai' },
-      });
+    let match;
+    while ((match = messagePattern.exec(cleanedText)) !== null) {
+      boundaries.push(match.index + 5); // +5 to skip past "\n---\n"
+    }
+    boundaries.push(cleanedText.length);
+
+    // Extract messages between boundaries
+    for (let i = 0; i < boundaries.length - 1; i++) {
+      const section = cleanedText.substring(boundaries[i], boundaries[i + 1]);
+      const trimmedSection = section.trim();
+
+      if (!trimmedSection) continue;
+
+      if (trimmedSection.startsWith('**User**')) {
+        let content = trimmedSection.replace(/^\*\*User\*\*\n?/, '').trim();
+        content = content
+          .replace(/\n?---\s*$/, '')
+          .replace(/\n{3,}/g, '\n\n')
+          .trim();
+        if (content) {
+          messages.push({
+            role: 'user',
+            content,
+            metadata:
+              messages.length === 0 ? { source: 'claude-ai', exportDate, exportInfo } : { source: 'claude-ai' },
+          });
+        }
+      } else if (trimmedSection.startsWith('**Assistant**')) {
+        let content = trimmedSection.replace(/^\*\*Assistant\*\*\n?/, '').trim();
+        content = content
+          .replace(/\n?---\s*$/, '')
+          .replace(/\n{3,}/g, '\n\n')
+          .trim();
+        if (content) {
+          messages.push({
+            role: 'assistant',
+            content,
+            metadata: { source: 'claude-ai' },
+          });
+        }
+      }
+    }
+  } else {
+    // Original format: Human: / Assistant:
+    const parts = text.split(/\n(?=Human:|Assistant:)/);
+
+    for (const part of parts) {
+      const trimmedPart = part.trim();
+
+      if (trimmedPart.startsWith('Human:')) {
+        let content = trimmedPart.replace(/^Human:\s*/, '').trim();
+        // Remove excessive blank lines
+        content = content.replace(/\n{3,}/g, '\n\n').trim();
+        messages.push({
+          role: 'user',
+          content,
+          metadata: messages.length === 0 ? { source: 'claude-ai' } : undefined,
+        });
+      } else if (trimmedPart.startsWith('Assistant:')) {
+        let content = trimmedPart.replace(/^Assistant:\s*/, '').trim();
+        // Remove excessive blank lines
+        content = content.replace(/\n{3,}/g, '\n\n').trim();
+        messages.push({
+          role: 'assistant',
+          content,
+          metadata: { source: 'claude-ai' },
+        });
+      }
     }
   }
 
