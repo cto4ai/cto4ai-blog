@@ -41,19 +41,19 @@ Anthropic has invested heavily in the AI coding space. Its langauge models surpr
 
 Earlier this year, Anthropic jumped deeper into the fray with an actual coding tool, the minimalist coding agent Claude Code whose motto might be "get out of the way and let our great models do their thing." Not long after Claude Code arrived, it supplanted Cursor[^1] as my primary AI coding interface.
 
-Where was OpenAI, the biggest AI player all, in all of this? Since 3.5 Sonnet arrived, playing catch-up. I had a lot of respect for OpenAI models generally, for ChatGPT as a product, and for the robustness of their APIs and inference services. But coding belonged to Anthropic.
+So where was OpenAI, the biggest AI player of all? Since 3.5 Sonnet arrived, playing catch-up. I had a lot of respect for OpenAI models generally, for ChatGPT as a product, and for the robustness of their APIs and inference services. But coding belonged to Anthropic.
 
 ## Sea Change: Autonomy
 
 OpenAI wasn't, by any measure, standing still. Their release of GPT-5 in August was huge, clearly a substantial step forward, and some were saying it rivaled Claude models for coding. OpenAI followed on up with a coding-tuned model, GPT-5 Codex, in mid-September. OpenAI also released its own minimalist coding agent, Codex CLI. But to me, this all felt like catch-up: just we-try-to-do-everything posturing from OpenAI.
 
-What caused me to reconsider was a series of podcasts and YouTubes where someone from OpenAI (including president Greg Brockman) would be talking about other topics, and they'd get onto the subject of using Codex internally to build OpenAI's own products. Internal dogfooding. Here's an example from OpenAI DevDay on October 7th, where Sherwin Wu and Christina Cai of the OpenAI Platform Team get onto the subject of Codex:
+What caused me to reconsider was an ongoing stream of podcast and YouTube interviews where someone from OpenAI (including president Greg Brockman) would be talking about some topics, and there'd be an aside where they talked about how OpenAI was dogfooding Codex internally to build OpenAI's own products. Here's an example from OpenAI DevDay on October 7th, where Sherwin Wu and Christina Cai of the OpenAI Platform Team get onto the subject of Codex:
 
 <YouTube id="ImBGzWS1qd0" title="OpenAI DevDay: Codex Platform Team Discussion" />
 
-Clearly, OpenAI's internal teams were using Codex, heavily, in autonomous agent mode; fire-and-forget. I heard stories from team leaders about going into meetings, and being asked "give me a couple minutes here ..." so people could fire off a few Codex Cloud cruise missles that would work away during the meeting, and have results waiting with them when the meeting finished.
+What jumped out at me was how OpenAI's internal teams were using Codex, heavily, in autonomous agent mode; fire-and-forget. They told stories about going into meetings, and being asked to "give me a couple minutes here ..." so people could fire off a few Codex Cloud cruise missles that would grind away during the meeting, and have results waiting with them afterwards.
 
-Hearing a series of clearly legit, unstaged anecdotes like this repeatedly, my attitude about Codex went from "nah" to "crap, I need to work this in alongside Claude Code ASAP ...." (As you'll see in a minute, the "alongside" part ended up being literally accurate.) As I was suffering with "gotta get Codex set up" anxiety two weeks ago, Anthropic went and launched "Claude Code on the Web" (it's hilarious how bad both OpenAI and Anthropic are with product names). Since I was double deep with Claude Code already, getting its web counterpart set up was low effort, and [CCOTW](https://simonwillison.net/2025/Oct/20/claude-code-for-web/) ended up being my first Autonomous Coding Agent experience.
+Experiencing a series of legit, unstaged anecdotes like this---I'm pretty good at smelling "marketing message" and these definitely weren't---my attitude about Codex went from "meh" to "NEED TO INSTALL ASAP." Before I got Codex Cloud installed, Anthropic launched their version, "Claude Code on the Web" (it's hilarious how bad both OpenAI and Anthropic are with product names). Since I was double deep with Claude Code already, getting its web counterpart set up was low effort, and [CCOTW](https://simonwillison.net/2025/Oct/20/claude-code-for-web/) ended up being my first Autonomous Coding Agent experience. Codex Cloud followed soon after.
 
 ## Fire-and-forget That Works
 
@@ -80,7 +80,7 @@ The human work in this autonomous new world? Clear, well-thought-out specs that 
 
 ---
 
-[^1]: Well, not really. My current insane, wonderful dev setup looks like this: container app: Cursor; left pane: Codex CLI; center pane: source files; right pane: Claude Code
+[^1]: Well, not exactly. My current insane, wonderful dev setup looks like this: container app: Cursor; left pane: Codex CLI; center pane: source files; right pane: Claude Code
 
 <SingleImage
   src="crazy_panes.png"
