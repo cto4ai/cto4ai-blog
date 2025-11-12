@@ -179,7 +179,7 @@ function parseClaudeAI(text: string): ChatMessage[] {
   if (text.includes('**User**') && text.includes('**Assistant**')) {
     // Use the Claude Code parser logic which handles this format
     const { exportInfo, exportDate } = extractExportInfo(text);
-    
+
     // Remove the header/title if present
     let cleanedText = text;
     cleanedText = cleanedText.replace(/^#.*?\n/, ''); // Remove title
@@ -213,8 +213,7 @@ function parseClaudeAI(text: string): ChatMessage[] {
           messages.push({
             role: 'user',
             content,
-            metadata:
-              messages.length === 0 ? { source: 'claude-ai', exportDate, exportInfo } : { source: 'claude-ai' },
+            metadata: messages.length === 0 ? { source: 'claude-ai', exportDate, exportInfo } : { source: 'claude-ai' },
           });
         }
       } else if (trimmedSection.startsWith('**Assistant**')) {
