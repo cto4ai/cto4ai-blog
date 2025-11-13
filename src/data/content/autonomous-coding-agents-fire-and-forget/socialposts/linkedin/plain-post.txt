@@ -1,0 +1,20 @@
+Simon Willison's latest post on autonomous coding agents hit a nerve with me. I've been using both OpenAI's Codex Cloud and Anthropic's Claude Code On The Web, and the shift from synchronous pairing to fire-and-forget delegation is bigger than I expected.
+
+
+
+The key insight: these tools give us safe YOLO mode. In regular Claude Code, YOLO mode exists but it's dangerous—the agent could (but probably won't) nuke your system drive, wipe your GitHub repo, bring down your AWS cloud. So we mostly work in non-YOLO mode, which means constant supervision and endless permission-granting.
+
+
+
+Autonomous coding agents solve this by running in sandboxed cloud environments with isolated code spaces. You can fire off a task, go into a meeting, and come back to a pull request waiting for review. Nothing touches your real code until you explicitly merge it.
+
+
+
+What's interesting is how this changes the workflow. Willison uses these for code research projects—quick experiments to answer "could Redis work for this?" or "can I get this C extension working in WebAssembly?" The agents churn through the research and report back with working code or clear failures.
+
+
+
+The human work shifts from constant supervision to writing clear specs. There's nothing stopping you from having 10 or 20 agents working in parallel except your ability to write 10 or 20 good, clear specifications.
+
+https://cto4.ai/p/autonomous-coding-agents-fire-and-forget
+
