@@ -24,7 +24,9 @@ ToDos:
    - Basic technical terms
 
 3. **Use Web Search to Identify Authoritative References** 
-   - If you can't find an authoritative reference, but in your opinion the item deserves a link, link to a placeholder URL.
+   - Find AN authoritative reference, not necessarily THE MOST authoritative
+   - Acceptable sources: official product pages, documentation, support pages, Wikipedia, announcement blogs
+   - If you can't find an authoritative reference, but in your opinion the item deserves a link, link to a placeholder URL (#)
 
 4. **Link Strategy**: 
    - Link the first appearance of a named entity. Do not link subsequent appearances.
@@ -53,6 +55,11 @@ ToDos:
    - Do NOT change any other content
    - Ignore linter errors (they aren't accurate for markdown)
 
+8. **Important Notes**:
+   - When user says "link X", they mean link the term X exactly as it appears, not "X mode" or other variations
+   - Focus on finding A working authoritative link quickly, not spending time finding THE perfect link
+   - Use placeholder links (#) if no authoritative source exists after brief search
+
 **Example Entities to Link**:
 
 - Person names
@@ -62,6 +69,7 @@ ToDos:
 - Specialized services (Claude Team)
 - Companies that aren't extremely well known (Dagger, MotherDuck, MongoDB)
 - Product names that aren't extremely well known
+- Acronyms and slang terms (YOLO, etc.) when relevant to context
 
 **Example Entities to Avoid**:
 
