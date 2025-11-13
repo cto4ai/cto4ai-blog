@@ -59,6 +59,7 @@ ToDos:
    - When user says "link X", they mean link the term X exactly as it appears, not "X mode" or other variations
    - Focus on finding A working authoritative link quickly, not spending time finding THE perfect link
    - Use placeholder links (#) if no authoritative source exists after brief search
+   - If user provides a specific URL, use that URL exactly - don't search for alternatives
 
 **Example Entities to Link**:
 
