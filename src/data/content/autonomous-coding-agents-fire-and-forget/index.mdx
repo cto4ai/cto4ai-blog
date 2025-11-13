@@ -18,9 +18,9 @@ import MDContent from '~/components/ui/MDContent.astro';
 import { YouTube } from 'astro-embed';
 import { terminologyDiscussion } from './transcripts/terminology-discussion';
 
-## Introduction
+## Willison Causing Trouble Again
 
-This [post from Simon Willison](https://simonwillison.net/2025/Nov/6/async-code-research/) appeared on my radar yesterday morning and it struck a chord with me. AI coding tools are a research sweet spot for me--that is, I try very hard to stay up--and I've been working the new cloud-based tools from OpenAI and Anthropic into my workflows as much as possible.
+This [post from Simon Willison](https://simonwillison.net/2025/Nov/6/async-code-research/) hit my radar yesterday morning and it struck a chord with me. AI coding tools are a research sweet spot for me--that is, I try very hard to stay up--and I've been working the new cloud-based tools from OpenAI and Anthropic into my workflows as much as possible.
 
 <SingleImage
   src="willison_code_research.png"
@@ -31,13 +31,13 @@ This [post from Simon Willison](https://simonwillison.net/2025/Nov/6/async-code-
 
 ## What to Call These Things?
 
-Willison uses the term "asynchronous coding agents" for the tool category exempified by OpenAI's Codex Cloud and Anthropic’s Claude Code on the web. I didn't like the mouth-feel of that name, and decided to check in with a smart friend of mine, Opus 4.1, who had a solid understanding of the concept and how its being described. Opus and I prefer autonomous to asynchronous, so: "autonomous coding agents."
+Willison uses the term "asynchronous coding agents" for the category that encompasses OpenAI's Codex Cloud and Anthropic’s Claude Code On The web. "Asynchronous" didn't seem ideal to me, so I decided to check in with my friend Opus to see what he knew about the topic. Turns out that Opus 4.1 has a very solid understanding of the concept and how its being described. Opus and I prefer autonomous to asynchronous, so: "autonomous coding agents."
 
 <ChatTranscript transcript={terminologyDiscussion} theme="adium" maxHeight="600px" />
 
 ## Background: The Coding Wars
 
-Anthropic has invested heavily in the AI coding space. Its langauge models surprised many of us by jumping into the coding-model lead in June 2024 with the release of Claude 3.5 Sonnet, and marched ahead with follow-on releases including Sonnet 4.5 just over a month ago. I have used Anthropic coding models almost exclusively since 3.5 Sonnet arrived.
+Anthropic has invested heavily in the AI coding space. Its langauge models surprised many of us by jumping ahead of OpenAI in the coding-model space in June 2024 with Claude 3.5 Sonnet. And they stayed there, progressing rapidly through 3.7, 4, and most recently Sonnet 4.5 just over a month ago. I have used Anthropic coding models almost exclusively since 3.5 Sonnet arrived.
 
 Earlier this year, Anthropic jumped deeper into the fray with an actual coding tool, the minimalist coding agent Claude Code whose motto might be "get out of the way and let our great models do their thing." Not long after Claude Code arrived, it supplanted Cursor[^1] as my primary AI coding interface.
 
