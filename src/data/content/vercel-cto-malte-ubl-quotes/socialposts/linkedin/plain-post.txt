@@ -1,0 +1,14 @@
+Vercel CTO Malte Ubl shared some wisdom on building AI products that really struck home for me.
+
+First, stay humble about what users want. This is especially true in nascent fields like AI. The success of Vercel's AI SDK comes from not over-constraining the framework based on assumptions. Avoid thick abstractions and stay low-level to allow flexible usage as trends emerge.
+
+Second, dogfood everything. Never provide abstractions that you haven't used internally. The AI SDK was extracted from V0, their AI tool. This principle ensures you're solving real problems, not theoretical ones.
+
+Third, pick the right problems for agents. When AI agents are bad, they're really bad. When they're good, they're magical. The key is finding the right use cases. Agents are extraordinarily effective in specific cases, but you need to avoid tasks that are too dangerous, like making changes in firewalls or doing DNS migrations.
+
+These aren't just AI principles. They're good engineering principles that happen to be especially important when building with AI.
+
+---
+
+https://cto4.ai/p/vercel-cto-malte-ubl-quotes
+
