@@ -1,15 +1,16 @@
 ---
-title: "Processing Snips And Other Content From The Snipd App"
+title: 'Processing Snips And Other Content From The Snipd App'
 description: "Transform Snipd-created 'snips' including pull quotes and links to snips, into clean, consistent markdown format for blog posts"
-tags: ["content", "quotes", "markdown", "formatting"]
+tags: ['content', 'quotes', 'markdown', 'formatting']
 ---
-
 
 # Processing Snips And Other Content From The Snipd App
 
+Note to human: a good example of using snips is here src/data/content/chroma-context-engineering. You will almost always need to edit start and end points of snip manually.
+
 ## Overview
 
-The Snipd mobile app allows podcast listeners to "snip" small podcast segments, producing what are called "snips", which are easily shared from the app and its associated web-based sharing platform, share.snipd.com. Every snip has a link on share.snipd.com. When a user creates a snip such as by tapping or triple-clicking an Airpod or headset control, the app uses ML / AI to automatically pick start and end times for the snip (which the user can later adjust if desired). 
+The Snipd mobile app allows podcast listeners to "snip" small podcast segments, producing what are called "snips", which are easily shared from the app and its associated web-based sharing platform, share.snipd.com. Every snip has a link on share.snipd.com. When a user creates a snip such as by tapping or triple-clicking an Airpod or headset control, the app uses ML / AI to automatically pick start and end times for the snip (which the user can later adjust if desired).
 
 The Snipd platform also often creates "quotes" that contain what ML / AI believes to be a core message from the larger snip; users can also share quotes from the app's transcript screen.
 
@@ -17,35 +18,57 @@ The Snipd platform also often creates "quotes" that contain what ML / AI believe
 
 The Snipd mobile app supports these shareable object types:
 
-### Snips 
+### Snips
 
 The snip as saved by the Snipd user. Snips can be shared as:
 
 #### Snip Link
+
 A link to the snip on share.snipd.com. Examples of snip links: `https://share.snipd.com/snip/3a87c36a-e18e-4081-bfd6-84f563afab93`
 
 ##### How to Process
+
 Convert the snip link to a markdown link, using the window title from the destination page as the linked text.
 
 #### Snip Image
-An image that visualizes a point or two that the AI summarized from the snip. Examples of snip image file names: `snip_image_share_1757275196777.png`
+
+An image that visualizes a point or two that the AI summarized from the snip. Examples of snip image file names: `snip_image_share_1757275196777.png` There's another variety that is a selected quote, and here the file name will might like `episode_transcript_quote_episode_transcript_quote/47911ec6_cec8_4cc1_bc83_ff3363b9d8ef_1763149585477.png`
 
 ##### How to Process
+
 Create a SingleImage component block that references the image file name in the images directory located parallel to the content directory, e.g. at `/src/assets/images/content/[slug]/[snip_image_file_name]`.
 
 #### Snip Video
-If the podcast has video, a video of the entire snip with captions. Example snip video file name: `snip_video_snip/3a87c36a-e18e-4081-bfd6-84f563afab93.mp4` `snip_video_snip_8fa58784-da31-41d4-ba9d-f0891d8a9283.mp4`
+
+If the podcast has video, a video of the entire snip with captions. Example snip video file name: `snip_video_snip/3a87c36a-e18e-4081-bfd6-84f563afab93.mp4` `snip_video_snip_8fa58784-da31-41d4-ba9d-f0891d8a9283.mp4`. Note to the human: to get snip videos from Snipd app, find the snip, then share / save video, and use Save to Files iOS share option, put it in iCloud Drive Downloads folder. Then on Mac, move that to /public/videos/content/[slug]/ folder.
 
 ##### How to Process
+
 Create an HTML video element that references the video file name in the videos directory located under the post's slug name in the `/public/videos/content` directory, e.g. at `/public/videos/content/[slug]/[snip_video_file_name]`.
 
+**When processing a snip video along with its corresponding snip link:** Wrap the video element in an anchor tag linking to the snip URL (with `target="_blank"` and `rel="noopener noreferrer"`). This makes the entire video clickable and links to the full snip page on share.snipd.com.
+
+Example:
+
+```html
+<a href="https://share.snipd.com/snip/[snip-id]" target="_blank" rel="noopener noreferrer">
+  <video controls width="100%" style="max-width: 800px; margin: 0 auto; display: block;">
+    <source src="/videos/content/[slug]/[snip_video_file_name]" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</a>
+```
+
 ### People
-E.g. podcast guest. These are shared as a link to the person's page on share.snipd.com. 
+
+E.g. podcast guest. These are shared as a link to the person's page on share.snipd.com.
 
 #### Person Link
+
 Examples of person links: `https://share.snipd.com/person/jeff-huber/SVjd1vxGTj600lQmoLcBcA`
 
 ##### How to Process
+
 Convert the person link to a markdown link, using the person's name extracted from the window title from the destination page as the linked text.
 
 ### Quotes
@@ -53,6 +76,7 @@ Convert the person link to a markdown link, using the person's name extracted fr
 A quote as created by ML / AI or a user of on the Snipd platform. Quotes can be shared as:
 
 #### Block of Text
+
 A block of text that includes the text of the quote, an attribution line identifying the speaker, a link to the podcast episode page on Snipd's web-based sharing platform, and some promotional copy. Example quote text block (backticks added after copying):
 
 ```
@@ -92,6 +116,7 @@ Transform it to:
 ## Example
 
 **Before:**
+
 ```
 "When the models are extremely capable, the value of a token they generate is extremely high."
 
@@ -104,6 +129,7 @@ Snipd - save & remember the best insights you hear in podcasts
 ```
 
 **After:**
+
 ```
 > When the models are extremely capable, the value of a token they generate is extremely high.
 
@@ -115,16 +141,21 @@ Snipd - save & remember the best insights you hear in podcasts
 An image visualizing the quote and attribution line. Examples of quote image file names: `snip_quote_snip_quote/8fa58784_da31_41d4_ba9d_f0891d8a9283_1757275854306.png`
 
 ##### How to Process
+
 Create a SingleImage component block that references the quote's image file name in the images directory located parallel to the content directory, e.g. at `/src/assets/images/content/[slug]/[quote_image_file_name]`.
 
-### Episodes 
-A podcast episode. These are shared as a link to the podcast episode page on share.snipd.com. 
+### Episodes
+
+A podcast episode. These are shared as a link to the podcast episode page on share.snipd.com.
 
 #### Episode Link
-Examples of episode links: `https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce` 
+
+Examples of episode links: `https://share.snipd.com/episode/8dd5816c-f788-446e-9a8b-679b141718ce`
 
 ##### How To Process
+
 Convert the episode link to a markdown link, using the the window title from the destination linked page as the linked text.
 
 ## Use of Playwright Tool
+
 You may want to use the Playwright tool to, for example, extract destination link window titles.
