@@ -16,7 +16,7 @@ import SingleImage from '~/components/ui/SingleImage.astro';
   alt="Descriptive alt text for accessibility"
   size="2xl"
   postDir="your-post-slug"
-/>
+/>;
 ```
 
 ### Parameters
@@ -48,11 +48,7 @@ Display multiple images in a grid with lightbox support.
 ```jsx
 import ImageGallery from '~/components/ui/ImageGallery.astro';
 
-<ImageGallery
-  images={["image1.png", "image2.jpg", "image3.webp"]}
-  postDir="your-post-slug"
-  size="xl"
-/>
+<ImageGallery images={['image1.png', 'image2.jpg', 'image3.webp']} postDir="your-post-slug" size="xl" />;
 ```
 
 ### Parameters
@@ -64,11 +60,7 @@ import ImageGallery from '~/components/ui/ImageGallery.astro';
 ### Example
 
 ```jsx
-<ImageGallery
-  images={["screenshot1.png", "screenshot2.png", "screenshot3.png"]}
-  postDir="quick-update"
-  size="lg"
-/>
+<ImageGallery images={['screenshot1.png', 'screenshot2.png', 'screenshot3.png']} postDir="quick-update" size="lg" />
 ```
 
 ## ChatTranscript Component
@@ -81,12 +73,7 @@ Display AI conversation transcripts with syntax highlighting and formatting.
 import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import { myConversation } from './transcripts/claude-code';
 
-<ChatTranscript
-  transcript={myConversation}
-  theme="adium"
-  maxHeight="600px"
-  toolName="Claude Code"
-/>
+<ChatTranscript transcript={myConversation} theme="adium" maxHeight="600px" toolName="Claude Code" />;
 ```
 
 ### Parameters
@@ -129,7 +116,7 @@ import { Content as Part1Content } from './embedded/part1.md';
   Content={Part1Content}
   description="Optional description for this section"
   className="custom-classes"
-/>
+/>;
 ```
 
 ### Parameters
@@ -148,11 +135,7 @@ For long-form content sections:
 ```jsx
 import { Content as SectionContent } from './embedded/section.md';
 
-<MDContent
-  title="Technical Deep Dive"
-  Content={SectionContent}
-  description="Detailed technical analysis"
-/>
+<MDContent title="Technical Deep Dive" Content={SectionContent} description="Detailed technical analysis" />;
 ```
 
 #### 2. Site-Wide Content
@@ -162,7 +145,7 @@ For shared content like privacy policies:
 ```jsx
 import { Content as Privacy } from '~/privacy-policy.md';
 
-<Privacy />
+<Privacy />;
 ```
 
 #### 3. Multiple Sections Pattern
@@ -188,6 +171,7 @@ Store embedded Markdown files in: `/src/data/content/{slug}/embedded/`
 ### External Links
 
 Standard markdown syntax:
+
 ```markdown
 [Link Text](https://example.com)
 ```
@@ -195,6 +179,7 @@ Standard markdown syntax:
 ### Internal Blog Links
 
 Use relative paths from root:
+
 ```markdown
 [My other post](/p/other-post-slug)
 [Posts by tag](/tag/ai)
@@ -204,6 +189,7 @@ Use relative paths from root:
 ### Footnotes
 
 MDX supports footnotes:
+
 ```markdown
 This needs a citation[^1].
 

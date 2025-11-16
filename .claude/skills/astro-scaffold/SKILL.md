@@ -21,6 +21,7 @@ This skill provides technical scaffolding for creating and constructing blog pos
 ### 1. Determine the Slug
 
 Pick a URL-friendly slug based on the post title:
+
 - Keep the slug a reasonable size
 - Use lowercase with hyphens
 - Example: "migrating-cursor-rules-to-claude-skills"
@@ -59,16 +60,16 @@ Create `src/data/content/{slug}/index.mdx` with:
 
 ```mdx
 ---
-title: "Post Title Here"
-contentType: "essay"
-description: "Brief description for SEO and social sharing"
-author: "Jack Ivers"
-publishDate: "YYYY-MM-DDTHH:MM:SS-05:00"
-image: "~/assets/images/content/{slug}/cover-image.png"
+title: 'Post Title Here'
+contentType: 'essay'
+description: 'Brief description for SEO and social sharing'
+author: 'Jack Ivers'
+publishDate: 'YYYY-MM-DDTHH:MM:SS-05:00'
+image: '~/assets/images/content/{slug}/cover-image.png'
 featured: false
 draft: true
-tags: ["tag1", "tag2"]
-categories: ["category1"]
+tags: ['tag1', 'tag2']
+categories: ['category1']
 ---
 
 import SingleImage from '~/components/ui/SingleImage.astro';
@@ -84,11 +85,13 @@ Content starts here...
 **Important**: Use the shell `date` command to get the current date-time, then set `publishDate` to **2 hours ago** (current time minus 2 hours).
 
 Format: ISO 8601 with timezone
+
 - Example: `2025-11-15T18:30:00-05:00` (Central Time)
 
 ### 5. Choose Content Type
 
 Set `contentType` to one of:
+
 - `essay` - Long-form articles (1000+ words)
 - `brief` - Short-form content (under 1000 words)
 - `elsewhere` - Curated external content with commentary
@@ -106,43 +109,31 @@ For detailed component usage, see `references/components-reference.md`.
 ### Quick Reference
 
 **Single Image**:
+
 ```jsx
-<SingleImage
-  src="image.png"
-  alt="Description"
-  size="2xl"
-  postDir="{slug}"
-/>
+<SingleImage src="image.png" alt="Description" size="2xl" postDir="{slug}" />
 ```
 
 **Image Gallery**:
+
 ```jsx
-<ImageGallery
-  images={["img1.png", "img2.png"]}
-  postDir="{slug}"
-  size="xl"
-/>
+<ImageGallery images={['img1.png', 'img2.png']} postDir="{slug}" size="xl" />
 ```
 
 **Chat Transcript**:
+
 ```jsx
 import { conversation } from './transcripts/chat-export';
 
-<ChatTranscript
-  transcript={conversation}
-  theme="adium"
-  maxHeight="600px"
-/>
+<ChatTranscript transcript={conversation} theme="adium" maxHeight="600px" />;
 ```
 
 **Embedded Markdown**:
+
 ```jsx
 import { Content as Section } from './embedded/section.md';
 
-<MDContent
-  title="Section Title"
-  Content={Section}
-/>
+<MDContent title="Section Title" Content={Section} />;
 ```
 
 ## Image Storage
@@ -168,6 +159,7 @@ import { Content as Section } from './embedded/section.md';
 ## Testing
 
 Always test with the dev server before publishing:
+
 ```bash
 npm run dev
 ```

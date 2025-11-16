@@ -7,6 +7,7 @@ Project-specific architecture, patterns, and conventions for the cto4.ai Astro-b
 **cto4.ai** is an Astro-based blog migrated from the Hugo-based craftycto blog. This is the future home of blog content, while the corporate site remains at craftycto.com.
 
 **Key Technologies**:
+
 - Astro v5.13 - Static site generator with MDX support
 - Tailwind CSS v3.4 - Utility-first CSS framework
 - TypeScript - Type-safe development
@@ -22,6 +23,7 @@ All content uses a unified directory structure with content types defined in fro
 **Content Location**: `/src/data/content/{slug}/index.mdx`
 
 **Content Types** (defined in frontmatter `contentType` field):
+
 - `essay` - Long-form articles (1000+ words)
 - `brief` - Short-form content (under 1000 words)
 - `elsewhere` - Curated external content
@@ -56,6 +58,7 @@ src/assets/images/content/{slug}/      # All images for the post
 **Pattern**: `/p/{slug}` (defined in `config.yaml` line 41: `permalink: '/p/%slug%'`)
 
 **Processing Flow**:
+
 1. Content collection system reads from `/src/data/content/` ([src/utils/blog.ts:126](src/utils/blog.ts#L126))
 2. `generatePermalink()` applies `POST_PERMALINK_PATTERN` to create URLs ([src/utils/blog.ts:26](src/utils/blog.ts#L26))
 3. Directory name becomes the slug (e.g., `pydantic-ai-reaches-v1/` → `/p/pydantic-ai-reaches-v1`)
@@ -81,21 +84,21 @@ src/assets/images/content/{slug}/      # All images for the post
 ### Required Fields
 
 ```yaml
-title: "Your Post Title Here"
-contentType: "essay"
-description: "Brief description for SEO and social sharing"
-author: "Jack Ivers"
-publishDate: "2025-11-15T10:00:00-05:00"
+title: 'Your Post Title Here'
+contentType: 'essay'
+description: 'Brief description for SEO and social sharing'
+author: 'Jack Ivers'
+publishDate: '2025-11-15T10:00:00-05:00'
 draft: true
 ```
 
 ### Optional Fields
 
 ```yaml
-image: "~/assets/images/content/{slug}/cover-image.png"
+image: '~/assets/images/content/{slug}/cover-image.png'
 featured: false
-tags: ["tag1", "tag2"]
-categories: ["category1"]
+tags: ['tag1', 'tag2']
+categories: ['category1']
 ```
 
 ### Date Format
