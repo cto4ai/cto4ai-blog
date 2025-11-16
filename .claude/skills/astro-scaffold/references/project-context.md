@@ -7,6 +7,7 @@ cto4.ai-specific patterns, conventions, and architecture for the Astro-based blo
 cto4.ai uses a unified content structure with 5 content types defined in frontmatter:
 
 **Content Types** (`contentType` field):
+
 - `essay` - Long-form articles (1000+ words)
 - `brief` - Short-form content (under 1000 words)
 - `elsewhere` - Curated external content with commentary
@@ -41,6 +42,7 @@ src/assets/images/content/{slug}/      # Post images (must match slug)
 **Configuration**: `config.yaml` line 41: `permalink: '/p/%slug%'`
 
 **How it works**:
+
 1. Content collection reads from `/src/data/content/` ([src/utils/blog.ts:126](src/utils/blog.ts#L126))
 2. `generatePermalink()` applies pattern ([src/utils/blog.ts:26](src/utils/blog.ts#L26))
 3. Directory name becomes slug: `my-post/` → `/p/my-post`
@@ -68,11 +70,11 @@ src/assets/images/content/{slug}/      # Post images (must match slug)
 
 ```yaml
 title: 'Post Title'
-contentType: 'essay'  # One of: essay, brief, elsewhere, quote, episode
+contentType: 'essay' # One of: essay, brief, elsewhere, quote, episode
 description: 'SEO description'
-author: 'Jack Ivers'  # Always this value
-publishDate: '2025-11-15T10:00:00-05:00'  # ISO 8601 with timezone
-draft: true  # Always start true
+author: 'Jack Ivers' # Always this value
+publishDate: '2025-11-15T10:00:00-05:00' # ISO 8601 with timezone
+draft: true # Always start true
 ```
 
 ### Optional Fields
@@ -80,8 +82,8 @@ draft: true  # Always start true
 ```yaml
 image: '~/assets/images/content/{slug}/cover.png'
 featured: false
-tags: ['tag1', 'tag2']  # 3-5 recommended
-categories: ['category']  # Usually just one
+tags: ['tag1', 'tag2'] # 3-5 recommended
+categories: ['category'] # Usually just one
 ```
 
 ### publishDate Convention
@@ -95,11 +97,13 @@ categories: ['category']  # Usually just one
 ## Component Import Patterns
 
 **Root imports** (for components):
+
 ```jsx
 import SingleImage from '~/components/ui/SingleImage.astro';
 ```
 
 **Relative imports** (for post-local content):
+
 ```jsx
 import { Content as Section } from './embedded/section.md';
 import { conversation } from './transcripts/chat-export';

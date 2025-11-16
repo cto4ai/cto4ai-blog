@@ -12,6 +12,7 @@ This skill provides technical scaffolding and construction guidance for the cto4
 ## When to Use This Skill
 
 Use this skill when:
+
 - Creating a new blog post and need to scaffold the directory structure
 - Adding technical components (SingleImage, ImageGallery, ChatTranscript, MDContent) to posts
 - Setting up post frontmatter with proper cto4.ai-specific conventions
@@ -42,6 +43,7 @@ Use this skill when:
 ### Adding Components
 
 When adding technical components to posts, consult `references/components-reference.md` for:
+
 - SingleImage, ImageGallery usage and parameters
 - ChatTranscript integration (requires TypeScript transcript files)
 - MDContent for embedding external Markdown sections
@@ -50,6 +52,7 @@ When adding technical components to posts, consult `references/components-refere
 ### Project-Specific Patterns
 
 For cto4.ai-specific routing, content types, and conventions, reference `references/project-context.md`:
+
 - Unified content structure and permalink patterns (`/p/{slug}`)
 - File accessibility rules (content vs pages)
 - Frontmatter requirements and date formatting
