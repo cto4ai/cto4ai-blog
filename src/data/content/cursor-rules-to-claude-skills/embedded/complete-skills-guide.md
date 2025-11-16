@@ -23,20 +23,20 @@
 - [Next Steps](#next-steps)
 - [Key Differences Summary](#key-differences-summary-claude-code-vs-claudeaidesktop)
 
------
+---
 
 ## Quick Overview: Key Differences
 
 While Skills work similarly across Claude.ai, Claude Desktop, and Claude Code, there are important differences in **how you install and manage them**:
 
-|Feature         |Claude.ai                       |Claude Desktop             |Claude Code                                                  |
-|----------------|--------------------------------|---------------------------|-------------------------------------------------------------|
-|**Installation**|Web UI (Settings > Capabilities)|Upload ZIP or drag-and-drop|Plugin system via `/plugin` commands                         |
-|**Location**    |Cloud-based                     |`~/.claude/skills/`        |`~/.claude/skills/` (personal)<br>`.claude/skills/` (project)|
-|**Distribution**|Manual upload                   |Manual file sharing        |Plugin marketplaces + git repos                              |
-|**Discovery**   |Same (model-invoked)            |Same (model-invoked)       |Same (model-invoked)                                         |
+| Feature          | Claude.ai                        | Claude Desktop              | Claude Code                                                   |
+| ---------------- | -------------------------------- | --------------------------- | ------------------------------------------------------------- |
+| **Installation** | Web UI (Settings > Capabilities) | Upload ZIP or drag-and-drop | Plugin system via `/plugin` commands                          |
+| **Location**     | Cloud-based                      | `~/.claude/skills/`         | `~/.claude/skills/` (personal)<br>`.claude/skills/` (project) |
+| **Distribution** | Manual upload                    | Manual file sharing         | Plugin marketplaces + git repos                               |
+| **Discovery**    | Same (model-invoked)             | Same (model-invoked)        | Same (model-invoked)                                          |
 
------
+---
 
 ## Installing Skills in Claude Code
 
@@ -85,7 +85,7 @@ Claude Code uses a **plugin system** that makes it easy to install and share Ski
 /plugin install superpowers@obra
 ```
 
------
+---
 
 ## Skill Structure (Same Across All Platforms)
 
@@ -100,12 +100,15 @@ description: Clear description of what this skill does and when to use it
 # My Skill Name
 
 ## Instructions
+
 [Step-by-step guidance for Claude]
 
 ## Examples
+
 [Concrete usage examples]
 
 ## Guidelines
+
 [Best practices and constraints]
 ```
 
@@ -115,7 +118,7 @@ description: Clear description of what this skill does and when to use it
 - **Level 2:** Full SKILL.md content - <5k tokens
 - **Level 3:** Additional linked files (only loaded as needed)
 
------
+---
 
 ## Key Claude Code-Specific Features
 
@@ -173,20 +176,23 @@ Create a `CLAUDE.md` file in your project root to guide Claude Code's behavior:
 # Project Guide for Claude
 
 ## Scope
+
 - Work only within this repository
 - Never delete files outside ./tmp without confirmation
 
 ## Conventions
+
 - Use TypeScript strict mode
 - Follow ESLint configuration
 - Run tests before commits
 
 ## Available Skills
+
 - Use `code-review-skill` before committing
 - Use `test-generator-skill` for new features
 ```
 
------
+---
 
 ## Official Anthropic Skills Available via Plugins
 
@@ -214,7 +220,7 @@ Create a `CLAUDE.md` file in your project root to guide Claude Code's behavior:
 - **brand-guidelines** - Apply brand colors and typography
 - **internal-comms** - Status reports, newsletters, FAQs
 
------
+---
 
 ## Creating Skills in Claude Code
 
@@ -261,7 +267,7 @@ EOF
 # 3. Restart Claude Code
 ```
 
------
+---
 
 ## Testing and Debugging Skills
 
@@ -283,19 +289,23 @@ ls .claude/skills/             # Project skills
 **Solutions:**
 
 1. **Check description specificity**
-   
+
    ```yaml
    # ❌ Too vague
    description: Helps with coding tasks
-   
+
    # ✅ Specific triggers
    description: Generates commit messages from git diffs. Use when writing commits or reviewing staged changes.
    ```
+
 2. **Verify YAML syntax**
+
 - Must start with `---`
 - `name:` and `description:` are required
 - No tabs, only spaces
+
 3. **Simplify SKILL.md**
+
 - Remove verbose prose
 - Keep instructions crisp
 - Under 500 lines recommended
@@ -316,7 +326,7 @@ test-project/
 
 Test with clear trigger phrases that match your skill's description.
 
------
+---
 
 ## Team Workflows & Distribution
 
@@ -363,7 +373,7 @@ team-plugin/
 # - Internal package manager
 ```
 
------
+---
 
 ## Community Resources
 
@@ -404,7 +414,7 @@ See detailed Skills + MCP integration example in [Skills + MCP Integration](#ski
 - **claude-scientific-skills** - Scientific computing
 - **web-asset-generator** - Generate web assets
 
------
+---
 
 ## Official Documentation & Learning Resources
 
@@ -419,8 +429,7 @@ See detailed Skills + MCP integration example in [Skills + MCP Integration](#ski
 3. [**Skills API Documentation**](https://docs.claude.com/en/api/skills)  
    Using skills via API with `/v1/skills` endpoint
 
-**Best Practices:**
-4. [**Skill Authoring Best Practices**](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices)  
+**Best Practices:** 4. [**Skill Authoring Best Practices**](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices)  
 Progressive disclosure, testing across models, workflow patterns
 
 5. [**Claude Code Best Practices**](https://docs.claude.com/en/docs/claude-code/overview)  
@@ -459,7 +468,7 @@ Progressive disclosure, testing across models, workflow patterns
 - [How to Use Skills in Claude Code](https://skywork.ai/blog/how-to-use-skills-in-claude-code-install-path-project-scoping-testing/)
 - [Claude Skills vs Commands vs Subagents vs Plugins](https://www.youngleaders.tech/p/claude-skills-commands-subagents-plugins)
 
------
+---
 
 ## Skills + MCP Integration: The Power Combo
 
@@ -474,12 +483,12 @@ Skills teach Claude HOW to perform tasks through procedures, workflows, standard
 
 #### Token Efficiency Comparison
 
-| Aspect | MCP Servers | Skills |
-|--------|-------------|---------|
+| Aspect              | MCP Servers                                                                 | Skills                                                             |
+| ------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | **Initial Context** | Tens of thousands of tokens per server, especially for complex integrations | Dozens of tokens for metadata, full content loads only when needed |
-| **When to Use** | Real-time data access, external tool integration | Repeatable workflows, domain expertise, best practices |
-| **Complexity** | Requires server setup, authentication, transport config | Write Markdown, add to folder, auto-detected |
-| **Maintenance** | API changes require server updates | Update Markdown file |
+| **When to Use**     | Real-time data access, external tool integration                            | Repeatable workflows, domain expertise, best practices             |
+| **Complexity**      | Requires server setup, authentication, transport config                     | Write Markdown, add to folder, auto-detected                       |
+| **Maintenance**     | API changes require server updates                                          | Update Markdown file                                               |
 
 #### The Hybrid Advantage
 
@@ -487,7 +496,7 @@ A common hybrid approach uses Skills as MCP clients: Skills invoke MCP servers f
 
 **Productivity Gains:** Teams using Skills reduce repetitive prompt engineering time by 73% compared to traditional approaches, according to Anthropic's internal benchmarks published in their October 2025 release notes.
 
------
+---
 
 ### Marketplaces for Skills + MCP Integration
 
@@ -500,21 +509,25 @@ Features Skills that integrate with MCP servers, including AWS cost optimization
 **Notable Skills:**
 
 **mcp-builder**
+
 - Guide for creating high-quality MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK)
 - Use when: Building custom MCP integrations
 - License: Complete terms in LICENSE.txt
 
 **AWS Cost Optimization Skill**
+
 - Provides AWS cost optimization, monitoring, and operational best practices with integrated MCP servers for billing analysis, cost estimation, observability, and security assessment
 - Use when: Managing AWS infrastructure costs
 - Combines: Skills for methodologies + MCPs for real-time billing data
 
 **Playwright Automation Skills**
+
 - Enables Claude to write and execute Playwright automation on-the-fly, with toolkit for testing local web applications using Playwright
 - Use when: Web testing and browser automation
 - Pattern: Skill orchestrates test workflows, MCP provides browser control
 
 **Notion Integration Skills**
+
 - Turns discussions into durable knowledge in Notion, captures insights from chat, and files them to the right wiki or database with smart linking
 - Use when: Knowledge management and documentation
 - Pattern: Skill defines organization workflows, Notion MCP handles API calls
@@ -533,6 +546,7 @@ Neon created a marketplace bundling four Claude Skills plus an MCP server in a s
 **What You Get:**
 
 **4 Skills:**
+
 1. **Drizzle ORM Integration Skill**
    - Teaches Claude how to set up the connection string, configure environment variables, and test queries for Neon's serverless driver
    - Covers: New projects, existing projects, schema updates
@@ -549,12 +563,14 @@ Neon created a marketplace bundling four Claude Skills plus an MCP server in a s
    - Focuses on: Compute/storage-separated architecture with minimal boilerplate
 
 **1 MCP Server:**
+
 - Gives Claude runtime access to Neon's APIs for checking project info, creating databases, and validating schema connections - every tool inside Claude Code can now talk directly to Neon through that MCP interface
 
 **Installation Flow:**
 Open Claude Code, go through Quick Start, add the Neon Marketplace, install the Neon plugin, and restart Claude Code. Once up, Claude automatically detects the Neon MCP connection.
 
 **Architecture Pattern:**
+
 ```
 User Query
     ↓
@@ -611,6 +627,7 @@ Rather than a marketplace, MCP Skill Hub is an **MCP server that hosts your Skil
 Instead of manually uploading skills or managing them through Claude's web interface, you organize skills in a directory on your file system, point the MCP server to that directory, and Claude discovers them dynamically through the MCP protocol.
 
 **Key Features:**
+
 - **Dynamic Discovery:** File system becomes your skills repository
 - **Hot-Reloading:** Real-time change detection when Skills are updated
 - **Organization:** Maintain multiple skill directories for different contexts
@@ -629,6 +646,7 @@ export MCP_SKILLS_LOG_LEVEL=INFO
 ```
 
 **Claude Desktop Config:**
+
 ```json
 {
   "mcpServers": {
@@ -667,7 +685,7 @@ export MCP_SKILLS_DIR=~/skills/client-b
 poetry run mcp-skills
 ```
 
------
+---
 
 ### Real-World Integration Patterns
 
@@ -676,6 +694,7 @@ poetry run mcp-skills
 **Use Case:** Combined with MCP servers connecting Claude directly to platforms like HubSpot, ActiveCampaign, and Klaviyo, marketing teams access real-time CRM data, trigger automated workflows, and execute complex multi-step campaigns through natural language commands.
 
 **Architecture:**
+
 ```
 Marketing Skill (defines campaign workflows)
     ↓
@@ -693,6 +712,7 @@ The MCP ecosystem has grown to 257+ servers as of November 2025, with major mark
 30% time savings on routine CRM analysis tasks when combining HubSpot MCP access with Claude Skills defining analytical methodologies.
 
 **Available MCP Servers:**
+
 - HubSpot's beta MCP server (released Q2 2025) enables direct CRM access and campaign management
 - ActiveCampaign's June 2025 MCP server brings email automation to AI assistants across all plan tiers
 - Klaviyo's enhanced August 2025 MCP server provides both local and remote connectivity for broader accessibility
@@ -700,6 +720,7 @@ The MCP ecosystem has grown to 257+ servers as of November 2025, with major mark
 #### Pattern 2: Financial Analysis (Databricks Example)
 
 **Components:**
+
 1. **Financial Analysis Skill**
    - Methodologies: Profitability, liquidity, leverage, cash flow, valuation
    - Framework: How to interpret financial statements
@@ -716,6 +737,7 @@ The MCP ecosystem has grown to 257+ servers as of November 2025, with major mark
    - Retrieve stock prices, income statements, balance sheets, cash flows
 
 **Example Workflow:**
+
 ```
 User: "Analyze Apple's profitability trends over the last 5 years"
     ↓
@@ -733,6 +755,7 @@ Output: Comprehensive profitability analysis with trends and insights
 #### Pattern 3: Database Development (Neon Example)
 
 **Flow:**
+
 1. User asks: "Set up a new Next.js project with Neon database"
 2. **Drizzle ORM Skill** provides: Connection string format, environment variable setup, schema definition patterns
 3. **Neon MCP** executes: Creates new database project, generates connection URL
@@ -740,6 +763,7 @@ Output: Comprehensive profitability analysis with trends and insights
 5. **Neon MCP** validates: Tests connection, verifies schema
 
 **Benefits:**
+
 - Single command gets you from idea to working database
 - Skills ensure best practices are followed
 - MCP handles actual provisioning
@@ -748,11 +772,13 @@ Output: Comprehensive profitability analysis with trends and insights
 #### Pattern 4: Web Testing Automation
 
 **Components:**
+
 - **Playwright Skill:** Test design patterns, accessibility-first automation approaches
 - **Playwright MCP Server:** Browser control, page interaction, screenshot capture
 - **Testing Skill:** Test case organization, assertion strategies, error handling
 
 **Example:**
+
 ```
 User: "Test the login flow on staging"
     ↓
@@ -765,13 +791,14 @@ Playwright MCP: Executes browser automation
 Testing Skill: Formats results, suggests improvements
 ```
 
------
+---
 
 ### Creating Skills That Use MCPs
 
 #### Step 1: Identify the Division of Labor
 
 Ask yourself:
+
 - What **knowledge/workflow** does Claude need? → Goes in Skill
 - What **data/actions** require external systems? → Goes through MCP
 
@@ -791,6 +818,7 @@ allowed-tools: [bash_tool]
 ## Prerequisites
 
 This skill works with the following MCP servers:
+
 - PostgreSQL MCP (for database access)
 - Notion MCP (optional, for documentation)
 
@@ -816,12 +844,15 @@ When analyzing a database:
 ## MCP Tool Usage
 
 ### Retrieving Schema
+
 Ask the PostgreSQL MCP to list all tables and their columns.
 
 ### Analyzing Queries
+
 Request EXPLAIN ANALYZE output for slow queries from PostgreSQL MCP.
 
 ### Creating Documentation
+
 Use Notion MCP to create a new database page with schema diagrams.
 
 ## Best Practices
@@ -846,44 +877,46 @@ claude mcp add --transport stdio postgresql \
 #### Step 4: Iterate Based on Token Usage
 
 **Monitor context consumption:**
+
 - Skill metadata: ~50-100 tokens
 - Full skill content: ~1,000-3,000 tokens
 - MCP server context: Variable (can be large)
 
 **Optimization strategies:**
+
 - Keep Skills focused and modular
 - Don't duplicate information that's in MCP server docs
 - Use progressive disclosure (link to detailed docs rather than including everything)
 
------
+---
 
 ### Common Skills + MCP Combinations
 
-| Skill Type | Paired MCP Server(s) | Use Case |
-|------------|---------------------|----------|
-| **Code Review** | GitHub, Linear | Fetch PRs, file issues for problems found |
-| **API Documentation** | OpenAPI servers, Postman | Generate docs from specs, test endpoints |
-| **Content Publishing** | WordPress, Medium, Ghost | Write following style guide, publish to platform |
-| **Data Pipeline** | PostgreSQL, BigQuery, S3 | Extract, transform, analyze data workflows |
-| **Customer Support** | Zendesk, Intercom, Salesforce | Retrieve context, suggest responses, create tickets |
-| **Financial Modeling** | Excel MCP, Financial data APIs | Build models following methodologies |
-| **Infrastructure** | AWS, Azure, GCP MCPs | Provision following architecture patterns |
-| **Meeting Prep** | Calendar, Notion, Slack | Gather context, create agendas, summarize notes |
+| Skill Type             | Paired MCP Server(s)           | Use Case                                            |
+| ---------------------- | ------------------------------ | --------------------------------------------------- |
+| **Code Review**        | GitHub, Linear                 | Fetch PRs, file issues for problems found           |
+| **API Documentation**  | OpenAPI servers, Postman       | Generate docs from specs, test endpoints            |
+| **Content Publishing** | WordPress, Medium, Ghost       | Write following style guide, publish to platform    |
+| **Data Pipeline**      | PostgreSQL, BigQuery, S3       | Extract, transform, analyze data workflows          |
+| **Customer Support**   | Zendesk, Intercom, Salesforce  | Retrieve context, suggest responses, create tickets |
+| **Financial Modeling** | Excel MCP, Financial data APIs | Build models following methodologies                |
+| **Infrastructure**     | AWS, Azure, GCP MCPs           | Provision following architecture patterns           |
+| **Meeting Prep**       | Calendar, Notion, Slack        | Gather context, create agendas, summarize notes     |
 
------
+---
 
 ### Security Best Practices
 
 #### Skill-Level Security
 
 **In your SKILL.md:**
+
 ```yaml
 ---
 name: safe-database-skill
 description: Database operations with read-only access
 allowed-tools: [bash_tool]
 ---
-
 ## Security Rules
 
 ⚠️ **CRITICAL RESTRICTIONS:**
@@ -899,6 +932,7 @@ allowed-tools: [bash_tool]
 Ensure credentials passed into Claude Code, such as a Service Principal, only have SELECT privilege on datasets in Unity Catalog. Consider incorporating restrictions into the SKILL.md.
 
 **Configuration:**
+
 ```json
 {
   "mcpServers": {
@@ -920,28 +954,34 @@ Ensure credentials passed into Claude Code, such as a Service Principal, only ha
 3. **User confirmation** required for any destructive actions
 4. **Audit logging** of all MCP calls in production
 
------
+---
 
 ### Troubleshooting Skills + MCP Integration
 
 #### Issue: Skill Isn't Using the MCP
 
 **Symptoms:**
+
 - Claude acknowledges the MCP exists but doesn't use it
 - Skill executes without accessing external data
 
 **Solutions:**
+
 1. **Make MCP usage explicit in Skill:**
+
    ```markdown
    ## Required Tools
+
    This skill MUST use the PostgreSQL MCP server for all data access.
-   
+
    When the user asks for data:
+
    1. First, use PostgreSQL MCP to retrieve it
    2. Then, apply analysis frameworks
    ```
 
 2. **Check MCP server is running:**
+
    ```bash
    # View active MCP connections
    # In Claude Code, ask:
@@ -956,6 +996,7 @@ Ensure credentials passed into Claude Code, such as a Service Principal, only ha
 #### Issue: Too Many Tokens Consumed
 
 **Symptoms:**
+
 - Responses are truncated
 - Claude says context window is full
 - Slow performance
@@ -963,6 +1004,7 @@ Ensure credentials passed into Claude Code, such as a Service Principal, only ha
 **Solutions:**
 
 1. **Limit MCP scope:**
+
    ```json
    {
      "mcpServers": {
@@ -970,7 +1012,7 @@ Ensure credentials passed into Claude Code, such as a Service Principal, only ha
          "command": "docker",
          "args": ["run", "-i", "ghcr.io/github/github-mcp-server"],
          "env": {
-           "GITHUB_REPOSITORIES": "myorg/myrepo",  // Limit to specific repos
+           "GITHUB_REPOSITORIES": "myorg/myrepo", // Limit to specific repos
            "GITHUB_PERSONAL_ACCESS_TOKEN": "token"
          }
        }
@@ -984,14 +1026,16 @@ Ensure credentials passed into Claude Code, such as a Service Principal, only ha
    - Reference external docs instead of including everything
 
 3. **Use Skills to filter MCP queries:**
+
    ```markdown
    ## Efficient Data Retrieval
-   
+
    Before querying the MCP:
+
    1. Determine the minimum data needed
    2. Use specific filters (date ranges, IDs, etc.)
    3. Request only necessary columns
-   
+
    Example:
    ❌ "Fetch all customer records"
    ✅ "Fetch name and email for customers created in last 30 days"
@@ -1000,6 +1044,7 @@ Ensure credentials passed into Claude Code, such as a Service Principal, only ha
 #### Issue: MCP Authentication Failures
 
 **Symptoms:**
+
 - Connection errors
 - "Unauthorized" messages
 - Skills work but MCP calls fail
@@ -1007,6 +1052,7 @@ Ensure credentials passed into Claude Code, such as a Service Principal, only ha
 **Solutions:**
 
 1. **Verify environment variables:**
+
    ```bash
    # Check if vars are set
    echo $DATABASE_URL
@@ -1014,6 +1060,7 @@ Ensure credentials passed into Claude Code, such as a Service Principal, only ha
    ```
 
 2. **Test MCP independently:**
+
    ```bash
    # Test PostgreSQL MCP
    npx @modelcontextprotocol/server-postgres
@@ -1026,20 +1073,21 @@ Ensure credentials passed into Claude Code, such as a Service Principal, only ha
      "mcpServers": {
        "your-server": {
          "env": {
-           "API_KEY": "${YOUR_NEW_API_KEY}"  // Update here
+           "API_KEY": "${YOUR_NEW_API_KEY}" // Update here
          }
        }
      }
    }
    ```
 
------
+---
 
 ### Future: Skills + MCP Ecosystem Growth
 
 Developer and researcher Simon Willison suggests Skills might be a bigger deal than MCP, predicting a "Cambrian explosion" of Skills that will exceed the MCP adoption rush - precisely because creating a Skill is so much simpler than building an MCP server.
 
 **What This Means:**
+
 - More Skills will emerge to orchestrate existing MCPs
 - Skills will become the "glue" between multiple MCP servers
 - Teams will share Skills more readily than custom MCP servers
@@ -1048,11 +1096,12 @@ Developer and researcher Simon Willison suggests Skills might be a bigger deal t
 **The Convergence:**
 This infrastructure convergence - Skills teaching Claude what to do, MCP giving it the tools to do it - marks the first time marketers (and developers) can deploy truly autonomous AI workflows without engineering resources.
 
------
+---
 
 ### Quick Reference: When to Use Skills vs MCPs vs Both
 
 **Use Skills Alone:**
+
 - Repeatable workflows with no external data needs
 - Document generation following templates
 - Code review checklists
@@ -1060,12 +1109,14 @@ This infrastructure convergence - Skills teaching Claude what to do, MCP giving 
 - Analysis frameworks
 
 **Use MCPs Alone:**
+
 - Simple data retrieval
 - Basic CRUD operations
 - Real-time monitoring
 - Single-purpose integrations
 
 **Use Skills + MCPs Together (Recommended):**
+
 - Complex workflows requiring external data
 - Multi-step automation across systems
 - Domain-specific analysis with live data
@@ -1074,58 +1125,58 @@ This infrastructure convergence - Skills teaching Claude what to do, MCP giving 
 
 **Golden Rule:** If you find yourself typing the same instructions repeatedly, create a Skill. If that Skill needs external data or actions, pair it with an MCP.
 
------
+---
 
 ## Skills vs Other Claude Code Features
 
-|Feature           |When to Use                                         |Invocation                               |
-|------------------|----------------------------------------------------|-----------------------------------------|
-|**Skills**        |Repeatable procedural knowledge across conversations|Model-invoked (automatic)                |
-|**Slash Commands**|User-triggered shortcuts for specific actions       |User-invoked (`/command`)                |
-|**Subagents**     |Self-contained agents with restricted tool access   |Either (can be command-triggered or auto)|
-|**Plugins**       |Bundle Skills + Commands + Agents together          |Via `/plugin install`                    |
-|**MCP Servers**   |Connect to external data sources and APIs           |Automatic when configured                |
-|**CLAUDE.md**     |Persistent project context and guidelines           |Always loaded for project                |
+| Feature            | When to Use                                          | Invocation                                |
+| ------------------ | ---------------------------------------------------- | ----------------------------------------- |
+| **Skills**         | Repeatable procedural knowledge across conversations | Model-invoked (automatic)                 |
+| **Slash Commands** | User-triggered shortcuts for specific actions        | User-invoked (`/command`)                 |
+| **Subagents**      | Self-contained agents with restricted tool access    | Either (can be command-triggered or auto) |
+| **Plugins**        | Bundle Skills + Commands + Agents together           | Via `/plugin install`                     |
+| **MCP Servers**    | Connect to external data sources and APIs            | Automatic when configured                 |
+| **CLAUDE.md**      | Persistent project context and guidelines            | Always loaded for project                 |
 
 **Key Insight:** If you type the same instructions repeatedly across conversations → create a Skill
 
------
+---
 
 ## Skills vs MCP: When to Use Which
 
-|Aspect            |Skills                                |MCP                           |
-|------------------|--------------------------------------|------------------------------|
-|**Purpose**       |Task procedures and workflows         |External tool/data integration|
-|**Best For**      |Repeatable tasks, document workflows  |Database access, API calls    |
-|**Code Execution**|Can include executable scripts        |Provides tools/resources      |
-|**Portability**   |Same everywhere (claude.ai, Code, API)|Requires server configuration |
-|**Token Usage**   |~100 tokens (metadata) to <5k (loaded)|Varies by implementation      |
+| Aspect             | Skills                                 | MCP                            |
+| ------------------ | -------------------------------------- | ------------------------------ |
+| **Purpose**        | Task procedures and workflows          | External tool/data integration |
+| **Best For**       | Repeatable tasks, document workflows   | Database access, API calls     |
+| **Code Execution** | Can include executable scripts         | Provides tools/resources       |
+| **Portability**    | Same everywhere (claude.ai, Code, API) | Requires server configuration  |
+| **Token Usage**    | ~100 tokens (metadata) to <5k (loaded) | Varies by implementation       |
 
 **Use Together:** The `mcp-builder` skill helps create MCP servers! Skills can orchestrate MCP usage.
 
------
+---
 
 ## Advanced: Skills in the Claude Agent SDK
 
 If you're building custom agents with the SDK:
 
 ```typescript
-import { query } from "@anthropic-ai/claude-agent-sdk";
+import { query } from '@anthropic-ai/claude-agent-sdk';
 
 const response = await query({
-  prompt: "Your task here",
+  prompt: 'Your task here',
   options: {
     plugins: [
-      { type: "local", path: "./my-plugin" },
-      { type: "local", path: "~/.claude/skills/my-skill" }
-    ]
-  }
+      { type: 'local', path: './my-plugin' },
+      { type: 'local', path: '~/.claude/skills/my-skill' },
+    ],
+  },
 });
 ```
 
 See: [Plugins in the SDK Documentation](https://docs.claude.com/en/docs/agent-sdk/plugins)
 
------
+---
 
 ## Security Considerations
 
@@ -1136,18 +1187,20 @@ See: [Plugins in the SDK Documentation](https://docs.claude.com/en/docs/agent-sd
 1. **Only install from trusted sources**
 2. **Audit SKILL.md and scripts** before enabling
 3. **Use `allowed-tools` field** to restrict permissions:
-   
+
    ```yaml
    ---
    name: read-only-analyzer
    description: Analyzes code without modifications
-   allowed-tools: [Read, Grep, Glob, Bash]  # No Write
+   allowed-tools: [Read, Grep, Glob, Bash] # No Write
    ---
    ```
+
 4. **Project-level safety in CLAUDE.md:**
-   
+
    ```markdown
    ## Safety Rules
+
    - Work only within ./src directory
    - Never delete files without confirmation
    - Ask before external API calls
@@ -1157,7 +1210,7 @@ See: [Plugins in the SDK Documentation](https://docs.claude.com/en/docs/agent-sd
 
 - [Weaponizing Claude Code Skills](https://medium.com/@yossifqassim/weaponizing-claude-code-skills-from-5-5-to-remote-shell-a14af2d109c9) - Understand potential risks
 
------
+---
 
 ## Troubleshooting Common Issues
 
@@ -1212,7 +1265,7 @@ chmod -R 755 ~/.claude/skills/
 3. Consider combining into single skill
 4. Use `allowed-tools` to limit scope
 
------
+---
 
 ## Quick Reference: Essential Commands
 
@@ -1231,7 +1284,7 @@ chmod -R 755 ~/.claude/skills/
 "Use [skill-name] to [task]"             # Explicit skill invocation
 ```
 
------
+---
 
 ## Next Steps
 
@@ -1256,7 +1309,7 @@ chmod -R 755 ~/.claude/skills/
 3. Document workflows in CLAUDE.md
 4. Establish skill review/approval process
 
------
+---
 
 ## Key Differences Summary: Claude Code vs Claude.ai/Desktop
 
@@ -1277,7 +1330,7 @@ chmod -R 755 ~/.claude/skills/
 
 **Bottom Line:** Skills in Claude Code are more **developer-centric** with better **version control**, **team sharing**, and **integration with development workflows**.
 
------
+---
 
-*Last Updated: November 2025*  
-*Based on Claude Code plugin system (launched October 2025)*
+_Last Updated: November 2025_  
+_Based on Claude Code plugin system (launched October 2025)_
