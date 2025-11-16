@@ -35,6 +35,7 @@ public/videos/content/{slug}/          # Videos - Direct serving (no processing)
 ```
 
 **Critical**:
+
 - The `socialposts/` directory is for content planning only and is never published to the site
 - Images and videos use parallel directory structures but different locations due to Astro's image processing capabilities
 
