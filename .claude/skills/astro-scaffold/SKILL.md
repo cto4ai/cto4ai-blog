@@ -29,7 +29,9 @@ Use this skill when:
    - `transcripts/` (for AI conversation exports as TypeScript files)
    - `embedded/` (for external Markdown files to embed)
    - `socialposts/` (LinkedIn, Twitter, Mastodon planning - not published)
-   - Parallel images directory: `src/assets/images/content/{slug}/`
+   - Parallel asset directories:
+     - `src/assets/images/content/{slug}/` (images - Astro-processed)
+     - `public/videos/content/{slug}/` (videos - direct serving)
 
 3. **Initialize frontmatter** in `index.mdx` with cto4.ai-specific conventions:
    - `contentType`: One of `essay`, `brief`, `elsewhere`, `quote`, `episode`
@@ -61,7 +63,9 @@ For cto4.ai-specific routing, content types, and conventions, reference `referen
 ### Key Non-Obvious Patterns
 
 - **publishDate convention**: Always set to 2 hours ago using shell `date` command
-- **Image paths**: Must use parallel structure—`src/assets/images/content/{slug}/` matches `src/data/content/{slug}/`
+- **Asset paths**: Parallel slug-based structure for all assets
+  - Images: `src/assets/images/content/{slug}/` (Astro-processed for responsive sizing)
+  - Videos: `public/videos/content/{slug}/` (direct serving, no processing)
 - **Component imports**: Use `~/` prefix for components, relative paths (`./`) for embedded content
 - **socialposts directory**: For planning only, never published
 - **Content routing**: Files in `/src/data/content/` become `/p/{slug}`, NOT directly routable

@@ -29,10 +29,14 @@ src/data/content/{slug}/
     ├── mastodon/post.txt
     └── twitter/thread.txt
 
-src/assets/images/content/{slug}/      # Post images (must match slug)
+Asset Storage (parallel slug-based structure):
+src/assets/images/content/{slug}/      # Images - Astro-processed (responsive sizing, optimization)
+public/videos/content/{slug}/          # Videos - Direct serving (no processing)
 ```
 
-**Critical**: The `socialposts/` directory is for content planning only and is never published to the site.
+**Critical**:
+- The `socialposts/` directory is for content planning only and is never published to the site
+- Images and videos use parallel directory structures but different locations due to Astro's image processing capabilities
 
 ## Routing Architecture
 
@@ -116,10 +120,6 @@ Images **must** be in `/src/assets/images/content/{slug}/` matching the post slu
 **Example**: For post `my-post`, images go in `/src/assets/images/content/my-post/`
 
 All image components require `postDir="{slug}"` parameter for correct path resolution.
-
-## Migration Context
-
-This blog is migrating from Hugo (craftycto.com/blog) to Astro (cto4.ai). The Hugo blog remains operational during migration. This is the future home for all blog content; the craftycto.com domain will host only the corporate site.
 
 ## Deployment
 
