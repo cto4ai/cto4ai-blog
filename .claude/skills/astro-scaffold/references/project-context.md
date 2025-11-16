@@ -1,244 +1,128 @@
 # cto4.ai Blog Project Context
 
-Project-specific architecture, patterns, and conventions for the cto4.ai Astro-based blog.
+cto4.ai-specific patterns, conventions, and architecture for the Astro-based blog.
 
-## Project Overview
+## Content Type System
 
-**cto4.ai** is an Astro-based blog migrated from the Hugo-based craftycto blog. This is the future home of blog content, while the corporate site remains at craftycto.com.
+cto4.ai uses a unified content structure with 5 content types defined in frontmatter:
 
-**Key Technologies**:
-
-- Astro v5.13 - Static site generator with MDX support
-- Tailwind CSS v3.4 - Utility-first CSS framework
-- TypeScript - Type-safe development
-- Pagefind - Client-side search
-- GLightbox - Lightbox for image galleries
-
-## Content Structure
-
-### Unified Directory Organization
-
-All content uses a unified directory structure with content types defined in frontmatter:
-
-**Content Location**: `/src/data/content/{slug}/index.mdx`
-
-**Content Types** (defined in frontmatter `contentType` field):
-
+**Content Types** (`contentType` field):
 - `essay` - Long-form articles (1000+ words)
 - `brief` - Short-form content (under 1000 words)
-- `elsewhere` - Curated external content
-- `quote` - Quote posts
-- `episode` - Podcast/video reviews
+- `elsewhere` - Curated external content with commentary
+- `quote` - Quote posts with attribution
+- `episode` - Podcast/video episode reviews
 
-### Directory Structure
+All content lives in `/src/data/content/{slug}/index.mdx` regardless of type.
+
+## Directory Structure Convention
 
 ```
 src/data/content/{slug}/
 ├── index.mdx                          # Main post file
-├── transcripts/                       # AI conversation exports (TypeScript)
+├── transcripts/                       # AI conversation exports (TypeScript files)
 ├── embedded/                          # External Markdown files for embedding
-└── socialposts/                       # Social media content planning
-    ├── images/                        # Social-specific images
-    ├── linkedin/
-    │   └── post.txt
-    ├── mastodon/
-    │   └── post.txt
-    └── twitter/
-        └── thread.txt
+└── socialposts/                       # Social media planning (NOT published)
+    ├── images/
+    ├── linkedin/post.txt
+    ├── mastodon/post.txt
+    └── twitter/thread.txt
 
-src/assets/images/content/{slug}/      # All images for the post
+src/assets/images/content/{slug}/      # Post images (must match slug)
 ```
 
-**Important**: The `socialposts/` directory is for content planning only and will NOT be published.
+**Critical**: The `socialposts/` directory is for content planning only and is never published to the site.
 
 ## Routing Architecture
 
-### Blog Post URL Generation
+### Permalink Pattern
 
-**Pattern**: `/p/{slug}` (defined in `config.yaml` line 41: `permalink: '/p/%slug%'`)
+**Pattern**: `/p/{slug}`
+**Configuration**: `config.yaml` line 41: `permalink: '/p/%slug%'`
 
-**Processing Flow**:
-
-1. Content collection system reads from `/src/data/content/` ([src/utils/blog.ts:126](src/utils/blog.ts#L126))
-2. `generatePermalink()` applies `POST_PERMALINK_PATTERN` to create URLs ([src/utils/blog.ts:26](src/utils/blog.ts#L26))
-3. Directory name becomes the slug (e.g., `pydantic-ai-reaches-v1/` → `/p/pydantic-ai-reaches-v1`)
+**How it works**:
+1. Content collection reads from `/src/data/content/` ([src/utils/blog.ts:126](src/utils/blog.ts#L126))
+2. `generatePermalink()` applies pattern ([src/utils/blog.ts:26](src/utils/blog.ts#L26))
+3. Directory name becomes slug: `my-post/` → `/p/my-post`
 
 ### File Accessibility Rules
 
-- **Routable Files**: Only files in `/src/pages/` with extensions `.astro`, `.md`, `.mdx`, `.js`, `.ts`
-- **Content Files**: `/src/data/content/**/*` are processed by blog system, NOT directly accessible as URLs
-- **Static Imports**: Files anywhere can be imported as content
-- **Blog Routes**: `/src/pages/[...blog]/` files redirect to `/archive`
+**Routable**: Only files in `/src/pages/` with extensions `.astro`, `.md`, `.mdx`, `.js`, `.ts` become URL routes.
 
-### Important Routes
+**Not Routable**: Files in `/src/data/content/` are processed by the blog system and rendered at `/p/{slug}`, but are NOT directly accessible as URLs.
 
-- `/` - Homepage with latest posts
+**Import Only**: Files can be imported from anywhere using static imports.
+
+### Site Routes
+
+- `/` - Homepage
 - `/archive` - Full blog archive (preferred over `/blog`)
-- `/search` - Pagefind-powered search
-- `/p/{slug}` - Individual blog posts
-- `/tag/{tag}` - Posts by tag
-- `/category/{category}` - Posts by category
+- `/search` - Pagefind search
+- `/p/{slug}` - Individual posts
+- `/tag/{tag}` - Tag archives
+- `/category/{category}` - Category archives
 
-## Frontmatter Requirements
+## Frontmatter Schema
 
 ### Required Fields
 
 ```yaml
-title: 'Your Post Title Here'
-contentType: 'essay'
-description: 'Brief description for SEO and social sharing'
-author: 'Jack Ivers'
-publishDate: '2025-11-15T10:00:00-05:00'
-draft: true
+title: 'Post Title'
+contentType: 'essay'  # One of: essay, brief, elsewhere, quote, episode
+description: 'SEO description'
+author: 'Jack Ivers'  # Always this value
+publishDate: '2025-11-15T10:00:00-05:00'  # ISO 8601 with timezone
+draft: true  # Always start true
 ```
 
 ### Optional Fields
 
 ```yaml
-image: '~/assets/images/content/{slug}/cover-image.png'
+image: '~/assets/images/content/{slug}/cover.png'
 featured: false
-tags: ['tag1', 'tag2']
-categories: ['category1']
+tags: ['tag1', 'tag2']  # 3-5 recommended
+categories: ['category']  # Usually just one
 ```
 
-### Date Format
+### publishDate Convention
 
-- Use ISO 8601: `YYYY-MM-DDTHH:MM:SS-ZZ:ZZ`
+**cto4.ai-specific rule**: Set publishDate to **2 hours ago** (current time minus 2 hours).
+
+- Format: ISO 8601 with timezone (`YYYY-MM-DDTHH:MM:SS-ZZ:ZZ`)
+- Use shell `date` command to get current time
 - Example: `2025-11-15T14:30:00-05:00` (Central Time)
-- Always include timezone offset
-- **At creation**: Use shell `date` command to get current time, then set to **2 hours ago**
 
-## Development Commands
+## Component Import Patterns
 
-### Start Development Server
-
-```bash
-npm run dev
+**Root imports** (for components):
+```jsx
+import SingleImage from '~/components/ui/SingleImage.astro';
 ```
 
-Starts Astro dev server with hot reload on port 4321.
-
-### Build for Production
-
-```bash
-npm run build
+**Relative imports** (for post-local content):
+```jsx
+import { Content as Section } from './embedded/section.md';
+import { conversation } from './transcripts/chat-export';
 ```
 
-Builds the site for production deployment.
+## Image Path Requirements
 
-### Preview Production Build
+Images **must** be in `/src/assets/images/content/{slug}/` matching the post slug exactly.
 
-```bash
-npm run preview
-```
+**Example**: For post `my-post`, images go in `/src/assets/images/content/my-post/`
 
-Preview the production build locally.
-
-### Quality Checks
-
-```bash
-npm run check       # Run all checks (TypeScript, ESLint, Prettier)
-npm run fix:prettier # Auto-fix formatting issues
-```
-
-## CI/CD Requirements
-
-**Pre-push hooks** are configured to prevent CI failures:
-
-1. `npm run check` - Runs TypeScript, ESLint, Prettier validation
-2. `npm run build` - Ensures the site builds successfully
-
-### Common CI Failure Causes
-
-- TypeScript errors (missing types, wrong properties)
-- ESLint errors (`no-explicit-any`, unused variables)
-- Prettier formatting inconsistencies
-- Build errors (missing images, broken imports)
-
-## Draft Management
-
-- Set `draft: true` while writing
-- Test with `npm run dev` before publishing
-- Change to `draft: false` only when ready to publish
-- Drafts won't appear in production builds
-
-## SEO & Social Sharing
-
-- **Title**: 60 characters or less ideal
-- **Description**: 155 characters or less
-- **Tags**: 3-5 per post
-- **Categories**: Usually just one
-- **Cover Image**: 1200x628px minimum for social sharing
+All image components require `postDir="{slug}"` parameter for correct path resolution.
 
 ## Migration Context
 
-This repository is part of a dual-repository setup:
-
-1. **craftycto** (Hugo) - Original blog at craftycto.com/blog
-2. **cto4ai-blog** (Astro) - New blog at cto4.ai (this repo)
-
-The Hugo blog remains operational while content is being migrated.
+This blog is migrating from Hugo (craftycto.com/blog) to Astro (cto4.ai). The Hugo blog remains operational during migration. This is the future home for all blog content; the craftycto.com domain will host only the corporate site.
 
 ## Deployment
 
-- Deployed to Cloudflare Pages
-- Automatic deployment on push to main branch
-- Preview deployments for pull requests
-- GLightbox requires proper initialization for client-side navigation
-- Pagefind search index generated during build
-- Site uses View Transitions API for smooth navigation
+- **Platform**: Cloudflare Pages
+- **Triggers**: Auto-deploy on push to main; preview deploys for PRs
+- **Tech notes**: GLightbox, Pagefind, View Transitions API all configured
 
-## Best Practices
+## Named Entity Linking
 
-### Images
-
-- Always provide alt text for accessibility
-- Use descriptive filenames
-- Optimize before upload
-- Cover image: 1200x628px minimum
-- Place in `/src/assets/images/content/{slug}/`
-- Use `postDir` parameter matching slug
-
-### Content Organization
-
-- Start with compelling introduction
-- Use headers (##, ###) for structure
-- Break up long text with images, lists, or quotes
-- End with clear conclusion or call-to-action
-
-### Named Entity Linking
-
-- Not part of initial creation
-- See separate rule [.cursor/rules/named-entity-linking.mdc](.cursor/rules/named-entity-linking.mdc)
-
-### Component Imports
-
-- Always import required components at top of MDX file
-- Use `~/` prefix for root imports
-- Use relative paths (e.g., `./embedded/file.md`) for post-local files
-
-### Testing
-
-- Always verify changes with dev server before committing
-- Check both light and dark modes when possible
-- Test navigation and interactive elements
-- Ensure search functionality remains intact
-- Use Playwright MCP for browser testing when available
-
-## Key Custom Components
-
-### Layout Components
-
-- **SinglePost.astro**: Main blog post layout with header image
-- **GridItem.astro**: Blog post cards with 44:28 aspect ratio
-- **RelatedPosts.astro**: Shows related posts based on tags/categories
-
-### Image Components
-
-- **SingleImage**: Display single images with lightbox
-- **ImageGallery**: Display multiple images in grid with lightbox
-
-### Content Components
-
-- **ChatTranscript**: Display AI conversation transcripts
-- **MDContent**: Embed external Markdown files with styled sections
+Named entity linking is handled separately and is not part of initial post creation. See [.cursor/rules/named-entity-linking.mdc](.cursor/rules/named-entity-linking.mdc) for this workflow.
