@@ -294,8 +294,10 @@ mkdir -p src/data/content/my-new-post/embedded
 mkdir -p src/data/content/my-new-post/socialposts/images
 mkdir -p src/data/content/my-new-post/socialposts/linkedin
 mkdir -p src/data/content/my-new-post/socialposts/mastodon
+mkdir -p src/data/content/my-new-post/socialposts/twitter
 touch src/data/content/my-new-post/socialposts/linkedin/post.txt
 touch src/data/content/my-new-post/socialposts/mastodon/post.txt
+touch src/data/content/my-new-post/socialposts/twitter/thread.txt
 ```
 
 ### 2. Add Frontmatter to index.mdx
@@ -322,6 +324,8 @@ Add your MDX content, including any image components as needed.
 
 ### 7. Create Social Content (Optional)
 - Write LinkedIn post in `socialposts/linkedin/post.txt`
+- Write plain LinkedIn post in `socialposts/linkedin/plain-post.txt`
+- Write Twitter thread in `socialposts/twitter/thread.txt`
 - Write Mastodon post in `socialposts/mastodon/post.txt`
 - Add any social-specific images to `socialposts/images/`
 

@@ -1,0 +1,75 @@
+---
+description: "Create a Twitter thread from a LinkedIn plain post; write to socialposts/twitter/thread.txt; one tweet per section with character limits."
+globs: []
+alwaysApply: false
+---
+
+# Twitter Thread Creation
+
+Inputs:
+- Source: LinkedIn plain post at `src/data/content/{slug}/socialposts/linkedin/plain-post.txt`
+- Reference: main post at `src/data/content/{slug}/index.mdx` (for context if needed)
+
+Output:
+- Write the Twitter thread to `src/data/content/{slug}/socialposts/twitter/thread.txt`
+- If `thread.txt` already exists, create `thread-2.txt`, `thread-3.txt`, etc. Do not overwrite existing files.
+
+Steps:
+1. Read the LinkedIn plain post as the primary source material and the main MDX post for additional context
+2. Read front matter from the main MDX post to get the canonical URL
+3. Break the LinkedIn content into a Twitter thread of 3-6 tweets:
+   - Each tweet must be under 280 characters (including spaces)
+   - Transform the LinkedIn paragraphs into more concise, punchy statements
+   - Maintain the core message and flow from the LinkedIn post
+   - The final tweet should contain only the canonical URL
+4. Format each tweet with a label:
+   ```
+   TWEET 1:
+   [content]
+
+   TWEET 2:
+   [content]
+
+   TWEET 3:
+   [content]
+
+   [canonical URL]
+   ```
+5. Style Guidelines:
+   - Use the same plainspoken style as the LinkedIn post (Ethan Mollick style)
+   - Be direct and conversational
+   - No hashtags
+   - No emojis
+   - Each tweet should stand alone but flow naturally in sequence
+   - Use em dashes (—) not hyphens for punctuation
+6. Example Thread Structure:
+
+```
+TWEET 1:
+Simon Willison's latest on autonomous coding agents hit a nerve. I've been using Codex Cloud and Claude Code On The Web, and the shift from synchronous pairing to fire-and-forget is bigger than expected.
+
+TWEET 2:
+The key insight: these tools give us safe YOLO mode. In regular Claude Code, YOLO mode is dangerous—the agent could nuke your system drive, wipe your GitHub repo, bring down your AWS cloud. So we work in non-YOLO mode: constant supervision, endless permission-granting.
+
+TWEET 3:
+Autonomous coding agents solve this by running in sandboxed cloud environments with isolated code spaces. Fire off a task, go into a meeting, come back to a PR waiting for review. Nothing touches your real code until you explicitly merge it.
+
+TWEET 4:
+Willison uses these for code research projects—quick experiments like "could Redis work for this?" or "can I get this C extension working in WebAssembly?" The agents churn through the research and report back with working code or clear failures.
+
+TWEET 5:
+The human work shifts from constant supervision to writing clear specs. Nothing stops you from having 10 or 20 agents working in parallel except your ability to write 10 or 20 good, clear specifications.
+
+https://cto4.ai/p/autonomous-coding-agents-fire-and-forget
+```
+
+7. Character Count Checking:
+   - Verify each tweet is under 280 characters
+   - If a tweet is too long, split it or rephrase more concisely
+   - URLs are automatically shortened by Twitter but count as ~23 characters
+8. Saving:
+   - Ensure the destination directory exists: `socialposts/twitter/`
+   - Save using Unix line endings (LF)
+   - Use blank lines between tweets for readability
+
+Note: The thread should feel like a natural condensation of the LinkedIn post, not a completely new take. The LinkedIn post is the primary source material—adapt it for Twitter's format and character constraints while maintaining the key insights and flow.
