@@ -61,7 +61,7 @@ const { title, Content, description, className = '', allowFullscreen = false } =
   </header>
 
   <div
-    class="mdcontent-body prose prose-lg dark:prose-invert max-w-none
+    class="mdcontent-body overflow-y-auto prose prose-lg dark:prose-invert max-w-none
               prose-headings:text-gray-900 dark:prose-headings:text-white
               prose-p:text-gray-700 dark:prose-p:text-gray-300
               prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
@@ -79,22 +79,89 @@ const { title, Content, description, className = '', allowFullscreen = false } =
 </section>
 
 <style>
+  /* Normal mode: responsive viewport-based max-height with internal scrolling */
+  .mdcontent-body {
+    /* Mobile: smaller viewport, leave room for header/footer */
+    max-height: 60vh;
+  }
+
+  /* Tablet and larger: more vertical space available */
+  @media (min-width: 768px) {
+    .mdcontent-body {
+      max-height: 70vh;
+    }
+  }
+
+  /* Desktop: even more space */
+  @media (min-width: 1024px) {
+    .mdcontent-body {
+      max-height: 75vh;
+    }
+  }
+
+  /* Large desktop: maximize reading area */
+  @media (min-width: 1280px) {
+    .mdcontent-body {
+      max-height: 80vh;
+    }
+  }
+
+  /* Smooth scrolling for better UX */
+  .mdcontent-body {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar styling for webkit browsers */
+  .mdcontent-body::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .mdcontent-body::-webkit-scrollbar-track {
+    background: rgb(243, 244, 246); /* gray-100 */
+    border-radius: 4px;
+  }
+
+  .mdcontent-body::-webkit-scrollbar-thumb {
+    background: rgb(209, 213, 219); /* gray-300 */
+    border-radius: 4px;
+  }
+
+  .mdcontent-body::-webkit-scrollbar-thumb:hover {
+    background: rgb(156, 163, 175); /* gray-400 */
+  }
+
+  /* Dark mode scrollbar */
+  :global(.dark) .mdcontent-body::-webkit-scrollbar-track {
+    background: rgb(31, 41, 55); /* gray-800 */
+  }
+
+  :global(.dark) .mdcontent-body::-webkit-scrollbar-thumb {
+    background: rgb(75, 85, 99); /* gray-600 */
+  }
+
+  :global(.dark) .mdcontent-body::-webkit-scrollbar-thumb:hover {
+    background: rgb(107, 114, 128); /* gray-500 */
+  }
+
   /* Fullscreen mode styles */
   .mdcontent-container.fullscreen {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    max-width: 100vw;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    width: calc(100vw - 2rem);
+    height: calc(100vh - 2rem);
+    max-width: calc(100vw - 2rem);
     margin: 0;
-    border-radius: 0;
+    border-radius: 8px;
     z-index: 9999;
     overflow-y: auto;
     background: white;
-    padding: 2rem;
+    padding: 0 2rem 2rem 2rem; /* No top padding - header handles it */
+    /* Strong border and shadow for better context */
+    border: 3px solid rgb(59, 130, 246); /* blue-500 */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
   }
 
   .mdcontent-container.fullscreen.dark {
@@ -122,26 +189,31 @@ const { title, Content, description, className = '', allowFullscreen = false } =
     backdrop-filter: blur(4px);
   }
 
-  /* Better scrolling in fullscreen */
+  /* Better scrolling in fullscreen - override normal mode constraints */
   .mdcontent-container.fullscreen .mdcontent-body {
-    max-height: calc(100vh - 200px);
-    padding-top: 1rem;
+    max-height: none; /* Remove viewport-based constraints in fullscreen */
+    overflow-y: visible; /* Don't scroll the body itself in fullscreen */
+    padding-bottom: 2rem; /* Add bottom padding for better spacing */
   }
 
-  /* Make header sticky in fullscreen */
+  /* Make header sticky in fullscreen with proper background */
   .mdcontent-container.fullscreen header {
     position: sticky;
     top: 0;
     background: white;
-    padding: 1rem 0 2rem 0;
-    margin-bottom: 0;
+    padding: 2rem 2rem 1.5rem 2rem; /* Top padding replaces container padding */
+    margin: 0 -2rem 1.5rem -2rem; /* Negative horizontal margin to extend to edges */
     z-index: 10;
-    border-bottom: 1px solid rgb(229, 231, 235); /* gray-200 */
+    border-bottom: 2px solid rgb(229, 231, 235); /* gray-200 - thicker for emphasis */
+    border-radius: 8px 8px 0 0; /* Match container border radius */
+    /* Add shadow when content scrolls behind */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
 
   .mdcontent-container.fullscreen.dark header {
     background: rgb(17, 24, 39); /* gray-900 */
     border-bottom-color: rgb(55, 65, 81); /* gray-700 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 </style>
 

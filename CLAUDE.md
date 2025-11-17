@@ -44,8 +44,8 @@ Preview the production build locally.
 ### Other Commands
 
 ```bash
-npm run check        # Check Astro configuration
-npm run format       # Format code with Prettier
+npm run check           # Run all checks (TypeScript, ESLint, Prettier)
+npm run fix:prettier    # Auto-fix formatting issues with Prettier
 ```
 
 ## Content Structure (Unified - Option 2A Implemented)
