@@ -17,9 +17,11 @@ import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import MDContent from '~/components/ui/MDContent.astro';
 import { Content as SkillsGuide } from './embedded/complete-skills-guide.md';
 
-## Introduction
+## Why Migrate At All?
 
 When I first started exploring Claude Code, I noticed many developers were familiar with using `.cursorrules` files in Cursor IDE to customize AI behavior. Coming from that background, I wondered: what's the equivalent in Claude Code?
+
+[What if you don't need MCP at all](https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/)
 
 The answer is **Skills** - but they're far more powerful than simple instruction files. Skills in Claude Code are:
 
@@ -35,6 +37,7 @@ To help bridge this gap, I asked Claude.ai to create a comprehensive guide expla
   title="Complete Guide to Skills in Claude Code"
   Content={SkillsGuide}
   description="For users familiar with Skills in Claude.ai and Claude Desktop"
+  allowFullscreen={true}
 />
 
 ## Next Steps

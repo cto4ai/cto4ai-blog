@@ -5,25 +5,68 @@ interface Props {
   Content: any; // Pre-imported Content component from markdown
   description?: string;
   className?: string;
+  allowFullscreen?: boolean; // Enable fullscreen toggle
 }
 
-const { title, Content, description, className = '' } = Astro.props;
+const { title, Content, description, className = '', allowFullscreen = false } = Astro.props;
 ---
 
 <section
-  class={`my-8 p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 ${className}`}
+  class={`mdcontent-container my-8 p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 ${className}`}
+  data-fullscreen-enabled={allowFullscreen}
 >
-  <header class="mb-6">
-    <h2
-      class="text-3xl font-bold text-gray-900 dark:text-white mb-3 border-b border-gray-200 dark:border-gray-600 pb-2"
-    >
-      {title}
-    </h2>
-    {description && <p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed">{description}</p>}
+  <header class="mb-6 flex items-start justify-between">
+    <div class="flex-1">
+      <h2
+        class="text-3xl font-bold text-gray-900 dark:text-white mb-3 border-b border-gray-200 dark:border-gray-600 pb-2"
+      >
+        {title}
+      </h2>
+      {description && <p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed">{description}</p>}
+    </div>
+
+    {
+      allowFullscreen && (
+        <button
+          class="mdcontent-fullscreen-toggle ml-4 p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors flex-shrink-0"
+          aria-label="Toggle fullscreen"
+          title="Toggle fullscreen view"
+        >
+          {/* Expand icon (shown when not fullscreen) */}
+          <svg
+            class="expand-icon w-5 h-5 text-gray-700 dark:text-gray-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+            />
+          </svg>
+          {/* Collapse icon (shown when fullscreen) */}
+          <svg
+            class="collapse-icon w-5 h-5 text-gray-700 dark:text-gray-300 hidden"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      )
+    }
   </header>
 
   <div
-    class="prose prose-lg dark:prose-invert max-w-none
+    class="mdcontent-body prose prose-lg dark:prose-invert max-w-none
               prose-headings:text-gray-900 dark:prose-headings:text-white
               prose-p:text-gray-700 dark:prose-p:text-gray-300
               prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
@@ -39,3 +82,157 @@ const { title, Content, description, className = '' } = Astro.props;
     <Content />
   </div>
 </section>
+
+<style>
+  /* Fullscreen mode styles */
+  .mdcontent-container.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    margin: 0;
+    border-radius: 0;
+    z-index: 9999;
+    overflow-y: auto;
+    background: white;
+    padding: 2rem;
+  }
+
+  .mdcontent-container.fullscreen.dark {
+    background: rgb(17, 24, 39); /* gray-900 */
+  }
+
+  /* Show collapse icon when fullscreen */
+  .mdcontent-container.fullscreen .expand-icon {
+    display: none;
+  }
+
+  .mdcontent-container.fullscreen .collapse-icon {
+    display: block;
+  }
+
+  /* Backdrop when fullscreen */
+  .mdcontent-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Better scrolling in fullscreen */
+  .mdcontent-container.fullscreen .mdcontent-body {
+    max-height: calc(100vh - 200px);
+    padding-top: 1rem;
+  }
+
+  /* Make header sticky in fullscreen */
+  .mdcontent-container.fullscreen header {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 1rem 0 2rem 0;
+    margin-bottom: 0;
+    z-index: 10;
+    border-bottom: 1px solid rgb(229, 231, 235); /* gray-200 */
+  }
+
+  .mdcontent-container.fullscreen.dark header {
+    background: rgb(17, 24, 39); /* gray-900 */
+    border-bottom-color: rgb(55, 65, 81); /* gray-700 */
+  }
+</style>
+
+<script is:inline>
+  // Fullscreen toggle functionality
+  function initMDContentFullscreen() {
+    console.log('[MDContent] Initializing fullscreen functionality');
+    const containers = document.querySelectorAll('[data-fullscreen-enabled="true"]');
+    console.log('[MDContent] Found containers:', containers.length);
+
+    containers.forEach((container) => {
+      const button = container.querySelector('.mdcontent-fullscreen-toggle');
+      console.log('[MDContent] Button found:', !!button);
+      if (!button) return;
+
+      // Prevent double initialization
+      if (button.dataset.initialized === 'true') {
+        console.log('[MDContent] Already initialized, skipping');
+        return;
+      }
+      button.dataset.initialized = 'true';
+
+      let backdrop = null;
+
+      const toggleFullscreen = () => {
+        console.log('[MDContent] Toggle fullscreen clicked');
+        const isFullscreen = container.classList.contains('fullscreen');
+        console.log('[MDContent] Current fullscreen state:', isFullscreen);
+
+        if (isFullscreen) {
+          // Exit fullscreen
+          container.classList.remove('fullscreen');
+          container.classList.remove('dark');
+          if (backdrop) {
+            backdrop.remove();
+            backdrop = null;
+          }
+          document.body.style.overflow = '';
+        } else {
+          // Enter fullscreen
+          container.classList.add('fullscreen');
+
+          // Match dark mode class
+          if (document.documentElement.classList.contains('dark')) {
+            container.classList.add('dark');
+          }
+
+          // Create backdrop (insert before container in DOM)
+          backdrop = document.createElement('div');
+          backdrop.className = 'mdcontent-backdrop';
+          backdrop.addEventListener('click', toggleFullscreen);
+
+          // Insert backdrop before the container
+          if (container.parentNode) {
+            container.parentNode.insertBefore(backdrop, container);
+          }
+
+          // Prevent body scroll
+          document.body.style.overflow = 'hidden';
+        }
+      };
+
+      // Button click handler
+      button.addEventListener('click', (e) => {
+        console.log('[MDContent] Button clicked!');
+        e.preventDefault();
+        e.stopPropagation();
+        toggleFullscreen();
+      });
+
+      // ESC key handler
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && container.classList.contains('fullscreen')) {
+          toggleFullscreen();
+        }
+      });
+    });
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMDContentFullscreen);
+  } else {
+    initMDContentFullscreen();
+  }
+
+  // Reinitialize on Astro page transitions
+  document.addEventListener('astro:page-load', initMDContentFullscreen);
+</script>
