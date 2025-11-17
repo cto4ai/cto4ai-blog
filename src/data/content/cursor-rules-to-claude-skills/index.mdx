@@ -16,6 +16,7 @@ import ImageGallery from '~/components/ui/ImageGallery.astro';
 import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import MDContent from '~/components/ui/MDContent.astro';
 import { Content as SkillsGuide } from './embedded/complete-skills-guide.md';
+import { skillCreationConversation } from './transcripts/skill-creation-conversation';
 
 ## A Weird Starting Place
 
@@ -39,11 +40,13 @@ This automation, until yesterday, was done using Cursor Rules.[^1]
 - The most painful aspect of my work with Claude across all platforms is context exhaustion and its painful consequence: periodic model brain death in Claude Code, and in the case of Claude.ai and Claude Desktop, just plain quitting: "Dude, you gotta start all over again, dude, sorry. I knew that Skills were tuned to conserve context and help reduce the frequency of context exhaustion.
 - I find Claude Code, the agent, to generally be a smarter, better co-worker than Cursor, the agent, even when model is nominally the same (Claude Sonnet 4.5 currently). I figured, if I cut over my writing automations to Skills in Claude Code, I'd have a better writing companion.
 
-## Everything You Need to Know About Skills in Claude Code
+## Step 1: Migrating a Cursor Rule to a Claude Skill
 
-The first think I
+I had a long, and sometimes stern, conversation with Claude Code, to migrate my first writing-automation Cursor Rule to become a Claude Skill. Because I was familiar with Skills in Claude.ai, I knew that Anthropic had a very nice skill called skill-creator, and I asked Claude Code to install that skill and use it in the work of migrating the Cursor Rule over. I had to insist!
 
-One of AI's sweet spots is "help me understand X in the context of Y." In my case, X was Claude Skills and Y was Claude Code. I had a long, and sometimes stern, conversation with Claude, to help it help me to come up to speed
+<ChatTranscript theme="adium" maxHeight="600px" transcript={skillCreationConversation} />
+
+The conversation above shows the iterative process of:
 
 OK, I want to do some proof of concept work converting Cursor Rules into Claude Skills.
 
@@ -80,6 +83,14 @@ I am issuing this command to Cursor agent
 Use the @astro-mdx-content-authoring.mdc rule to scaffold a new post titled "Evaluating Claude Skills as an alternative to Cursor Rules"
 
 OK, done, here is he result. Please compare -- don't make any changes to our Skill yet, just analyze how we did
+
+## Step 2: Getting Well Informed Enough to Write About It
+
+Everything You Need to Know About Skills in Claude Code
+
+The first think I
+
+One of AI's sweet spots is "help me understand X in the context of Y." In my case, X was Claude Skills and Y was Claude Code.
 
 [What if you don't need MCP at all](https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/)
 
