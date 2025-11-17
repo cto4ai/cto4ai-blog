@@ -8,15 +8,21 @@
 
 **Causes**:
 
-- Missing typical format markers (User/Assistant, Human/Assistant)
+- Missing typical format markers (User/Assistant, Human/Assistant, emoji markers)
 - Unusual export format from AI tool
 - File encoding issues
 
 **Solutions**:
 
-- Check for standard markers: `User:`, `Assistant:`, `Human:`, `ChatGPT:`
+- Check for standard markers:
+  - Claude Code: `/export` command, `⏺` bullet, "Welcome to Claude Code"
+  - Cursor: "from Cursor", export metadata
+  - Claude.ai (extractor): `# Claude Conversation Log`, `## 👤 User`, `## 🤖 Claude`
+  - Claude.ai (legacy): `Human:`, `Assistant:`
+  - ChatGPT: `**User:**`, `**Assistant:**`, `**ChatGPT:**`
 - Verify file is plain text (not binary or corrupted)
 - Try opening file in text editor to inspect format
+- Use `--format` flag to manually specify format if auto-detection fails
 - If format is non-standard, manually add markers before conversion
 
 ### Syntax Errors in TypeScript File

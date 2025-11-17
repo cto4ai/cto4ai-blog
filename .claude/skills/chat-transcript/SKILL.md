@@ -1,6 +1,6 @@
 ---
 name: chat-transcript
-description: Convert AI chat transcripts from various sources (Claude Code, Cursor, Claude.ai, ChatGPT) to TypeScript and embed them in cto4.ai blog posts using the ChatTranscript component. Use when adding AI conversation transcripts to blog posts or when user has exported chat sessions to include in content.
+description: Convert AI chat transcripts from various sources (Claude Code, Cursor, Claude.ai via claude-conversation-extractor, Claude.ai legacy format, ChatGPT) to TypeScript and embed them in cto4.ai blog posts using the ChatTranscript component. Use when adding AI conversation transcripts to blog posts or when user has exported chat sessions to include in content.
 ---
 
 # Chat Transcript Integration
@@ -27,7 +27,8 @@ Examine the transcript file to determine format:
 
 - **Claude Code**: Contains `/export` command output or "from Claude Code"
 - **Cursor**: Contains "from Cursor" or Cursor export markers
-- **Claude.ai**: Has `Human:` and `Assistant:` format
+- **Claude.ai (claude-conversation-extractor)**: Has `# Claude Conversation Log` header with `## 👤 User` and `## 🤖 Claude` markers
+- **Claude.ai (legacy)**: Has `Human:` and `Assistant:` format
 - **ChatGPT**: Has `User:` and `ChatGPT:` or `Assistant:` format
 
 ### Step 2: Create Directory Structure
@@ -87,11 +88,14 @@ For common issues with converter or component display, consult `references/troub
 
 ## Resources
 
-### Project Scripts
+### scripts/
 
-This skill references an existing project script (not bundled with skill):
+This skill bundles a Python conversion script:
 
-- `scripts/convert-chat-transcript.py` - Converts raw transcripts to TypeScript format with auto-detection
+- `convert-chat-transcript.py` - Converts raw transcripts to TypeScript format with auto-detection
+  - Supports Claude Code, Cursor, Claude.ai (both formats), and ChatGPT
+  - Auto-detects format or allows manual override with `--format` flag
+  - Handles backtick escaping for TypeScript compatibility
 
 ### references/
 
