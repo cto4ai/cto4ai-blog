@@ -21,6 +21,7 @@ Also: Anthropic has created a Skill for authoring Skills. It's automatically ins
 **Claude Code:** You're right, I jumped ahead. Let me explain Claude Skills in Claude Code:
 
 **Storage locations:**
+
 - **Personal/global**: `~/.claude/skills/skill-name/`
 - **Project-specific**: `.claude/skills/skill-name/`
 - **Plugin-bundled**: Installed via plugin marketplace
@@ -28,6 +29,7 @@ Also: Anthropic has created a Skill for authoring Skills. It's automatically ins
 **Structure:** Each skill is a directory containing `SKILL.md` with optional bundled resources (scripts/, references/, assets/).
 
 **Progressive disclosure:** Skills load in three levels:
+
 1. Metadata (name + description) - always in context
 2. SKILL.md body - when skill triggers
 3. Bundled resources - loaded as needed
@@ -67,6 +69,7 @@ Use the astro-scaffold skill to scaffold a new post titled "Migrating from Curso
 **Claude Code:** Exactly. The skill description will trigger on phrases like "scaffold a new post" or you can explicitly invoke it with "Use the astro-scaffold skill..."
 
 I've created the skill at `.claude/skills/astro-scaffold/` with:
+
 - SKILL.md (main workflow)
 - references/components-reference.md (SingleImage, ImageGallery, ChatTranscript, MDContent)
 - references/project-context.md (cto4.ai-specific patterns)
@@ -84,6 +87,7 @@ I've created the skill at `.claude/skills/astro-scaffold/` with:
 5. **Generic references**: Put general Astro knowledge instead of cto4.ai-specific patterns
 
 **What needs fixing:**
+
 - Rewrite SKILL.md to be lean (~400 words), focused on workflow
 - Remove all duplication between SKILL.md and references
 - Focus references on non-obvious cto4.ai-specific patterns only
@@ -101,6 +105,7 @@ Let me rewrite it properly...
 [Creates directory structure, frontmatter with all required fields, standard component imports]
 
 Created:
+
 - `/src/data/content/cursor-rules-to-claude-skills/index.mdx` with proper frontmatter
 - `/src/data/content/cursor-rules-to-claude-skills/transcripts/` directory
 - `/src/data/content/cursor-rules-to-claude-skills/embedded/` directory

@@ -1,5 +1,5 @@
-export const skillCreationConversation = `# Cursor Conversation
-_Cursor session from 11/16/2025_
+export const skillCreationConversation = `# Claude Code Conversation
+_Claude Code session from 11/16/2025_
 
 ---
 
