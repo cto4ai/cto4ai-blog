@@ -19,9 +19,25 @@ import { Content as SkillsGuide } from './embedded/complete-skills-guide.md';
 
 ## A Weird Starting Place
 
-I actually am deeply familiar with Claude Skills as implemented for Claude.ai and Claude Desktop.
+I am deeply familiar with Claude Skills---_as implemented for Claude.ai and Claude Desktop_. This experience developed through a project with the executive team of one of my clients, where they are using Claude to automate time-consuming workflows. While I use Claude Code on a daily basis under understand that Skills worked there too, I hadn't gotten around to actually tried them yet. (Now that I know what I was missing, I wish I had started sooner.)
+
+I also have a rather weird toolkit and workflow. I cut my AI Coding teeth on Cursor; have been a heavy user of Claude Code since soon after it launched; am beginning to do significant work using Codex; and use the cloud versions of both Claude Code and Codex as well. And I use them all at once, hosted inside Cursor! Why am I doing this, you might reasonably ask?
+
+1. I am perpetually in "push the AI boundaries mode" especially in the AI coding space, as I discussed in my post [bla blah](#) recently.
+2. On average, I spend as many hours each week writing and publishing content (here at cto4.ai, using the Astro framework) as I do coding.
+3. My "writing" is 66% typing words, and 33% the light-tech work of building and applying Astro components. This post is a case in point; see the Complete Guide to Skills in Claude Code below, a great resource that resulted from a very long conversation in Claude Desktop to fill in my Skills in Claude Code knowledge gap. This is Claude Markdown Artifact, repurposed to publish here using an Astro component called MDContent.
+4. I write in Cursor, using AI to automate the time-consuming bits and things I don't want to memorize.
+
+This automation, until yesterday, was done using Cursor Rules.[^1]
+
+[^1]: Not the old .cursorrules version, but rather the newer flavor where rules live under .cursor/rules/[rule.mdc]
 
 ## Why Migrate At All?
+
+- It's not broke, but I'm fixing it anyway. See item (1) above.
+- I had a strong suspicion that I was missing something by not using Skills in Claude Code. Little did I know.
+- The most painful aspect of my work with Claude across all platforms is context exhaustion and its painful consequence: periodic model brain death in Claude Code, and in the case of Claude.ai and Claude Desktop, just plain quitting: "Dude, you gotta start all over again, dude, sorry. I knew that Skills were tuned to conserve context and help reduce the frequency of context exhaustion.
+- I find Claude Code, the agent, to generally be a smarter, better co-worker than Cursor, the agent, even when the model underlying the Cursor is the nminally the same (Claude Sonnet 4.5 currently).
 
 When I first started exploring Claude Code, I noticed many developers were familiar with using `.cursorrules` files in Cursor IDE to customize AI behavior. Coming from that background, I wondered: what's the equivalent in Claude Code?
 
