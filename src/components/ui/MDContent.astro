@@ -219,16 +219,15 @@ const { title, Content, description, className = '', allowFullscreen = false } =
 
 <script is:inline>
   // Global ESC key handler (singleton pattern to prevent listener bloat)
-  let globalEscHandler = null;
-
+  // Use window namespace to avoid redeclaration errors when multiple MDContent instances exist
   function setupGlobalEscHandler() {
     // Remove old handler if it exists
-    if (globalEscHandler) {
-      document.removeEventListener('keydown', globalEscHandler);
+    if (window.__mdContentEscHandler) {
+      document.removeEventListener('keydown', window.__mdContentEscHandler);
     }
 
     // Create new handler
-    globalEscHandler = (e) => {
+    window.__mdContentEscHandler = (e) => {
       if (e.key === 'Escape') {
         // Find any fullscreen containers and exit them
         const fullscreenContainers = document.querySelectorAll('.mdcontent-container.fullscreen');
@@ -242,7 +241,7 @@ const { title, Content, description, className = '', allowFullscreen = false } =
     };
 
     // Add new handler
-    document.addEventListener('keydown', globalEscHandler);
+    document.addEventListener('keydown', window.__mdContentEscHandler);
   }
 
   // Fullscreen toggle functionality
