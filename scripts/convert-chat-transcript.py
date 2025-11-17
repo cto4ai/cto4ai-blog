@@ -167,9 +167,10 @@ class CursorConverter(TranscriptConverter):
                 in_code_block = not in_code_block
             
             # Escape backticks for TypeScript template literal
+            # Must escape ALL backticks, even inside code blocks, for template literal syntax
             if '```' in line:
                 line = line.replace('```', '\\`\\`\\`')
-            elif '`' in line and not in_code_block:
+            elif '`' in line:
                 line = line.replace('`', '\\`')
             
             output.append(line + '\n')
@@ -261,9 +262,10 @@ class ClaudeConversationExtractorConverter(TranscriptConverter):
                 continue
 
             # Escape backticks for TypeScript template literal
+            # Must escape ALL backticks, even inside code blocks, for template literal syntax
             if '```' in line:
                 line = line.replace('```', '\\`\\`\\`')
-            elif '`' in line and not in_code_block:
+            elif '`' in line:
                 line = line.replace('`', '\\`')
 
             output.append(line + '\n')

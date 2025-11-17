@@ -17,6 +17,7 @@ import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import MDContent from '~/components/ui/MDContent.astro';
 import { Content as SkillsGuide } from './embedded/complete-skills-guide.md';
 import { skillCreationConversation } from './transcripts/skill-creation-conversation';
+import { cursorRulesPoc } from './transcripts/cursor-rules-poc';
 
 ## A Weird Starting Place
 
@@ -78,6 +79,13 @@ To help bridge this gap, I asked Claude.ai to create a comprehensive guide expla
   description="For users familiar with Skills in Claude.ai and Claude Desktop"
   allowFullscreen={true}
 />
+
+## Testing the Chat Transcript Skill
+
+Here's a test of the new chat-transcript skill, showing the actual conversation where we developed the proof of concept:
+
+<ChatTranscript theme="adium" maxHeight="600px" transcript={cursorRulesPoc} />
+
 The conversation above shows the iterative process of:
 
 OK, I want to do some proof of concept work converting Cursor Rules into Claude Skills.
