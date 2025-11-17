@@ -218,11 +218,41 @@ const { title, Content, description, className = '', allowFullscreen = false } =
 </style>
 
 <script is:inline>
+  // Global ESC key handler (singleton pattern to prevent listener bloat)
+  let globalEscHandler = null;
+
+  function setupGlobalEscHandler() {
+    // Remove old handler if it exists
+    if (globalEscHandler) {
+      document.removeEventListener('keydown', globalEscHandler);
+    }
+
+    // Create new handler
+    globalEscHandler = (e) => {
+      if (e.key === 'Escape') {
+        // Find any fullscreen containers and exit them
+        const fullscreenContainers = document.querySelectorAll('.mdcontent-container.fullscreen');
+        fullscreenContainers.forEach((container) => {
+          const button = container.querySelector('.mdcontent-fullscreen-toggle');
+          if (button) {
+            button.click(); // Trigger the toggle to ensure cleanup happens properly
+          }
+        });
+      }
+    };
+
+    // Add new handler
+    document.addEventListener('keydown', globalEscHandler);
+  }
+
   // Fullscreen toggle functionality
   function initMDContentFullscreen() {
     console.log('[MDContent] Initializing fullscreen functionality');
     const containers = document.querySelectorAll('[data-fullscreen-enabled="true"]');
     console.log('[MDContent] Found containers:', containers.length);
+
+    // Setup global ESC handler once
+    setupGlobalEscHandler();
 
     containers.forEach((container) => {
       const button = container.querySelector('.mdcontent-fullscreen-toggle');
@@ -282,13 +312,6 @@ const { title, Content, description, className = '', allowFullscreen = false } =
         e.preventDefault();
         e.stopPropagation();
         toggleFullscreen();
-      });
-
-      // ESC key handler
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && container.classList.contains('fullscreen')) {
-          toggleFullscreen();
-        }
       });
     });
   }
