@@ -110,60 +110,49 @@ function parseCursorExport(text: string): ChatMessage[] {
   const messages: ChatMessage[] = [];
   const { exportInfo, exportDate } = extractExportInfo(text);
 
-  // Remove the header/title if present
-  let cleanedText = text;
-  cleanedText = cleanedText.replace(/^#.*?\n/, ''); // Remove title
-  cleanedText = cleanedText.replace(/_Exported on.*?_\n?/, ''); // Remove export info
+  // Try the line-by-line approach for formats like **User:** without --- separators
+  const lines = text.split('\n');
+  let currentMessage: Partial<ChatMessage> | null = null;
+  let contentBuffer: string[] = [];
 
-  // Better approach: manually find message boundaries
-  // Look for patterns like "\n---\n\n**User**" or "\n---\n\n**Cursor**"
-  const messagePattern = /\n---\n\n\*\*(User|Cursor|Assistant)\*\*/g;
-  const boundaries: number[] = [0]; // Start of the text
+  for (const line of lines) {
+    const trimmedLine = line.trim();
 
-  let match;
-  while ((match = messagePattern.exec(cleanedText)) !== null) {
-    boundaries.push(match.index + 5); // +5 to skip past "\n---\n"
-  }
-  boundaries.push(cleanedText.length); // End of the text
-
-  // Extract messages between boundaries
-  for (let i = 0; i < boundaries.length - 1; i++) {
-    const section = cleanedText.substring(boundaries[i], boundaries[i + 1]);
-    const trimmedSection = section.trim();
-
-    if (!trimmedSection) continue;
-
-    // Check if this section starts with **User** or **Cursor**/**Assistant**
-    if (trimmedSection.startsWith('**User**')) {
-      let content = trimmedSection.replace(/^\*\*User\*\*\n?/, '').trim();
-      // Remove trailing --- separator and excessive blank lines
-      content = content
-        .replace(/\n?---\s*$/, '')
-        .replace(/\n{3,}/g, '\n\n')
-        .trim();
-      if (content) {
-        messages.push({
-          role: 'user',
-          content,
-          metadata: messages.length === 0 ? { source: 'cursor', exportDate, exportInfo } : { source: 'cursor' },
-        });
+    // Handle **User:** format (bold wrapping "User:")
+    if (trimmedLine.match(/^\*\*User:\*\*/i) || trimmedLine.match(/^User:/i)) {
+      if (currentMessage && contentBuffer.length > 0) {
+        currentMessage.content = contentBuffer.join('\n').trim();
+        messages.push(currentMessage as ChatMessage);
       }
-    } else if (trimmedSection.startsWith('**Cursor**') || trimmedSection.startsWith('**Assistant**')) {
-      // For assistant messages, capture EVERYTHING after the marker
-      let content = trimmedSection.replace(/^\*\*(Cursor|Assistant)\*\*\n?/, '').trim();
-      // Remove trailing --- separator and excessive blank lines
-      content = content
-        .replace(/\n?---\s*$/, '')
-        .replace(/\n{3,}/g, '\n\n')
-        .trim();
-      if (content) {
-        messages.push({
-          role: 'assistant',
-          content,
-          metadata: { source: 'cursor' },
-        });
+      currentMessage = {
+        role: 'user',
+        metadata: messages.length === 0 ? { source: 'cursor', exportDate, exportInfo } : { source: 'cursor' },
+      };
+      const content = trimmedLine.replace(/^\*\*User:\*\*\s*/i, '').replace(/^User:\s*/i, '');
+      contentBuffer = content ? [content] : [];
+    } else if (
+      trimmedLine.match(/^\*\*(Cursor|Claude Code|Assistant):\*\*/i) ||
+      trimmedLine.match(/^(Cursor|Assistant):/i)
+    ) {
+      if (currentMessage && contentBuffer.length > 0) {
+        currentMessage.content = contentBuffer.join('\n').trim();
+        messages.push(currentMessage as ChatMessage);
       }
+      currentMessage = { role: 'assistant', metadata: { source: 'cursor' } };
+      const content = trimmedLine
+        .replace(/^\*\*(Cursor|Claude Code|Assistant):\*\*\s*/i, '')
+        .replace(/^(Cursor|Assistant):\s*/i, '');
+      contentBuffer = content ? [content] : [];
+    } else if (trimmedLine && currentMessage && !trimmedLine.startsWith('#') && !trimmedLine.match(/^_.*_$/)) {
+      // Skip header lines (starting with # or wrapped in _)
+      contentBuffer.push(trimmedLine);
     }
+  }
+
+  // Add the last message
+  if (currentMessage && contentBuffer.length > 0) {
+    currentMessage.content = contentBuffer.join('\n').trim();
+    messages.push(currentMessage as ChatMessage);
   }
 
   return messages;
@@ -411,21 +400,33 @@ function parseGeneric(text: string): ChatMessage[] {
   for (const line of lines) {
     const trimmedLine = line.trim();
 
-    // Check for role indicators
-    if (trimmedLine.match(/^(User|Human|You):/i)) {
+    // Check for role indicators (with or without bold markdown **)
+    // Handle formats like **User:** (bold wrapping "User:") and plain User:
+    if (trimmedLine.match(/^\*\*(User|Human|You):\*\*/i) || trimmedLine.match(/^(User|Human|You):/i)) {
       if (currentMessage && contentBuffer.length > 0) {
         currentMessage.content = contentBuffer.join('\n').trim();
         messages.push(currentMessage as ChatMessage);
       }
       currentMessage = { role: 'user', metadata: messages.length === 0 ? { source: 'unknown' } : undefined };
-      contentBuffer = [trimmedLine.replace(/^[^:]+:\s*/, '')];
-    } else if (trimmedLine.match(/^(Assistant|AI|Claude|ChatGPT|Bot):/i)) {
+      // Remove the role indicator: match **User:** or User:
+      const content = trimmedLine
+        .replace(/^\*\*(User|Human|You):\*\*\s*/i, '')
+        .replace(/^(User|Human|You):\s*/i, '');
+      contentBuffer = content ? [content] : [];
+    } else if (
+      trimmedLine.match(/^\*\*(Assistant|AI|Claude|ChatGPT|Bot|Claude Code):\*\*/i) ||
+      trimmedLine.match(/^(Assistant|AI|Claude|ChatGPT|Bot):/i)
+    ) {
       if (currentMessage && contentBuffer.length > 0) {
         currentMessage.content = contentBuffer.join('\n').trim();
         messages.push(currentMessage as ChatMessage);
       }
       currentMessage = { role: 'assistant', metadata: { source: 'unknown' } };
-      contentBuffer = [trimmedLine.replace(/^[^:]+:\s*/, '')];
+      // Remove the role indicator: match **Claude Code:** or Assistant:
+      const content = trimmedLine
+        .replace(/^\*\*(Assistant|AI|Claude|ChatGPT|Bot|Claude Code):\*\*/i, '')
+        .replace(/^(Assistant|AI|Claude|ChatGPT|Bot):\s*/i, '');
+      contentBuffer = content ? [content] : [];
     } else if (trimmedLine && currentMessage) {
       contentBuffer.push(trimmedLine);
     }
