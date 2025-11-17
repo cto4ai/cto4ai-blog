@@ -26,20 +26,60 @@ I also have a rather weird toolkit and workflow. I cut my AI Coding teeth on Cur
 1. I am perpetually in "push the AI boundaries mode" especially in the AI coding space, as I discussed in my post [bla blah](#) recently.
 2. On average, I spend as many hours each week writing and publishing content (here at cto4.ai, using the Astro framework) as I do coding.
 3. My "writing" is 66% typing words, and 33% the light-tech work of building and applying Astro components. This post is a case in point; see the Complete Guide to Skills in Claude Code below, a great resource that resulted from a very long conversation in Claude Desktop to fill in my Skills in Claude Code knowledge gap. This is Claude Markdown Artifact, repurposed to publish here using an Astro component called MDContent.
-4. I write in Cursor, using AI to automate the time-consuming bits and things I don't want to memorize.
+4. I write in Cursor, using AI to automate the time-consuming bits and things I don't want to memorize. (I don't use AI to write for me; I do use it sometimes to summarize into a smaller format such as social posts, and sometime publish the model's research outputs as with The Complete Guide to Skills in Claude Code below.)
 
 This automation, until yesterday, was done using Cursor Rules.[^1]
 
 [^1]: Not the old .cursorrules version, but rather the newer flavor where rules live under .cursor/rules/[rule.mdc]
 
-## Why Migrate At All?
+## Why Migrate Cursor Rules => Claude Skills?
 
 - It's not broke, but I'm fixing it anyway. See item (1) above.
 - I had a strong suspicion that I was missing something by not using Skills in Claude Code. Little did I know.
 - The most painful aspect of my work with Claude across all platforms is context exhaustion and its painful consequence: periodic model brain death in Claude Code, and in the case of Claude.ai and Claude Desktop, just plain quitting: "Dude, you gotta start all over again, dude, sorry. I knew that Skills were tuned to conserve context and help reduce the frequency of context exhaustion.
-- I find Claude Code, the agent, to generally be a smarter, better co-worker than Cursor, the agent, even when the model underlying the Cursor is the nminally the same (Claude Sonnet 4.5 currently).
+- I find Claude Code, the agent, to generally be a smarter, better co-worker than Cursor, the agent, even when model is nominally the same (Claude Sonnet 4.5 currently). I figured, if I cut over my writing automations to Skills in Claude Code, I'd have a better writing companion.
+
+## Everything You Need to Know About Skills in Claude Code
+
+The first think I
+
+One of AI's sweet spots is "help me understand X in the context of Y." In my case, X was Claude Skills and Y was Claude Code. I had a long, and sometimes stern, conversation with Claude, to help it help me to come up to speed
+
+OK, I want to do some proof of concept work converting Cursor Rules into Claude Skills.
+
+You are out of date on how Cursor Rules work, please web search to come up to speed. Hint, see .cursor/rules
+
+nope.
+
+This is much more than a simple 1:1 conversion. Let's work through it.
+
+First of all, I am already working with Claude Skills in Claude.ai and Claude Desktop and fully understand them in that context. What I am unfamiliar with is the equivalent setup for Claude Code. Where are they stored? Can Skills be global as well as project-specific, etc.
+
+Also: Anthropic has created a Skill for authoring Skills. It's automatically installed in Claude.ai and Claude Desktop but you will definitely want to use that skill here.
+
+Please follow my instructions. "Let's find and install the Claude skill for creating Skills as a first step"
+
+I literally want that skill installed, first, as a global skill
+
+ok, so using the skill-creator skill, let's create a new skill that enables me to scaffold new posts on the cto4.ai blog which is astro based. The cursor skill for this is .cursor/rules/astro-mdx-content-authoring.mdc
+
+First, some background: I write the blog posts, the AI does not. The only writing the AI does is, for example, creating draft social posts based on hand-written content. The AI does assist with constructng posts as they often have some fiddly technical bits such as the AI chat transcript component. So "scaffolding" is much more accurate than "authoring" in that sense. 1- both creating and authoring; 2a- generally the agent is able to accomplish the task quickly without needing a script; 2b- I am open to structuring files in the Skill apprpriately e.g. to support progressive disclosure. But there's no need for "authoring guide" in the sense of the writing itself, as the AI doesn't do that. 2c - see 2b; the agent does need to set up the templated content but the Cursor rule does this very effectively without a separate template file. It's just front matter and some imports. 3- In cursor I specifically invoke the rule by using @ to add it as context.
+
+I think we'll want to specifically invoke the skill, along the lines of:
+Use the astro-scaffold skill to scaffold a new post titled "Migrating from Cursor Rules to Claude Skills"
+
+I don't believe you followed the guidelines in the skill-creator skill. Please review those guidelines and critically review what you created in the astro-scaffold skill, identify what needs to be corrected.
+
+Use the astro-scaffold skill to scaffold a new post titled "Migrating from Cursor Rules to Claude Skills"
 
 When I first started exploring Claude Code, I noticed many developers were familiar with using `.cursorrules` files in Cursor IDE to customize AI behavior. Coming from that background, I wondered: what's the equivalent in Claude Code?
+
+OK, I am testing this in Cursor now to compare.
+
+I am issuing this command to Cursor agent
+Use the @astro-mdx-content-authoring.mdc rule to scaffold a new post titled "Evaluating Claude Skills as an alternative to Cursor Rules"
+
+OK, done, here is he result. Please compare -- don't make any changes to our Skill yet, just analyze how we did
 
 [What if you don't need MCP at all](https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/)
 
