@@ -71,7 +71,6 @@ npm run build  # Full production build
    ```
 
    Runs:
-
    - Astro builds all pages
    - Generates static HTML/CSS/JS
    - Optimizes images
