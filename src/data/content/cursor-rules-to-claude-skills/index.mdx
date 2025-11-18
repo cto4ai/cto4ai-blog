@@ -78,11 +78,7 @@ chat sessions to include in content.
 
 ## Step 2: Getting Well Informed Enough to Write About It
 
-Everything You Need to Know About Skills in Claude Code
-
-The first think I
-
-One of AI's sweet spots is "help me understand X in the context of Y." In my case, X was Claude Skills and Y was Claude Code.
+One of AI's sweet spots is "help me understand X in the context of Y." In my case, X was Claude Skills and Y was Claude Code. Claude Desktop and I had a long, deep conversation about this. My part was asking good questions; Claude's part, giving me answers. I realize what I was getting from Claude was worth saving, and together crafted **_The Compleat Guide to Skills in Claude Code_**.
 
 [What if you don't need MCP at all](https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/)
 
@@ -96,54 +92,7 @@ The answer is **Skills** - but they're far more powerful than simple instruction
 
 To help bridge this gap, I asked Claude.ai to create a comprehensive guide explaining Skills from the perspective of someone already familiar with Claude.ai and Claude Desktop. The result is the complete reference below.
 
-<MDContent
-  title="Complete Guide to Skills in Claude Code"
-  Content={SkillsGuide}
-  description="For users familiar with Skills in Claude.ai and Claude Desktop"
-  allowFullscreen={true}
-/>
-
-## Testing the Chat Transcript Skill
-
-Here's a test of the new chat-transcript skill, showing the actual conversation where we developed the proof of concept:
-
-The conversation above shows the iterative process of:
-
-OK, I want to do some proof of concept work converting Cursor Rules into Claude Skills.
-
-You are out of date on how Cursor Rules work, please web search to come up to speed. Hint, see .cursor/rules
-
-nope.
-
-This is much more than a simple 1:1 conversion. Let's work through it.
-
-First of all, I am already working with Claude Skills in Claude.ai and Claude Desktop and fully understand them in that context. What I am unfamiliar with is the equivalent setup for Claude Code. Where are they stored? Can Skills be global as well as project-specific, etc.
-
-Also: Anthropic has created a Skill for authoring Skills. It's automatically installed in Claude.ai and Claude Desktop but you will definitely want to use that skill here.
-
-Please follow my instructions. "Let's find and install the Claude skill for creating Skills as a first step"
-
-I literally want that skill installed, first, as a global skill
-
-ok, so using the skill-creator skill, let's create a new skill that enables me to scaffold new posts on the cto4.ai blog which is astro based. The cursor skill for this is .cursor/rules/astro-mdx-content-authoring.mdc
-
-First, some background: I write the blog posts, the AI does not. The only writing the AI does is, for example, creating draft social posts based on hand-written content. The AI does assist with constructng posts as they often have some fiddly technical bits such as the AI chat transcript component. So "scaffolding" is much more accurate than "authoring" in that sense. 1- both creating and authoring; 2a- generally the agent is able to accomplish the task quickly without needing a script; 2b- I am open to structuring files in the Skill apprpriately e.g. to support progressive disclosure. But there's no need for "authoring guide" in the sense of the writing itself, as the AI doesn't do that. 2c - see 2b; the agent does need to set up the templated content but the Cursor rule does this very effectively without a separate template file. It's just front matter and some imports. 3- In cursor I specifically invoke the rule by using @ to add it as context.
-
-I think we'll want to specifically invoke the skill, along the lines of:
-Use the astro-scaffold skill to scaffold a new post titled "Migrating from Cursor Rules to Claude Skills"
-
-I don't believe you followed the guidelines in the skill-creator skill. Please review those guidelines and critically review what you created in the astro-scaffold skill, identify what needs to be corrected.
-
-Use the astro-scaffold skill to scaffold a new post titled "Migrating from Cursor Rules to Claude Skills"
-
-When I first started exploring Claude Code, I noticed many developers were familiar with using `.cursorrules` files in Cursor IDE to customize AI behavior. Coming from that background, I wondered: what's the equivalent in Claude Code?
-
-OK, I am testing this in Cursor now to compare.
-
-I am issuing this command to Cursor agent
-Use the @astro-mdx-content-authoring.mdc rule to scaffold a new post titled "Evaluating Claude Skills as an alternative to Cursor Rules"
-
-OK, done, here is he result. Please compare -- don't make any changes to our Skill yet, just analyze how we did
+<MDContent title="The Compleat Guide to Skills in Claude Code" Content={SkillsGuide} allowFullscreen={true} />
 
 ## Next Steps
 

@@ -1,4 +1,4 @@
-# Complete Guide to Skills in Claude Code
+# The Compleat Guide to Skills in Claude Code
 
 **For users familiar with Skills in Claude.ai and Claude Desktop**
 
