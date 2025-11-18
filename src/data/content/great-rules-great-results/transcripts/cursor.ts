@@ -1,5 +1,5 @@
-export const cursorTranscript = `# Scaffold post about Dharmesh podcast episode
-_Exported on 8/28/2025 at 08:25:44 CDT from Cursor (1.5.5)_
+export const cursorTranscript = `# Cursor Conversation
+_Cursor session from 11/17/2025_
 
 ---
 
