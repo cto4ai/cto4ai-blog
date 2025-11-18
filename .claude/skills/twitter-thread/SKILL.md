@@ -65,7 +65,7 @@ This skill should be used when:
 - **Style consistency**: Use same plainspoken tone as LinkedIn post (no emojis, no hashtags)
 - **Natural condensation**: Thread should feel like a natural adaptation of LinkedIn content, not a new take
 - **Tweet independence**: Each tweet should stand alone but flow naturally in sequence
-- **Punctuation**: Use em dashes (—) not hyphens for clarity
+- **Punctuation**: Use regular hyphens (-) for dashes in plain text files to avoid encoding issues
 
 ### Testing Checklist
 

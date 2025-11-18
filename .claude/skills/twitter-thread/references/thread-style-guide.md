@@ -44,7 +44,7 @@ TWEET 3:
 - **Hard limit**: 280 characters per tweet (including spaces)
 - **URL counting**: URLs are automatically shortened by Twitter but count as ~23 characters in your draft
 - **Safety margin**: Aim for 270 characters to be safe
-- **Punctuation**: Em dashes (—), periods, and spaces all count
+- **Punctuation**: All characters including hyphens, periods, and spaces count
 
 ### Character Counting Strategy
 
@@ -120,7 +120,7 @@ https://cto4.ai/p/autonomous-coding-agents-fire-and-forget
 
 ### Punctuation for Twitter
 
-- **Em dashes (—)**: Use for emphasis and breaks (not hyphens)
+- **Hyphens (-)**: Use regular hyphens for dashes (em dashes cause encoding issues in plain text)
 - **Periods**: Complete sentences, natural breaks
 - **Question marks**: Sparingly, only for genuine questions
 - **Ellipses (...)**: Avoid - prefer clean breaks between tweets
