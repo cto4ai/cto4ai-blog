@@ -1,0 +1,13 @@
+I spent Friday night migrating my Cursor Rules to Anthropic Skills in Claude Code, and it kind of blew my mind.
+
+The thing is, I thought I understood Skills from using Claude.ai and Desktop. But Skills in Claude Code are actually way more powerful - they have discoverability through a marketplace, shareability via git, and composability with MCP servers and slash commands.
+
+The migration itself was harder than I expected. Claude Code's first attempt violated most of Anthropic's core principles - brevity, progressive disclosure, etc. I had to insist that it re-read the skill-creator Skill and self-critique. Give it credit though - its self-critique and rework were excellent.
+
+I ended up creating two Skills - one for blog scaffolding, one for embedding AI chat transcripts. Then Claude and I co-authored The Compleat Guide to Skills in Claude Code, leveraging the Skills research I did before writing.
+
+The big insight: Skills are optimized to conserve context. That alone is worth the migration, given how often context exhaustion kills productive sessions.
+
+---
+
+https://cto4.ai/p/cursor-rules-to-claude-skills
