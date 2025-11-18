@@ -6,6 +6,7 @@
 ## Tasks Completed
 
 ### 1. Named Entity Linking
+
 - ✅ Added entity links to cursor-rules-to-claude-skills post:
   - Claude Code → https://claude.com/product/claude-code
   - Skills → https://www.anthropic.com/news/skills
@@ -19,10 +20,12 @@
   - Astro → https://astro.build/
 
 ### 2. Tags and Categories Update
+
 - ✅ Updated tags: `['claude-code', 'claude-skills', 'cursor', 'ai-agents', 'writing-automation', 'astro']`
 - ✅ Updated categories: `['ai-tools', 'productivity', 'writing']`
 
 ### 3. Tailwind Config Fix
+
 - ✅ Fixed backtick rendering issue by configuring Typography plugin to remove decorative backticks:
   ```javascript
   typography: {
@@ -38,9 +41,11 @@
 ## Current Issue: ChatTranscript in great-rules-great-results
 
 ### Problem
+
 ChatTranscript component in `/src/data/content/great-rules-great-results/index.mdx` shows title header but no messages.
 
 ### Root Cause
+
 File: `/src/data/content/great-rules-great-results/transcripts/cursor.ts`
 
 **Duplicate headers confusing the parser:**
@@ -60,7 +65,9 @@ _Exported on 8/28/2025 at 08:25:44 CDT from Cursor (1.5.5)_  // DUPLICATE - shou
 ```
 
 ### Parser Expectations
+
 The `parseTranscript()` function expects:
+
 1. Optional header with export info
 2. Single `---` separator
 3. Message blocks starting with `**User**` or `**Cursor**`/`**Assistant**`
@@ -71,6 +78,7 @@ Current file has TWO headers, causing parser to fail finding messages.
 
 **Option 1: Manual Edit** (RECOMMENDED)
 Remove lines 4-9 from cursor.ts:
+
 ```diff
   export const cursorTranscript = `# Cursor Conversation
   _Cursor session from 11/17/2025_
@@ -87,6 +95,7 @@ Remove lines 4-9 from cursor.ts:
 
 **Option 2: Reconvert**
 Use the conversion script with a clean raw file (without headers):
+
 ```bash
 python3 .claude/skills/chat-transcript/scripts/convert-chat-transcript.py \
   /tmp/cursor-clean.md \
