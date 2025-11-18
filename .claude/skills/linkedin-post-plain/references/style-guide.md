@@ -29,6 +29,7 @@ That said, one thing OpenAI needs to do is let me see the analysis being done by
 ```
 
 **What makes this work:**
+
 - Opens with clear statement of position
 - Shares specific, concrete example from personal experience
 - Balances praise with constructive criticism
@@ -48,6 +49,7 @@ I feel like the AI companies have the idea that AI chatbot use is something that
 ```
 
 **What makes this work:**
+
 - Starts with pointed observation about product gap
 - Grounds in real user behavior ("when I talk to people at companies")
 - Acknowledges uncertainty ("its fine if it turns out...")
@@ -63,6 +65,7 @@ The speed at which AI has come to write a huge amount of code is pretty startlin
 ```
 
 **What makes this work:**
+
 - Takes contrarian angle on well-known prediction
 - Uses specific data point to support argument
 - Synthesizes broader pattern from single example
@@ -74,6 +77,7 @@ The speed at which AI has come to write a huge amount of code is pretty startlin
 ### Hook Construction
 
 Start with one of these approaches:
+
 - **Direct observation**: "GPT-5 Pro and Gemini 2.5 Pro Deep Think are both very impressive..."
 - **Pointed critique**: "It seems nuts that, despite every AI lab launching..."
 - **Contrarian angle**: "The funny thing about the prediction..."
@@ -89,11 +93,13 @@ Start with one of these approaches:
 ### Ending Strong
 
 Avoid:
+
 - Call-to-action ("Read my blog post...")
 - Asking for engagement ("What do you think?")
 - Generic conclusions ("These are exciting times...")
 
 Prefer:
+
 - Substantive observation that extends the argument
 - Constructive criticism or suggestion
 - Synthesis of broader pattern or principle
@@ -110,11 +116,13 @@ Prefer:
 ### Tone Markers
 
 **Do use:**
+
 - Conversational language: "kind of nuts", "it seems", "the funny thing"
 - Natural qualifiers: "I think", "in part because", "according to one measure"
 - Direct address: "I feel like", "when I talk to people"
 
 **Don't use:**
+
 - Corporate speak: "leverage", "synergy", "thought leadership"
 - Excessive qualifiers: "very unique", "absolutely essential"
 - Marketing language: "game-changing", "revolutionary"
@@ -147,6 +155,7 @@ Prefer:
 ## Character Count Strategy
 
 When drafting:
+
 1. Write naturally first, don't constrain length initially
 2. Check character count
 3. If over 1000: trim to most compelling points
