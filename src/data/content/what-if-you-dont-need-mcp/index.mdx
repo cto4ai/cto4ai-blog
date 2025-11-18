@@ -1,13 +1,14 @@
 ---
 title: "What If You Don't Need MCP At All?"
 contentType: 'elsewhere'
-description: ''
+description: 'Perhaps the best way to lower MCP token overhead is to use Bash CLI tools instead.'
 author: 'Jack Ivers'
 publishDate: '2025-11-18T01:37:16+0000'
 image: '~/assets/images/content/what-if-you-dont-need-mcp/cover.png'
 sourceLink: 'https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/'
-featured: false
-draft: true
+featured: true
+featuredOrder: 5
+draft: false
 tags: []
 categories: []
 ---
@@ -19,7 +20,7 @@ import MDContent from '~/components/ui/MDContent.astro';
 
 I've recently become extremely aware at how wasteful MCPs are of precious model context, especially with Claude, who seems to suffer from context exhaustion quicker than other models. I actually rewrote one MCP server to reduce its tool count from 80+ down to 7, which radically reduced context usage.
 
-But I love what Mario Zechner is saying here: why not just eliminate the MCP and go with CLI tools? Models are superbly skilled at working with CLIs! Chef's kiss to his example of replacing the bloated Playwright MCP with four ultrasimple Bash CLIs. On my list to try.
+But I love what [Mario Zechner](https://www.linkedin.com/in/mariozechner/) is saying here: why not just eliminate the MCP and go with CLI tools? Models are superbly skilled at working with CLIs! Chef's kiss to his example of replacing the bloated Playwright MCP with four ultrasimple Bash CLIs. On my list to try.
 
 Thank you Mario!
 
