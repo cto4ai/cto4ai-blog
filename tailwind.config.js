@@ -29,6 +29,19 @@ export default {
           '100%': { opacity: 1, transform: 'translateY(0)' },
         },
       },
+
+      typography: {
+        DEFAULT: {
+          css: {
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+          },
+        },
+      },
     },
   },
   plugins: [
