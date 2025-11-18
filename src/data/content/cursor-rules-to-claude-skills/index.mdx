@@ -21,13 +21,13 @@ import { cursorRulesPoc } from './transcripts/cursor-rules-poc';
 
 ## Friday Night
 
-I usually tackle a couple hours of coding on Friday nights, and my current AI vision project was blocked awaiting others' work, so I scanned for something I've been wanting to look into and landed on Skills in Claude Code.
+I usually tackle a couple hours of coding on Friday nights, and my current AI vision project was blocked awaiting others' work, so I scanned for something I've been wanting to look into and landed on Skills in [Claude Code](https://claude.com/product/claude-code).
 
 ## Wrong Skills
 
 While I'm deeply familiar with Claude Skills, it's in the context of Claude.ai and Claude Desktop, as opposed to Claude Code. Though I use Claude Code on a daily basis, and have built custom slash commands for CD, I hadn't gotten around to trying Rules yet. Now that I know what I was missing, I wish I had started sooner ...
 
-I'm not a typical developer. I spend as many hours each week writing and publishing content---here on [cto4.ai](cto4.ai), using the Astro framework---as I do coding. Then again, I'm not a typical writer either [link to copy wrting guy?] [link to my brief]: rather than living in Google Docs, or God forbid, MS Word, I'm writing in an IDE (Cursor), and my work product is Markdown files. For me, "writing" also includes a significant percentage of light-tech work: most commonly, building and applying Astro's JSX-like components. You can see two of these Astro component examples below: ChatTranscript (for the Claude Code chat) and MDContent (for the Complete Guide).
+I'm not a typical developer. I spend as many hours each week writing and publishing content---here on [cto4.ai](cto4.ai), using the [Astro](https://astro.build/) framework---as I do coding. Then again, I'm not a typical writer either [link to copy wrting guy?] [link to my brief]: rather than living in Google Docs, or God forbid, MS Word, I'm writing in an IDE ([Cursor](https://cursor.com/)), and my work product is Markdown files. For me, "writing" also includes a significant percentage of light-tech work: most commonly, building and applying Astro's JSX-like components. You can see two of these Astro component examples below: ChatTranscript (for the Claude Code chat) and MDContent (for the Complete Guide).
 
 My most complex workflows are writing- rather than coding-related, so as my learning project for Skills in Claude Code, I decided to tackle migrating a couple of my core Astro Cursor Rules[^1] over to Skills.
 
@@ -38,7 +38,7 @@ My most complex workflows are writing- rather than coding-related, so as my lear
 My AI projects don't need to make sense; they are, just like my writing, primarily a learning exercise. There's nothing major wrong with Cursor Rules, and no burning reason to migrate away from them. Expanding my knowledge of Anthropics' elegant Rules pattern, especially in the domain of Claude Code? Now **_that_** makes sense. I had a strong suspicion that I was missing something by not using Skills in Claude Code. And there were other reasons as well:
 
 - The most painful aspect of my work with Claude across all platforms is context exhaustion and its consequences: periodic model brain death in Claude Code, and in the case of Claude.ai and Claude Desktop, just plain quitting: "Dude, you gotta start all over again, sorry dude." I know that Skills are optimized to conserve context and reduce the frequency of context exhaustion.
-- I find Claude Code (as an agent), to generally be a smarter, better co-worker than Cursor (as an agent), even though I'm typically running on the same underlying models (Claude Sonnet 4.5 currently). I figured, if I cut over my writing automations to Skills in Claude Code, I'd end up with a better writing companion.
+- I find Claude Code (as an agent), to generally be a smarter, better co-worker than Cursor (as an agent), even though I'm typically running on the same underlying models ([Claude Sonnet 4.5](https://www.anthropic.com/news/claude-sonnet-4-5) currently). I figured, if I cut over my writing automations to Skills in Claude Code, I'd end up with a better writing companion.
 - Cursor's sandboxing functionality has been rolled out in such a way that it is breaking my workflows. I'm sure there's a setting somewhere to restore previous behavior but so far I haven't found it.
 
 ## Step 1: Migrating Some Cursor Rules to Claude Skills
@@ -56,12 +56,12 @@ configuring post frontmatter and imports.
 CC needed guidance in several key areas:
 
 - Claude Code's naive initial approach was to jump right in and perform a simple one-to-one conversion of the Cursor Rule into a single-file Skill. This would have been the wrong thing to do, and not leveraged the core benefits of Skills. I had to talk Claude down.
-- Because I'm familiar with Skills in Claude.ai, I know that Anthropic has a very nice Skill called `skill-creator` that's really great at writing Skills and applying all their requisite principles. I had to fight Claude a bit to convince it to install that Skill, partly because I wasn't yet aware of how Claude Code located and installed Skills, and so didn't know the right words to use.
-- CC's first attempt at a Skill violated many of Anthropic's core tenets of Skills, such as brevity, progressive disclosure, etc. I had to force the agent to re-read `skill-creator` carefully, and then self-critique what it had generated. Give it credit: Claude's self-critique was excellent, and its second take on the at tj.
+- Because I'm familiar with Skills in Claude.ai, I know that Anthropic has a very nice Skill called [`skill-creator`](https://docs.anthropic.com/en/docs/agents/claude-code/skills) that's really great at writing Skills and applying all their requisite principles. I had to fight Claude a bit to convince it to install that Skill, partly because I wasn't yet aware of how Claude Code located and installed Skills, and so didn't know the right words to use.
+- CC's first attempt at a Skill violated many of Anthropic's core tenets of Skills, such as brevity, [progressive disclosure](https://www.nngroup.com/articles/progressive-disclosure/), etc. I had to force the agent to re-read `skill-creator` carefully, and then self-critique what it had generated. Give it credit: Claude's self-critique was excellent, and its second take on the at tj.
 
 Here's that conversation[^2]:
 
-[^2]: Thank you `claude-conversation-extractor` (`uv tool install claude-conversation-extractor`)
+[^2]: Thank you [`claude-conversation-extractor`](https://github.com/ZeroSumQuant/claude-conversation-extractor) ([`uv`](https://docs.astral.sh/uv/) tool install claude-conversation-extractor)
 
 <ChatTranscript theme="adium" maxHeight="600px" transcript={cursorRulesPoc} />
 
@@ -93,28 +93,10 @@ There is so much more power to Skills in Claude Code than what I had become fami
 
 - **Discoverability** through a plugin marketplace ecosystem
 - **Shareability** with your team via git or plugin repositories
-- **Composability** with Skills working alongside MCP servers, slash commands, and subagents
+- **Composability** with Skills working alongside [MCP](https://www.anthropic.com/news/model-context-protocol) servers, slash commands, and subagents
 
 Take a look; tons of great information. Note the fullscreen icon top right in the component below which makes deeper reading simpler.
 
 _This content is warranted to remain relevant at least 60 days ~= **2 AI years**_
 
 <MDContent title="The Compleat Guide to Skills in Claude Code" Content={SkillsGuide} allowFullscreen={true} />
-
-## Next Steps
-
-Now that you understand how Skills work in Claude Code, you can start migrating your `.cursorrules` workflows:
-
-1. **Identify repeatable patterns** in your Cursor rules
-2. **Create Skills** for each distinct workflow or methodology
-3. **Use skill-creator** to help structure them properly
-4. **Share with your team** via project-level `.claude/skills/` directory
-
-The beauty of Skills is that they're not just local configuration - they're shareable, discoverable knowledge that can benefit your entire team.
-
-1. I am perpetually in "push the AI boundaries mode" especially in the AI coding space, as I discussed in my post [Autonomous Coding Agents: Fire and Forget]() recently.
-2. On average, I spend as many hours each week writing and publishing content (here at cto4.ai, using the Astro framework) as I do coding.
-3. My "writing" is 66% typing words, and 33% the light-tech work of building and applying Astro components. This post is a case in point; see the Complete Guide to Skills in Claude Code below, a great resource that resulted from a very long conversation in Claude Desktop to fill in my Skills in Claude Code knowledge gap. This is Claude Markdown Artifact, repurposed to publish here using an Astro component called MDContent.
-4. I write in Cursor, using AI to automate the time-consuming bits and things I don't want to memorize. (I don't use AI to write for me; I do use it sometimes to summarize into a smaller format such as social posts, and sometime publish the model's research outputs as with The Complete Guide to Skills in Claude Code below.)
-
-This automation, until yesterday, was done using Cursor Rules.
