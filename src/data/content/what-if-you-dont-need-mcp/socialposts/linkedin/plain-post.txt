@@ -1,4 +1,4 @@
-I've been obsessed with reducing MCP token overhead lately. I even rewrote one server to cut it from 80+ tools down to 7, which made a huge difference with Claude's context limits.
+I've been obsessed with maximizing the model's usable context lately. MCPs are a major offender, sometimes eating up 10K tokens each. I actually rewrote one MCP server to cut it from 80+ tools down to 7, which proportionately reduced token overhead.
 
 But Mario Zechner takes it further: what if you just skip MCPs entirely and use Bash CLI tools instead? Models are already great at working with CLIs.
 

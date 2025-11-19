@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is "CTO4.AI" - a new Astro-based blog being migrated from the Hugo-based CraftyCTO blog. This repository represents the future home of the blog content, while the corporate site will remain at craftycto.com. The blog uses AstroWind theme as its foundation and is deployed to cto4.ai domain.
+This is "CTO4.AI" - an Astro-based blog deployed to cto4.ai domain. The blog uses the AstroWind theme as its foundation.
 
 ## Core Technologies
 
@@ -48,7 +48,7 @@ npm run check           # Run all checks (TypeScript, ESLint, Prettier)
 npm run fix:prettier    # Auto-fix formatting issues with Prettier
 ```
 
-## Content Structure (Unified - Option 2A Implemented)
+## Content Structure
 
 ### Content Organization
 
@@ -56,11 +56,11 @@ All content now uses a unified directory structure with content types defined in
 
 - **All Content**: `/src/data/content/[slug]/index.mdx` - All content types in unified structure
 - **Content Types** (defined in frontmatter `contentType` field):
-  - `essay` - Long-form articles (previously in /posts/)
-  - `brief` - Short-form content (previously in /micro/)
+  - `essay` - Long-form articles
+  - `brief` - Short-form content
   - `elsewhere` - Curated external content
   - `quote` - Quote posts
-  - `episodes` - Podcast/video reviews (new type)
+  - `episodes` - Podcast/video reviews
 
 ### Images
 
@@ -142,23 +142,13 @@ This repository uses `.gitkeep` files to preserve empty directory structures in 
 - Permalinks generated via `POST_PERMALINK_PATTERN` replacement
 - Draft filtering based on environment (`SHOW_DRAFTS` in development)
 
-## Migration Context
-
-This repository is part of a dual-repository setup:
-
-1. **craftycto** (Hugo) - Original blog at craftycto.com/blog
-2. **cto4ai-blog** (Astro) - New blog at cto4.ai (this repo)
-
-The migration is happening in parallel - the Hugo blog remains operational while content is being migrated here.
-
 ## Development Guidelines
 
 ### When Working with Content
 
 - **NEVER** overwrite existing MDX files without explicit user permission
-- Always check if a file exists before migrating content
+- Always check if a file exists before creating content
 - Preserve all frontmatter when editing posts
-- Images from Hugo should come from source directories, not `_gen` folders
 
 ### Image Handling
 
@@ -180,15 +170,6 @@ The migration is happening in parallel - the Hugo blog remains operational while
 - Check both light and dark modes
 - Test navigation and interactive elements
 - Ensure search functionality remains intact
-
-## Migration Scripts
-
-Several Python scripts assist with content migration:
-
-- `complete-conversion.py` - Full content migration
-- `convert-hugo-shortcodes.py` - Convert Hugo shortcodes to MDX
-- `patch-existing-mdx.py` - Update existing MDX files
-- `migrate_micro_content.py` - Migrate micro posts
 
 ## Deployment
 
