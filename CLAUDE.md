@@ -73,6 +73,7 @@ All content now uses a unified directory structure with content types defined in
 This repository uses `.gitkeep` files to preserve empty directory structures in Git. Since Git only tracks files (not empty directories), adding a `.gitkeep` file ensures the directory exists when cloning the repository.
 
 **When scaffolding new posts**, the astro-scaffold skill automatically creates `.gitkeep` files in empty directories, particularly:
+
 - `socialposts/images/.gitkeep` - Preserves the images directory for social media assets
 - Other empty scaffold directories as needed
 
