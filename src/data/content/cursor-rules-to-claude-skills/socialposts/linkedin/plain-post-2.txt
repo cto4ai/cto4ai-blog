@@ -1,12 +1,14 @@
-Skills in Claude Code are more powerful than I realized.
+Anthropic Skills in Claude Code are more powerful than I realized.
 
-I'd used Skills in Claude.ai and Desktop, but Claude Code's implementation is different: discoverability through a marketplace ecosystem, shareability via git repos, and composability with MCP servers, slash commands, and subagents.
+I'd used Skills in Claude web and Desktop, but Claude Code's implementation is different: discoverability through a marketplace ecosystem, shareability via git repos, and composability with MCP servers, slash commands, and subagents.
 
 One of AI's sweet spots is "help me understand X in the context of Y." In my case, X was Claude Skills and Y was Claude Code. Claude Desktop and I had a long conversation about this, and we ended up co-authoring The Compleat Guide to Skills in Claude Code - a deep dive into patterns, best practices, plugin architecture, and the skill-creator meta-skill.
 
 The practical payoff: Skills are optimized to conserve context. If context exhaustion kills your productive sessions (it does mine), that alone makes Skills worth learning.
 
 The guide covers installation, file structure, reference patterns, progressive disclosure, and how Skills differ from MCP servers. Warranted to stay relevant for at least two AI years (60 days!).
+
+By the way, if you're not a developer, Skills are also available in Claude web and Desktop, and comparably powerful.
 
 ---
 
