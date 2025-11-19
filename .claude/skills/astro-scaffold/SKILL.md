@@ -29,6 +29,8 @@ Use this skill when:
    - `transcripts/` (for AI conversation exports as TypeScript files)
    - `embedded/` (for external Markdown files to embed)
    - `socialposts/` (LinkedIn, Twitter, Mastodon planning - not published)
+     - Create subdirectories: `linkedin/`, `twitter/`, `mastodon/`, `images/`
+     - Add `.gitkeep` to empty directories (especially `images/`) to preserve structure in Git
    - Parallel asset directories:
      - `src/assets/images/content/{slug}/` (images - Astro-processed)
      - `public/videos/content/{slug}/` (videos - direct serving)
@@ -69,6 +71,7 @@ For cto4.ai-specific routing, content types, and conventions, reference `referen
 - **Component imports**: Use `~/` prefix for components, relative paths (`./`) for embedded content
 - **socialposts directory**: For planning only, never published
 - **Content routing**: Files in `/src/data/content/` become `/p/{slug}`, NOT directly routable
+- **`.gitkeep` files**: Added to empty directories to preserve scaffold structure in Git (Git only tracks files, not empty directories)
 
 ## Testing
 

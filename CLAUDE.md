@@ -68,6 +68,16 @@ All content now uses a unified directory structure with content types defined in
 - Each post's images are stored in a directory matching its slug
 - Components automatically look in the correct location based on postDir
 
+### Directory Structure Preservation
+
+This repository uses `.gitkeep` files to preserve empty directory structures in Git. Since Git only tracks files (not empty directories), adding a `.gitkeep` file ensures the directory exists when cloning the repository.
+
+**When scaffolding new posts**, the astro-scaffold skill automatically creates `.gitkeep` files in empty directories, particularly:
+- `socialposts/images/.gitkeep` - Preserves the images directory for social media assets
+- Other empty scaffold directories as needed
+
+**Why this matters**: Without `.gitkeep` files, empty directories disappear from Git, resulting in incomplete scaffold structure when cloning on new machines or for team members.
+
 ## Key Custom Components
 
 ### Image Components

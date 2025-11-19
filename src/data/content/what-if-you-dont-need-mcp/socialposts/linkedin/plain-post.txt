@@ -1,0 +1,11 @@
+I've been obsessed with reducing MCP token overhead lately. I even rewrote one server to cut it from 80+ tools down to 7, which made a huge difference with Claude's context limits.
+
+But Mario Zechner takes it further: what if you just skip MCPs entirely and use Bash CLI tools instead? Models are already great at working with CLIs.
+
+His example is chef's kiss: replacing the bloated Playwright MCP with four ultra-simple Bash commands. No ceremony, no overhead, just direct tool use.
+
+The irony is that we're building complex abstractions (MCPs) when simpler solutions (CLIs) already work beautifully. Sometimes the best optimization is elimination.
+
+---
+
+https://cto4.ai/p/what-if-you-dont-need-mcp
