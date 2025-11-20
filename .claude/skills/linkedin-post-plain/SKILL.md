@@ -33,6 +33,10 @@ This skill should be used when:
    - Length: 500-1000 characters (LinkedIn engagement sweet spot)
    - Style: Plainspoken, conversational (Ethan Mollick tone)
    - No emojis, no hashtags, no inline images
+   - **No URLs in post body** - LinkedIn's algorithm deprioritizes posts with links
+     - This includes anything that looks like a URL (e.g., "Claude.ai" triggers this)
+     - Use "Claude web" or "Claude Desktop" instead of "Claude.ai"
+     - The blog link goes in a separate comment, not inline
    - Focus on insight, not self-promotion
    - For detailed style guidance, consult `references/style-guide.md`
 
@@ -67,10 +71,11 @@ Before finalizing, verify:
 
 1. Character count within 500-1000 range
 2. No emojis or hashtags present
-3. Plainspoken, scannable structure
-4. Compelling hook at start
-5. Unix line endings (LF)
-6. File increment logic applied correctly
+3. **No URLs or URL-like text in post body** (e.g., avoid "Claude.ai", use "Claude web")
+4. Plainspoken, scannable structure
+5. Compelling hook at start
+6. Unix line endings (LF)
+7. File increment logic applied correctly
 
 ## Resources
 
