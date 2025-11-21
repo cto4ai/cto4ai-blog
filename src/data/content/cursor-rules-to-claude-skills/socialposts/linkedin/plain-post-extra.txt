@@ -1,0 +1,21 @@
+I've been using text-to-image tools since the beginning: Stable Diffusion, then Midjourney, more recently ChatGPT image gen. I finally had a chance to try out Nano Banana Pro today, and decided to use my "Compleat Guide to Skills in Claude Code" as the test case. That name is a play on the 1653 book The Compleat Angler, so I asked NBP this: "Take the book cover of 'The Compleat Angler' and make it into 'The Compleat Guide to Claude Skills'"
+
+
+
+Image 1 was pretty great first attempt, good enough that I corrected the title. I wasn't happy with the lack of fish, however. So I asked, "The Compleat Angler book cover features fish, maybe you found something that wasn't the actual original cover"
+
+
+
+And back came image 2. Pretty sweet.
+
+
+
+I then gave it my Compleat Guide itself, all 10,041 tokens worth,  and asked for a flowchart. It first responded with a Mermaid diagram, which is a text-only way to describe a flowchart. Rendered it looks like image 3 -- impressive in its own right but not the image generator's work. I really wanted a whimsical, cartoony sort of thing, so I clarified: "I meant, create an image with a cartoonish flow diagram for reading the Guide"
+
+
+
+That got me image 4. That's pretty insane. Love it and don't mind paying. And thank you for all the fish.
+
+---
+
+https://cto4.ai/p/cursor-rules-to-claude-skills

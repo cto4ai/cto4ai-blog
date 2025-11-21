@@ -1,0 +1,16 @@
+TWEET 1:
+I've used Stable Diffusion, Midjourney, ChatGPT image gen. Finally tried Nano Banana Pro today, using my Compleat Guide to Skills in Claude Code as the test case. The name plays on the 1653 book The Compleat Angler.
+
+TWEET 2:
+First prompt: "Take the book cover of The Compleat Angler and make it into The Compleat Guide to Claude Skills." Pretty great first attempt - but I noticed no fish. The Compleat Angler definitely features fish.
+
+TWEET 3:
+Pointed out the missing fish. NBP came back with a corrected version - pretty sweet. Then I gave it the full guide (10K+ tokens) and asked for a flowchart.
+
+TWEET 4:
+It first responded with a Mermaid diagram - impressive but not what I wanted. I clarified: "create an image with a cartoonish flow diagram for reading the Guide."
+
+TWEET 5:
+The cartoonish flowchart it generated is pretty insane - captures the guide's structure in a whimsical way. Love it and don't mind paying. And thank you for all the fish.
+
+https://cto4.ai/p/cursor-rules-to-claude-skills
