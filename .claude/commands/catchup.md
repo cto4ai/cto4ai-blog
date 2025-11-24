@@ -1,6 +1,15 @@
 ---
-description: "Analyze all changes in current git branch"
-allowed-tools: ["Bash(git for-each-ref:*)", "Bash(git ls-tree:*)", "Bash(git show:*)", "Bash(git branch:*)", "Bash(git log:*)", "Bash(git diff:*)", "Read"]
+description: 'Analyze all changes in current git branch'
+allowed-tools:
+  [
+    'Bash(git for-each-ref:*)',
+    'Bash(git ls-tree:*)',
+    'Bash(git show:*)',
+    'Bash(git branch:*)',
+    'Bash(git log:*)',
+    'Bash(git diff:*)',
+    'Read',
+  ]
 ---
 
 # Catchup Command

@@ -1,6 +1,6 @@
 ---
-description: "Create a checkpoint document capturing current work in progress"
-allowed-tools: ["Bash(git:*)", "Read", "Glob", "Write"]
+description: 'Create a checkpoint document capturing current work in progress'
+allowed-tools: ['Bash(git:*)', 'Read', 'Glob', 'Write']
 ---
 
 # Checkpoint Command
@@ -36,10 +36,12 @@ Create a focused checkpoint document capturing current work state in `docs/check
 ## Changes Made
 
 **Modified Files:**
+
 - [file/path.ext](file/path.ext) - Brief description
 - [file/path.ext](file/path.ext) - Brief description
 
 **Commits:**
+
 - Brief summary of commits since last checkpoint or main
 
 ## Key Issues/Findings (if any)
@@ -63,6 +65,7 @@ Create a focused checkpoint document capturing current work state in `docs/check
 [Any other relevant context, insights, or decisions made]
 
 ---
+
 **Last Updated:** [YYYY-MM-DD HH:MM:SS]
 ```
 
