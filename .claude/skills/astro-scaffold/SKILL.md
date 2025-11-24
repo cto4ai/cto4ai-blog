@@ -35,12 +35,34 @@ Use this skill when:
      - `src/assets/images/content/{slug}/` (images - Astro-processed)
      - `public/videos/content/{slug}/` (videos - direct serving)
 
-3. **Initialize frontmatter** in `index.mdx` with cto4.ai-specific conventions:
-   - `contentType`: One of `essay`, `brief`, `elsewhere`, `quote`, `episode`
-   - `publishDate`: **Critical** - Set to 2 hours ago (current time minus 2 hours) in ISO 8601 format with timezone
-   - `author`: "Jack Ivers"
-   - `draft: true` (always start as draft)
-   - Standard imports: SingleImage, ImageGallery, ChatTranscript, MDContent
+3. **Initialize frontmatter** in `index.mdx` using this exact template:
+
+   ```yaml
+   ---
+   title: '{Post Title}'
+   contentType: 'essay'  # One of: essay, brief, elsewhere, quote, episode
+   description: ''  # Leave empty for user to fill
+   author: 'Jack Ivers'
+   publishDate: '{ISO 8601 timestamp 2 hours ago}'  # Use: date -v-2H +%Y-%m-%dT%H:%M:%S%z
+   image: '~/assets/images/content/{slug}/'  # Path to header image, leave filename empty
+   featured: false
+   featuredOrder: 10
+   draft: true
+   tags: []
+   categories: []
+   ---
+   ```
+
+   **Content-type specific fields:**
+   - For `elsewhere` type, add: `sourceLink: ''` (URL to original content)
+
+   **After frontmatter, add standard imports:**
+   ```mdx
+   import SingleImage from '~/components/blog/SingleImage.astro';
+   import ImageGallery from '~/components/blog/ImageGallery.astro';
+   import ChatTranscript from '~/components/blog/ChatTranscript.astro';
+   import { Content as MDContent } from '~/components/blog/MDContent.astro';
+   ```
 
 4. **Images must be in** `/src/assets/images/content/{slug}/` matching the post slug exactly—use `postDir="{slug}"` parameter in all image components
 
