@@ -1,18 +1,16 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../youtube-transcriber"
-		}
-	],
-	"settings": {
-		"files.associations": {
-			"*.mdx": "markdown"
-		},
-		"prettier.documentSelectors": [
-			"**/*.astro"
-		]
-	}
+  "folders": [
+    {
+      "path": ".",
+    },
+    {
+      "path": "../youtube-transcriber",
+    },
+  ],
+  "settings": {
+    "files.associations": {
+      "*.mdx": "markdown",
+    },
+    "prettier.documentSelectors": ["**/*.astro"],
+  },
 }
