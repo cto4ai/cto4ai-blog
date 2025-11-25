@@ -25,6 +25,27 @@ Last week, the news cycle[^1] collided with my post on Claude Agent Skills. This
 
 The amount of information that Zhang and Murag fit into their 15 minute slot was impressive. As someone deeply engaged in the Anthropic / Claude / Claude Code / Skills ecosystem, I wanted to wring every drop out of this session. It took several viewings to get it all, but was well worth the effort.
 
+## A Year of Agents, and a Crucial Hint
+
+To kick off the talk, Zhang looks back at key events in Anthropic's agent world from February through today ... this timeline is shocking to me, even though I know AI time is compressed.
+
+> A lot of things have changed since our last talk. MCP became the standard for agent connectivity. Claude Code, our first coding agent, launched to the world, and Claude Agent SDK, now provides a production-ready agent out of the box.
+
+<SingleImage
+  src="year_of_agents.png"
+  alt="Year of Agents"
+  postDir="anthropic-stop-building-agents-start-building-skills"
+  size="2xl"
+/>
+
+I have been deep enough in this agent world to know the pain points, and this next statement (along with yesterday's release of Opus 4.5 and much more[^2]) gives me hope that Anthropic is contining to march in the right direction:
+
+[^2]: Opus 4.5 model and aggressive pricing; advanced tool use; effort parameter; new context management capabilities; Claude Code inside Claude Desktop; upgraded Plan mode; Max plan gets more Opus.
+
+> We have a more mature ecosystem, and we're moving towards a new paradigm for agents. That paradigm is a tighter coupling between the model and the runtime environment.
+
+When the model is tightly coupled with a well-equipped runtime---something we're already beginning to see---magical things become possible.
+
 ## Old and New Ways of Thinking About Agents
 
 Zhang makes the point:
@@ -65,7 +86,7 @@ They're as simple as a single markdown file with a tiny bit of front matter. The
 
 ## Code Can Be Better Than Tools
 
-Agents have traditional used tools. But tools have significant drawbacks:
+Agents have traditionally been tool-users. But tools have significant drawbacks:
 
 > Traditonal tools have a lot of problems: poorly written instructions, are pretty ambiguous. When model is struggling, it can't really make a change to the tool. Always live in the context window.
 
@@ -76,11 +97,22 @@ Agents have traditional used tools. But tools have significant drawbacks:
   size="2xl"
 />
 
-It turns out that scripts contained within Skills have substantial benefits versus traditional tools.
-
-Scripts (code), on the other hand,
+Code, on the other hand, is easily understood, emminently malleable, and context-friendly:
 
 > Code solves some of these issues: It's self-documenting, it is modifiable and can live in the file system until they are really needed and used.
+
+## Speaking of Context-friendly: Skills Are
+
+Because they're progressively disclosed:
+
+<SingleImage
+  src="skills_are_progressively_disclosed.png"
+  alt="Skills are progressively disclosed"
+  postDir="anthropic-stop-building-agents-start-building-skills"
+  size="2xl"
+/>
+
+## The Skills Ecosystem
 
 ### Anthropic's Barry Zhang & Mahesh Murag argue for building Skills, not Agents
 
