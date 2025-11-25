@@ -108,9 +108,7 @@ I love how Anthropic defines Skills:
 
 They're as simple as a single markdown file with a tiny bit of front matter. The "complex" example above has a main SKILL.md, a couple of reference files, and a Python script. Zhang goes on to say:
 
-> This simplicity is deliberate. We want something that anyone, human or agent, can create and use as long as they have a computer.This also works with what you already have. You can version them in Git, you can throw them in Google Drive, and you can zip them up and share it with your team. We have used files as a primitive for decades, and we like them, so why change now? Because of that, skills can also include a lot of scripts as tools.
-
-Bear in mind that
+> This simplicity is deliberate. We want something that anyone, human or agent, can create and use as long as they have a computer.This also works with what you already have. You can version them in Git, you can throw them in Google Drive, and you can zip them up and share it with your team. We have used files as a primitive for decades, and we like them, so why change now?
 
 ## Code Can Be Better Than Tools
 
@@ -129,11 +127,11 @@ Code, on the other hand, is easily understood, emminently malleable, and context
 
 > Code solves some of these issues: It's self-documenting, it is modifiable and can live in the file system until they are really needed and used.
 
-The "solves **_some_** of these issues" here is a bit humorous: this talk happened just days before Anthropic announced [Advanced Tool Use](https://www.anthropic.com/engineering/advanced-tool-use), which happens to solve several drawbacks of tools, while at the same time making the code-tool connection stronger.
+The "solves **_some_** of these issues" here is a bit humorous: this talk happened just days before Anthropic announced [Advanced Tool Use](https://www.anthropic.com/engineering/advanced-tool-use), which solves several drawbacks of tools, while at the same time defining the code-tool connection.
 
-## Speaking of Context-friendly: Skills Are
+## From Context-starved to Context-friendly
 
-Because they're progressively disclosed:
+My biggest pain point across the Claude family has been context exhaustion: running out of context too quickly, and failure to handle that scenario gracefully. Skills are a significant part of the solution, because they're progressively disclosed:
 
 <SingleImage
   src="skills_are_progressively_disclosed.png"
@@ -142,7 +140,48 @@ Because they're progressively disclosed:
   size="2xl"
 />
 
+> Skills can contain a lot of information, and we want to protect the context window so that we can fit in hundreds of skills and make them truly composable. That's why skills are progressively disclosed. At runtime, only [the brief front matter] metadata is shown to the model just to indicate that it has this skill. When an agent needs to use a skill, you can read in the rest of the SKILL.md, which contains the core instruction and directory for the rest of the folder. Everything else is just organized for ease of access. So that's all skills are. They're organized folders with scripts as tools.
+
+Anthropic's latest flurry of announcements---Opus 4.5, Advanced Tool Use, and new context management features---join with Skills as part of the solution to context starvation. I've been using Claude Code with Opus 4.5 since it launched, and so far the context consumption vibe is radically improved.
+
 ## The Skills Ecosystem
+
+When I was researching to write [Claude Skills in Claude Code: A Compleat Guide](cursor-rules-to-claude-skills), my biggest and most exciting discoveries related to the existence of a well-structured and thought-out Skills ecosystem.
+
+<SingleImage
+  src="skills_ecosystem.png"
+  alt="Skills ecosystem"
+  postDir="anthropic-stop-building-agents-start-building-skills"
+  size="2xl"
+/>
+
+<SingleImage
+  src="foundational_skills.png"
+  alt="Foundational skills"
+  postDir="anthropic-stop-building-agents-start-building-skills"
+  size="2xl"
+/>
+
+<SingleImage
+  src="partner_skills.png"
+  alt="Partner skills"
+  postDir="anthropic-stop-building-agents-start-building-skills"
+  size="2xl"
+/>
+
+<SingleImage
+  src="enterprise_skills.png"
+  alt="Enterprise skills"
+  postDir="anthropic-stop-building-agents-start-building-skills"
+  size="2xl"
+/>
+
+<SingleImage
+  src="trends_in_skills_ecosystem.png"
+  alt="Trends in skills ecosystem"
+  postDir="anthropic-stop-building-agents-start-building-skills"
+  size="2xl"
+/>
 
 ### Anthropic's Barry Zhang & Mahesh Murag argue for building Skills, not Agents
 
