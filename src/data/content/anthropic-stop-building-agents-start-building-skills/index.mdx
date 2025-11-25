@@ -48,19 +48,39 @@ When the model is tightly coupled with a well-equipped runtime---something we're
 
 ## Old and New Ways of Thinking About Agents
 
-Zhang makes the point:
+Zhang explains how Anthropic's view of agents was transformed based on what they learned with Claude Code:
 
-> After we built Claude Code, we realized that Code is actually a general purpose agent. Think about generating a financial report.The model can call the API to pull in data and do research. It can organize that data in the file system. It can analyze it with Python and synthesize the insights in old file format all through code. The core scaffolding can suddenly become as thin as just bash and file system. Which is great and really scalable---but we very quickly run into a different problem.
+> We used to think agents in different domains will look very different. Each one will need its own tools and scaffolding, and that means we'll have a separate agent for each use case for each domain.
 
-<ImageGallery
-  images={['how_we_used_to_think_about_agents.png', 'agents_code_universal_interface.png']}
+<SingleImage
+  src="how_we_used_to_think_about_agents.png"
+  alt="How we used to think about agents"
   postDir="anthropic-stop-building-agents-start-building-skills"
-  size="3xl"
+  size="2xl"
 />
+
+But then they had this insight:
+
+> Well, customization is still important for each domain. The agent underneath is actually more universal than we thought. What we realized is that Code is not just a use case, but a universal interface to the digital world. After we built Code, we realized that Code is actually a general-purpose agent.
+>
+> Think about generating a financial report. The model can call the API to pull in data and do research. It can organize that data in the file system. It can analyze it with Python and synthesize the insights in old file format all through code. The core scaffolding can suddenly become as thin as just bash and file system.
+
+<SingleImage
+  src="agents_code_universal_interface.png"
+  alt="Agents code universal interface"
+  postDir="anthropic-stop-building-agents-start-building-skills"
+  size="2xl"
+/>
+
+But:
+
+> [this] is great and really scalable---but we very quickly run into a different problem.
 
 ## The Missing Link: Domain Expertise
 
-Given a powerful, general purpose agent, the world's the limit. Except for the small issue of domain expertise. As Zhang points out, "Agents can't absorb your expertise really well, and they don't learn over time."
+Given a powerful, general purpose agent, the world's the limit. Except for the small issue of domain expertise:
+
+> That problem is domain expertise. Who do you want to do your taxes? Is it going to be Mahesh, the 300 IQ mathematical genius, or is it Barry, an experienced tax professional? I would pick Barry every time. I don't want Mahesh to figure out the 2025 tax code from First Principles, I need consistent execution from a domain expert.
 
 <SingleImage
   src="missing_domain_expertise.png"
@@ -68,6 +88,10 @@ Given a powerful, general purpose agent, the world's the limit. Except for the s
   postDir="anthropic-stop-building-agents-start-building-skills"
   size="2xl"
 />
+
+> Agents today are a lot like Mahesh. They're brilliant, but they lack expertise .... They can do amazing things when you really put in effort and give proper guidance, but they're often missing the important context up front. They can't really absorb your expertise super well, and they don't learn over time.
+>
+> That's why we created Agent Skills.
 
 Skills are all about encapsulating domain expertise.
 
