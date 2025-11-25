@@ -37,7 +37,50 @@ Zhang makes the point:
   size="3xl"
 />
 
-## The Expertise Gap
+## The Missing Link: Domain Expertise
+
+Given a powerful, general purpose agent, the world's the limit. Except for the small issue of domain expertise. As Zhang points out, "Agents can't absorb your expertise really well, and they don't learn over time."
+
+<SingleImage
+  src="missing_domain_expertise.png"
+  alt="Missing domain expertise"
+  postDir="anthropic-stop-building-agents-start-building-skills"
+  size="2xl"
+/>
+
+Skills are all about encapsulating domain expertise.
+
+## Defining Skills
+
+I love Skills by definition.
+
+<SingleImage
+  src="skills_definition.png"
+  alt="Skills definition"
+  postDir="anthropic-stop-building-agents-start-building-skills"
+  size="2xl"
+/>
+
+They're as simple as a single markdown file with a tiny bit of front matter. The "complex" example above has a main SKILL.md, a couple of reference files, and a Python script.
+
+## Code Can Be Better Than Tools
+
+Agents have traditional used tools. But tools have significant drawbacks:
+
+> Traditonal tools have a lot of problems: poorly written instructions, are pretty ambiguous. When model is struggling, it can't really make a change to the tool. Always live in the context window.
+
+<SingleImage
+  src="skills_can_include_scripts.png"
+  alt="Skills can include scripts"
+  postDir="anthropic-stop-building-agents-start-building-skills"
+  size="2xl"
+/>
+
+It turns out that scripts contained within Skills have substantial benefits versus traditional tools.
+
+Scripts (code), on the other hand,
+
+> Code solves some of these issues: It's self-documenting, it is modifiable and can live in the file system until they are really needed and used.
 
 ### Anthropic's Barry Zhang & Mahesh Murag argue for building Skills, not Agents
 
@@ -98,3 +141,6 @@ Zhang makes the point:
   - Skills = Applications
 - Closing
   - Converging on a general architecture for general agents. Time stop rebuilding agents and start building skills
+
+  DONT MISS
+  - Runtime and importance thereof
