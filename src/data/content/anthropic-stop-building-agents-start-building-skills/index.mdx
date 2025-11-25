@@ -97,7 +97,7 @@ Skills are all about encapsulating domain expertise.
 
 ## Defining Skills
 
-I love Skills by definition.
+I love how Anthropic defines Skills:
 
 <SingleImage
   src="skills_definition.png"
@@ -106,7 +106,11 @@ I love Skills by definition.
   size="2xl"
 />
 
-They're as simple as a single markdown file with a tiny bit of front matter. The "complex" example above has a main SKILL.md, a couple of reference files, and a Python script.
+They're as simple as a single markdown file with a tiny bit of front matter. The "complex" example above has a main SKILL.md, a couple of reference files, and a Python script. Zhang goes on to say:
+
+> This simplicity is deliberate. We want something that anyone, human or agent, can create and use as long as they have a computer.This also works with what you already have. You can version them in Git, you can throw them in Google Drive, and you can zip them up and share it with your team. We have used files as a primitive for decades, and we like them, so why change now? Because of that, skills can also include a lot of scripts as tools.
+
+Bear in mind that
 
 ## Code Can Be Better Than Tools
 
@@ -124,6 +128,8 @@ Agents have traditionally been tool-users. But tools have significant drawbacks:
 Code, on the other hand, is easily understood, emminently malleable, and context-friendly:
 
 > Code solves some of these issues: It's self-documenting, it is modifiable and can live in the file system until they are really needed and used.
+
+The "solves **_some_** of these issues" here is a bit humorous: this talk happened just days before Anthropic announced [Advanced Tool Use](https://www.anthropic.com/engineering/advanced-tool-use), which happens to solve several drawbacks of tools, while at the same time making the code-tool connection stronger.
 
 ## Speaking of Context-friendly: Skills Are
 
