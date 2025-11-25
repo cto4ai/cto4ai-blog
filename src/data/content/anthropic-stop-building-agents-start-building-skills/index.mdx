@@ -148,12 +148,16 @@ Anthropic's latest flurry of announcements---Opus 4.5, Advanced Tool Use, and ne
 
 When I was researching to write [Claude Skills in Claude Code: A Compleat Guide](cursor-rules-to-claude-skills), my biggest and most exciting discoveries related to the existence of a well-structured and thought-out Skills ecosystem.
 
+> Since our launch five weeks ago, this very simple design has translated into a very quickly growing ecosystem of thousands of skills. And we've seen this be split across a couple of different types of skills. There are foundational skills, third-party skills created by partners in the ecosystem, and skills built within an enterprise and within teams.
+
 <SingleImage
   src="skills_ecosystem.png"
   alt="Skills ecosystem"
   postDir="anthropic-stop-building-agents-start-building-skills"
   size="2xl"
 />
+
+> To start, foundational skills are those that give agents new general capabilities or domain-specific capabilities that it didn't have before. We ourselves, with our launch, built document skills that give Claude the ability to create and edit professional-quality office documents. We're also really excited to see people like Cadence built scientific research skills that give Claude new capabilities like EHR data analysis and using common Python bioinformatics libraries better than it could before.
 
 <SingleImage
   src="foundational_skills.png"
@@ -162,6 +166,10 @@ When I was researching to write [Claude Skills in Claude Code: A Compleat Guide]
   size="2xl"
 />
 
+In the partner category, the new skill from Browserbase gets me very excited, because, "look mom, no MCP!":
+
+> We've also seen partners in the ecosystem build skills that help Claude better with their own software and their own products. Browserbase is a pretty good example of this. They built a skill for their open-source browser automation tooling, Stagehand. And now Claude [is] equipped [with] this skill and with Stagehand can now go navigate the web and use a browser more effectively to get work done.
+
 <SingleImage
   src="partner_skills.png"
   alt="Partner skills"
@@ -169,18 +177,14 @@ When I was researching to write [Claude Skills in Claude Code: A Compleat Guide]
   size="2xl"
 />
 
-<SingleImage
-  src="enterprise_skills.png"
-  alt="Enterprise skills"
-  postDir="anthropic-stop-building-agents-start-building-skills"
-  size="2xl"
-/>
+Murag goes on to describe how enterprises are using skills, both outside and inside engineering. He emphasizes that:
 
-<SingleImage
-  src="trends_in_skills_ecosystem.png"
-  alt="Trends in skills ecosystem"
+> Finally, and I think most excitingly for me personally, is we're seeing skills that are being built by people that aren't technical. These are people in functions like finance, recruiting, accounting, legal, and a lot more. And I think this is pretty early validation of our initial idea that skills help people that aren't doing coding work extend these general agents and they make these agents more accessible for the day-to-day of what these people are working on.
+
+<ImageGallery
+  images={['enterprise_skills.png', 'trends_in_skills_ecosystem.png']}
   postDir="anthropic-stop-building-agents-start-building-skills"
-  size="2xl"
+  size="3xl"
 />
 
 ### Anthropic's Barry Zhang & Mahesh Murag argue for building Skills, not Agents
