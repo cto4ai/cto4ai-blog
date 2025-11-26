@@ -187,6 +187,40 @@ Murag goes on to describe how enterprises are using skills, both outside and ins
   size="3xl"
 />
 
+## Emerging Architecture of General Agents
+
+When I first glanced at this slide, I thought, yeah, our old friend, the agentic loop. But wait a minute, what's that thing with code brackets?
+
+<SingleImage
+  src="skills_agent_loop.png"
+  alt="Skills agent loop"
+  postDir="anthropic-stop-building-agents-start-building-skills"
+  size="2xl"
+/>
+
+Yeah, upon closer inspection, this is definitely not our old OODA agentic loop. Murag says:
+
+> So tying this all together, let's talk about how these all fit into this emerging architecture of general agents. First, we think this architecture is converging on a couple of things. The first is this agent loop that helps manage the model's internal context and manages what tokens are going in and out. And this is coupled with a runtime environment that provides the agent with a file system and the ability to read and write code.
+
+That code bracket thingy is a runtime environment, with a file system and the ability to read and write code. That's new.
+
+Murag then further expands the architecture, with MCPs and Skills:
+
+<SingleImage
+  src="skills_complete_agent_loop.png"
+  alt="Skills complete agent loop"
+  postDir="anthropic-stop-building-agents-start-building-skills"
+  size="2xl"
+/>
+
+> This agent, as many of us have done throughout this year, can be connected to MCP servers. And these are tools and data from the outside world that make the agent more relevant and more effective.
+>
+> And now we can give the same agent a library of hundreds or thousands of skills that it can decide to pull into context only at runtime when it's deciding to work on a particular task.
+
+The implication:
+
+> Today, giving an agent a new capability in a new domain might just involve equipping it with the right set of MCP servers and the right library of skills.
+
 ### Anthropic's Barry Zhang & Mahesh Murag argue for building Skills, not Agents
 
 #### Stop Building Agents, Build Skills Instead
