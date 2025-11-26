@@ -1,7 +1,7 @@
 ---
 title: 'Anthropic: Stop Building Agents, Build Skills Instead'
 contentType: 'episode'
-description: 'A great session from Barry Zhang & Mahesh Murag, the creators of Anthropic Skills.'
+description: 'A great AIECS session from Barry Zhang & Mahesh Murag, the creators of Anthropic Agent Skills.'
 author: 'Jack Ivers'
 publishDate: '2025-11-23T17:20:20-06:00'
 image: '~/assets/images/content/anthropic-stop-building-agents-start-building-skills/zhang-murag.png'
@@ -140,13 +140,15 @@ My biggest pain point across the Claude family has been context exhaustion: runn
   size="2xl"
 />
 
-> Skills can contain a lot of information, and we want to protect the context window so that we can fit in hundreds of skills and make them truly composable. That's why skills are progressively disclosed. At runtime, only [the brief front matter] metadata is shown to the model just to indicate that it has this skill. When an agent needs to use a skill, you can read in the rest of the SKILL.md, which contains the core instruction and directory for the rest of the folder. Everything else is just organized for ease of access. So that's all skills are. They're organized folders with scripts as tools.
+> Skills can contain a lot of information, and we want to protect the context window so that we can fit in hundreds of skills and make them truly composable. That's why skills are progressively disclosed. At runtime, only [the brief front matter] metadata is shown to the model, just to indicate that it has this skill. When an agent needs to use a skill, yoitu can read in the rest of the SKILL.md, which contains the core instructiond and directory for the rest of the folder. Everything else is just organized for ease of access.
+>
+> So that's all skills are. They're organized folders with scripts as tools.
 
-Anthropic's latest flurry of announcements---Opus 4.5, Advanced Tool Use, and new context management features---join with Skills as part of the solution to context starvation. I've been using Claude Code with Opus 4.5 since it launched, and so far the context consumption vibe is radically improved.
+Anthropic's latest flurry of announcements---Opus 4.5, Advanced Tool Use, and new context management features---join with Skills as part of the solution to context starvation. I cut over to Opus 4.5 in Claude and Claude Code within minutes of its release, and so far context pain has been completely absent.
 
 ## The Skills Ecosystem
 
-When I was researching to write [Claude Skills in Claude Code: A Compleat Guide](cursor-rules-to-claude-skills), my biggest and most exciting discoveries related to the existence of a well-structured and thought-out Skills ecosystem.
+When I was researching for the post [Claude Skills in Claude Code: A Compleat Guide](cursor-rules-to-claude-skills), my most exciting discoveries related to the existence of a well-structured and thought-out Skills ecosystem.
 
 > Since our launch five weeks ago, this very simple design has translated into a very quickly growing ecosystem of thousands of skills. And we've seen this be split across a couple of different types of skills. There are foundational skills, third-party skills created by partners in the ecosystem, and skills built within an enterprise and within teams.
 
@@ -236,11 +238,13 @@ Skills are simple, but they represent immense value and leverage. Murag points o
   size="2xl"
 />
 
-> We're also starting to think about some of the other open questions and areas that we want to focus on for how skills evolve in the future. As they start to become more complex, we really want to support developers, enterprises, and other skill builders by starting to treat skills like we treat software. This means exploring, testing, and evaluation. Better tooling to make sure that these agents are loading and triggering skills at the right time and for the right task. And tooling to help measure the output quality of an agent equipped with the skill to make sure that's on par with what the agent is supposed to be doing.
+He explains
+
+> As [skills] start to become more complex, we really want to support developers, enterprises, and other skill builders by starting to treat skills like we treat software. This means exploring, testing, and evaluation. Better tooling to make sure that these agents are loading and triggering skills at the right time and for the right task. And tooling to help measure the output quality of an agent equipped with the skill to make sure that's on par with what the agent is supposed to be doing.
 >
 > We'd also like to focus on versioning. As a skill evolves and the resulting agent behavior evolves, we want this to be clearly tracked and to have a clear lineage over time.
 >
-> And finally, we'd also like to explore skills that can explicitly depend on and refer to either other skills, MCP servers, and dependencies and packages within the agent's environment. We think that this is going to make agents a lot more predictable in different runtime environments, and the composability of multiple skills together will help agents like Claude elicit even more complex and relevant behavior from these agents.
+> And finally, we'd also like to explore skills that can explicitly depend on and refer to either other skills, MCP servers, and dependencies and packages within the agent's environment ... The composability of multiple skills together will help agents like Claude elicit even more complex and relevant behavior from these agents.
 
 To me, these comments (reinforced by Anthropic's series of announcements since) increase my confidence that this architecture is worth following.
 
@@ -276,7 +280,7 @@ He explains:
 
 > This vision of an evolving knowledge base gets even more powerful when Claude starts to create these skills. We designed skills specifically as a concrete step towards continuous learning. When you first start using Claude, this standardized format gives a very important guarantee: anything that Claude writes down can be used efficiently by a future version of itself. This makes the learning actually transferable.
 >
-> Claude can acquire new capabilities instantly, evolve them as needed, and then drop the ones that become obsolete. This is what we have always known. The power of in-context learning makes this a lot more cost effective for information that change on a daily basis. Our goal is that Claude on day 30 of working with you is going to be a lot better on Claude on day one. Claude can already create skills for you today using our skill creator skill, and we're going to continue pushing in that direction.
+> Claude can acquire new capabilities instantly, evolve them as needed, and then drop the ones that become obsolete. This is what we have always known. The power of in-context learning makes this a lot more cost effective for information that change on a daily basis. Our goal is that Claude on day 30 of working with you is going to be a lot better on Claude on day one. Claude can already create skills for you today using our `skill-creator` skill, and we're going to continue pushing in that direction.
 
 ## Skills As Application Layer
 
@@ -291,69 +295,8 @@ The final thought that Zhang and Murag leave us with: comparing Models, Agents, 
 
 > In a rough analogy, models are like processors. Both require massive investment and contain immense potential, but are only so useful by themselves.
 >
-> Then we start building operating systems. The OS made processors far more valuable by orchestrating the processes, resources, and data around the processor. In AI, we believe that agent runtime is starting to play this role. We're all trying to build the cleanest, most efficient, and most scalable abstractions to get the right tokens in and out of the model.
+> The operating system made processors far more valuable by orchestrating the processes, resources, and data around the processor. In AI, we believe that agent runtime is starting to play this role. We're all trying to build the cleanest, most efficient, and most scalable abstractions to get the right tokens in and out of the model.
 >
-> But once we have a platform, the real value comes from applications. A few companies build processors and operating systems, but millions of developers like us have built software that encode domain expertise at our unique points of view. We hope that skills can help us open up this layer for everyone.
+> But once we have a platform, the real value comes from applications. Millions of developers like us have built software that encode domain expertise at our unique points of view. We hope that skills can help us open up this layer for everyone.
 
-### Anthropic's Barry Zhang & Mahesh Murag argue for building Skills, not Agents
-
-#### Stop Building Agents, Build Skills Instead
-
-- These two created Agent Skills
-- Moving towards tighter coupling between the model and the runtime environment
-- Used to think about (ss)
-- Agent underneath is actually more universal than we thought
-- Code is the universal interface (as in Claude Code)
-  - Realized Claude Code is a General Purpose Agent 25:20
-- Missing link: Domain expertise: Agents can't absorb your expertise really well, and they don't learn over time
-- That's why we created Agent Skills
-  - Def: Skills are organized collections of files that package composable procedural knowledge for agents
-- Simplicity: folders and files
-- Skills can include scripts as tools
-  - Traditonal tools have a lot of problems: poorly written instructions, are pretty ambiguous. When model is struggling, it can't really make a change to the tool. Always live in the context window.
-  - Code solves some of these issues: It's self-documenting, it is modifiable and can live in the file system until they are really needed and used.
-- Skills ecosystem
-  - Foundational skills
-    - To start, foundational skills are those that give agents new capabilities or domain specific capabilities that it didn't have before.
-    - We ourselves with our launch built document skills that give Claude the ability to create and edit professional quality office documents.
-    - Cadence build scientific research skills that give Claude new capabilities like EHR data analysis and using common Python bioinformatics libraries better than it could before.
-  - Partner skills
-    - Browserbase built skill for their open source browser automation tool StageHand. Now Claude hooked up, navigate to the web and more effectively get work done.
-      - NO MCP!!
-  - Enterprise skills
-    - Fortune 100s
-      - Using skills as a way to teach agents about organizational best practices and the weird and unique ways that they use this bespoke internal software
-      - We're also talking to really large developer productivity teams. These teams serving thousands or even tens of thousands of developers in an organization that are using skills as a way to deploy agents like claude code and teach them about code style best practices and other ways that they want their developers to work internally.
-  - Common to all
-    - Anyone can create them; and they give agents new capabilities that they didn't have before.
-- Trends
-  - More complex, production-grade skills
-  - Complementing the existing ecosystem of MCPs
-    - Developers are using and building sklls that orchestrate workflows of multiple MCP tools stitched together to do more complex things with external data and connectivity. In these cases, MCP is providing the connection to the outside world, while Skills are providing the expertise.
-  - Skills that are being built by people that aren't technical. These are people that are in functions like finance, recruiting, accounting, legal, and a lot more.
-    - Early validation of our initial idea that skills help people that aren't doing coding work extend these general agents and they make these agents more accessible for the day-to-day of what these people are wroking on.
-- Complete picture / architecture
-  - Agent loop
-    - The loop that manages the agent's internal context and manages what toekns are going in and out
-    - And this is coupled with a runtime environment that provides the agent with a file system and the ability to read and write code
-    - Agent can be connected to MCP servers. Tools and data from the outside world that make the agent more relevant and effective.
-    - Now, we can give the same agent a library of hundreds or thousands of skills that it can decide to pull into context only at runtime when it's deciding to work on a particular task.
-    - Today, giving an agent a new capability in a new domain might just involve equipping it with the right set of MCP servers and the right library of skills.
-  - This emerging pattern of an agent with an MCP server and a set of skills is something that's already helping us at Anthropic deploy Claude to new verticals. Just after we launched Skills 5 weeks ago, we immediately launched new offerings in financial services and life sciences.
-- Skills evolving
-  - Starting to treat skills like we treat software.
-    - This means exploring testing and evaluation. Rights skills at right time; measure output quality of an agent equipped with the skill to make sure that's on par with what the agent is supposed to be doing.
-    - We'd also like to focus on versioning. As a skill evolves and the resulting agent behavior evolves, we want this to be clearly tracked and to have a clear lineage over time.
-    - Finally, want to explore skills that can explicitly depend on and refer to either other skills, MCP servers, and dependencies and packages within the agent's environment. We thinking that tjis is going to make agents a lot more predictable in different runtime environments and the composabilty of multiple skills together will help agents like Claude elicit even more complex and relevant behavior from these agents.
-- Sharing and distribution
-  - Lots of thinking about companies that are deploying these agents at scale. And the vision that excites us most is one of a collective and evolving knolwedge base of capabilities that's curated by people and agents inside of an organization. We think skills are a big step towards this vision. They provide the procedural knowledge for your agents to do useful things. And as you interact with an agent and give it feedback and more institutional knowledge, it starts to get better, and all of the agents inside your team and your org get better as well. And when someone joins your team and starts using Claude for the first time, it already knows that your team cares about. It knows about your day-to-day and it knows how to be most effective for the work that you're doing. And as this grows and this ecosystem starts to develop even more, this compounding value is going to extend outisde of just your org and into the broader community. So just liek when someone else across the world builds and MCP server that makes your agent more useful, a skill built by someone else in the community will help make your own agents more capable, reliable, and useful as well.
-- This vision of evolving knowledge base gets even more powerful when Claude starts to create these skills. (Slide) Claude can acquire new capabilities instantly, evolve them as needed, and then drop the ones that become obsolete. Power of in-context learning makes this a lot more cost effective for information that changes on a daily basis. Skill creator skill; continue pushing in that direction.
-- Agent stack - computing stack comparison
-  - Models = CPUs
-  - Agents = OSs
-  - Skills = Applications
-- Closing
-  - Converging on a general architecture for general agents. Time stop rebuilding agents and start building skills
-
-  DONT MISS
-  - Runtime and importance thereof
+---
