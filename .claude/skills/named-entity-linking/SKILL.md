@@ -21,6 +21,7 @@ See [references/entity-examples.md](references/entity-examples.md) for what to l
 ## Link Strategy
 
 Find AN authoritative reference (not THE most authoritative):
+
 - Official pages, docs, Wikipedia, announcement blogs
 - Avoid: login pages, paywalls, redirects
 
