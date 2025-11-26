@@ -72,6 +72,27 @@ The speed at which AI has come to write a huge amount of code is pretty startlin
 - Balances multiple perspectives (boosters vs dismissers)
 - Ends with insight, not self-promotion
 
+### Example 4: Product Critique with UX Observations
+
+```
+Voice is one of the most useful ways to interact with AI to do work (talking is often faster and more natural than writing) but it seems to have been semi-abandoned for serious use outside of the "chat with a friend" case.
+
+All of the voice modes only access older, quite weak models with low latency, making them zippy & fun but kind of useless.
+
+If you don't think of voice models as a fun chat, but rather as a way of working, it suggests that pauses are fine, even preferred (don't talk with me unless you have something to say). And alternative UXs beyond "talk with your AI about the weather" become possible to explore.
+
+Also I want to turn off the breathing, giggling, and disfluencies. Anthropomorphism can be helpful in many cases but it gets to be too much, especially for serious discussions. The tone is off and it feels ingratiating and slows things down.
+```
+
+**What makes this work:**
+
+- Opens with clear thesis about underexplored use case
+- Identifies specific product limitation ("older, quite weak models")
+- Reframes problem with fresh perspective ("way of working" vs "fun chat")
+- Gets specific about UX annoyances (breathing, giggling, disfluencies)
+- Natural language throughout ("kind of useless", "slows things down")
+- No promotion, just substantive critique
+
 ## Content Strategy Guidelines
 
 ### Hook Construction

@@ -1,10 +1,22 @@
 The most interesting insight from Anthropic's AI Engineer Code Summit talk wasn't about building better agents. It was about not building agents at all.
 
-After launching Claude Code, Anthropic realized something counterintuitive: code is a universal interface to the digital world. The core scaffolding can be as thin as bash and file system.
 
-But here's the catch: a brilliant general-purpose agent still lacks domain expertise. As Barry Zhang put it: who do you want doing your taxes? The genius figuring it out from first principles, or the experienced tax professional?
 
-That's why they created Skills: organized folders with simple markdown files and scripts as tools. Version them in Git, share with your team, let the agent improve them over time.
+Barry Zhang and Mahesh Murag, creators of Anthropic's Agent Skills, packed an incredible amount into their 15-minute session.
+
+
+
+After launching Claude Code, Anthropic realized something counterintuitive: what started as a coding agent turned out to be a universal agent. It can pull data from APIs, analyze it with Python, and synthesize insights—all without custom tooling.
+
+
+
+But here's the catch: a brilliant general-purpose agent still lacks domain expertise. As Zhang put it: who do you want doing your taxes? The genius figuring it out from first principles, or the experienced tax professional?
+
+
+
+That's why they created Skills: organized folders with simple markdown files and, if needed, scripts as tools. Version them in Git, share with your team, let the agent improve them over time. And they work across the Claude product line: Claude Code, Claude Desktop, and Claude web.
+
+
 
 Five weeks after launch, thousands of skills have emerged. Most exciting: non-technical people in finance, recruiting, and legal are building them too.
 
