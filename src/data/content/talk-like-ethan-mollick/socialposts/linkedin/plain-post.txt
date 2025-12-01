@@ -1,0 +1,13 @@
+I followed the standard LinkedIn advice for years. Emojis! Hashtags! Hook them in the first line!
+
+Then one day I looked at my drafts and thought: why am I writing clickbait? This is embarrassing.
+
+So I looked for someone on LinkedIn whose posts are both successful and good. I landed on Ethan Mollick. No emojis. No hashtags. Just plainspoken, informative writing about things he actually knows.
+
+I use AI for first drafts of social posts condensed from my longer essays. So I built a Claude Skill to generate drafts in Mollick's style. It includes four examples of his posts with notes on what makes them work.
+
+AI is good for more than "talk like a pirate."
+
+---
+
+https://cto4.ai/p/talk-like-ethan-mollick
