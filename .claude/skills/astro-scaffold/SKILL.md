@@ -24,16 +24,24 @@ Use this skill when:
 
 1. **Determine the slug** from the post title (lowercase, hyphens, reasonable length)
 
-2. **Create the directory structure** for `src/data/content/{slug}/`:
-   - `index.mdx` (main post file)
-   - `transcripts/` (for AI conversation exports as TypeScript files)
-   - `embedded/` (for external Markdown files to embed)
-   - `socialposts/` (LinkedIn, Twitter, Mastodon planning - not published)
-     - Create subdirectories: `linkedin/`, `twitter/`, `mastodon/`, `images/`
-     - Add `.gitkeep` to empty directories (especially `images/`) to preserve structure in Git
-   - Parallel asset directories:
-     - `src/assets/images/content/{slug}/` (images - Astro-processed)
-     - `public/videos/content/{slug}/` (videos - direct serving)
+2. **Create the directory structure** with `.gitkeep` files in ALL empty directories:
+
+   ```text
+   src/data/content/{slug}/
+   ├── index.mdx
+   ├── transcripts/.gitkeep
+   ├── embedded/.gitkeep
+   └── socialposts/
+       ├── linkedin/.gitkeep
+       ├── twitter/.gitkeep
+       ├── mastodon/.gitkeep
+       └── images/.gitkeep
+
+   src/assets/images/content/{slug}/.gitkeep
+   public/videos/content/{slug}/.gitkeep
+   ```
+
+   **Why `.gitkeep`**: Git only tracks files, not empty directories. Without `.gitkeep`, these directories disappear from the repo.
 
 3. **Initialize frontmatter** in `index.mdx` using this exact template:
 
@@ -56,11 +64,14 @@ Use this skill when:
    **Content-type specific fields:**
    - For `elsewhere` type, add: `sourceLink: ''` (URL to original content)
 
-   **After frontmatter, add standard imports for these components** (find their actual paths in the codebase):
-   - SingleImage
-   - ImageGallery
-   - ChatTranscript
-   - MDContent
+   **After frontmatter, add standard imports for these components:**
+
+   ```js
+   import SingleImage from '~/components/ui/SingleImage.astro';
+   import ImageGallery from '~/components/ui/ImageGallery.astro';
+   import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+   import MDContent from '~/components/ui/MDContent.astro';
+   ```
 
 4. **Images must be in** `/src/assets/images/content/{slug}/` matching the post slug exactly—use `postDir="{slug}"` parameter in all image components
 
