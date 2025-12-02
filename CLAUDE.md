@@ -154,7 +154,10 @@ This repository uses `.gitkeep` files to preserve empty directory structures in 
 ### Image Handling
 
 - Use Astro's Image component for optimization
-- Standard aspect ratio is 44:28 for consistency
+- **Cover image aspect ratio: 44:28 (11:7, ~1.571)**
+  - This ratio is used consistently across homepage, archive, and detail pages
+  - Images with different ratios will be cropped from center using `object-fit: cover`
+  - For best results, create cover images at exactly 44:28 (e.g., 1760×1120, 2200×1400, 3520×2240)
 - Always provide alt text for accessibility
 - Place images in `/src/assets/images/content/[slug]/` matching the post's slug
 

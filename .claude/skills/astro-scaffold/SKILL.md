@@ -52,6 +52,8 @@ Use this skill when:
    description: '' # Leave empty for user to fill
    author: 'Jack Ivers'
    publishDate: '{ISO 8601 timestamp 2 hours ago}' # Use: date -v-2H +%Y-%m-%dT%H:%M:%S%z
+   # Cover image: Must be 44:28 aspect ratio (11:7, ~1.571) for proper display
+   # Recommended sizes: 1760×1120, 2200×1400, 3520×2240
    image: '~/assets/images/content/{slug}/' # Path to header image, leave filename empty
    featured: false
    featuredOrder: 10

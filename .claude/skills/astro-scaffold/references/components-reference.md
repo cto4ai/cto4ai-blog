@@ -39,6 +39,18 @@ Example: If `postDir="my-post"` and `src="diagram.png"`, the component loads fro
 - Optimize images before upload (compress, appropriate dimensions)
 - Place all images in the post's dedicated image directory
 
+## Cover Image Requirements
+
+The frontmatter `image` field specifies the post's cover image, which appears on the homepage, archive page, and detail page header.
+
+### Required Aspect Ratio: 44:28
+
+- **Ratio**: 44:28 (equivalent to 11:7, approximately 1.571)
+- **Why**: All cover image containers use this ratio consistently
+- **Cropping behavior**: Images with different ratios are cropped from center using `object-fit: cover`
+
+To calculate height for any width: `Height = Width × 0.636`
+
 ## ImageGallery Component
 
 Display multiple images in a grid with lightbox support.
