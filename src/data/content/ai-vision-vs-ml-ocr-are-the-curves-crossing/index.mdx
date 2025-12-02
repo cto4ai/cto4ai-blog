@@ -5,8 +5,8 @@ description: 'Why I was wrong about Computer Vision OCR being dead, and signs th
 author: 'Jack Ivers'
 publishDate: '2025-12-01T12:56:34-0600'
 image: '~/assets/images/content/ai-vision-vs-ml-ocr-are-the-curves-crossing/aiv_vs_cv.jpg'
-featured: false
-featuredOrder: 10
+featured: true
+featuredOrder: 2
 draft: true
 tags:
   - ai
@@ -89,7 +89,7 @@ Textract is the gap in my knowledge, the thing I didn't know existed: a machine 
   postDir="ai-vision-vs-ml-ocr-are-the-curves-crossing"
 />
 
-And there you go, done! It's CV^^ML, very well executed.
+And there you go, done! It's CV<sup>ML</sup>, very well executed.
 
 ## But ML Is Not AI ...
 
@@ -108,10 +108,10 @@ As I described above, if it weren't for bugs and crappy inference operations (or
   postDir="ai-vision-vs-ml-ocr-are-the-curves-crossing"
 />
 
-Furthermore, even after we had Textract in place, I kept a close eye on new models, of which we have many these days! In limited testing on the dense checkbox matrix form, it appears that Gemini 3 Pro Preview performed almost as well as Qwen3 VL, and that's with no parameter tuning, just running Preview through one of Google's playground UIs. Surprisingly, so did Gemini Flash Latest. YMMV -- limited testing here.
+Furthermore, even after we had Textract in place, I kept a close eye on new models, of which we have many these days! In limited testing on the dense checkbox matrix form, it appears that [Gemini 3 Pro](https://blog.google/products/gemini/gemini-3/) Preview performed almost as well as Qwen3 VL, and that's with no parameter tuning, just running Preview through one of Google's playground UIs. Surprisingly, so did Gemini Flash Latest. YMMV -- limited testing here.
 
 Most recently, I've been using Anthropic's new [Opus 4.5](https://www.anthropic.com/news/claude-opus-4-5) model in [Claude Code](https://www.anthropic.com/claude-code). As I worked to improve extraction errors we were seeing with [GPT-5.1](https://openai.com/index/gpt-5-1/) as the vision model on simpler plastic-bag-printed forms, I noticed that Code was able to parse checkboxes very accurately when I gave it example images during our development process. Then I remembered that improved vision capabilities were mentioned in the Opus 4.5 announcement.
 
-So I wired up the (new beta) Anthropic API and turned Opus 4.5 loose on our bag-form images. Bingo! We're now at 100% bag-form checkbox detection on our golden dataset images, a large improvement over GPT-5.1. Again, YMMV; we definitely didn't have the time to test every configuration thoroughly.
+So I wired up the (new beta) [Anthropic API](https://docs.anthropic.com/en/api/messages) and turned Opus 4.5 loose on our bag-form images. Bingo! We're now at 100% bag-form checkbox detection on our golden dataset images, a large improvement over GPT-5.1. Again, YMMV; we definitely didn't have the time to test every configuration thoroughly.
 
 In any case, though, to me it is clear that the AI Vision line is **right this second** about to eclipse the ML-augmented CV line for use cases like ours, where we have comparatively inconsistent and unpredictable inputs, but also need to precisely "see" image features such as those pesky checkboxes.
