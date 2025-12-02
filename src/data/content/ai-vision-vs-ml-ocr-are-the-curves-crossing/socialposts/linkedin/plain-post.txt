@@ -1,0 +1,13 @@
+I was convinced AI vision had killed OCR back in early 2024. GPT-4V extracted handwritten recipe data so well that I thought traditional computer vision was dead.
+
+Then I hit a wall: a dense checkbox matrix, 10 rows by 15 columns on a pre-printed form. None of the mainstream models could reliably detect which boxes were checked.
+
+The solution turned out to be Amazon Textract, an ML-augmented computer vision service I didn't even know existed. It solved the checkbox problem perfectly. But Textract isn't a language model, so it's dumb about context. AI knows "Co" in an address is probably "CO" the state. Textract doesn't.
+
+So we ended up with both: Textract for precise visual detection, then AI to refine the results.
+
+The interesting part? Testing newer models like Gemini 3 Pro and Opus 4.5, they're now matching what only specialized CV could do months ago. The curves are crossing right now.
+
+---
+
+https://cto4.ai/p/ai-vision-vs-ml-ocr-are-the-curves-crossing
