@@ -57,8 +57,24 @@ In fairness, based on my genuine early success with the model, I believe that a 
 
 ## Computer Vision? I Don't Wanna ...
 
-My next step was actually to implement a Python CV solution using the typical toolchain. This immediately exposed a world of hurt with no clear escape; our use case wasn't 100,000 forms of the exact same size and shape, and My partner on the project suggested we check out Amazon Textract. I was skeptical, of course, but AWS has a nice UI for quickly testing Textract, and it didn't take long to be won over, as form after form came through with perfect checkmark detection and selected cell identification.
+My next step was actually to quickly prototype a classical Python CV solution using readily-available CV libraries. This immediately exposed a world of hurt with no clear escape; our use case wasn't 100,000 forms of the exact same size and shape, and it wasn't clear how to even get the CV engine focused on the right part of the form, when that part would almost never be in the same place from one image to the next. Not a fair trial by any means, but I think my insticts were correct in abandoning classic Python CV as a possible solution.
 
+My partner on the project suggested we check out Amazon Textract. I was skeptical, of course, certainly not any less so based on my classical CV attempt. But AWS has a nice UI for quickly testing Textract, and it didn't take long to be won over, as form after inconsistent form came through with good handwriting extraction and virtually perfect checkmark detection.
+
+Textract is a thing I didn't know existed: a machine learning augmented CV service. It applies ML to overcome hard CV problems (like checkbox detection!) and reduce the learning curve and implementation pain. In caveman speak, the flow is
+
+> Here Textract, take image. Sideways? Upside-down? Not me! You fix!! Give back form data! Give back table data!
+
+And there you go, done! It's ML, very well executed.
+
+## ML Is Not AI ...
+
+Following the tremendous relief of finding a reliable form parsing solution, I began to notice that Textract, while it solved our most crucial problem, was in other areas less effective than AI. Textract's ML was powerful but it was not a language model and was clearly very dumb about language. AI would continually surprise and delight, realizing that handwriting that looks like "Co" was actually part of an address, and that the more correct extraction would be "CO" the state abbreviation. Or see a series of handwritten numbers "3427" ... "28" ... "29" ... "30" and realize these should be extracted as 3427, 3428, 3429, 3430. Many small differences but they added up.
+
+We decided to try taking Textract's raw form and table data, and passing it through the AI with a simple prompt, basically "refine this." Magical!
+
+results were less good than AI's, though in less critical areas. Textract just did its job, giving us
+the
 As I've admitted, I'm not a world's leading authority on Computer Vision. But my understand of what
 
 o didn't break something, as
