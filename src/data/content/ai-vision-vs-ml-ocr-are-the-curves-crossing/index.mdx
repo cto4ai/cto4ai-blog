@@ -1,15 +1,22 @@
 ---
 title: 'AI Vision vs Computer Vision: Are the Curves Crossing?'
 contentType: 'essay'
-description: ''
+description: 'Why I was wrong about Computer Vision OCR being dead, and signs that AI Vision is ready to take over.'
 author: 'Jack Ivers'
 publishDate: '2025-12-01T12:56:34-0600'
 image: '~/assets/images/content/ai-vision-vs-ml-ocr-are-the-curves-crossing/aiv_vs_cv.jpg'
 featured: false
 featuredOrder: 10
 draft: true
-tags: []
-categories: []
+tags:
+  - ai
+  - computer-vision
+  - machine-learning
+  - ocr
+  - openai
+  - anthropic
+categories:
+  - ai-and-technology
 ---
 
 import SingleImage from '~/components/ui/SingleImage.astro';
@@ -23,7 +30,7 @@ I thought AI Vision had won out over "old style OCR" when I wrote [this piece](c
 
 I have a huge knowledge gap, and that is what bit me. I had some significant experience with traditional OCR, many years ago, and it was mostly bad. I then completely skipped the Computer Vision era. I had heard of Computer Vision, but assumed that it was just a rebranding of old, bad, OCR.
 
-My next significant experience with extracting content from images, therefore, came on the abovementioned learning project where I applied OpenAI's [GPT-4V](https://openai.com/index/gpt-4v-system-card/) dedicated vision model to extract and structure often-handwritten data. That effort was amazingly successful. That led me to decide, back in early 2024, that OCR (rebranded or not) was dead, long live AI Vision.
+My next significant experience with extracting content from images, therefore, came on the abovementioned learning project where I applied OpenAI's [GPT-4V](https://openai.com/index/gpt-4v-system-card/) dedicated vision model to extract and structure often-handwritten data from heirloom family recipes. That effort was amazingly successful. That led me to decide, back in early 2024, that OCR (rebranded or not) was dead, long live AI Vision.
 
 Wrong.
 
@@ -31,13 +38,27 @@ Wrong.
 
 That was still my attitude as I kicked off a new AI Vision project earlier this year. The proof of concept phase mostly went well; handwriting recognition worked very well, and the only real extraction problem I had was checkbox detection. I was able to prompt my way to checkbox success, and coming into the production implementation felt quite confident.
 
-Right around this point, I saw a comment on a [Hacker News post announcing the new Qwen3-VL next-gen vision model](https://news.ycombinator.com/item?id=45354408) where the writer was saying he had really bad luck using OpenAI vision models on a particular construction form. He went on to say that [Qwen3-VL](https://github.com/QwenLM/Qwen3-VL) did a great job on it.
+Right around this point, I saw a comment on a [Hacker News post announcing the new Qwen3-VL next-gen vision model](https://news.ycombinator.com/item?id=45352672) where the writer was saying he had really bad luck using OpenAI vision models on a particular construction form. He went on to say that [Qwen3-VL](https://github.com/QwenLM/Qwen3-VL) did a great job on it.
 
 I replied with a kind of classic, "you're holding it wrong" response. Sorry, `richardlblair`, I now know you were holding it just fine.
+
+<SingleImage
+  src="guy_on_hacker_news.jpg"
+  alt="Guy on Hacker News"
+  size="2xl"
+  postDir="ai-vision-vs-ml-ocr-are-the-curves-crossing"
+/>
 
 ## My Comeuppance
 
 So we shifted into real implementation on the vision project, and there was a pre-printed form, which customers would print out, then complete by hand. Its primary data section was a matrix of checkboxes, roughly 10 rows by 15 columns.
+
+<SingleImage
+  src="checkboxes.jpg"
+  alt="Dense checkbox matrix"
+  size="xl"
+  postDir="ai-vision-vs-ml-ocr-are-the-curves-crossing"
+/>
 
 This checkbox matrix proved to be the undoing of AI Vision, at least for this particular task. This was the GPT-5, Gemini Pro 2.5 timeframe, not long ago in human time. None of the mainstream models could reliably detect checkboxes in that dense matrix of 150 cells. This "simple preprinted form" seemed about to derail our implementation.
 
