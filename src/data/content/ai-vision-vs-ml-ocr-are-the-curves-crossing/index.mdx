@@ -39,9 +39,15 @@ I replied with a kind of classic, "you're holding it wrong" response. Sorry, `ri
 
 ## My Comeuppance
 
-So we shifted into real implementation on the vision project, and there was a pre-printed form, which customers would print out, then hand-write onto. Its primary data section, though, was a matrix of checkboxes. Roughly 10 rows by 15 columns.
+So we shifted into real implementation on the vision project, and there was a pre-printed form, which customers would print out, then complete by hand. Its primary data section, was a matrix of checkboxes. Roughly 10 rows by 15 columns.
 
-And just as AIs had there period of not being able to do simple math, I learned that some visual elements were beyond current state of the art, general-purpose but vision-enabled AI models' ability to understand.
+This checkbox matrix proved to be the undoing of AI Vision, at least for this particular task. This was the GPT-5, Gemini Pro 2.5 timeframe, not long ago in human time. None of the mainstream models could reliably detect checkboxes in that dense matrix of 150 cells. This "simple preprinted form" seemed about to derail our implementation.
+
+## A Fresh Savior?
+
+The Hacker News article caught my eye for more reasons than one. Qwen3-VL was family of a special-purpose vision model of various sizes and features, freshly released within a few days of my dilemma becoming apparent. We had an OpenRouter path already implemented, so I wired up Qwen3-vl-32B, and after a bit of configuring and prompt tweaking it looked like we had a solution: checkmark detection and selected cell identification was nearly perfect. I was a little nervous that
+
+Just as AIs had their period of not being able to do simple math, I learned that some visual elements were beyond current state of the art, general-purpose but vision-enabled AI models' ability to understand.
 
 , extremely successfully, ferom heirloom recipe cards. hubbzero experience in
 ap
