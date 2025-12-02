@@ -19,21 +19,23 @@ import MDContent from '~/components/ui/MDContent.astro';
 
 {/* Post content goes here */}
 
-I thought AI Vision had won out over "old style OCR" when I wrote [this piece](chatgpt-4v) back in February 2024. I was wrong, I learned recently, when I got more deeply into a real vision project. But I actually think the curves are about to cross.
+I thought AI Vision had won out over "old style OCR" when I wrote [this piece](chatgpt-4v) back in February 2024. It turns out I was wrong; but maybe not for long.
 
 ## Wrong Assumptions
 
-I have a huge knowledge gap, and that is what bit me. I had some significant, but very dated, experience (all bad) with traditional OCR. I then completely skipped the Computer Vision era, and my next significant experience came on the abovementioned learning project where I applied OpenAI's GPT-4V dedicated vision model to extract and structure often-handwritten data. That effort was amazingly successful.
+I have a huge knowledge gap, and that is what bit me. I had some significant experience with traditional OCR, many years ago, and it was mostly bad. I then completely skipped the Computer Vision era. I had heard of Computer Vision, but assumed that it was just a rebranding of old, bad, OCR.
 
-I had heard the term Computer Vision, but assumed that it was on par with what I had already experienced using OCR tools. So in early 2024, I had decided that OCR was dead, long live AI Vision. Wrong.
+My next significant experience with extracting content from images, therefore, came on the abovementioned learning project where I applied OpenAI's GPT-4V dedicated vision model to extract and structure often-handwritten data. That effort was amazingly successful. That led me to decide, back in early 2024, that OCR (rebranded or not) was dead, long live AI Vision.
+
+Wrong.
 
 ## Sorry, Guy on Hacker News
 
-I kicked off a new AI Vision project earlier this year. The proof of concept phase mostly went well; I had some extraction problems, especially around checkbox detection on forms that were printed on plastic bags and handwritten, but prompted around these and came into the real implementation confident.
+That was still my attitude as I kicked off a new AI Vision project earlier this year. The proof of concept phase mostly went well; handwriting recognition worked very well, and the only real extraction problem I had was checkbox detection. I was able to prompt my way to checkbox success, and coming into the production implementation felt quite confident.
 
-Right around this point, I saw a post https://news.ycombinator.com/item?id=45354408 on Hacker News (the Qwen3-VL announcement) where the writer was saying he had really bad luck using OpenAI vision models on a particular construction form. (He went on to say that Qwen3-VL did a great job on it.)
+Right around this point, I saw a comment on a [Hacker News post announcing the new Qwen3-VL next-gen vision model](https://news.ycombinator.com/item?id=45354408) where the writer was saying he had really bad luck using OpenAI vision models on a particular construction form. He went on to say that Qwen3-VL did a great job on it.
 
-I replied with a kind of classic, "you're holding it wrong" response. Sorry, `richardlblair` ... you were right, I was wrong.
+I replied with a kind of classic, "you're holding it wrong" response. Sorry, `richardlblair`, I now know you were holding it just fine.
 
 ## My Comeuppance
 
