@@ -1,10 +1,10 @@
 ---
-title: 'AI Vision vs ML OCR: Are the Curves Crossing?'
+title: 'AI Vision vs Computer Vision: Are the Curves Crossing?'
 contentType: 'essay'
 description: ''
 author: 'Jack Ivers'
 publishDate: '2025-12-01T12:56:34-0600'
-image: '~/assets/images/content/ai-vision-vs-ml-ocr-are-the-curves-crossing/'
+image: '~/assets/images/content/ai-vision-vs-ml-ocr-are-the-curves-crossing/aiv_vs_cv.jpg'
 featured: false
 featuredOrder: 10
 draft: true
@@ -59,9 +59,11 @@ My next step was actually to quickly prototype a classical Python CV solution us
 
 My partner on the project suggested we check out Amazon Textract. I was skeptical, of course, certainly not any less so based on my classical CV attempt. But AWS has a nice UI for quickly testing Textract, and it didn't take long to be won over, as form after inconsistent form came through with good handwriting extraction and virtually perfect checkmark detection.
 
-Textract is the gap in my knowledge, the thing I didn't know existed: a machine learning augmented CV service. It applies ML to overcome hard CV problems (like checkbox detection!) and reduce the learning curve and implementation pain. In caveman speak, the flow is
+Textract is the gap in my knowledge, the thing I didn't know existed: a machine learning augmented CV service. It applies ML to overcome hard CV problems (like checkbox detection!) and reduce the learning curve and implementation pain. In caveman speak, the flow is:
 
 > Here Textract, take image. Sideways? Upside-down? Not me! You fix!! Give back form data! Give back table data!
+
+<SingleImage src="caveman_textract.jpg" alt="Caveman Textract" size="2xl" postDir="ai-vision-vs-ml-ocr-are-the-curves-crossing" />
 
 And there you go, done! It's CV^^ML, very well executed.
 
@@ -74,6 +76,13 @@ We decided to try taking Textract's raw form and table data, and passing it thro
 ## The Lines Are Crossing Right Now
 
 As I described above, if it weren't for bugs and crappy inference operations (or my own incompetence), I believe that Qwen3 VL was a workable AI Vision solution for our use case. And it would have given us the benefits of Textract, plus the benefits of AI, all in one (unbelievably inexpensive) AI call.
+
+<SingleImage
+  src="aiv_vs_cv.jpg"
+  alt="AI Vision vs Computer Vision"
+  size="2xl"
+  postDir="ai-vision-vs-ml-ocr-are-the-curves-crossing"
+/>
 
 Furthermore, even after we had Textract in place, I kept a close eye on new models, of which we have many these days! In limited testing on the dense checkbox matrix form, it appears that Gemini 3 Pro Preview performed almost as well as Qwen3 VL, and that's with no parameter tuning, just running Preview through one of Google's playground UIs. Surprisingly, so did Gemini Flash Latest. YMMV -- limited testing here.
 
