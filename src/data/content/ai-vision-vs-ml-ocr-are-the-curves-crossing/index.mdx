@@ -45,7 +45,23 @@ This checkbox matrix proved to be the undoing of AI Vision, at least for this pa
 
 ## A Fresh Savior?
 
-The Hacker News article caught my eye for more reasons than one. Qwen3-VL was family of a special-purpose vision model of various sizes and features, freshly released within a few days of my dilemma becoming apparent. We had an OpenRouter path already implemented, so I wired up Qwen3-vl-32B, and after a bit of configuring and prompt tweaking it looked like we had a solution: checkmark detection and selected cell identification was nearly perfect. I was a little nervous that
+That Hacker News article caught my eye for more reasons than one. Qwen3-VL was family of a special-purpose vision model of various sizes and features, freshly released within a few days of my dilemma becoming apparent. We had an OpenRouter path already implemented, so I wired up Qwen3-vl-32B, and after a bit of configuring and prompt tweaking it looked like we had a solution: checkmark detection and selected cell identification was nearly perfect. I was a little nervous that only a few inference providers offered Qwen3-vl models; but hey, it was working extremely well.
+
+Until, one day, it just stopped working. I can't say with 100% confidence that our code didn't cause the problem. I **_can_** say I'm 98+% sure, however, since we actually rolled the code back to its exact state when checkbox detection last worked reliably---and that code no longer detected checkboxes reliably. If I had to guess, I'd say the model was prone to entering a corrupt state, losing its mind in effect.
+
+The downside of working with a bleeding-edge model, served by 3rd party inference providers, over OpenRouter and its extra layer of API translation---who ya gonna call? Ghostbusters would have been a better answer by far. If your OpenAI or Anthropic model has issues, at the very least you know they have people closely following the health of the model and deeply concerned if anything looks broken. With the long, weak chain of custody in our OpenRouter configuration? I'm not sure anyone was paying attention at any of the parties. I did post a ticket to OpenRouter, with the only visible result being that they shut down the endpoint I was using, completely and without notice.
+
+We switched to a larger Qwen3-VL model and continued trying to make things work, to no avail.
+
+In fairness, based on my genuine early success with the model, I believe that a bugfixed, properly configured, correctly operated Qwen3 VL model would be capable of checkmark detection and selected cell identification. Unfortunately, our early-days experience was more the "buggy and unreliable" flavor.
+
+## Computer Vision? I Don't Wanna ...
+
+My next step was actually to implement a Python CV solution using the typical toolchain. This immediately exposed a world of hurt with no clear escape; our use case wasn't 100,000 forms of the exact same size and shape, and My partner on the project suggested we check out Amazon Textract. I was skeptical, of course, but AWS has a nice UI for quickly testing Textract, and it didn't take long to be won over, as form after form came through with perfect checkmark detection and selected cell identification.
+
+As I've admitted, I'm not a world's leading authority on Computer Vision. But my understand of what
+
+o didn't break something, as
 
 Just as AIs had their period of not being able to do simple math, I learned that some visual elements were beyond current state of the art, general-purpose but vision-enabled AI models' ability to understand.
 
