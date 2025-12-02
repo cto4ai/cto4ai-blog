@@ -37,7 +37,7 @@ I replied with a kind of classic, "you're holding it wrong" response. Sorry, `ri
 
 ## My Comeuppance
 
-So we shifted into real implementation on the vision project, and there was a pre-printed form, which customers would print out, then complete by hand. Its primary data section, was a matrix of checkboxes. Roughly 10 rows by 15 columns.
+So we shifted into real implementation on the vision project, and there was a pre-printed form, which customers would print out, then complete by hand. Its primary data section was a matrix of checkboxes, roughly 10 rows by 15 columns.
 
 This checkbox matrix proved to be the undoing of AI Vision, at least for this particular task. This was the GPT-5, Gemini Pro 2.5 timeframe, not long ago in human time. None of the mainstream models could reliably detect checkboxes in that dense matrix of 150 cells. This "simple preprinted form" seemed about to derail our implementation.
 
@@ -60,8 +60,6 @@ My next step was actually to quickly prototype a classical Python CV solution us
 My partner on the project suggested we check out [Amazon Textract](https://aws.amazon.com/textract/). I was skeptical, of course, certainly not any less so based on my classical CV attempt. But AWS has a nice UI for quickly testing Textract, and it didn't take long to be won over, as form after inconsistent form came through with good handwriting extraction and virtually perfect checkmark detection.
 
 Textract is the gap in my knowledge, the thing I didn't know existed: a machine learning augmented CV service. It applies ML to overcome hard CV problems (like checkbox detection!) and reduce the learning curve and implementation pain. In caveman speak, the flow is:
-
-> Here Textract, take image. Sideways? Upside-down? Not me! You fix!! Give back form data! Give back table data!
 
 <SingleImage
   src="caveman_textract.jpg"
@@ -91,7 +89,7 @@ As I described above, if it weren't for bugs and crappy inference operations (or
 
 Furthermore, even after we had Textract in place, I kept a close eye on new models, of which we have many these days! In limited testing on the dense checkbox matrix form, it appears that Gemini 3 Pro Preview performed almost as well as Qwen3 VL, and that's with no parameter tuning, just running Preview through one of Google's playground UIs. Surprisingly, so did Gemini Flash Latest. YMMV -- limited testing here.
 
-Most recently, I've been using Anthropic's new [Opus 4.5](https://www.anthropic.com/news/claude-opus-4-5) model in [Claude Code](https://www.anthropic.com/claude-code). As I worked to improve extraction errors we were seeing with GPT-5.1 as the vision model on simpler plastic-bag-printed forms, I noticed that Code was able to parse checkboxes very accurately when I gave it example images during our development process. Then I remembered that improved vision capabilities were mentioned in the Opus 4.5 announcement.
+Most recently, I've been using Anthropic's new [Opus 4.5](https://www.anthropic.com/news/claude-opus-4-5) model in [Claude Code](https://www.anthropic.com/claude-code). As I worked to improve extraction errors we were seeing with [GPT-5.1](https://openai.com/index/gpt-5-1/) as the vision model on simpler plastic-bag-printed forms, I noticed that Code was able to parse checkboxes very accurately when I gave it example images during our development process. Then I remembered that improved vision capabilities were mentioned in the Opus 4.5 announcement.
 
 So I wired up the (new beta) Anthropic API and turned Opus 4.5 loose on our bag-form images. Bingo! We're now at 100% bag-form checkbox detection on our golden dataset images, a large improvement over GPT-5.1. Again, YMMV; we definitely didn't have the time to test every configuration thoroughly.
 
