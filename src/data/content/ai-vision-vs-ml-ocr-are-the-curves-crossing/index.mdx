@@ -23,7 +23,7 @@ I thought AI Vision had won out over "old style OCR" when I wrote [this piece](c
 
 I have a huge knowledge gap, and that is what bit me. I had some significant experience with traditional OCR, many years ago, and it was mostly bad. I then completely skipped the Computer Vision era. I had heard of Computer Vision, but assumed that it was just a rebranding of old, bad, OCR.
 
-My next significant experience with extracting content from images, therefore, came on the abovementioned learning project where I applied OpenAI's GPT-4V dedicated vision model to extract and structure often-handwritten data. That effort was amazingly successful. That led me to decide, back in early 2024, that OCR (rebranded or not) was dead, long live AI Vision.
+My next significant experience with extracting content from images, therefore, came on the abovementioned learning project where I applied OpenAI's [GPT-4V](https://openai.com/index/gpt-4v-system-card/) dedicated vision model to extract and structure often-handwritten data. That effort was amazingly successful. That led me to decide, back in early 2024, that OCR (rebranded or not) was dead, long live AI Vision.
 
 Wrong.
 
@@ -31,7 +31,7 @@ Wrong.
 
 That was still my attitude as I kicked off a new AI Vision project earlier this year. The proof of concept phase mostly went well; handwriting recognition worked very well, and the only real extraction problem I had was checkbox detection. I was able to prompt my way to checkbox success, and coming into the production implementation felt quite confident.
 
-Right around this point, I saw a comment on a [Hacker News post announcing the new Qwen3-VL next-gen vision model](https://news.ycombinator.com/item?id=45354408) where the writer was saying he had really bad luck using OpenAI vision models on a particular construction form. He went on to say that Qwen3-VL did a great job on it.
+Right around this point, I saw a comment on a [Hacker News post announcing the new Qwen3-VL next-gen vision model](https://news.ycombinator.com/item?id=45354408) where the writer was saying he had really bad luck using OpenAI vision models on a particular construction form. He went on to say that [Qwen3-VL](https://github.com/QwenLM/Qwen3-VL) did a great job on it.
 
 I replied with a kind of classic, "you're holding it wrong" response. Sorry, `richardlblair`, I now know you were holding it just fine.
 
@@ -43,7 +43,7 @@ This checkbox matrix proved to be the undoing of AI Vision, at least for this pa
 
 ## A Fresh Savior?
 
-That Hacker News article caught my eye for more reasons than one. Qwen3-VL was family of a special-purpose vision model of various sizes and features, freshly released within a few days of my dilemma becoming apparent. We had an OpenRouter path already implemented, so I wired up Qwen3-vl-32B, and after a bit of configuring and prompt tweaking it looked like we had a solution: checkmark detection and selected cell identification was nearly perfect. I was a little nervous that only a few inference providers offered Qwen3-vl models; but hey, it was working extremely well.
+That Hacker News article caught my eye for more reasons than one. Qwen3-VL was family of a special-purpose vision model of various sizes and features, freshly released within a few days of my dilemma becoming apparent. We had an [OpenRouter](https://openrouter.ai) path already implemented, so I wired up Qwen3-vl-32B, and after a bit of configuring and prompt tweaking it looked like we had a solution: checkmark detection and selected cell identification was nearly perfect. I was a little nervous that only a few inference providers offered Qwen3-vl models; but hey, it was working extremely well.
 
 Until, one day, it just stopped working. I can't say with 100% confidence that our code didn't cause the problem. I **_can_** say I'm 98+% sure, however, since we actually rolled the code back to its exact state when checkbox detection last worked reliably---and that code no longer detected checkboxes reliably. If I had to guess, I'd say the model was prone to entering a corrupt state, losing its mind in effect.
 
@@ -57,13 +57,18 @@ In fairness, based on my genuine early success with the model, I believe that a 
 
 My next step was actually to quickly prototype a classical Python CV solution using readily-available CV libraries. This immediately exposed a world of hurt with no clear escape; our use case wasn't 100,000 forms of the exact same size and shape, and it wasn't clear how to even get the CV engine focused on the right part of the form, when that part would almost never be in the same place from one image to the next. I know, that's a solved problem, with a few added steps in the CV pipeline. I think my insticts were correct, though---classical Python CV was never going to be a scope-effective solution on this project.
 
-My partner on the project suggested we check out Amazon Textract. I was skeptical, of course, certainly not any less so based on my classical CV attempt. But AWS has a nice UI for quickly testing Textract, and it didn't take long to be won over, as form after inconsistent form came through with good handwriting extraction and virtually perfect checkmark detection.
+My partner on the project suggested we check out [Amazon Textract](https://aws.amazon.com/textract/). I was skeptical, of course, certainly not any less so based on my classical CV attempt. But AWS has a nice UI for quickly testing Textract, and it didn't take long to be won over, as form after inconsistent form came through with good handwriting extraction and virtually perfect checkmark detection.
 
 Textract is the gap in my knowledge, the thing I didn't know existed: a machine learning augmented CV service. It applies ML to overcome hard CV problems (like checkbox detection!) and reduce the learning curve and implementation pain. In caveman speak, the flow is:
 
 > Here Textract, take image. Sideways? Upside-down? Not me! You fix!! Give back form data! Give back table data!
 
-<SingleImage src="caveman_textract.jpg" alt="Caveman Textract" size="2xl" postDir="ai-vision-vs-ml-ocr-are-the-curves-crossing" />
+<SingleImage
+  src="caveman_textract.jpg"
+  alt="Caveman Textract"
+  size="2xl"
+  postDir="ai-vision-vs-ml-ocr-are-the-curves-crossing"
+/>
 
 And there you go, done! It's CV^^ML, very well executed.
 
@@ -86,7 +91,7 @@ As I described above, if it weren't for bugs and crappy inference operations (or
 
 Furthermore, even after we had Textract in place, I kept a close eye on new models, of which we have many these days! In limited testing on the dense checkbox matrix form, it appears that Gemini 3 Pro Preview performed almost as well as Qwen3 VL, and that's with no parameter tuning, just running Preview through one of Google's playground UIs. Surprisingly, so did Gemini Flash Latest. YMMV -- limited testing here.
 
-Most recently, I've been using Anthropic's new Opus 4.5 model in Claude Code. As I worked to improve extraction errors we were seeing with GPT-5.1 as the vision model on simpler plastic-bag-printed forms, I noticed that Code was able to parse checkboxes very accurately when I gave it example images during our development process. Then I remembered that improved vision capabilities were mentioned in the Opus 4.5 announcement.
+Most recently, I've been using Anthropic's new [Opus 4.5](https://www.anthropic.com/news/claude-opus-4-5) model in [Claude Code](https://www.anthropic.com/claude-code). As I worked to improve extraction errors we were seeing with GPT-5.1 as the vision model on simpler plastic-bag-printed forms, I noticed that Code was able to parse checkboxes very accurately when I gave it example images during our development process. Then I remembered that improved vision capabilities were mentioned in the Opus 4.5 announcement.
 
 So I wired up the (new beta) Anthropic API and turned Opus 4.5 loose on our bag-form images. Bingo! We're now at 100% bag-form checkbox detection on our golden dataset images, a large improvement over GPT-5.1. Again, YMMV; we definitely didn't have the time to test every configuration thoroughly.
 
