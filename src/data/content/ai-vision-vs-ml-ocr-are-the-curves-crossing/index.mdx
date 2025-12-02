@@ -17,9 +17,7 @@ import ImageGallery from '~/components/ui/ImageGallery.astro';
 import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import MDContent from '~/components/ui/MDContent.astro';
 
-{/* Post content goes here */}
-
-I thought AI Vision had won out over "old style OCR" when I wrote [this piece](chatgpt-4v) back in February 2024. It turns out I was wrong; but maybe not for long.
+I thought AI Vision had won out over "old style OCR" when I wrote [this piece](chatgpt-4v) back in February 2024. It turns out I was wrong; but I'm begining to be right---right now.
 
 ## Wrong Assumptions
 
@@ -53,33 +51,34 @@ The downside of working with a bleeding-edge model, served by 3rd party inferenc
 
 We switched to a larger Qwen3-VL model and continued trying to make things work, to no avail.
 
-In fairness, based on my genuine early success with the model, I believe that a bugfixed, properly configured, correctly operated Qwen3 VL model would be capable of checkmark detection and selected cell identification. Unfortunately, our early-days experience was more the "buggy and unreliable" flavor.
+In fairness, based on my genuine early success with the model, I believe that a bugfixed, properly configured, correctly operated Qwen3 VL model would be capable of checkmark detection and selected cell identification. Unfortunately, our early-days experience was more the "buggy and unreliable" variety.
 
 ## Computer Vision? I Don't Wanna ...
 
-My next step was actually to quickly prototype a classical Python CV solution using readily-available CV libraries. This immediately exposed a world of hurt with no clear escape; our use case wasn't 100,000 forms of the exact same size and shape, and it wasn't clear how to even get the CV engine focused on the right part of the form, when that part would almost never be in the same place from one image to the next. Not a fair trial by any means, but I think my insticts were correct in abandoning classic Python CV as a possible solution.
+My next step was actually to quickly prototype a classical Python CV solution using readily-available CV libraries. This immediately exposed a world of hurt with no clear escape; our use case wasn't 100,000 forms of the exact same size and shape, and it wasn't clear how to even get the CV engine focused on the right part of the form, when that part would almost never be in the same place from one image to the next. I know, that's a solved problem, with a few added steps in the CV pipeline. I think my insticts were correct, though---classical Python CV was never going to be a scope-effective solution on this project.
 
 My partner on the project suggested we check out Amazon Textract. I was skeptical, of course, certainly not any less so based on my classical CV attempt. But AWS has a nice UI for quickly testing Textract, and it didn't take long to be won over, as form after inconsistent form came through with good handwriting extraction and virtually perfect checkmark detection.
 
-Textract is a thing I didn't know existed: a machine learning augmented CV service. It applies ML to overcome hard CV problems (like checkbox detection!) and reduce the learning curve and implementation pain. In caveman speak, the flow is
+Textract is the gap in my knowledge, the thing I didn't know existed: a machine learning augmented CV service. It applies ML to overcome hard CV problems (like checkbox detection!) and reduce the learning curve and implementation pain. In caveman speak, the flow is
 
 > Here Textract, take image. Sideways? Upside-down? Not me! You fix!! Give back form data! Give back table data!
 
-And there you go, done! It's ML, very well executed.
+And there you go, done! It's CV^^ML, very well executed.
 
-## ML Is Not AI ...
+## But ML Is Not AI ...
 
 Following the tremendous relief of finding a reliable form parsing solution, I began to notice that Textract, while it solved our most crucial problem, was in other areas less effective than AI. Textract's ML was powerful but it was not a language model and was clearly very dumb about language. AI would continually surprise and delight, realizing that handwriting that looks like "Co" was actually part of an address, and that the more correct extraction would be "CO" the state abbreviation. Or see a series of handwritten numbers "3427" ... "28" ... "29" ... "30" and realize these should be extracted as 3427, 3428, 3429, 3430. Many small differences but they added up.
 
-We decided to try taking Textract's raw form and table data, and passing it through the AI with a simple prompt, basically "refine this." Magical!
+We decided to try taking Textract's raw form and table data, and passing it through the AI with a simple prompt, basically "refine this." Magical! Hugely better than Textract alone, without even seeing the source image.
 
-results were less good than AI's, though in less critical areas. Textract just did its job, giving us
-the
-As I've admitted, I'm not a world's leading authority on Computer Vision. But my understand of what
+## The Lines Are Crossing Right Now
 
-o didn't break something, as
+As I described above, if it weren't for bugs and crappy inference operations (or my own incompetence), I believe that Qwen3 VL was a workable AI Vision solution for our use case. And it would have given us the benefits of Textract, plus the benefits of AI, all in one (unbelievably inexpensive) AI call.
 
-Just as AIs had their period of not being able to do simple math, I learned that some visual elements were beyond current state of the art, general-purpose but vision-enabled AI models' ability to understand.
+Furthermore, even after we had Textract in place, I kept a close eye on new models, of which we have many these days! In limited testing on the dense checkbox matrix form, it appears that Gemini 3 Pro Preview performed almost as well as Qwen3 VL, and that's with no parameter tuning, just running Preview through one of Google's playground UIs. Surprisingly, so did Gemini Flash Latest. YMMV -- limited testing here.
 
-, extremely successfully, ferom heirloom recipe cards. hubbzero experience in
-ap
+Most recently, I've been using Anthropic's new Opus 4.5 model in Claude Code. As I worked to improve extraction errors we were seeing with GPT-5.1 as the vision model on simpler plastic-bag-printed forms, I noticed that Code was able to parse checkboxes very accurately when I gave it example images during our development process. Then I remembered that improved vision capabilities were mentioned in the Opus 4.5 announcement.
+
+So I wired up the (new beta) Anthropic API and turned Opus 4.5 loose on our bag-form images. Bingo! We're now at 100% bag-form checkbox detection on our golden dataset images, a large improvement over GPT-5.1. Again, YMMV; we definitely didn't have the time to test every configuration thoroughly.
+
+In any case, though, to me it is clear that the AI Vision line is **right this second** about to eclipse the ML-augmented CV line for use cases like ours, where we have comparatively inconsistent and unpredictable inputs, but also need to precisely "see" image features such as those pesky checkboxes.
