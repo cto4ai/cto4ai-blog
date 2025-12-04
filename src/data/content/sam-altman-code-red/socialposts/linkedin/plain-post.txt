@@ -1,0 +1,19 @@
+Sam Altman declared a "Code Red" at OpenAI this week. Has anyone on his comms team seen A Few Good Men?
+
+In the movie, a Code Red is an illegal hazing order that gets a Marine killed. The Colonel who orders it ends up arrested in the final scene. The famous line is "You can't handle the truth," which the villain screams right before being dragged away in handcuffs.
+
+And Altman chose this as his rallying cry.
+
+Three years ago, almost to the day, ChatGPT launched and Google declared their own Code Red. Sundar Pichai upended teams. Googlers spent their holidays scrambling.
+
+Now it's OpenAI's turn to cancel Christmas. December is apparently Code Red season in AI, like flu season, except the symptoms are executive memos and mandatory team transfers.
+
+What's interesting is what a Code Red admission means: you don't declare one when you're ahead. OpenAI has committed $1.4 trillion to AI infrastructure, projecting $200 billion in revenue by 2030. Current revenue is around $20 billion. Those numbers require ChatGPT to stay dominant while scaling 10x.
+
+And right now, it's becoming one of several good options.
+
+The company that started the industry-wide panic is now panicking. The hunters have become the hunted.
+
+---
+
+https://cto4.ai/p/sam-altman-code-red
