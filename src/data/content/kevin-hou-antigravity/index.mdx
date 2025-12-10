@@ -19,7 +19,7 @@ import ImageGallery from '~/components/ui/ImageGallery.astro';
 import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import MDContent from '~/components/ui/MDContent.astro';
 
-Google DeepMind has definitely gotten my attention with significant releases over the past few weeks, in particular Gemini Pro 3, Gemini 3 Pro Image aka Nano Banana Pro, and most recently Antigravity. Based on this talk by Kevin Hou at the recent [AI Engineer Code Summit](https://www.ai.engineer/code), as well ThursdAI's podcast recorded at the same event, I've made it a priority to get hands-on with Antigravity, and find it to be a new and different take on the coding-with-AI experience. If, with Claude Code, Anthropic's message was "we don't know what the experience should be so we're making Claude Code an extremely thin wrapper around our great coding models," Google DeepMind is telling us "we think we know that the next step jump should look like, here's Antigravity."
+Google DeepMind has definitely gotten my attention with significant releases over the past few weeks, in particular Gemini Pro 3, Gemini 3 Pro Image aka Nano Banana Pro, and most recently Antigravity. Based on this talk by Kevin Hou at the recent [AI Engineer Code Summit](https://www.ai.engineer/code), as well ThursdAI's podcast recorded at the same event, I've made it a priority to get hands-on with Antigravity, and find it to be a new and different take on the coding-with-AI experience. If, with Claude Code, Anthropic's message was "we don't know what the experience should be so we're making Claude Code an extremely thin wrapper around our great coding models," Google DeepMind is telling us "we think we know that the next step function should look like, here's Antigravity."
 
 Below find my commentary and highlights from Kevin Hou's talk.
 
@@ -88,12 +88,19 @@ That the Agent Manager has an **_inbox_** highlights the message that this isn't
 
 ## Why Did We Build It?
 
-### Gemini got really good at a lot of things.
+Hou dives into this question next:
 
-<SingleImage src="hou_how_get_here.png" alt="How We Got Here" size="2xl" postDir="kevin-hou-antigravity" />
+> Why did we build the product? How did we arrive at this sort of conclusion? You might say, oh, adding in a new window, it's pretty random, right?
+
+One part of his answer is that, after showing huge progress in Gemini 2.5 Pro (I recall watching Google's announcement live at the AI Engineer World's Fair in San Francisco June 2024), Google now has a genuine contender for top coding model in Gemini 3 Pro. And if they didn't, Antigravity might not exist. If Gemini 3 Pro was a noncompetitive coding model, Google wouldn't be showcasing weakness by launching Antigravity:
+
+> The product is only ever as good as the models that power it .... Every year there is this sort of new step function. The first, there was a year when it was autocomplete, right? Co-pilot. And this sort of thing was only enabled because models suddenly got good at doing the short form autocomplete. And then we had chat. We had chat with RLHF. Then we had agents. So you can see how every single one of these product paradigms is sort of motivated by some change that happens with model capabilities.
+
 <SingleImage src="hou_gemini_got_good.png" alt="Gemini Got Good" size="2xl" postDir="kevin-hou-antigravity" />
 
-Why did we build the product? How did we arrive at this sort of conclusion? You might say, oh, adding in a new window, it's pretty random, right? It's this one-to-many relationship between the agent manager and many other surfaces. And it's important to remember, I've been at this conference a couple of times, and every single time there is this theme. The product is only ever as good as the models that power it. And this is very important for us as builders, right? Every year there is this sort of new step function. The first, there was a year when it was autocomplete, right? Co-pilot. And this sort of thing was only enabled because models suddenly got good at doing the short form autocomplete. And then we had chat. We had chat with RLHF. Then we had agents. So you can see how every single one of these product paradigms is sort of motivated by some change that happens with model capabilities. And it's a blessing that our team is able to work and be embedded inside of DeepMind. We had access to Gemini for a couple of months earlier, and we were able to work with the research team to basically figure out, you know, what are the strengths that we want to show off in our product? What are the things that we can exploit? And then also, what are the gaps, right? This desired experience. Where are the gaps in the model, and how can we fix that, right? And so this is, this was a very, very powerful part of why anti-gravity came to be.
+Hou also emphasizes the benefits of being right there in DeepMind next to the Gemini folks:
+
+> And it's a blessing that our team ... embedded inside of DeepMind. We had access to Gemini for a couple of months earlier, and we were able to work with the research team to basically figure out, you know, what are the strengths that we want to show off in our product? What are the things that we can exploit .... Where are the gaps in the model, and how can we fix that, right? And so this is a very powerful part of why Antigravity came to be.
 
 ## Four Categories of Improvement
 
