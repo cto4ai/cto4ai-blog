@@ -1,7 +1,7 @@
 ---
 title: "Kevin Hou on Google DeepMind's Antigravity"
 contentType: 'episode'
-description: "My thoughts on Kevin Hou's talk about Antigravity, DeepMind's agent-first development platform."
+description: "My thoughts on Kevin Hou's talk about Antigravity, DeepMind's new agent-first development platform."
 author: 'Jack Ivers'
 publishDate: '2025-12-12T16:10:22-0600'
 # Cover image: Must be 44:28 aspect ratio (11:7, ~1.571) for proper display
@@ -19,9 +19,9 @@ import ImageGallery from '~/components/ui/ImageGallery.astro';
 import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import MDContent from '~/components/ui/MDContent.astro';
 
-Google DeepMind has definitely gotten my attention with significant releases over the past few weeks, in particular [Gemini 3 Pro](https://blog.google/products/gemini/gemini-3/), Gemini 3 Pro Image aka [Nano Banana Pro](https://chromeunboxed.com/the-hilarious-230-am-origin-story-of-how-nano-banana-got-its-name/), and most recently [Antigravity](https://developers.googleblog.com/build-with-google-antigravity-our-new-agentic-development-platform/). Based on [this talk](https://www.youtube.com/watch?v=xmbSQz-PNMM&t=29388s) by [Kevin Hou](https://www.linkedin.com/in/kevinhou22/) at the recent [AI Engineer Code Summit](https://www.ai.engineer/code), as well [ThursdAI](https://thursdai.news/)'s podcast recorded at the same event, I've made it a priority to get hands-on with Antigravity, and find it to be a new and different take on the coding-with-AI experience. If, with [Claude Code](https://www.anthropic.com/claude-code), Anthropic's message was:
+Google DeepMind has definitely gotten my attention with significant releases over the past few weeks, in particular [Gemini 3 Pro](https://blog.google/products/gemini/gemini-3/), [Gemini 3 Pro Image](https://deepmind.google/models/gemini-image/pro/) aka [Nano Banana Pro](https://chromeunboxed.com/the-hilarious-230-am-origin-story-of-how-nano-banana-got-its-name/), and most recently [Antigravity](https://developers.googleblog.com/build-with-google-antigravity-our-new-agentic-development-platform/). Based on [this talk](https://www.youtube.com/watch?v=xmbSQz-PNMM&t=29388s) by [Kevin Hou](https://www.linkedin.com/in/kevinhou22/) at the recent [AI Engineer Code Summit](https://www.ai.engineer/code), as well as the [ThursdAI](https://thursdai.news/) podcast's chat with Hou recorded at the same event, I've made it a priority to get hands-on with Antigravity, and find it to be a new and different take on the coding-with-AI experience. If, with [Claude Code](https://www.anthropic.com/claude-code), Anthropic's message was:
 
-> We don't know what the experience should be, so we're making Claude Code an extremely thin wrapper around our great coding models
+> We don't know what the experience should be, so we're making Claude Code an extremely thin wrapper around our great coding models.
 
 Google DeepMind is telling us:
 
@@ -31,11 +31,11 @@ Below find my commentary and highlights from Kevin Hou's talk.
 
 ## What Is This Thing?
 
-Antigravity is definitively **not** a thin wrapper around a great coding model. It is, rather, on the other end of the spectrum: a development platform whose feature set includes elements that go beyond existing alternatives, even "thick" ones. It is "Unapologetically Agent-First" with an uber-overlord Agent Manager:
+Antigravity is definitely **not** a thin wrapper around a great coding model. It is, rather, on the other end of the spectrum: a development platform whose feature set includes elements that go beyond existing alternatives, even "thick" ones. It is "Unapologetically Agent-First" with an uber-overlord Agent Manager:
 
 <SingleImage src="hou_agent_first.png" alt="Agent First" size="2xl" postDir="kevin-hou-antigravity" />
 
-But is presented as a platform with three main components:
+Hou introduces Antigravity as a platform with three main components:
 
 <SingleImage
   src="hou_platform_with.png"
@@ -44,7 +44,7 @@ But is presented as a platform with three main components:
   postDir="kevin-hou-antigravity"
 />
 
-Two of these components are, effectively, "new things" in an AI Coding tool. Other platforms can "do browser stuff" and might have some agent/subagent action happening, but nobody[^1] delivers browser and agent manager elements are approach the level of power and integration that I'm seeing in Antigravity.
+Two of these components are, effectively, "new things" in an AI Coding tool. Other platforms can "do browser stuff" and might have some agent/subagent action happening, but nobody[^1] delivers browser and agent manager elements that approach the level of power and integration that I'm seeing in Antigravity.
 
 [^1]: There is so much happening in the AI Coding space that I'm sure somebody somewhere probably does!
 
@@ -86,7 +86,7 @@ My experience with the Antigravity browser integration: it's not as fast as it s
 
 Hou circles back to the Agent Manager, the component that ties it all together:
 
-> The Agent Aanager can serve as your control panel. The editor and the browser are tools for your agent. And we want you to spend time in the Agent Manager. And as models get better and better, I bet you you're going to be spending more and more time inside of this Agent Manager.
+> The Agent Manager can serve as your control panel. The editor and the browser are tools for your agent. And we want you to spend time in the Agent Manager. And as models get better and better, I bet you you're going to be spending more and more time inside of this Agent Manager.
 >
 > And it has an inbox .... It lets you manage many agents at once. So you can have things that require your attention. For example, running terminal commands .... There are probably some commands that you want to make sure you hit okay on. So things like this will get surfaced inside of this inbox. One click, you can manage many different things happening at once. And it has a wonderful OS level notification. This solves that problem of multi-threading across many tasks at once.
 
@@ -164,7 +164,7 @@ I hadn't connected the dots as to why Nano Banana Pro might be a big deal for de
 
 I had to watch this part of the talk about five times, first to figure out how you even get to NBP (answer: from Agent Manager, just ask for something visual).
 
-But secondly, to get my head around why Hou was claiming that Nano Banana Pro was a big win for _developers_. I've spent a lot of time using NBP, and repeatedly amazed at what it was creating for me. But I hadn't connected Dot A---NBP's incredible image generating power---to Dot B---UI mockups for the applications we're building with Antigravity. It's the design, silly!
+But secondly, to get my head around why Hou was claiming that Nano Banana Pro was a big win for _developers_. I've spent a lot of time using NBP, and repeatedly amazed at what it was creating for me. But I hadn't made the connection between NBP's incredible image generating power and the UI design process that is a critical element of virtually all application development work. It's the design, silly!
 
 > I want to give you a quick demo of mockups. I have a hunch and you all probably believe this too. Design is going to change, right? You're going to spend maybe some time iterating with an agent to arrive at a mockup. But for something like, oh, let's build this website, we can start in image space. And what's really cool about image space is it lets you do really cool things like this.
 
@@ -181,7 +181,7 @@ I make no endorsement, express or implied, of the model's self-described "Dark G
 
 > We can add comments. And so you end up commenting and leaving a bunch of queued up responses. And it's kind of like GitHub. You'll just say, all right, now update the design. And then it'll put it in here. The agent is smart enough to know when and how to apply those comments. And now we're iterating with the agent in image space. So really, really cool new capability. And what was awesome is that we had Nano Banana Pro.
 
-Those comments feed right back to the Agent Manager, who can then _build what NBP designed_, in a substantially more robust and maintainable way than prompt-to-app tools like Bolt.
+Those comments feed right back to the Agent Manager, which is fully capable of _building what Nano Banana designs_ ---especially with this commenting capability. The resuls is an application that has a better design, and is far more robust and maintainable, than anything from a prompt-to-app tool like Bolt.
 
 ### Step Two: Age of Artifacts
 
@@ -206,6 +206,8 @@ I love Hou's definition---again, pardon me for using my own NBP image here:
 > But isn't it much easier to understand what is going on inside of this **[right side]** visual representation? And that is what an artifact is.
 >
 > The whole reason why I'm not just standing up here and giving you this long stream of consciousness is because I have a PowerPoint. The PowerPoint is my artifact. Gemini 3 is really strong with this sort of visual representation, it's really strong with multimodal. So instead of showing this **[left side]**, which of course we always show you, but we want to focus on this **[right side]**. And I think this is the game-changing part about Antigravity. And the theme is this dynamicism.
+
+As I started to digest this, the connection between the powerful Artifacts abstraction, and an Agent Manager capable of long-running orchestration of my projects, began to really sink in.
 
 <SingleImage
   src="hou_multi_modal_artifacts.png"
@@ -237,7 +239,7 @@ Hou emphasizes that _the model chooses_ if, what, why, and for whom artifacts ar
 
 Hou circles back to Artifact comments, explaining how they are available across all types of Artifacts, all modalities:
 
-> Another very cool property of this Artifact system: we want to be able to provide feedback along this cycle. So from task start to task end, we want to be able to provide feedback and inform the agent on what to change. The Artifact system lets you iterate with the model more fluidly during this process of execution. Not to sound like a complete Google shell, but I love Google Docs, right? Google Docs is a great pattern---the comments are great. This is how you might interact with a colleague. You're collaborating on a document, then all of a sudden you want to leave a text-based comment. So we took inspiration from that.
+> Another very cool property of this Artifact system: we want to be able to provide feedback along this cycle. So from task start to task end, we want to be able to provide feedback and inform the agent on what to change. The Artifact system lets you iterate with the model more fluidly during this process of execution. Not to sound like a complete Google shill, but I love Google Docs, right? Google Docs is a great pattern---the comments are great. This is how you might interact with a colleague. You're collaborating on a document, then all of a sudden you want to leave a text-based comment. So we took inspiration from that.
 
 <SingleImage src="hou_artifact_comments.png" alt="Artifact Comments" size="2xl" postDir="kevin-hou-antigravity" />
 
@@ -259,8 +261,6 @@ Hou finally then takes a step up to our uber Agent Manager, making the point tha
 > Of course, you can always go into the editor. I'm not going to lie to you. There are tasks that you maybe don't trust the agent yet. You don't trust the models yet. And so you can Command-E and it will open inside the editor within a split second with the exact files, the exact artifacts, and that exact conversation open ready for you to auto-complete away to continue chatting synchronously to get you from 80% to 100%. So we always want to give devs that escape hatch.
 >
 > But in the future world---we're building for the future---you'll spend a lot of time in the Agent Manager working with parallel subagents. It's a very exciting concept.
-
-As I started to digest this, the connection between the powerful Artifacts abstraction, and an Agent Manager capable of long-running orchestration of my projects.
 
 ### Step 3: Be Your Biggest User
 
