@@ -7,9 +7,9 @@ publishDate: '2025-12-12T16:10:22-0600'
 # Cover image: Must be 44:28 aspect ratio (11:7, ~1.571) for proper display
 # Recommended sizes: 1760×1120, 2200×1400, 3520×2240
 image: '~/assets/images/content/kevin-hou-antigravity/hou_antigravity_cover.png'
-featured: false
-featuredOrder: 10
-draft: true
+featured: true
+featuredOrder: 1
+draft: false
 tags:
   - google-deepmind
   - antigravity
@@ -32,7 +32,7 @@ Google DeepMind has definitely gotten my attention with significant releases ove
 
 Google DeepMind is telling us:
 
-> We think we know that the next step function should look like, here's Antigravity.
+> We think we know what the next step function should look like, here's Antigravity.
 
 Below find my commentary and highlights from Kevin Hou's talk.
 
@@ -51,9 +51,7 @@ Hou introduces Antigravity as a platform with three main components:
   postDir="kevin-hou-antigravity"
 />
 
-Two of these components are, effectively, "new things" in an AI Coding tool. Other platforms can "do browser stuff" and might have some agent/subagent action happening, but nobody[^1] delivers browser and agent manager elements that approach the level of power and integration that I'm seeing in Antigravity.
-
-[^1]: There is so much happening in the AI Coding space that I'm sure somebody somewhere probably does!
+Two of these components are, effectively, "new things" in an AI Coding tool. Other platforms can "do browser stuff" and might have some agent/subagent action happening, but no major player delivers browser and agent manager elements that approach the level of power and integration that I'm seeing in Antigravity.
 
 ## Diving Deeper on the Three Surfaces
 
@@ -61,7 +59,7 @@ This more detailed view begins to expose a bit more about the three components (
 
 <SingleImage src="hou_three_surfaces.png" alt="Three Surfaces" size="3xl" postDir="kevin-hou-antigravity" />
 
-It's an AI developer platform with three surfaces. The first one is an editor. The second one is a browser. And the third one is the agent manager. So we'll dive into what this means, which one, what each looks like. So a paradigm shift here is that agents are now living outside of your IDE. And they can interact across many different surfaces that your agent or that you as a software developer might spend time in.
+It's an AI developer platform with three surfaces. The first one is an editor. The second one is a browser. And the third one is the agent manager. So we'll dive into what this means, and what each looks like. So a paradigm shift here is that agents are now living outside of your IDE. And they can interact across many different surfaces that your agent or that you as a software developer might spend time in.
 
 ### The Agent Manager
 
@@ -171,7 +169,7 @@ I hadn't connected the dots as to why Nano Banana Pro might be a big deal for de
 
 I had to watch this part of the talk about five times, first to figure out how you even get to NBP (answer: from Agent Manager, just ask for something visual).
 
-But secondly, to get my head around why Hou was claiming that Nano Banana Pro was a big win for _developers_. I've spent a lot of time using NBP, and repeatedly amazed at what it was creating for me. But I hadn't made the connection between NBP's incredible image generating power and the UI design process that is a critical element of virtually all application development work. It's the design, silly!
+But secondly, to get my head around why Hou was claiming that Nano Banana Pro was a big win for _developers_. I've spent a lot of time using NBP, and been repeatedly amazed at what it was creating for me. But I hadn't made the connection between NBP's incredible image generating power and the UI design process that is a critical element of virtually all application development work. It's the design, silly!
 
 > I want to give you a quick demo of mockups. I have a hunch and you all probably believe this too. Design is going to change, right? You're going to spend maybe some time iterating with an agent to arrive at a mockup. But for something like, oh, let's build this website, we can start in image space. And what's really cool about image space is it lets you do really cool things like this.
 
@@ -191,22 +189,25 @@ and, one-shot, got this:
   postDir="kevin-hou-antigravity"
 />
 
-I make no endorsement, express or implied, of the model's self-described "Dark Glassmorphism" theme, but still, this is really impressive app theme, almost viable as a first design iteration, _from a 14-word prompt_ that provided no stylistic guidance. [FIXME-this is a meta prompt] Note that Hou's example prompt has a more realistic level of detail:
+I make no endorsement, express or implied, of the model's self-described "Dark Glassmorphism" theme, but still, this is a really impressive app theme, almost viable as a first design iteration, _from a 14-word prompt_ that provided no stylistic guidance. As I discovered on re-watch #27, the Agent Manager intelligently orchestrates here, using Gemini 3 Pro to transform my 14 words into a 16-line, 153-word Nano Banana Pro prompt that includes guidance on fidelity, layout, style, and mood:
 
 ```
-A high-fidelity, modern website design for a plant shop or showcase in light mode.
-The design should be clean, airy, and elegant, using a color palette of soft whites,
-creams, and various shades of lush green. The hero section should feature a
-stunning, high-resolution image of a beautiful indoor plant (like a Monstera or Fiddle
-Leaf Fig) in a stylish pot, with bold but refined typography for the headline 'Bring
-Nature Home'. Below the hero, a grid layout showcasing a variety of plants
-(succulents, ferns, hanging plants) with minimalist cards containing plant names
-and prices. The Ul should be sophisticated with plenty of whitespace, subtle
-shadows, and a sticky navigation bar at the top with links like 'Shop', 'Care Guide',
-'About'. The overall vibe should be fresh, organic, and premium.
+A high-fidelity UI design for a secure file upload web application. Modern, clean
+aesthetic. Dark mode with deep slate blues and vibrant accent greens (referencing
+the '[The Organization Name Here]' perhaps, but keeping it tech-focused).
+Layout:
+- Left Sidebar: Navigation links (My Files, Shared with Me, Settings, Admin Panel).
+User profile at the bottom.
+- Main Content Area:
+  - Top header: Search bar, notifications, and 'Upload New File' button.
+  - Quick Stats Cards: 'Storage Used', 'Total Encrypted Files'.
+  - Central Area: A large, elegant drag-and-drop zone with a subtle dashed border
+  and cloud icon.
+  - Recent Files List: A table-like view showing file icons (PDF, IMG), filenames,
+  size, upload date, and a 'lock' icon indicating encryption.
+- Style: Glassmorphism effects on the sidebar and cards. Smooth gradients. Crisp typography (Inter or Roboto).
+- Mood: Trustworthy, secure, professional, yet easy to use.
 ```
-
-And the output is stunningly good:
 
 And cool gets even cooler---note that I selected a region of the image and added a comment. Hou:
 
@@ -226,7 +227,7 @@ Hou introduces Artifacts this way:
 
 > And so step two was, all right, we have this new capability. We've pushed the ceiling higher. Agents can do longer running tasks. They can do more complicated things. They can interact on other surfaces. And so this necessitates a new interaction pattern. And we're calling this Artifacts. This is a new way to work with an agent. And this is one of my favorite parts about the product. And at its core is this agent manager. So let's start by defining an Artifact.
 
-I love Hou's definition---again, pardon me for using my own NBP image here:
+I love Hou's Artifact definition; I created my own image for it using Nano Banana Pro:
 
 <SingleImage src="hou_what_is_artifact.jpeg" alt="What is an Artifact" size="2xl" postDir="kevin-hou-antigravity" />
 
@@ -236,9 +237,9 @@ I love Hou's definition---again, pardon me for using my own NBP image here:
 
 > We've all tried to follow along chain of thought **[left side]**. And I would say this, you know, we did some fanciness here inside of the agent manager to make sure conversations are broken up into like chunks. So in theory, you could follow along a little bit better in the conversation view, but ultimately you're looking at a lot of strings, a lot of tokens. This is very hard to follow. And then there's like 10 of these, right? So you just scroll and scroll and you're like, what the heck did this agent do? And this has been traditionally the way that people review and supervise agents ...
 >
-> But isn't it much easier to understand what is going on inside of this **[right side]** visual representation? And that is what an artifact is.
+> But isn't it much easier to understand what is going on inside of this **[right side]** visual representation? And that is what an Artifact is.
 >
-> The whole reason why I'm not just standing up here and giving you this long stream of consciousness is because I have a PowerPoint. The PowerPoint is my artifact. Gemini 3 is really strong with this sort of visual representation, it's really strong with multimodal. So instead of showing this **[left side]**, which of course we always show you, but we want to focus on this **[right side]**. And I think this is the game-changing part about Antigravity. And the theme is this dynamicism.
+> The whole reason why I'm not just standing up here and giving you this long stream of consciousness is because I have a PowerPoint. The PowerPoint is my Artifact. Gemini 3 is really strong with this sort of visual representation, it's really strong with multimodal. So instead of showing this **[left side]**, which of course we always show you, but we want to focus on this **[right side]**. And I think this is the game-changing part about Antigravity. And the theme is this dynamicism.
 
 As I started to digest this, the connection between the powerful Artifacts abstraction, and an Agent Manager capable of long-running orchestration of my projects, began to really sink in.
 
@@ -321,8 +322,8 @@ Hou finally then takes a step up to our uber Agent Manager, making the point tha
 
 > Every single one of these teams, and there are many teams at Google, has some hand inside of this very, very full-stack product. And so you might notice as an infrastructure engineer, you might say, oh, this is a bit slow. Well, build it for yourself, make it faster. Image gen, all of a sudden, computer use isn't going well. It can't click this button. It's really bad at scrolling, really bad at finding text on the page. Well, go off and make that better, right? So it gives you this level of insight that evals just simply can't give you. And I think that's what's really cool about being at DeepMind. You are able to integrate product and research in a way that creates this flywheel and pushes that frontier.
 
-Hou drifts here, as a relatively new Google hire, into making claims and guarantees that run counter to Google's actual behavior in the past. What Hou says Google will do, is perhaps what they should do, but have often failed to do.
+Hou drifts here, as a relatively new Google hire, into making claims and guarantees that run counter to Google's actual behavior in the past. What Hou says Google will do, is perhaps what they _should do_, but have often _failed to do_.
 
-I hope they are able to steer a steady course here, as I'm very excited by Antigravity and its underlying Gemini 3 powerplant.
+I hope Google can steer a committed and steady course here, as I'm very excited by Antigravity and its underlying Gemini 3 powerplant.
 
 Time will tell.
