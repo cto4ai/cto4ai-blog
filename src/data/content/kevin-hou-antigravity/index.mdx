@@ -1,7 +1,7 @@
 ---
-title: 'Kevin Hou on Antigravity'
-contentType: 'essay'
-description: ''
+title: "Kevin Hou on Google DeepMind's Antigravity"
+contentType: 'episode'
+description: "My thoughts on Kevin Hou's talk about Antigravity, DeepMind's agent-first development platform."
 author: 'Jack Ivers'
 publishDate: '2025-12-09T16:10:22-0600'
 # Cover image: Must be 44:28 aspect ratio (11:7, ~1.571) for proper display
@@ -19,7 +19,13 @@ import ImageGallery from '~/components/ui/ImageGallery.astro';
 import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import MDContent from '~/components/ui/MDContent.astro';
 
-Google DeepMind has definitely gotten my attention with significant releases over the past few weeks, in particular Gemini Pro 3, Gemini 3 Pro Image aka Nano Banana Pro, and most recently Antigravity. Based on this talk by Kevin Hou at the recent [AI Engineer Code Summit](https://www.ai.engineer/code), as well ThursdAI's podcast recorded at the same event, I've made it a priority to get hands-on with Antigravity, and find it to be a new and different take on the coding-with-AI experience. If, with Claude Code, Anthropic's message was "we don't know what the experience should be so we're making Claude Code an extremely thin wrapper around our great coding models," Google DeepMind is telling us "we think we know that the next step function should look like, here's Antigravity."
+Google DeepMind has definitely gotten my attention with significant releases over the past few weeks, in particular Gemini Pro 3, Gemini 3 Pro Image aka Nano Banana Pro, and most recently Antigravity. Based on [this talk](https://www.youtube.com/watch?v=xmbSQz-PNMM&t=29388s) by Kevin Hou at the recent [AI Engineer Code Summit](https://www.ai.engineer/code), as well ThursdAI's podcast recorded at the same event, I've made it a priority to get hands-on with Antigravity, and find it to be a new and different take on the coding-with-AI experience. If, with Claude Code, Anthropic's message was:
+
+> We don't know what the experience should be, so we're making Claude Code an extremely thin wrapper around our great coding models
+
+Google DeepMind is telling us:
+
+> We think we know that the next step function should look like, here's Antigravity.
 
 Below find my commentary and highlights from Kevin Hou's talk.
 
@@ -256,15 +262,20 @@ Hou finally then takes a step up to our uber Agent Manager, making the point tha
 
 As I started to digest this, the connection between the powerful Artifacts abstraction, and an Agent Manager capable of long-running orchestration of my projects.
 
-## Next
+### Step 3: Be Your Biggest User
 
-WAnd
+... **_research / product flywheel_**
 
-And so So
+> Okay. So now that you've seen, we've got new capabilities, multitude of new capabilities. We've got a new form factor. Now the question is like, what is going on under the hood at DeepMind? And the secret here is a lesson that I guess we've just learned over the past. I don't know. We've spent like, I personally spent like three years in CodeGen. It's just to be your biggest user, right?
 
-## Step 3 Be Your Biggest User: Research / Product Flywheel
+<SingleImage
+  src="hou_step_3_biggest_user.png"
+  alt="Be Your Biggest User: Research / Product Flywheel"
+  size="2xl"
+  postDir="kevin-hou-antigravity"
+/>
 
-Okay. So now that you've seen, we've got new capabilities, multitude of new capabilities. We've got a new form factor. Now the question is like, what is going on under the hood at D-Mind? And the secret here is a lesson that I guess we've just learned over the past. I don't know. We've spent like, I personally spent like three years in CodeGen. It's just to be your biggest user, right? And that creates this research and product flywheel. And so I will tell you, anti-gravity will be the most advanced product on the market because we are building it for ourselves. We are our own users. And so in the day to day, we were able to give Google engineers, deep-mind researchers, we were able to give them an early access and now an official access to anti-gravity internally. And so now all of a sudden, the actual experience of the models that people are improving, the actual experience of using the agent manager and touching artifacts is letting them see at a very, very real level what are the gaps in the model. And whether it be computer use, whether it be image generation, whether it be instruction following, right?
+> And that creates this research and product flywheel. And so I will tell you, Antigravity will be the most advanced product on the market because we are building it for ourselves. We are our own users. And so in the day to day, we were able to give Google engineers, DeepMind researchers, we were able to give them an early access and now an official access to Antigravity internally. And so now all of a sudden, the actual experience of the models that people are improving, the actual experience of using the Agent Manager and touching Artifacts is letting them see at a very, very real level what are the gaps in the model. And whether it be computer use, whether it be image generation, whether it be instruction following, right?
 
 <SingleImage
   src="hou_antigravity_gemini_loop.png"
@@ -273,4 +284,10 @@ Okay. So now that you've seen, we've got new capabilities, multitude of new capa
   postDir="kevin-hou-antigravity"
 />
 
-Every single one of these teams, and there are many teams at Google, has some hand inside of this very, very full-stack product. And so you might notice as an infrastructure engineer, you might say, oh, this is a bit slow. Well, build it for yourself, make it faster. Image gen, all of a sudden, computer use isn't going well. It can't click this button. It's really bad at scrolling, really bad at finding text on the page. Well, go off and make that better, right? So it gives you this level of insight that evals just simply can't give you. And I think that's what's really cool about being a deep-mind. You are able to integrate product and research in a way that creates this flywheel and pushes that frontier. And I guarantee you that whatever that frontier provides, we will provide an anti-gravity for the rest of the world. These are the same product. And so I'll give you two examples of how this has worked. The first one was that computer use example, right? In collaboration with the computer use team, which we sit, you know, a couple tens of feet away from, we identified gaps on both sides, right? So we're not just using an API. We are interacting across teams to basically say, oh, like, the capability is kind of off here. Can we go off and figure out what's going on here? Maybe there's a mismatch in data distribution. And then on the other side, it's like, yo, you're like agent harness is like pretty screwed up. You got to fix your tools, right? And so then we'll go off and we'll fix our side. But it's this harmony. It's both sides talking to each other that really makes this type of thing possible. Similarly, you come up with a new product paradigm, artifacts. Artifacts were not good on the initial versions, right? What part of training, what part of data distribution includes this like weird concept of reviews? And so it took a little bit of plumbing, a little bit of work with the research team to figure out, all right, let's steadily improve this ability. Let's give you a hill to climb. And then now we were able to launch Gemini 3 Pro with a very good ability to handle these sorts of artifacts. And so it's this cyclic nature that I'm really, really betting on. And this, this is really how anti-gravity will defy gravity. We've got pushing the ceiling. We're going to have an agent with very, very high level of ambition. We're going to try and do as much as we can. And this includes vibe coding, though I will say there are some excellent products out there by Google, AI Studios, an excellent product. We are in the business of increasing the ceiling. Second, we built this agent first experience, artifacts, agent manager. And then finally, we have this research product flywheel. And this is the magic and this is the three step process that we used in building anti-gravity. So it's been a blast. I mean, I've been back at AI Engineer Summit. Thank you again, Swix and Ben for having me. It's been awesome to come back every year. And so on behalf of the anti-gravity team, I just want to thank you for your time, for your patience as you use the product and your support. And of course, you too can adopt the TPU and help us turn off pager duty a bit more. And then of course, you know, you could also yell at me on Twitter. That's another way of doing it. Maybe do it in DMs instead. But we've got a lot of exciting things. And I'm really, really excited to bring anti-gravity to market. The team is thrilled that this is now out in the wild. So we welcome your feedback and thank you again for listening.
+> Every single one of these teams, and there are many teams at Google, has some hand inside of this very, very full-stack product. And so you might notice as an infrastructure engineer, you might say, oh, this is a bit slow. Well, build it for yourself, make it faster. Image gen, all of a sudden, computer use isn't going well. It can't click this button. It's really bad at scrolling, really bad at finding text on the page. Well, go off and make that better, right? So it gives you this level of insight that evals just simply can't give you. And I think that's what's really cool about being at DeepMind. You are able to integrate product and research in a way that creates this flywheel and pushes that frontier.
+
+Hou drifts here, as a relatively new Google hire, into making claims and guarantees that run counter to Google's actual behavior in the past. What Hou says Google will do, is perhaps what they should do, but have often failed to do.
+
+I hope they are able to steer a steady course here, as I'm very excited by Antigravity and its underlying Gemini 3 powerplant.
+
+Time will tell.
