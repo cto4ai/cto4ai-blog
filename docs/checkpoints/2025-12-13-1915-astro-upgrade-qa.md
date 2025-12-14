@@ -11,6 +11,7 @@ Upgrade Astro and related packages to latest compatible versions while maintaini
 ## Changes Made
 
 **Modified Files:**
+
 - [package-lock.json](../../package-lock.json) - Updated dependencies (452 lines changed)
 - [src/data/content/building-with-shape-up/index.mdx](../../src/data/content/building-with-shape-up/index.mdx) - Prettier formatting
 - [src/data/content/pydantic-ai-reaches-v1/embedded/pydantic_ai_v1_cto_field_guide_part1_UPDATED.md](../../src/data/content/pydantic-ai-reaches-v1/embedded/pydantic_ai_v1_cto_field_guide_part1_UPDATED.md) - Prettier formatting
@@ -28,6 +29,7 @@ Upgrade Astro and related packages to latest compatible versions while maintaini
 | limax | 4.1.0 | 4.2.1 |
 
 **Not Upgraded (intentionally):**
+
 - Tailwind CSS stays at v3.4 (AstroWind theme not yet compatible with v4)
 - @astrojs/tailwind stays at v5.1.5
 
@@ -43,6 +45,7 @@ Upgrade Astro and related packages to latest compatible versions while maintaini
   - Sam Altman post: ✓
 
 **QA Agent Running:**
+
 - Comprehensive QA agent launched in background
 - Testing 30+ posts, search, navigation, components
 - Results pending

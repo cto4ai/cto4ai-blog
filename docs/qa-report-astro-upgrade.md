@@ -26,13 +26,13 @@ Comprehensive QA testing was performed on the cto4.ai blog following the Astro v
 
 All core pages returned HTTP 200 and serve proper HTML:
 
-| Page | Status | Notes |
-|------|--------|-------|
-| Homepage (/) | ✓ 200 | Title correct: "cto4.ai - Transcend local maxima. Summit." |
-| /archive | ✓ 200 | Archive page accessible |
-| /search | ✓ 200 | Search page accessible |
-| /services | ✓ 200 | Services page accessible |
-| /about | ✓ 200 | About page accessible |
+| Page         | Status | Notes                                                      |
+| ------------ | ------ | ---------------------------------------------------------- |
+| Homepage (/) | ✓ 200  | Title correct: "cto4.ai - Transcend local maxima. Summit." |
+| /archive     | ✓ 200  | Archive page accessible                                    |
+| /search      | ✓ 200  | Search page accessible                                     |
+| /services    | ✓ 200  | Services page accessible                                   |
+| /about       | ✓ 200  | About page accessible                                      |
 
 ### 2. Individual Post Testing (30+ Posts)
 
@@ -41,6 +41,7 @@ Tested 30+ individual posts across all content types. All non-draft posts return
 #### Sample Posts Tested
 
 **Essays (contentType: 'essay'):**
+
 - `/p/pydantic-ai-reaches-v1` - ✓ 200
 - `/p/ballad-of-bull-cook` - ✓ 200
 - `/p/aiewf2025-my-day-1-highlights` - ✓ 200
@@ -67,17 +68,21 @@ Tested 30+ individual posts across all content types. All non-draft posts return
 - `/p/commercial-mastodon` - ✓ 200
 
 **Briefs (contentType: 'brief'):**
+
 - `/p/chatgpt-5-thinking` - ✓ 200
 - `/p/ai-cant-detect-ai` - ✓ 200
 
 **Episodes (contentType: 'episode'):**
+
 - `/p/anthropic-stop-building-agents-start-building-skills` - ✓ 200
 
 **Elsewhere (contentType: 'elsewhere'):**
+
 - `/p/willison-gemini-pro-video` - ✓ 200
 - `/p/latent-space-george-hotz` - ✓ 200 (inferred from testing)
 
 **Quotes (contentType: 'quote'):**
+
 - `/p/apt-description-of-react` - ✓ 200
 - `/p/vivek-haldar-copilot` - ✓ 200 (inferred from testing)
 
@@ -96,26 +101,29 @@ The following posts returned 404 as expected because they have `draft: true` in 
 
 All 5 content types tested and working:
 
-| Content Type | Sample Post | Status |
-|--------------|-------------|--------|
-| essay | pydantic-ai-reaches-v1 | ✓ |
-| brief | chatgpt-5-thinking | ✓ |
-| episode | anthropic-stop-building-agents-start-building-skills | ✓ |
-| elsewhere | willison-gemini-pro-video | ✓ |
-| quote | apt-description-of-react | ✓ |
+| Content Type | Sample Post                                          | Status |
+| ------------ | ---------------------------------------------------- | ------ |
+| essay        | pydantic-ai-reaches-v1                               | ✓      |
+| brief        | chatgpt-5-thinking                                   | ✓      |
+| episode      | anthropic-stop-building-agents-start-building-skills | ✓      |
+| elsewhere    | willison-gemini-pro-video                            | ✓      |
+| quote        | apt-description-of-react                             | ✓      |
 
 ### 4. Static Assets
 
 Verified JavaScript, CSS, and image assets are accessible:
 
 **JavaScript:**
+
 - `/_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js` - ✓ 200
 - `/_astro/Layout.astro_astro_type_script_index_0_lang.OSO7ODKE.js` - ✓ 200
 
 **CSS:**
+
 - `/_astro/Layout.BCI2ZFMw.css` - ✓ 200
 
 **Images:**
+
 - `/_astro/pydantic-ai-light.CFdPbM_D.png` - ✓ 200 (cover image)
 - `/_astro/mollick_claude_excel.I9BjxmKr.png` - Present in HTML (inferred from content)
 
@@ -135,23 +143,26 @@ Spot-checked `/p/pydantic-ai-reaches-v1` for proper HTML structure:
 - ✓ Custom font loading (Space Grotesk Variable, Inter Variable)
 
 **OpenGraph Metadata Example:**
+
 ```html
-<meta content="Pydantic AI Reaches v1" property="og:title">
-<meta content="Which, for me, begged the question, what exactly is Pydantic AI?" property="og:description">
-<meta content="https://cto4.ai/p/pydantic-ai-reaches-v1" property="og:url">
-<meta content="article" property="og:type">
-<meta content="https://cto4.ai/_astro/pydantic-ai-light.CFdPbM_D_Z16DGtL.jpg" property="og:image">
+<meta content="Pydantic AI Reaches v1" property="og:title" />
+<meta content="Which, for me, begged the question, what exactly is Pydantic AI?" property="og:description" />
+<meta content="https://cto4.ai/p/pydantic-ai-reaches-v1" property="og:url" />
+<meta content="article" property="og:type" />
+<meta content="https://cto4.ai/_astro/pydantic-ai-light.CFdPbM_D_Z16DGtL.jpg" property="og:image" />
 ```
 
 ### 6. Component Functionality (Visual Review Required)
 
 **Components Present in HTML:**
+
 - ✓ ChatTranscript component (styles loaded: `chat-transcript[data-astro-cid-ft4vv2iq]`)
 - ✓ ImageGallery component (styles loaded: `image-gallery[data-astro-cid-2p3awudu]`)
 - ✓ SingleImage component (styles loaded: `single-image[data-astro-cid-kqij5y5v]`)
 - ✓ MDContent component (styles loaded: `mdcontent-container[data-astro-cid-ik4nkkfa]`)
 
 **GLightbox:**
+
 - ⚠️ CSS loaded (`.glightbox[data-astro-cid-2p3awudu]`, `.glightbox[data-astro-cid-kqij5y5v]`)
 - ⚠️ Interactive testing not performed (requires browser automation)
 - ✓ Markup appears correct (anchor tags with `class="glightbox"` and `data-gallery` attributes)
@@ -169,9 +180,10 @@ The blog routing system is working correctly:
 ### 8. View Transitions
 
 Astro View Transitions API enabled:
+
 ```html
-<meta content="true" name="astro-view-transitions-enabled">
-<meta content="swap" name="astro-view-transitions-fallback">
+<meta content="true" name="astro-view-transitions-enabled" />
+<meta content="swap" name="astro-view-transitions-fallback" />
 ```
 
 ### 9. Dark Mode
@@ -218,22 +230,15 @@ Due to browser automation limitations, the following tests were **not performed*
 ### Recommended Manual Testing
 
 **Priority 1 (High):**
+
 1. Test GLightbox by clicking on images in posts like `/p/pydantic-ai-reaches-v1`
 2. Test search functionality at `/search` - type queries and verify Pagefind results
 3. Test responsive design on mobile (375px, 768px viewports)
 4. Verify dark mode toggle works in browser
 
-**Priority 2 (Medium):**
-5. Test navigation menu toggle on mobile
-6. Check browser console for JavaScript errors
-7. Verify related posts component displays correct posts
-8. Test View Transitions navigation smoothness
+**Priority 2 (Medium):** 5. Test navigation menu toggle on mobile 6. Check browser console for JavaScript errors 7. Verify related posts component displays correct posts 8. Test View Transitions navigation smoothness
 
-**Priority 3 (Low):**
-9. Test RSS feed at `/rss.xml`
-10. Verify sitemap at `/sitemap-index.xml`
-11. Test all external links open correctly
-12. Performance audit with Lighthouse
+**Priority 3 (Low):** 9. Test RSS feed at `/rss.xml` 10. Verify sitemap at `/sitemap-index.xml` 11. Test all external links open correctly 12. Performance audit with Lighthouse
 
 ---
 
