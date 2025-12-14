@@ -1,0 +1,11 @@
+Simon Willison noted that OpenAI has quietly added Skills support to ChatGPT and Codex CLI.
+
+This makes me happy. Skills are organized folders with markdown instructions and scripts—domain expertise packaged up so any agent can use it. The format is so simple that any reasonably capable model should be able to consume them.
+
+In fact, I asked Gemini 3 Pro via Antigravity yesterday if it could run my Claude Skills. After browsing through my skills directory, it said "no problem."
+
+But first-class, out-of-the-box support is significantly better than ad-hoc compatibility. Maybe OpenAI will even document the capability sometime soon.
+
+---
+
+https://cto4.ai/p/openai-adopts-skills-via-willison
