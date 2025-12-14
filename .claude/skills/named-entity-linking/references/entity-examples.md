@@ -20,10 +20,10 @@
 - Niche products and startups
 - Developer tools outside mainstream awareness
 
-### Internal References
+### Internal References (Self-Linking)
 
 - Self-references to other blog posts
-- Use relative paths: `/p/post-slug`
+- Use relative slug paths: `[text](post-slug)` (no `/p/` prefix needed)
 
 ### Acronyms & Jargon
 

@@ -1,0 +1,27 @@
+---
+title: 'OpenAI Quietly Adopts Skills'
+contentType: 'elsewhere'
+sourceLink: 'https://simonwillison.net/2025/Dec/12/openai-skills/'
+description: 'Which makes me happy. Via Simon Willison.'
+author: 'Jack Ivers'
+publishDate: '2025-12-14T08:46:34-0600'
+# Cover image: Must be 44:28 aspect ratio (11:7, ~1.571) for proper display
+# Recommended sizes: 1760×1120, 2200×1400, 3520×2240
+image: '~/assets/images/content/openai-adopts-skills-via-willison/openai-skills-cover.png'
+featured: true
+featuredOrder: 25
+draft: false
+tags: ['ai', 'claude', 'skills', 'openai', 'simon-willison']
+categories: ['AI', 'Technology']
+---
+
+import SingleImage from '~/components/ui/SingleImage.astro';
+import ImageGallery from '~/components/ui/ImageGallery.astro';
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+import MDContent from '~/components/ui/MDContent.astro';
+
+I'm a huge fan of Anthropic's Agent Skills---AKA Claude Skills AKA Skills---as you can see from my recent posts [here](cursor-rules-to-claude-skills) and [here](anthropic-stop-building-agents-start-building-skills). [Simon Willison](https://simonwillison.net/) notes that OpenAI has, very quietly, added support for skills in both ChatGPT and [Codex CLI](https://github.com/openai/codex). Hurray!
+
+The concept of Skills is so simple and LLM-friendly that really any reasonably smart model should easily be able to use them, after spending a few minutes looking at their structure and reading docs. I was just asking [Antigravity](kevin-hou-antigravity) / [Gemini 3 Pro](https://blog.google/products/gemini/gemini-3/) yesterday if it could run Skills, and after looking through my `.claude/skills` directory, its response was "no problem" ...
+
+But having first-class support out of the box is significantly better. Maybe OpenAI will even admit and document the capability sometime soon.
