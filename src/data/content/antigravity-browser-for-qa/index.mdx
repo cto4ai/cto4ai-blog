@@ -1,0 +1,27 @@
+---
+title: 'Antigravity Browser for QA'
+contentType: 'essay'
+description: ''
+author: 'Jack Ivers'
+publishDate: 2025-12-13T18:43:28-0600
+# Cover image: Must be 44:28 aspect ratio (11:7, ~1.571) for proper display
+# Recommended sizes: 1760×1120, 2200×1400, 3520×2240
+image: '~/assets/images/content/antigravity-browser-for-qa/'
+featured: false
+featuredOrder: 10
+draft: true
+tags: []
+categories: []
+---
+
+import SingleImage from '~/components/ui/SingleImage.astro';
+import ImageGallery from '~/components/ui/ImageGallery.astro';
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+import MDContent from '~/components/ui/MDContent.astro';
+import { Content as QAResults } from './embedded/qa-results.md';
+
+I just did an upgrade of my Astro-based blog to the latest-Astro-that-makes-sense-right-now which turns out to be 5.16.5. Having just finished a deep dive into Antigravity and ingested some Koolaid about agent managers and agent-ready integrated browsers, I decided to see if I could automate QA testing of my blog, and run do a thorough rather than minimal QA on the 5.16.5 version before pushing it live. I also wanted to have an "agent manager" orchestrate this, with the actual QA delegated to an agent (sub-agent).
+
+I tried using Claude Code first, using Claude sub-agents and the `browser-tools \ browser-automation` skill. Across all three Claude Code surfaces (terminal, VS Code extension, Claude Code Desktop), this failed.
+
+<MDContent title="QA Results" Content={QAResults} allowFullscreen={true} />
