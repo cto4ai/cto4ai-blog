@@ -1,0 +1,16 @@
+TWEET 1:
+In his AI Engineer talk, Google DeepMind's Kevin Hou says the next step function in AI coding tools looks like Antigravity - the opposite of Anthropic's thin-wrapper approach with Claude Code.
+
+TWEET 2:
+The result is "Unapologetically Agent-First" - a platform with three surfaces: a code editor, an agent-controlled Chrome browser, and an Agent Manager that pulls you a level above just looking at code.
+
+TWEET 3:
+It lets you manage many agents at once and uses Artifacts that serve as long-running memory and communication tools. Agent Manager isn't just an agent, it's an orchestrator.
+
+TWEET 4:
+The part that took me five rewatches: Nano Banana Pro isn't just for fun images - it generates full application UIs. A 14-word prompt becomes a full mockup you can annotate and iterate on. Then Antigravity implements the design in code.
+
+TWEET 5:
+Design-to-code, all orchestrated. That's a genuinely new workflow.
+
+https://cto4.ai/p/kevin-hou-antigravity
