@@ -117,18 +117,44 @@ Store transcript TypeScript files in: `/src/data/content/{slug}/transcripts/`
 
 Embed external Markdown files with styled sections.
 
+### Important: Import Requirements
+
+**All imports must be at the top of the file**, immediately after the frontmatter `---` block. MDX does not allow imports inline within content—this will cause "Unable to render Content because it is undefined" errors.
+
+```jsx
+// ✅ CORRECT: All imports together at top
+import MDContent from '~/components/ui/MDContent.astro';
+import { Content as Part1Content } from './embedded/part1.md';
+
+Content here...
+
+<MDContent title="Section" Content={Part1Content} />
+
+// ❌ WRONG: Import inline with content
+Content here...
+
+import { Content as Part1Content } from './embedded/part1.md';  // Will fail!
+```
+
 ### Usage
+
+MDContent uses a **`Content` prop**, not children:
 
 ```jsx
 import MDContent from '~/components/ui/MDContent.astro';
 import { Content as Part1Content } from './embedded/part1.md';
 
+// ✅ CORRECT: Pass Content as prop
 <MDContent
   title="Section Title"
   Content={Part1Content}
   description="Optional description for this section"
-  className="custom-classes"
-/>;
+/>
+
+// ❌ WRONG: Do not use as wrapper with children
+<MDContent>
+  <Part1Content />   // This will NOT work
+</MDContent>
 ```
 
 ### Parameters
