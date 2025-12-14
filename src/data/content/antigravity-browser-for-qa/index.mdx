@@ -5,9 +5,9 @@ description: "Google DeepMind's Antigravity nails a simple autonomous browser QA
 author: 'Jack Ivers'
 publishDate: 2025-12-13T18:43:28-0600
 image: '~/assets/images/content/antigravity-browser-for-qa/antigravity_browser_for_qa_cover.jpeg'
-featured: false
-featuredOrder: 10
-draft: true
+featured: true
+featuredOrder: 20
+draft: false
 tags: ['antigravity', 'qa-testing', 'browser-automation', 'agents', 'google-deepmind']
 categories: ['AI', 'Tools']
 ---
@@ -18,7 +18,7 @@ import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import MDContent from '~/components/ui/MDContent.astro';
 import { Content as QAResults } from './embedded/qa-results.md';
 
-I just did an upgrade of my [Astro](https://astro.build/)-based blog to the latest-Astro-that-makes-sense-right-now which turns out to be 5.16.5. Having just finished a [deep dive](/p/kevin-hou-antigravity) into [Antigravity](https://developers.googleblog.com/en/build-with-google-antigravity-our-new-agentic-development-platform/) and ingested some Koolaid about agent managers and agent-ready integrated browsers, I decided to see if I could automate QA testing of my blog, and run do a thorough rather than minimal QA on the 5.16.5 version before pushing it live. I also wanted to have an "agent manager" orchestrate this, with the actual QA delegated to an agent (sub-agent).
+I just did an upgrade of my [Astro](https://astro.build/)-based blog to the latest-Astro-that-makes-sense-right-now which turns out to be 5.16.5. Having just finished a [deep dive](/p/kevin-hou-antigravity) into [Antigravity](https://developers.googleblog.com/en/build-with-google-antigravity-our-new-agentic-development-platform/) and ingested some Kool-Aid about agent managers and agent-ready integrated browsers, I decided to see if I could automate QA testing of my blog, and do a thorough rather than minimal QA on the 5.16.5 version before pushing it live. I also wanted to have an "agent manager" orchestrate this, with the actual QA delegated to an agent (sub-agent).
 
 I tried using [Claude Code](https://www.anthropic.com/claude-code) first, using Claude sub-agents and the `browser-tools \ browser-automation` skill. Across all three Claude Code surfaces (terminal, VS Code extension, Claude Code Desktop), this failed. No doubt there was something that could have been configured correctly somewhere, but still, with at least a modest effort on my part, I couldn't get it working.
 
@@ -34,7 +34,7 @@ intra-page and site wide (eg search)
 
 Agent Manager dug right in, starting with a plan, cranking up Antigravity's integrated Chrome agent-controlled browser, working its way methodically through the local preview site as requested, and finishing with a nice QA report (see below).
 
-I was a little perplexed that Agent Manager appeared to be running the QA process "on the main thread" so to speak---that is, the agent window I was in was "busy" running the task. But I think this is a PEBKAC problem, also known as my own lack of understanding. Agent Manager allows multiple active conversations, meaning I could start up other agent tasks while this was running. Agent Manager also has an Inbox, so I would get notifications from any of those agent windows. I'm sure this will become more clear as I work more with Antigravity.
+I was a little perplexed that Agent Manager appeared to be running the QA process "on the main thread" so to speak---that is, the agent window I was in was "busy" running the task. But I think this is a PEBKAC problem, also known as my own lack of understanding. Agent Manager allows multiple active conversations, meaning I could start up other agent tasks while this was running. Agent Manager also has an Inbox, so I would get notifications from any of those agent windows. I'm sure this will become clearer as I work more with Antigravity.
 
 In any case: A+ on this agent-driven QA process!
 
