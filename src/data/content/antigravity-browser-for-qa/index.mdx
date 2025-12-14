@@ -18,7 +18,9 @@ import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import MDContent from '~/components/ui/MDContent.astro';
 import { Content as QAResults } from './embedded/qa-results.md';
 
-I just did an upgrade of my [Astro](https://astro.build/)-based blog to the latest-Astro-that-makes-sense-right-now which turns out to be 5.16.5. Having just finished a [deep dive](/p/kevin-hou-antigravity) into [Antigravity](https://developers.googleblog.com/en/build-with-google-antigravity-our-new-agentic-development-platform/) and ingested some Kool-Aid about agent managers and agent-ready integrated browsers, I decided to see if I could automate QA testing of my blog, and do a thorough rather than minimal QA on the 5.16.5 version before pushing it live. I also wanted to have an "agent manager" orchestrate this, with the actual QA delegated to an agent (sub-agent).
+I just did an upgrade of my [Astro](https://astro.build/)-based blog to the latest-Astro-that-makes-sense-right-now which turns out to be 5.16.5. Having just finished a [deep dive](/p/kevin-hou-antigravity) into [Antigravity](https://developers.googleblog.com/en/build-with-google-antigravity-our-new-agentic-development-platform/) and ingested some Kool-Aid about agent managers and agent-ready integrated browsers, I decided to see if I could automate QA testing of my blog, and do a thorough rather than minimal QA on the 5.16.5 version before pushing it live.[^1] I also wanted to have an "agent manager" orchestrate this, with the actual QA delegated to an agent (sub-agent).
+
+[^1]: I realize what I'm calling "thorough QA" here is weak sauce compared to real automated QA.
 
 I tried using [Claude Code](https://www.anthropic.com/claude-code) first, using Claude sub-agents and the `browser-tools \ browser-automation` skill. Across all three Claude Code surfaces (terminal, VS Code extension, Claude Code Desktop), this failed. No doubt there was something that could have been configured correctly somewhere, but still, with at least a modest effort on my part, I couldn't get it working.
 
