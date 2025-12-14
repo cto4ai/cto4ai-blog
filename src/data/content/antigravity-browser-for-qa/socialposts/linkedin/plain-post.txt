@@ -1,0 +1,13 @@
+I recently posted about Kevin Hou's talk on Google DeepMind's Antigravity. After that deep dive, I decided to put it to work on automated browser QA of my blog.
+
+After an Astro upgrade, I asked Antigravity to orchestrate a test of 30+ posts and site-wide functionality. It spun up its integrated Chrome browser, worked methodically through the pages, tested search, and delivered a clean QA report.
+
+What stood out was how well-integrated the browser automation felt. Antigravity was built from the ground up for this kind of agent-driven browser work, and it shows.
+
+The agent manager pattern is interesting too. My QA task ran in one conversation window while I could spin up other agent tasks in parallel. Still wrapping my head around that workflow, but it feels like the right architecture for orchestrating multiple autonomous tools.
+
+I'd tried Claude Code first but couldn't get the browser automation working, likely a configuration issue on my end. Will revisit that setup, but Antigravity earned its A+ here.
+
+---
+
+https://cto4.ai/p/antigravity-browser-for-qa
