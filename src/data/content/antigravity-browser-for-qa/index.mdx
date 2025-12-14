@@ -1,6 +1,6 @@
 ---
-title: 'Antigravity Browser for QA'
-contentType: 'essay'
+title: 'Antigravity Gets an A+ on my Browser QA Task'
+contentType: 'brief'
 description: ''
 author: 'Jack Ivers'
 publishDate: 2025-12-13T18:43:28-0600
@@ -22,6 +22,22 @@ import { Content as QAResults } from './embedded/qa-results.md';
 
 I just did an upgrade of my Astro-based blog to the latest-Astro-that-makes-sense-right-now which turns out to be 5.16.5. Having just finished a deep dive into Antigravity and ingested some Koolaid about agent managers and agent-ready integrated browsers, I decided to see if I could automate QA testing of my blog, and run do a thorough rather than minimal QA on the 5.16.5 version before pushing it live. I also wanted to have an "agent manager" orchestrate this, with the actual QA delegated to an agent (sub-agent).
 
-I tried using Claude Code first, using Claude sub-agents and the `browser-tools \ browser-automation` skill. Across all three Claude Code surfaces (terminal, VS Code extension, Claude Code Desktop), this failed.
+I tried using Claude Code first, using Claude sub-agents and the `browser-tools \ browser-automation` skill. Across all three Claude Code surfaces (terminal, VS Code extension, Claude Code Desktop), this failed. No doubt there was something that could have been configured correctly somewhere, but still, with at least a modest effort on my part, I couldn't get it working.
+
+So I decided to aim Antigravity at the project and see what it could do. Far, far better, as it turns out. My request was:
+
+```
+I want you to use the browser tool to QA this website.
+A preview is running locally at http://localhost:4322/
+
+Test at least 30 posts, old and new, and all functionality,
+intra-page and site wide (eg search)
+```
+
+Agent Manager dug right in, starting with a plan, cranking up Antigravity's integrated Chrome agent-controlled browser, working its way methodically through the local preview site as requested, and finishing with a nice QA report (see below).
+
+I was a little perplexed that Agent Manager appeared to be running the QA process "on the main thread" so to speak---that is, the agent window I was in was "busy" running the task. But I think this is a PEBKAC problem, also known as my own lack of understanding. Agent Manager allows multiple active conversations, meaning I could start up other agent tasks while this was running. Agent Manager also has an Inbox, so I would get notifications from any of those agent windows. I'm sure this will become more clear as I work more with Antigravity.
+
+In any case: A+ on this agent-driven QA process!
 
 <MDContent title="QA Results" Content={QAResults} allowFullscreen={true} />
