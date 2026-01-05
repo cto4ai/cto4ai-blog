@@ -23,7 +23,7 @@ import MDContent from '~/components/ui/MDContent.astro';
 
 I'd been working with several clients to automate business workflows using Claude, lots of MCPs, and lots of shared prompts. The downsizes of managing (deployment??) and using (context overhead!!) many MCPs soon became clear, as did the pain of managing the prompts and other assets that encapsulated the domain knowledge behind those workflows.
 
-Then: Skills! As you can see here, here, here and here, I'm quite enamored of them. Skills happen to be the perfect abstraction for capturing the domain knowledge behind any business workflow. There are lots of other amazing ways to use Skills, but **all** of my clients have this particular need, so it's prominent on my radar.
+Then: Skills! As you can see here, here, here and here, I'm quite enamored of them. Skills happen to be the perfect abstraction for capturing the domain knowledge behind any business workflow. There are lots of other amazing ways to use Skills, but **all** of my clients have this particular need, so it's prominent on my radar. And Skills from day one have been "works on all Claude surfaces."
 
 ## Skill Distribution and Plugin (Skill) Marketplaces
 
@@ -35,4 +35,20 @@ Plugin Marketplaces are just for Claude Code users, though, and currently only s
 
 And then there are the MCP downsides, which are sizable even for relatively small organizations. Although it's gotten better with Anthropic's 4.5 series of models, first Sonnet and more recently Opus 4.5, MCPs as traditionally written (tons of tools) are model context killers. Also painful was that support for remote MCPs and OAuth authentication lagged the initial wave of local MCPs, and local MCPs only worked with Claude Code and Claude Desktop, not Claude the web.
 
-But Anthropic has been very busy; they introduced "Connectors," which are properly-packaged remote MCPs with (eventually) first class support for OAuth, and these work across all Claude surfaces including Claude.ai on the web. (Claude on Mobile has some limited support also). In their November-December blitz, Anthropic began promoting and supporting new approaches that enable far more context-efficient and performant ways for models to use MCPs (Programmable Tool Calling, Advanced Tool Use). In a nutshell, instead of the model engaging directly with (MCP) tools and doing lots of back and forth, generating high context consumption, the model can instead write code that does that tool calling and assembles , following some pioneering work by Cloudflare, also developed techniques for reducing
+But Anthropic has been very busy; they introduced "Connectors," which are properly-packaged remote MCPs with (eventually) first class support for OAuth, and these work across all Claude surfaces including Claude.ai on the web. (Claude on Mobile has some limited support also).
+
+Then, in their November-December blitz, Anthropic[^1] began promoting and supporting new approaches that enable far more context-efficient and performant ways for models to use MCPs (Programmable Tool Calling, Advanced Tool Use).
+In a nutshell, instead of the model engaging directly with (MCP) tools and doing lots of back and forth, generating high context consumption, the model can instead write code that does the tool calling and then assembles what the model needs without the model bearing the context weight of all the intermediate results. Skills can play a key role in orchestrating all of this.
+
+Enabling this mode of operation is what Anthropic calls the Code Execution Tool, which they've gradually been provisioning to all Claude surfaces, granting with the ability to execute code in sandboxed cloud environments. Claude Code got Claude Code on the web; Claude.ai and Desktop got Claude for Excel and Agent Skills that leverage script execution. Code Execution Tool across all Claude surfaces means we are tantalizingly close to Skill-based Programmable Tool Calling, Advanced Tool Use on all Claude surfaces.
+
+[^1]: Aided by some pioneering work from Cloudflare [link]
+
+## Ending 2025: Momentum and Gaps
+
+Ending 2025, it is fair to say that Skills backed by (MCP) tools had tremendous momentum, strong support and tooling from Anthropic, other big players jumping on the bandwagon, and rapidly accelerating uptake. The Skill ecosystem was a perfect fit for my workflow automation needs, but I still had some serious itches that needed scratching, happs that needed filling.
+
+- Skill distribution was weak: Claude Code had a solid foundation for a solution with Plugin Marketplaces, but with significant limitation of "public repos only." Claude's non-developer surfaces lacked support for these Marketplaces; distribution of skills involved sharing .skill files over slack or email.
+- Claude Code aloLocal MCPs even those aren't meeting the enterprise need they didn't meetI was seeking ways to But I had some itches to scr
+
+## Skillport: Filling the Skills Distribution Gaps
