@@ -1,0 +1,28 @@
+---
+title: 'Skillport: A Shared Skill Library for Claude Desktop and Claude.ai'
+contentType: 'essay'
+description: 'Or, how I spent my Christmas vacation.'
+author: 'Jack Ivers'
+publishDate: '2026-01-04T17:40:52-0600'
+# Cover image: Must be 44:28 aspect ratio (11:7, ~1.571) for proper display
+# Recommended sizes: 1760×1120, 2200×1400, 3520×2240
+image: '~/assets/images/content/skillport/'
+featured: false
+featuredOrder: 10
+draft: true
+tags: []
+categories: []
+---
+
+import SingleImage from '~/components/ui/SingleImage.astro';
+import ImageGallery from '~/components/ui/ImageGallery.astro';
+import ChatTranscript from '~/components/ui/ChatTranscript.astro';
+import MDContent from '~/components/ui/MDContent.astro';
+
+{/* Content goes here */}
+
+I'd been working with several clients to automate business workflows using Claude, lots of MCPs, and lots of shared prompts. The downsizes of managing (deployment??) and using (context overhead!!) many MCPs soon became clear, as did the pain of managing the prompts and other assets that encapsulated the domain knowledge behind those workflows.
+
+Then: Skills! As you can see here, here, here and here, I'm quite enamored of them. Skills happen to be the perfect abstraction for capturing the domain knowledge behind any business workflow. There are lots of other amazing ways to use Skills, but **all** of my clients have this particular need, so it's prominent on my radar.
+
+Anthropic was on a roll with skills through November and December. A really exciting development was Plugin Marketplaces for Claude Code. Plugins are a container that encompasses Skills, as well as /Commands, Hooks, and Agents. And Plugin Marketplaces are a way for Claude Code users to gain access to shared public repositories of those items.
