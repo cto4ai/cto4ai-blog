@@ -119,10 +119,21 @@ Finally, in December, Anthropic acquired Bun, known for its blazingly fast JavaS
 
 ## The Christmas Itch That Needed Scratching
 
-All of these great announcements and releases, so much promise ... but heading into the end of year lull, I still didn't quite have what I needed to really do business workflow automations right. What was missing:
+All of these great announcements and releases, so much promise ... but heading into the end of year lull, I still didn't quite have what I needed to really do business workflow automations right and to help clients deploy Skills at scale.
 
-- Skill distribution was weak: Claude Code had the start of a solution with Plugin Marketplaces, but only for Claude Code CLI and with the significant limitation of "public repos only." Claude Code on the Web, along with Claude's non-developer surfaces, all lacked support for these Marketplaces; distribution of skills typically involved sharing .skill files over Slack or email.
-- Skills need tools, with MCPs as the default solution of tools; but as described above, context overhead, performance, and distribution all inflicted their respective friction.
-- Anthropic's November-December releases made the promise of Skills that much more real, with code execution and advanced tool use available in some contexts but but didn't quite are typicllClaude Code aloLocal MCPs even those aren't meeting the enterprise need they didn't meetI was seeking ways to But I had some itches to scr
+The main problem was Skill distribution and sharing. For business users running Claude.ai or Claude Desktop, there wasn't any kind of a sharing solution---other than trading .skill files over Slack or email. Versioning skills? Nope. Even for Claude Code users, Plugin Marketplaces were untenable for Skills that involved proprietary processes or information, due to the requirement that repos be public.
+
+I loved the design of Plugin Marketplaces, their elegant, standardized repo structure and support for versioning. Could I possibly build something that would apply this great design and bring these features to Claude business users?
+
+For me, there's always another question as well: would I learn something in the process?
+
+The answer to both questions turned out to be YES.
 
 ## Skillport: Filling the Skills Distribution Gaps
+
+Skillport was released publicly on January 4th under the MIT license, and consists of two repos:
+
+- `skillport-connector`, which enables an organization using Skillport to create their own Claude Connector (remote MCP) that authenticates over OAuth and provides access to a complete API for installing and managing Skills
+- `skillport-marketplace`, a GitHub template that creates an Anthropic Plugin Marketplace compatible repository where organizations can (privately!) manage their library of Skills
+
+Skillport uses Skills itself, and in a rather novel way.
