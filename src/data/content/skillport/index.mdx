@@ -85,17 +85,24 @@ Very exciting, but this doesn't scratch my particular itch: it's only for Claude
 
 ## Packaged, Context-friendly, Performant MCPs
 
-Anthropic has been steadily chipping away at MCP's downsides: difficulty of distribution, model context overhead, and performance.
+Anthropic's Model Context Protocol has seen tremendous uptake and support, but it has seen significant challenges to adoption as well. In Claude.ai and Claude Desktop, MCPs have been difficult to install at best, and not available at all (in the case of local MCPs from Claude.ai). Every installed MCP, even if it's not being used, eats up precious model context tokens---the more tools the MCP exposes, the higher the context overhead. Finally, the standard model-to-MCP-tool back-and-forth tends to result in laggy performance.
 
-On the distribution front, June brought one-click-installable Desktop Extensions (local MCPs); July a Connectors directory (Remote MCPs); and November MCP Bundles (MCPB), the successor to Desktop Extensions.
+Anthropic has been steadily chipping away at these MCP downsides.
 
-On the context overhead front, November was a big month: Anthropic[^1] began recommending a radically more context-efficient and performant mode of model-to-MCP interaction, Programmatic Tool Calling. In a nutshell, instead of the model directly interacting with MCP tools, sifting and sorting their outputs, gobbling up huge chunks of context, the model instead **writes code** to do the tool calling and sifting and sorting of results, handing back to the model just what it needs and nothing extra. The model no longer bears the context weight of all the intermediate results, and no longer spins its wheels running long sequences of tool calls, with the added benefit the code runs much faster. Skills can play a key role in orchestrating all of this.
+On the MCP distribution front, Anthropic announced a standard for one-click-installable Desktop Extensions (local MCPs) in June; followed on with Connectors directory, supporting one-click installs of cross-platform Remote MCPs, in July; and in November launched MCP Bundles (MCPB), the successor to Desktop Extensions. By end of year, the Connectors directory was solidly populated with MCPs for many major platforms:
 
-[^1]: Aided by some pioneering work from Cloudflare [link]
+<SingleImage
+  src="claude_ai_browse_connectors.png"
+  alt="Claude.ai Connectors directory showing available MCP integrations"
+  postDir="skillport"
+  size="2xl"
+/>
+
+On the context and performance fronts, November was a big month: seemingly spurred by [Cloudflare's "Code Mode" research](#), Anthropic began recommending and supporting a radically context-efficient and performant mode of model-to-MCP interaction, Programmatic Tool Calling. In a nutshell, instead of the model directly interacting with MCP tools, sifting and sorting their outputs, gobbling up huge chunks of context, the model instead **writes code** that does all that. As a result, the model no longer bears the context weight of all the intermediate tool call results, and no longer incurs the performance penalties of long, chatty conversations tools. spins its wheels running long sequences of tool calls, with the added benefit the code runs much faster. Anything that improves MCPs and tool calling is a big win for Skills++.
 
 ## Ubiquitous, Sandboxed Code Execution in the Cloud
 
-If you're going to get the benefit of Programmatic Tool Calling across all Claude surfaces, you need a place to run those programs that works across all Claude platforms, including the web. Anthropic has kept chipping away at this also. Code execution first arrived in May as part of the Claude 4 model launches, enabling Claude models on all surfaces including the web to run Python scripts. In August, Claude gained the ability to run Bash scripts and perform file system operations. All of the above were prerequisites for Skills generally and the "create and edit files" Skill specifically, which launched just a few weeks later. October brought us Claude Code on the Web, a long-running-agent-loop mode for Claude Code that was completely reliant on sandboxed code execution in the cloud, as well as networking support with egress controls that are essential for such a sandbox.
+If you're going to get the benefit of Programmatic Tool Calling across all Claude surfaces, you need a place to run code---one that works on all Claude surfaces, including Claude.ai on the web. Anthropic anticipated this need and began delivering on it in May, with Code Execution (of Python scripts) arriving as part of the Claude 4 platform. this early has kept chipping away at this also. Code execution first arrived in May as part of the Claude 4 model launches, enabling Claude models on all surfaces including the web to run Python scripts. In August, Claude gained the ability to run Bash scripts and perform file system operations. All of the above were prerequisites for Skills generally and the "create and edit files" Skill specifically, which launched just a few weeks later. October brought us Claude Code on the Web, a long-running-agent-loop mode for Claude Code that was completely reliant on sandboxed code execution in the cloud, as well as networking support with egress controls that are essential for such a sandbox.
 
 ## The Christmas Itch That Needed Scratching
 
