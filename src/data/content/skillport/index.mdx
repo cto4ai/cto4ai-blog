@@ -73,15 +73,26 @@ Here's the condensed version of that list:
 
 ## Skills: Domain Expertise Codified
 
-Ironically, Anthropic demonstrated how great Skills could be more than a month before Skills were officially announced.
+Ironically, Anthropic demonstrated how great Skills could be---more than a month before Skills were officially announced.
 
-Skills arrived on Sept 9th. Furthermore, "those who watch closely," people like Simon Willison, realized that the announcement two weeks earlier of Claude's incredible "create and edit files" feature, which enables direct creation and editing of MS Word, Excel, Powerpoint, and PDF files right in Claude conversations, was actually powered by Skills. At this point, it became clear that we were moving beyond the age of "cobbling together" such solutions. Now we had an elegant abstraction for capturing the domain knowledge behind any business workflow. And Skills worked across all Claude surfaces: Claude.ai on the web, Claude Desktop on Mac and Windows, and Claude Code.
+On September 9th, Anthropic have us Claude's incredible "create and edit files" feature, which enables direct creation and editing of MS Word, Excel, Powerpoint, and PDF files right in Claude conversations. Little did we know that these capabilities were actually powered by Skills.
 
-## Skill Distribution for Claude Code: Plugin Marketplaces
+On October 16th, Anthropic launched Skills, and in [this GitHub repo](https://github.com/anthropics/skills) (committed the day before the launch) you can see the actual Skills that power "create and edit files." These Skills are powerful, leveraging code execution with Python scripts and evem XML schemas.
 
-On November 3rd, Anthropic announced Plugin Marketplaces for Claude Code. Plugins are Anthropic's name for a category of artifacts that Claude Code users might want to create, reuse, and share, including slash commands, hooks, agents, and---you guessed it---Skills. Plugin Marketplaces are public git repositories hosted on GitHub, Gitlab, etc. that contain these artifacts, and that any Claude Code user can attach to and download from. Installing a Skill or other artifact takes just a command or two in Claude Code. The Plugin Marketplace repo design is another elegant piece of work by Anthropic and, among other things, supports versioning.
+<SingleImage
+  src="claude_docx_skill.png"
+  alt="Anthropic's DOCX Skill from the official skills repository"
+  postDir="skillport"
+  size="2xl"
+/>
 
-Very exciting, but this doesn't scratch my particular itch: it's only for Claude Code (read: developers), and only supports public repositories, a non-starter for critical business workflows.
+At this point, it became clear that we were moving beyond the age of "cobbling together" Claude-based workflow solutions. Now we had an elegant abstraction for capturing the domain knowledge behind any business workflow. And Skills worked across all Claude surfaces: Claude.ai on the web, Claude Desktop on Mac and Windows, and Claude Code.
+
+## Sharing Skills: Claude Code's Plugin Marketplaces
+
+On November 3rd, Anthropic announced Plugin Marketplaces for Claude Code. Plugins are Anthropic's name for a category of artifacts that Claude Code users might want to create, reuse, and share, including slash commands, hooks, agents, and---you guessed it---Skills. Plugin Marketplaces are public git repositories hosted on GitHub, Gitlab, etc. that contain these artifacts, and that any Claude Code user can attach to and download from. Installing a Skill or other artifact takes just a command or two in Claude Code. The Plugin Marketplace repo design is another elegant piece of work by Anthropic and, among other things, supports Skill versioning.
+
+Plugin Marketplaces were very exciting, but also a groaner, because they target only Claude Code (read: developers), and only support public repositories, a non-starter for proprietary business workflows.
 
 ## Packaged, Context-friendly, Performant MCPs
 
