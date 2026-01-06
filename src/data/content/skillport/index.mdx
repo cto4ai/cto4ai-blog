@@ -134,7 +134,7 @@ The answer to both questions turned out to be YES.
 Skillport was released publicly on January 4th under the MIT license, and consists of two repos:
 
 - `skillport-connector`, which enables an organization using Skillport to create their own Claude Connector (remote MCP) that authenticates over OAuth and provides access to a complete API for installing and managing Skills. The initial version supports Google OAuth and deploys to Cloudflare workers, but fork the repo and have at it, extending to other OAuth IdPs and deployment targets should be low-effort
-- `skillport-marketplace`, a GitHub template that creates an Anthropic Plugin Marketplace compatible repository where organizations can (privately!) manage their library of Skills
+- `skillport-marketplace`, a GitHub template that creates an Anthropic Plugin Marketplace compliant repository where organizations can (privately!) manage their library of Skills
 
 Skillport (of course!) uses Skills itself, and in a rather novel way. The `skillport-connector` exposes just a single tool to Claude -- authentication -- and strongly encourages Claude to download and install the `skillport` Skill. Once the Skill is installed, Claude knows all about how to invoke the full suite of Skillport tools, which happen through Programmatic Tool Calling using scripts and instructions provided in the `skillport` Skill.
 
@@ -142,7 +142,7 @@ Skillport supports normal Skill user operations, such as finding Skills in the m
 
 Claude Code users benefit too: the `skillport` Skill works there as well, and supports organization-private repos where proprietary Skills can safely be shared.
 
-The net result is an environment where Skills can scale without limits:
+The net result is an environment where organizations can deploy, share, and manage Skills at scale and without limits:
 
 - The `skillport-connector` imposes the lowest possible Claude context overhead: one tool only, leveraging Programmatic Tool Calling, performant.
 - The `skillport` Skill drives the model's user interactions, rather than the model "going rogue" and directly calling tools. Edit operations, for example, require positive assent from the Claude user.
