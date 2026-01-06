@@ -79,15 +79,15 @@ Skills arrived on Sept 9th. Furthermore, "those who watch closely," people like 
 
 On November 3rd, Anthropic announced Plugin Marketplaces for Claude Code. Plugins are Anthropic's name for a category of artifacts that Claude Code users might want to create, reuse, and share, including slash commands, hooks, agents, and---you guessed it---Skills. Plugin Marketplaces are public git repositories on GitHub, Gitlab, etc. that contain these artifacts, and that any Claude Code user can attach to and download from. Installing a Skill or other artifact takes just a command or two in Claude Code. The Plugin Marketplace repo design is another elegant piece of work by Anthropic and, among other things, supports versioning.
 
-Very exciting, but doesn't scratch my particular itch: it's only for Claude Code (read: developers), and only supports public repositories, a non-starter for critical business workflows.
+Very exciting, but this doesn't scratch my particular itch: it's only for Claude Code (read: developers), and only supports public repositories, a non-starter for critical business workflows.
 
 ## Packaged, Context-friendly, Performant MCPs
 
-Anthropic has been steadily chipping away at MCP's downsides: distribution, context overhead, and performance.
+Anthropic has been steadily chipping away at MCP's downsides: difficulty of distribution, model context overhead, and performance.
 
 On the distribution front, June brought one-click-installable Desktop Extensions (local MCPs); July a Connectors directory (Remote MCPs); and November MCP Bundles (MCPB), the successor to Desktop Extensions.
 
-On the context overhead front, November was a big month: Anthropic[^1] began promoting a radically more context-efficient and performant models-to-MCP interaction (Programmatic Tool Calling). In a nutshell, instead of the model directly calling all the tools itself, resulting in high context consumption, the model instead **writes code** that does the tool calling and assembles what the model needs. As a result, the model no longer bears the context weight of all the intermediate results, with the added benefit the code runs much faster. Skills can play a key role in orchestrating all of this.
+On the context overhead front, November was a big month: Anthropic[^1] began recommending a radically more context-efficient and performant mode of model-to-MCP interaction, Programmatic Tool Calling. In a nutshell, instead of the model directly interacting with MCP tools, sifting and sorting their outputs, gobbling up huge chunks of context, the model instead **writes code** to do the tool calling and sifting and sorting of results, handing back to the model just what it needs and nothing extra. The model no longer bears the context weight of all the intermediate results, and no longer spins its wheels running long sequences of tool calls, with the added benefit the code runs much faster. Skills can play a key role in orchestrating all of this.
 
 [^1]: Aided by some pioneering work from Cloudflare [link]
 
