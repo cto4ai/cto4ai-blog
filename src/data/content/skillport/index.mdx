@@ -19,21 +19,23 @@ import ImageGallery from '~/components/ui/ImageGallery.astro';
 import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import MDContent from '~/components/ui/MDContent.astro';
 
-To explain why I created the open source project Skillport, we need to look at Anthropic's 2025, focusing on what I'm calling **Skills+Tools+CodeExec**.
+To explain why I created the open source project Skillport, I need to provide some background.
 
-What's with the crazy shorthand name?
+First, know that, starting in 2024 and throughout 2025, I had been working with clients to apply AI in critical business workflows, cobbling together Claude, lots of MCPs, and lots of large, complicated prompts. The results were often fantastic---what used to take days done in a few hours---but the cobbling together part was painful, as were the realities of deploying and running first-generation local MCPs.
+
+Second, we need to look at what was going on at Anthropic in 2025, focusing on what I call Skills++: Skills plus Tools plus Code Execution:
 
 - **Skills** are fantastic, but to be powerful they need ...
 - **Tools**, often exposed over the Model Context Protocol, MCP), which give Skill access to critical business context and data; and ...
 - **Sandboxed code execution**, which is essential for efficient tool use, and necessary to provide Skill feature parity across all Claude surfaces including Claude.ai on the web.
 
-Here's an even shorter shorthand:
+So:
 
 <div class="text-center text-2xl font-serif italic my-6">Skills++ = Skills + Tools + CodeExec</div>
 
 ## Anthropic's Fantastic Year in Skills++
 
-It seems that AI years are like dog years, only more so. I asked Claude Opus 4.5 to give me Anthropic's 2025 timeline of important announcements and releases to include in this post:
+I asked Claude Opus 4.5 to give me Anthropic's 2025 timeline of important announcements and releases that pertained to Skills++:
 
 <SingleImage
   src="claude_request_anthropic_announcements.png"
@@ -42,11 +44,9 @@ It seems that AI years are like dog years, only more so. I asked Claude Opus 4.5
   size="2xl"
 />
 
-When I looked at the early 2025 part of the list, it's amazing how dated they feel---like ancient history. I ended up condensing Claude's initial list, but here's the [original in full detail](#)---bear in mind that I didn't request all announcements, just those germane to Skillport.
+Here's the condensed version of that list:
 
-Here's what Anthropic announced and delivered that directly related to Skills++:
-
-| Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Announcement                                                        | Why Important for Skills & Tools                                                                                                                                                                                                                                                                              |
+| Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Announcement                                                        | Why Important to Skills++                                                                                                                                                                                                                                                                                     |
 | ---------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | May 22                                         | Code Execution Tool — Python sandbox (`code-execution-2025-05-22`)  | **Code execution arrives.** Claude can now run Python in a sandboxed environment, not just generate code. Launched with Claude 4 alongside MCP connector, Files API, and prompt caching. Foundation for the Bash + file ops update in August.                                                                 |
 | Jun 26                                         | Desktop Extensions (DXT) — One-click local MCP installation         | **Packaging format for local MCPs.** .dxt bundles MCP servers with dependencies into single installable files. Node.js ships with Claude Desktop, eliminating dependency hell. Open-sourced spec enables ecosystem-wide adoption.                                                                             |
@@ -73,7 +73,7 @@ Here's what Anthropic announced and delivered that directly related to Skills++:
 
 ## Skills: Domain Expertise Codified
 
-Throughout 2025, I had been working with clients to apply AI in critical business workflows, cobbling together Claude, lots of MCPs, and lots of large, complicated prompts. The results were often fantastic---what used to take days done in a few hours---but the cobbling together part was painful, as were the realities of deploying and running first-generation local MCPs.
+Ironically, Anthropic demonstrated how great Skills could be more than a month before Skills were officially announced.
 
 Skills arrived on Sept 9th. Furthermore, "those who watch closely," people like Simon Willison, realized that the announcement two weeks earlier of Claude's incredible "create and edit files" feature, which enables direct creation and editing of MS Word, Excel, Powerpoint, and PDF files right in Claude conversations, was actually powered by Skills. At this point, it became clear that we were moving beyond the age of "cobbling together" such solutions. Now we had an elegant abstraction for capturing the domain knowledge behind any business workflow. And Skills worked across all Claude surfaces: Claude.ai on the web, Claude Desktop on Mac and Windows, and Claude Code.
 
@@ -102,7 +102,7 @@ On the context and performance fronts, November was a big month: seemingly spurr
 
 ## Ubiquitous, Sandboxed Code Execution in the Cloud
 
-If you're going to get the benefit of Programmatic Tool Calling across all Claude surfaces, you need a place to run code---one that works on all Claude surfaces, including Claude.ai on the web. Anthropic anticipated this need and began delivering on it in May, with Code Execution (of Python scripts) arriving as part of the Claude 4 platform. this early has kept chipping away at this also. Code execution first arrived in May as part of the Claude 4 model launches, enabling Claude models on all surfaces including the web to run Python scripts. In August, Claude gained the ability to run Bash scripts and perform file system operations. All of the above were prerequisites for Skills generally and the "create and edit files" Skill specifically, which launched just a few weeks later. October brought us Claude Code on the Web, a long-running-agent-loop mode for Claude Code that was completely reliant on sandboxed code execution in the cloud, as well as networking support with egress controls that are essential for such a sandbox.
+If you're going to get the benefit of Programmatic Tool Calling, you need a place to run code---one that works on all Claude surfaces, including Claude.ai on the web. Anthropic anticipated this need and began delivering on it in May, with Code Execution (of Python scripts) arriving as part of the Claude 4 platform. In August, Claude added the ability to run Bash scripts and perform file system operations. All of the above were prerequisites for Skills generally and the "create and edit files" Skill specifically, which launched just a few weeks later. October brought us Claude Code on the Web, a long-running-agent-loop mode for Claude Code that was completely reliant on sandboxed code execution in the cloud, as well as networking support with egress controls that are essential for such a sandbox.
 
 ## The Christmas Itch That Needed Scratching
 
