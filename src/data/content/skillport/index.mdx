@@ -21,9 +21,9 @@ import MDContent from '~/components/ui/MDContent.astro';
 
 ## Anthropic's Fantastic Fall of Skills-n-Tools
 
-I joke about AI years being like dog years, but I just asked Claude to give me Anthropic's 2025 timeline of important announcements and releases, and for this post I decided to drop everything before August 25th, because the stuff that happened earlier **seems like ancient history**.
+I joke about AI years being like dog years, but I just asked Claude to give me Anthropic's 2025 timeline of important announcements and releases to include in this post. But I decided to drop everything before August 25th, because the stuff that happened earlier **seems like ancient history**.
 
-Over a period of just 15 weeks\*, here's what Anthropic announced and delivered:
+Over a period of just 15 weeks\*, here's what Anthropic announced and delivered that directly related to the Skills and MCP-tools space:
 
 | Date   | Announcement                                                        | Why Important for Skills & Tools                                                                                                                                                                                                                                                                              |
 | ------ | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -33,6 +33,7 @@ Over a period of just 15 weeks\*, here's what Anthropic announced and delivered:
 | Oct 16 | **Skills launch** — Public Skills + /v1/skills API                  | **The main event.** Skills become a first-class API primitive. Developers can create, version, and deploy Skills. Enterprise customers can manage Skills organization-wide.                                                                                                                                   |
 | Oct 21 | Create and edit files GA — Network/egress controls                  | **Enterprise-ready Skills execution.** Admins can control what Skills can access (package managers only, allowlisted domains, or full internet). Critical for regulated industries.                                                                                                                           |
 | Oct 27 | Claude for Excel — Excel add-in (research preview)                  | **Skills meet enterprise workflows.** Excel is where finance actually happens. An Excel Skill that understands workbooks, formulas, and cell references is a template for domain-specific Skills.                                                                                                             |
+| Nov 3  | Claude Code Plugin Marketplaces                                     | Decentralized Skill distribution arrives. Anyone can create and host a plugin marketplace — no Anthropic approval needed. This is the distribution model for Skills in Claude Code: curated collections that teams and communities can share via /plugin marketplace add.                                     |
 | Nov 4  | **Code execution with MCP** — Engineering blog                      | **The conceptual foundation.** Explains why presenting MCP tools as code APIs (instead of direct tool calls) dramatically reduces token overhead. Explicitly connects to Skills — agents can persist reusable code with SKILL.md files. This paper laid the groundwork for Advanced Tool Use two weeks later. |
 | Nov 20 | **Advanced Tool Use** — Tool Search Tool, Programmatic Tool Calling | **Patterns that apply to Skills and MCP.** Skills frequently pair with MCP servers, and these patterns — deferred loading, on-demand discovery, programmatic orchestration — apply directly to that layer. We've already adapted these concepts within Skillport.                                             |
 | Nov 24 | Opus 4.5 — 80.9% SWE-bench, $5/$25 pricing                          | **Better model + lower prices = more Skill usage.** 67% price cut on Opus makes complex, multi-Skill workflows economically viable.                                                                                                                                                                           |
@@ -42,15 +43,13 @@ Over a period of just 15 weeks\*, here's what Anthropic announced and delivered:
 | Dec 9  | MCP → Linux Foundation — AAIF with OpenAI, Block, Google, Microsoft | **Skills' transport layer is now neutral.** MCP under Linux Foundation means Skills can flow across any platform that adopts MCP. Anthropic can't be accused of lock-in. Competitors have to adopt or fragment.                                                                                               |
 | Dec 18 | **Agent Skills open standard** — Portable Skills, enterprise admin  | **Skills become portable.** Skills built for Claude work in ChatGPT, Cursor, or any adopting platform. This is the "write once, run anywhere" moment for agent capabilities. Partner directory (Atlassian, Notion, Figma) shows ecosystem momentum.                                                           |
 
-Especially considering the compressed timeline---4 elapsed months with three major U.S. holidays ha
-
-has been on a roll, all through 2025 but seemingly in overdrive in November and December.
-
 ---
 
-I'd been working with several clients to automate business workflows using Claude, lots of MCPs, and lots of shared prompts. The downsizes of managing (deployment??) and using (context overhead!!) many MCPs soon became clear, as did the pain of managing the prompts and other assets that encapsulated the domain knowledge behind those workflows.
+## Skills: Domain Expertise Codified
 
-Then: Skills! As you can see here, here, here and here, I'm quite enamored of them. Skills happen to be the perfect abstraction for capturing the domain knowledge behind any business workflow. There are lots of other amazing ways to use Skills, but **all** of my clients have this particular need, so it's prominent on my radar. And Skills worked on all Claude surfaces: Claud.ai on the web, Claude Desktop on Mac and Windows, and Claude Code.
+Throughout 2025, I had been working with clients to apply AI in critical business workflows, cobbling together Claude, lots of MCPs, and lots of crazy prompts. The results were often fantastic---what used to take days done in a few hours---but the cobbling together part was painful as were the realities of deploying and running early-generation local MCPs.
+
+When Skills arrived on Sept 9th, and we realized that the exciting "create and edit files" features for business file formats including docx, xlsx, pptx, and pdf were actually made possible by Skills -- wow, what had been cobbled together could now be elegantly architected. As you can see here, here, here and here, I'm quite enamored of Skills: they are the perfect abstraction for capturing the domain knowledge behind any business workflow. And Skills worked across all Claude surfaces: Claude.ai on the web, Claude Desktop on Mac and Windows, and Claude Code.
 
 ## Skill Distribution and Plugin (Skill) Marketplaces
 
