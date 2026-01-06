@@ -140,6 +140,12 @@ Skillport (of course!) uses Skills itself, and in a rather novel way. The `skill
 
 Skillport supports normal Skill user operations, such as finding Skills in the marketplace, installing them, and checking for updates. Skillport also extensively supports Skill editors, with the ability to create, edit, version-bump, and delete Skills. We've slightly extended the Plugin Marketplace format to support user roles and access controls (don't worry, it's still fully compliant).
 
-Claude Code users benefit too: the `skillport` Skill works there as well, and supports organization-private repo where proprietary Skills can safely be shared.
+Claude Code users benefit too: the `skillport` Skill works there as well, and supports organization-private repos where proprietary Skills can safely be shared.
 
-Skill supports install and manage Skills. Skillportapplying the the Pr
+The net result is an environment where Skills can scale without limits:
+
+- The `skillport-connector` imposes the lowest possible Claude context overhead: one tool only, leveraging Programmatic Tool Calling, performant.
+- The `skillport` Skill drives the model's user interactions, rather than the model "going rogue" and directly calling tools. Edit operations, for example, require positive assent from the Claude user.
+- Claude Code users can share proprietary Skills without concern
+
+Mission accomplished -- and a lot of learning too.
