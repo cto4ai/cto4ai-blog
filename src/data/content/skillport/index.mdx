@@ -19,9 +19,17 @@ import ImageGallery from '~/components/ui/ImageGallery.astro';
 import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import MDContent from '~/components/ui/MDContent.astro';
 
-To understand why I built Skillport, we need to do some looking at what Anthropic was up to in 2025.
+To understand why I built Skillport, we need to do some looking at what Anthropic was up to in 2025, focusing on what I'm calling **Skills+Tools+CodeExec**. Why am I coining this crazy shorthand name?
 
-## Anthropic's Fantastic Year of Skills-n-Tools
+- **Skills** are fantastic, but to be powerful they need ...
+- **Tools** (often exposed over the Model Context Protocol, MCP), which give the Skill access to critical business context; and ...
+- **Sandboxed code execution**, essential for supporting efficient tool use as well as the full breadth of the Claude product line including web.
+
+Maybe there's an even shorter shorthand:
+
+<div class="text-center text-2xl font-serif italic my-6">Skills++ = Skills + Tools + CodeExec</div>
+
+## Anthropic's Fantastic Year in Skills++
 
 I often joke about AI years being like dog years. I just asked Claude to give me Anthropic's 2025 timeline of important announcements and releases to include in this post:
 
@@ -34,7 +42,7 @@ I often joke about AI years being like dog years. I just asked Claude to give me
 
 It's amazing the degree to which early 2025 announcements **seem like ancient history!** I ended up greatly condensing the initial list, but here's the [original in full detail](#)---bear in mind that I didn't request all announcements, just those germane to Skillport.
 
-Starting in May, here's what Anthropic announced and delivered that directly related to Skills-n-Tools:
+Starting in May, here's what Anthropic announced and delivered that directly related to Skills++:
 
 | Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Announcement                                                        | Why Important for Skills & Tools                                                                                                                                                                                                                                                                              |
 | ---------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -67,23 +75,25 @@ Throughout 2025, I had been working with clients to apply AI in critical busines
 
 Skills arrived on Sept 9th. Furthermore, "those who watch closely," people like Simon Willison, realized that the announcement two weeks earlier of Claude's incredible "create and edit files" feature, which enables direct creation and editing of MS Word, Excel, Powerpoint, and PDF files right in Claude conversations, was actually powered by Skills. At this point, it became clear that we were moving beyond the age of "cobbling together" such solutions. Now we had an elegant abstraction for capturing the domain knowledge behind any business workflow. And Skills worked across all Claude surfaces: Claude.ai on the web, Claude Desktop on Mac and Windows, and Claude Code.
 
-MCPs still had plenty of problems. How we might go about creating and sharing Skills across the organization wasn't clear. But Skills themselves clearly nailed the most important problem, and Anthropic more coming in their Fantastic Fall.
-
 ## Skill Distribution for Claude Code: Plugin Marketplaces
 
 On November 3rd, Anthropic announced Plugin Marketplaces for Claude Code. Plugins are Anthropic's name for a category of artifacts that Claude Code users might want to create, reuse, and share, including slash commands, hooks, agents, and---you guessed it---Skills. Plugin Marketplaces are public git repositories on GitHub, Gitlab, etc. that contain these artifacts, and that any Claude Code user can attach to and download from. Installing a Skill or other artifact takes just a command or two in Claude Code. The Plugin Marketplace repo design is another elegant piece of work by Anthropic and, among other things, supports versioning.
 
-Very exciting, but doesn't scratch my particular itch: it's only for Claude Code (not the target audience for business workflows), and only supports public repositories, a non-starter for critical business workflows.
+Very exciting, but doesn't scratch my particular itch: it's only for Claude Code (read: developers), and only supports public repositories, a non-starter for critical business workflows.
 
-## Packaged, Context-friendly, Performance MCPs
+## Packaged, Context-friendly, Performant MCPs
 
-Anthropic has been steadily chipping away at MCP's downsides. On the distribution front, June brought one-click-installable Desktop Extensions (local MCPs); July a Connectors directory (Remote MCPs); and November MCP Bundles (MCPB) which replaced Desktop Extensions. On the context consumption side, November was a big month: Anthropic[^1] began promoting a radically more context-efficient and performant models-to-MCP interaction (Programmatic Tool Calling). In a nutshell, instead of the model directly calling all the tools itself, resulting in high context consumption, the model instead **writes code** that does the tool calling and assembles what the model needs. As a result, the model no longer bears the context weight of all the intermediate results, with the added benefit the code runs much faster. Skills can play a key role in orchestrating all of this.
+Anthropic has been steadily chipping away at MCP's downsides: distribution, context overhead, and performance.
+
+On the distribution front, June brought one-click-installable Desktop Extensions (local MCPs); July a Connectors directory (Remote MCPs); and November MCP Bundles (MCPB), the successor to Desktop Extensions.
+
+On the context overhead front, November was a big month: Anthropic[^1] began promoting a radically more context-efficient and performant models-to-MCP interaction (Programmatic Tool Calling). In a nutshell, instead of the model directly calling all the tools itself, resulting in high context consumption, the model instead **writes code** that does the tool calling and assembles what the model needs. As a result, the model no longer bears the context weight of all the intermediate results, with the added benefit the code runs much faster. Skills can play a key role in orchestrating all of this.
 
 [^1]: Aided by some pioneering work from Cloudflare [link]
 
 ## Ubiquitous, Sandboxed Code Execution in the Cloud
 
-If you're going to get the benefit of Programmatic Tool Calling across all Claude surfaces, you need a place to run those programs that works across all Claude platforms, including the web. Anthropic has kept chipping away at this also. Code execution capabilities for Python scripts first arrived in May as part of the Claude 4 model launches; in August, Bash scripts and file system operations were added. All of the above were prerequisites for Skills generally and the "create and edit files" Skill specifically, which launched just a few weeks later. October brought us Claude Code on the Web, a long-running-agent-loop mode for Claude Code that was completely reliant on sandboxed code execution in the cloud, as well as networking support with egress controls that are essential for such a sandbox.
+If you're going to get the benefit of Programmatic Tool Calling across all Claude surfaces, you need a place to run those programs that works across all Claude platforms, including the web. Anthropic has kept chipping away at this also. Code execution first arrived in May as part of the Claude 4 model launches, enabling Claude models on all surfaces including the web to run Python scripts. In August, Claude gained the ability to run Bash scripts and perform file system operations. All of the above were prerequisites for Skills generally and the "create and edit files" Skill specifically, which launched just a few weeks later. October brought us Claude Code on the Web, a long-running-agent-loop mode for Claude Code that was completely reliant on sandboxed code execution in the cloud, as well as networking support with egress controls that are essential for such a sandbox.
 
 ## The Christmas Itch That Needed Scratching
 
