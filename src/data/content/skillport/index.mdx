@@ -133,7 +133,13 @@ The answer to both questions turned out to be YES.
 
 Skillport was released publicly on January 4th under the MIT license, and consists of two repos:
 
-- `skillport-connector`, which enables an organization using Skillport to create their own Claude Connector (remote MCP) that authenticates over OAuth and provides access to a complete API for installing and managing Skills
+- `skillport-connector`, which enables an organization using Skillport to create their own Claude Connector (remote MCP) that authenticates over OAuth and provides access to a complete API for installing and managing Skills. The initial version supports Google OAuth and deploys to Cloudflare workers, but fork the repo and have at it, extending to other OAuth IdPs and deployment targets should be low-effort
 - `skillport-marketplace`, a GitHub template that creates an Anthropic Plugin Marketplace compatible repository where organizations can (privately!) manage their library of Skills
 
-Skillport uses Skills itself, and in a rather novel way.
+Skillport (of course!) uses Skills itself, and in a rather novel way. The `skillport-connector` exposes just a single tool to Claude -- authentication -- and strongly encourages Claude to download and install the `skillport` Skill. Once the Skill is installed, Claude knows all about how to invoke the full suite of Skillport tools, which happen through Programmatic Tool Calling using scripts and instructions provided in the `skillport` Skill.
+
+Skillport supports normal Skill user operations, such as finding Skills in the marketplace, installing them, and checking for updates. Skillport also extensively supports Skill editors, with the ability to create, edit, version-bump, and delete Skills. We've slightly extended the Plugin Marketplace format to support user roles and access controls (don't worry, it's still fully compliant).
+
+Claude Code users benefit too: the `skillport` Skill works there as well, and supports organization-private repo where proprietary Skills can safely be shared.
+
+Skill supports install and manage Skills. Skillportapplying the the Pr
