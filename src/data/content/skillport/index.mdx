@@ -129,16 +129,38 @@ For me, there's always another question as well: would I learn something in the 
 
 The answer to both questions turned out to be YES.
 
-## Skillport: Filling the Skills Distribution Gaps
+## Skillport: Claude Skill Sharing at Scale
 
-Skillport was released publicly on January 4th under the MIT license, and consists of two repos:
+Skillport helps organizations deploy, share, and manage Skills at scale and without limits:
+
+- Works across all Claude surfaces:
+  - Claude.ai
+  - Claude Desktop
+  - Claude Mobile[^1]
+  - Claude Code
+  - Claude Code on the Web[^2]
+    [^1]: Skills must be installed using Claude.ai or Claude Desktop
+    [^2]: Authentication via Claude Code CLI and then token shared to Claude Code on the web.
+- Supports "normal Skill user" operations: find, install, update Skills.
+- Supports "Skill creator / editor" operations: create, edit, version-bump, and delete Skills.
+- Skill repositories use Anthropic's Plugin Marketplace format, ensuring compatibility
+- Private repositories are supported, enabling secure sharing within an organization (including Claude Code)
+- Skillport's Claude-compatible Connector carries the lowest possible Claude context overhead: one tool only
+- Claude's user interactions with Skillport are guided by Skillport's own skill
+- Skills are versioned and users can check to see if upgrades are available to any installed Skill
+
+### Open Source, MIT License
+
+Skillport was released publicly on GitHub on January 4th 2025 under the MIT license, and consists of two repos:
 
 - `skillport-connector`, which enables an organization using Skillport to create their own Claude Connector (remote MCP) that authenticates over OAuth and provides access to a complete API for installing and managing Skills. The initial version supports Google OAuth and deploys to Cloudflare workers, but fork the repo and have at it, extending to other OAuth IdPs and deployment targets should be low-effort
 - `skillport-marketplace`, a GitHub template that creates an Anthropic Plugin Marketplace compliant repository where organizations can (privately!) manage their library of Skills
 
-Skillport (of course!) uses Skills itself, and in a rather novel way. The `skillport-connector` exposes just a single tool to Claude -- authentication -- and strongly encourages Claude to download and install the `skillport` Skill. Once the Skill is installed, Claude knows all about how to invoke the full suite of Skillport tools, which happen through Programmatic Tool Calling using scripts and instructions provided in the `skillport` Skill.
+### Skillport's Own Skill
 
-Skillport supports normal Skill user operations, such as finding Skills in the marketplace, installing them, and checking for updates. Skillport also extensively supports Skill editors, with the ability to create, edit, version-bump, and delete Skills. We've slightly extended the Plugin Marketplace format to support user roles and access controls (don't worry, it's still fully compliant).
+Skillport uses Skills itself, and in a rather novel way. The `skillport-connector` exposes just a single tool to Claude -- authentication -- and guides Claude to download and install the `skillport` Skill. Once that Skill is installed, Claude gains full instructions on how to interact with Skillport using the full suite of Skill management tools tools. , which happen through Programmatic Tool Calling using scripts and instructions provided in the `skillport` Skill.
+
+Skillport supports normal Skill user operations, such as finding Skills in the marketplace, installing them, and checking for updates. Skillport also extensively supports Skill editors, with the ability to create, edit, version-bump, and delete Skills. Slightly extends slightly extended the Plugin Marketplace format to support user roles and access controls (don't worry, it's still fully compliant).
 
 Claude Code users benefit too: the `skillport` Skill works there as well, and supports organization-private repos where proprietary Skills can safely be shared.
 
