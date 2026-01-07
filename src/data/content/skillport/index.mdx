@@ -26,7 +26,7 @@ First, know that, starting in 2024 and throughout 2025, I've been working with c
 Second, Skillport was made possible by Anthropic's great work during 2025, and we'll need to explore that a bit to set the stage, focusing on work related to what I call Skills++, the combination of:
 
 - **Skills** are fantastic, but to be powerful they need ...
-- **Tools**, often exposed over the Model Context Protocol, MCP, providing critical business context and data; and ...
+- **Tools**, often exposed over the [Model Context Protocol](https://modelcontextprotocol.io/), MCP, providing critical business context and data; and ...
 - **Sandboxed code execution**, essential for advanced Skills and efficient tool use.
 
 <SingleImage
@@ -38,7 +38,7 @@ Second, Skillport was made possible by Anthropic's great work during 2025, and w
 
 ## Anthropic's Fantastic Year in Skills++
 
-I asked Claude Opus 4.5 to give me Anthropic's 2025 timeline of important announcements and releases that pertained to Skills++:
+I asked [Claude Opus 4.5](https://www.anthropic.com/news/claude-opus-4-5) to give me Anthropic's 2025 timeline of important announcements and releases that pertained to Skills++:
 
 <SingleImage
   src="claude_request_anthropic_announcements.png"
@@ -108,7 +108,7 @@ Anthropic's Model Context Protocol has seen tremendous uptake and support, but i
 
 Anthropic has been steadily chipping away at these MCP downsides.
 
-On the MCP distribution front, Anthropic announced a standard for one-click-installable Desktop Extensions (local MCPs) in June; followed on with Connectors directory, supporting one-click installs of cross-platform Remote MCPs, in July; and in November launched MCP Bundles (MCPB), the successor to Desktop Extensions. By end of year, the official Connectors directory was solidly populated with MCPs for many major platforms:
+On the MCP distribution front, Anthropic announced a standard for one-click-installable [Desktop Extensions](https://www.anthropic.com/engineering/desktop-extensions) (local MCPs) in June; followed on with [Connectors directory](https://www.anthropic.com/news/connectors-directory), supporting one-click installs of cross-platform Remote MCPs, in July; and in November launched [MCP Bundles (MCPB)](https://blog.modelcontextprotocol.io/posts/2025-11-20-adopting-mcpb/), the successor to Desktop Extensions. By end of year, the official Connectors directory was solidly populated with MCPs for many major platforms:
 
 <SingleImage
   src="claude_ai_browse_connectors.png"
@@ -117,7 +117,7 @@ On the MCP distribution front, Anthropic announced a standard for one-click-inst
   size="2xl"
 />
 
-On the context efficiency and performance fronts, November was a big month: possibly spurred by [Cloudflare's "Code Mode" research](#), Anthropic began recommending and supporting a radically context-efficient and performant mode of model-to-MCP interaction, Programmatic Tool Calling. In a nutshell, instead of the model directly interacting with MCP tools, sifting and sorting their outputs, gobbling up huge chunks of context, the model instead **writes code** that does all that. As a result, the model no longer bears the context weight of all the intermediate tool call results, and no longer incurs the performance penalties of long, chatty conversations with tools. Anything that improves MCPs and tool calling is a big win for Skills++.
+On the context efficiency and performance fronts, November was a big month: possibly spurred by [Cloudflare's "Code Mode" research](https://www.anthropic.com/engineering/code-execution-with-mcp), Anthropic began recommending and supporting a radically context-efficient and performant mode of model-to-MCP interaction, [Programmatic Tool Calling](https://www.anthropic.com/engineering/advanced-tool-use). In a nutshell, instead of the model directly interacting with MCP tools, sifting and sorting their outputs, gobbling up huge chunks of context, the model instead **writes code** that does all that. As a result, the model no longer bears the context weight of all the intermediate tool call results, and no longer incurs the performance penalties of long, chatty conversations with tools. Anything that improves MCPs and tool calling is a big win for Skills++.
 
 ## Ubiquitous, Sandboxed Code Execution in the Cloud
 
