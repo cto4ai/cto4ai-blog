@@ -1,5 +1,5 @@
 ---
-title: 'Skillport: A Shared Skill Library for Claude Desktop and Claude.ai'
+title: 'Skillport: Supporting Claude Skill Sharing at Scale'
 contentType: 'essay'
 description: 'Or, how I spent my Christmas vacation.'
 author: 'Jack Ivers'
@@ -21,13 +21,13 @@ import MDContent from '~/components/ui/MDContent.astro';
 
 To explain why I created the open source project Skillport, I need to provide some background.
 
-First, know that, starting in 2024 and throughout 2025, I had been working with clients to apply AI in critical business workflows, cobbling together Claude, lots of MCPs, and lots of large, complicated prompts. The results were often fantastic---what used to take days done in a few hours---but the cobbling together part was painful, as were the realities of deploying and running first-generation local MCPs.
+First, know that, starting in 2024 and throughout 2025, I've been working with clients to apply AI in critical business workflows, cobbling together Claude, lots of MCPs, and lots of large, complicated prompts. The results were often fantastic---what used to take days done in a few hours---but the cobbling together part was painful, as were the realities of deploying and running first-generation local MCPs.
 
-Second, we need to look at what was going on at Anthropic in 2025, focusing on what I call Skills++: Skills plus Tools plus Code Execution:
+Second, Skillport was made possible by Anthropic's great work during 2025, and we'll need to explore that a bit to set the stage, focusing on work related to what I call Skills++: Skills plus Tools plus Code Execution:
 
 - **Skills** are fantastic, but to be powerful they need ...
-- **Tools**, often exposed over the Model Context Protocol, MCP), which give Skill access to critical business context and data; and ...
-- **Sandboxed code execution**, which is essential for efficient tool use, and necessary to provide Skill feature parity across all Claude surfaces including Claude.ai on the web.
+- **Tools**, often exposed over the Model Context Protocol, MCP), which give Skills access to critical business context and data; and ...
+- **Sandboxed code execution**, which is essential to provide advanced Skill capabilities as well as for efficient tool use.
 
 So:
 
@@ -48,11 +48,11 @@ Here's the condensed version of that list:
 
 | Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Announcement                                                        | Why Important to Skills++                                                                                                                                                                                                                                                                                     |
 | ---------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| May 22                                         | Code Execution Tool — Python sandbox (`code-execution-2025-05-22`)  | **Code execution arrives.** Claude can now run Python in a sandboxed environment, not just generate code. Launched with Claude 4 alongside MCP connector, Files API, and prompt caching. Foundation for the Bash + file ops update in August.                                                                 |
+| May 22                                         | Code Execution Tool: Python sandbox                                 | **Code execution arrives.** Claude (even on web and mobile) can now run Python in a sandboxed environment.                                                                                                                                                                                                    |
 | Jun 26                                         | Desktop Extensions (DXT) — One-click local MCP installation         | **Packaging format for local MCPs.** .dxt bundles MCP servers with dependencies into single installable files. Node.js ships with Claude Desktop, eliminating dependency hell. Open-sourced spec enables ecosystem-wide adoption.                                                                             |
 | Jul 14                                         | Connectors Directory                                                | MCP becomes consumer-visible with one-click tool connections in Claude.ai and Desktop                                                                                                                                                                                                                         |
-| Aug 25                                         | Code Execution update — Bash + file ops (`code_execution_20250825`) | **Foundation for Skills runtime.** Skills need to execute code, not just generate it. Bash support means Skills can run shell scripts, install packages, and manipulate files — the primitives that make document-creation Skills possible.                                                                   |
-| Sep 9                                          | Create and edit files — Skills-powered file creation (preview)      | **Skills' first killer app.** This feature is entirely powered by Skills internally (docx, xlsx, pptx, pdf). Proves the Skills architecture works for end-users, not just developers.                                                                                                                         |
+| Aug 25                                         | Code Execution update: Bash + file operations                       | **Foundation for Skills runtime.** Bash support means Skills can run shell scripts, install packages, and manipulate files — the primitives that make document-creation Skills possible.                                                                                                                      |
+| Sep 9                                          | Create and edit files — Skills-powered file creation                | **Skills' first killer app.** This feature is entirely powered by Skills internally (docx, xlsx, pptx, pdf). Proves the Skills architecture works for end-users, not just developers.                                                                                                                         |
 | Sep 29                                         | Claude Agent SDK                                                    | **Skills infrastructure goes public.** The Agent SDK is the same runtime that powers Claude Code. Now any developer can build agents with the same primitives Anthropic uses internally.                                                                                                                      |
 | Oct 16                                         | **Skills launch** — Public Skills + /v1/skills API                  | **The main event.** Skills become a first-class API primitive. Developers can create, version, and deploy Skills. Enterprise customers can manage Skills organization-wide.                                                                                                                                   |
 | Oct 20                                         | Claude Code on the web — Browser-based coding agent                 | **Claude Code escapes the terminal.** Developers can delegate coding tasks from browser or mobile. Runs in Anthropic-managed sandboxes with GitHub integration. Parallel task execution means overseeing a "fleet" of coding agents.                                                                          |
@@ -156,21 +156,10 @@ Skillport was released publicly on GitHub on January 4th 2025 under the MIT lice
 - `skillport-connector`, which enables an organization using Skillport to create their own Claude Connector (remote MCP) that authenticates over OAuth and provides access to a complete API for installing and managing Skills. The initial version supports Google OAuth and deploys to Cloudflare workers, but fork the repo and have at it, extending to other OAuth IdPs and deployment targets should be low-effort
 - `skillport-marketplace`, a GitHub template that creates an Anthropic Plugin Marketplace compliant repository where organizations can (privately!) manage their library of Skills
 
-### Skillport's Own Skill
+### The Skillport Skill
 
-Skillport uses Skills itself, and in a rather novel way. The `skillport-connector` exposes just a single tool to Claude -- authentication -- and guides Claude to download and install the `skillport` Skill. Once that Skill is installed, Claude gains full instructions on how to interact with Skillport using the full suite of Skill management tools tools. , which happen through Programmatic Tool Calling using scripts and instructions provided in the `skillport` Skill.
+Skillport uses Skills itself, and in a rather novel way. The `skillport-connector` exposes just a single tool to Claude -- authentication -- and guides Claude to download and install the `skillport` Skill. With that Skill installed, Claude has full knowledge of how to interact with Skillport and use full suite of Skill management tools. Claude-to-Skillport interactions take place via Programmatic Tool Calling rather than high-context-overhead MCP tools.
 
-Skillport supports normal Skill user operations, such as finding Skills in the marketplace, installing them, and checking for updates. Skillport also extensively supports Skill editors, with the ability to create, edit, version-bump, and delete Skills. Slightly extends slightly extended the Plugin Marketplace format to support user roles and access controls (don't worry, it's still fully compliant).
+---
 
-Claude Code users benefit too: the `skillport` Skill works there as well, and supports organization-private repos where proprietary Skills can safely be shared.
-
-The net result is an environment where organizations can deploy, share, and manage Skills at scale and without limits:
-
-- Works across all Claude surfaces: Claude.ai, Claude Desktop, Claude Code
-- Skill version control across all surfaces
-- Skill repos created from the `skillport-marketplace` template are Plugin Marketplace compliant but can be private with organization level access control
-- The `skillport-connector` imposes the lowest possible Claude context overhead: one tool only, leveraging Programmatic Tool Calling, performant.
-- The `skillport` Skill drives the model's user interactions, rather than the model "going rogue" and directly calling tools. Edit operations, for example, require positive assent from the Claude user.
-- Claude Code users can share proprietary Skills without concern
-
-Mission accomplished -- and a lot of learning too.
+I learned a lot, I suspect Skillport will be useful for my fractional CTO clients, and I hope others find it helpful too.
