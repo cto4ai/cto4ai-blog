@@ -76,9 +76,9 @@ Here's the condensed version of that list:
 
 Ironically, Anthropic demonstrated how great Skills could be---more than a month before Skills were officially announced.
 
-On September 9th, Anthropic have us Claude's incredible "create and edit files" feature, which enables direct creation and editing of MS Word, Excel, Powerpoint, and PDF files right in Claude conversations. Little did we know that these capabilities were actually powered by Skills.
+On September 9th, Anthropic gave us Claude's incredible "create and edit files" feature, which enables direct creation and editing of MS Word, Excel, Powerpoint, and PDF files right in Claude conversations. Little did we know that these capabilities were actually powered by Skills.
 
-On October 16th, Anthropic launched Skills, and in [this GitHub repo](https://github.com/anthropics/skills) (committed the day before the launch) you can see the actual Skills that power "create and edit files." These Skills are powerful, leveraging code execution with Python scripts and evem XML schemas.
+On October 16th, Anthropic launched Skills, and in [this GitHub repo](https://github.com/anthropics/skills) (committed the day before the launch) you can see the actual Skills that power "create and edit files." These Skills are powerful, leveraging code execution with Python scripts and even XML schemas.
 
 <SingleImage
   src="claude_docx_skill.png"
@@ -117,7 +117,7 @@ On the MCP distribution front, Anthropic announced a standard for one-click-inst
   size="2xl"
 />
 
-On the context efficiency and performance fronts, November was a big month: possibly spurred by [Cloudflare's "Code Mode" research](#), Anthropic began recommending and supporting a radically context-efficient and performant mode of model-to-MCP interaction, Programmatic Tool Calling. In a nutshell, instead of the model directly interacting with MCP tools, sifting and sorting their outputs, gobbling up huge chunks of context, the model instead **writes code** that does all that. As a result, the model no longer bears the context weight of all the intermediate tool call results, and no longer incurs the performance penalties of long, chatty conversations tools. spins its wheels running long sequences of tool calls, with the added benefit the code runs much faster. Anything that improves MCPs and tool calling is a big win for Skills++.
+On the context efficiency and performance fronts, November was a big month: possibly spurred by [Cloudflare's "Code Mode" research](#), Anthropic began recommending and supporting a radically context-efficient and performant mode of model-to-MCP interaction, Programmatic Tool Calling. In a nutshell, instead of the model directly interacting with MCP tools, sifting and sorting their outputs, gobbling up huge chunks of context, the model instead **writes code** that does all that. As a result, the model no longer bears the context weight of all the intermediate tool call results, and no longer incurs the performance penalties of long, chatty conversations with tools. Anything that improves MCPs and tool calling is a big win for Skills++.
 
 ## Ubiquitous, Sandboxed Code Execution in the Cloud
 
@@ -129,7 +129,7 @@ Finally, in December, Anthropic acquired Bun, known for its blazingly fast JavaS
 
 All of these great announcements and releases, so much promise ... but heading into the end of year lull, I still didn't quite have what I needed to really do business workflow automations right and to help clients deploy Skills at scale.
 
-The main gap, to me, was Skill distribution and sharing. I wanted the elegance of Plugin Marketplaces, e.g. git repo based with Skill versioning, but without the public repo constraint and supporting all Claude surfaces. Would it be feasible create a project that extends the Plugin Marketplace concept to support private repos, authentication, and get it working across all Claude surfaces?
+The main gap, to me, was Skill distribution and sharing. I wanted the elegance of Plugin Marketplaces, e.g. git repo based with Skill versioning, but without the public repo constraint and supporting all Claude surfaces. Would it be feasible to create a project that extends the Plugin Marketplace concept to support private repos, authentication, and get it working across all Claude surfaces?
 
 For me, there's always another question as well: would I learn something in the process?
 
@@ -164,7 +164,7 @@ Skillport was released publicly on GitHub on January 4th 2025 under the MIT lice
 
 ### The Skillport Skill
 
-Skillport uses Skills itself, and in a rather novel way. The `skillport-connector` exposes just a single tool to Claude -- authentication -- and guides Claude to download and install the `skillport` Skill. With that Skill installed, Claude has full knowledge of how to interact with Skillport and use full suite of Skill management tools. Claude-to-Skillport interactions take place via Programmatic Tool Calling rather than high-context-overhead MCP tools.
+Skillport uses Skills itself, and in a rather novel way. The `skillport-connector` exposes just a single tool to Claude -- authentication -- and guides Claude to download and install the `skillport` Skill. With that Skill installed, Claude has full knowledge of how to interact with Skillport and use the full suite of Skill management tools. Claude-to-Skillport interactions take place via Programmatic Tool Calling rather than high-context-overhead MCP tools.
 
 ---
 
