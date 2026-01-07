@@ -93,7 +93,12 @@ At this point, it became clear that we were moving beyond the age of "cobbling t
 
 On November 3rd, Anthropic announced Plugin Marketplaces for Claude Code. Plugins are Anthropic's name for a category of artifacts that Claude Code users might want to create, reuse, and share, including slash commands, hooks, agents, and---you guessed it---Skills. Plugin Marketplaces are public git repositories hosted on GitHub, Gitlab, etc. that contain these artifacts, and that any Claude Code user can attach to and download from. Installing a Skill or other artifact takes just a command or two in Claude Code. The Plugin Marketplace repo design is another elegant piece of work by Anthropic and, among other things, supports Skill versioning.
 
-<SingleImage src="claude_code_plugin_marketplaces.png" alt="Claude Code Plugin Marketplaces announcement" postDir="skillport" size="2xl" />
+<SingleImage
+  src="claude_code_plugin_marketplaces.png"
+  alt="Claude Code Plugin Marketplaces announcement"
+  postDir="skillport"
+  size="2xl"
+/>
 
 Plugin Marketplaces were very exciting, but also a groaner, because they target only Claude Code CLI (read: developers running Claude Code in a terminal interface), and only work with public repositories, a non-starter for proprietary business workflows.
 
