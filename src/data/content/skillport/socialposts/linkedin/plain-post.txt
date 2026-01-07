@@ -1,0 +1,15 @@
+Anthropic's Skills are fantastic for codifying domain expertise, but there's a gap: sharing them securely within an organization.
+
+Plugin Marketplaces work great for Claude Code users, but they're public-only and CLI-only. If you want to share proprietary workflows across Claude web, Desktop, and Mobile, you're out of luck.
+
+So I built Skillport over Christmas break. It's an open-source connector that lets organizations host private Skill repositories and install Skills across all Claude surfaces with proper auth.
+
+The interesting bit: Skillport's connector exposes just one tool to Claude (for auth), then has Claude install the Skillport Skill itself. From there, Claude knows how to manage Skills using Programmatic Tool Calling instead of context-heavy MCP interactions.
+
+It's MIT licensed on GitHub. Not sure how much traction it'll get, but it scratched an itch I've had since working with clients on workflow automation.
+
+Thanks to Simon Willison and Swyx Wang for helping me keep up with developments in the Skills space.
+
+---
+
+https://cto4.ai/p/skillport
