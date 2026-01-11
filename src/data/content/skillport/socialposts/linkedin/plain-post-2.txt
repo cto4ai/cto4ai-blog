@@ -1,0 +1,15 @@
+Claude Skills are one of the best things Anthropic shipped in 2025. Finally, an elegant way to codify domain expertise and share it across your organization.
+
+The catch: Claude Code users get Plugin Marketplaces - git-based repos with versioning and simple installs. But if you use Claude web or Claude Desktop, you don't get that elegance.
+
+So I built Skillport over Christmas break. It brings the Plugin Marketplace model to Claude web, Desktop, and Mobile. Same git repos, same versioning, same simple installs.
+
+For Claude Code users, it adds private repos. Plugin Marketplaces require public GitHub repos, which doesn't work for proprietary workflows.
+
+MIT licensed on GitHub. Scratched an itch I've had since working with clients on workflow automation.
+
+Thanks to Simon Willison and Swyx Wang for helping me keep up with developments in the Skills space.
+
+---
+
+https://cto4.ai/p/skillport
