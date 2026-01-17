@@ -6,7 +6,7 @@ Developed with Claude chat, Crafty account, link https://claude.ai/share/6b49cab
 > **Status**: Pre-launch - Blog 95% complete, newsletter infrastructure pending  
 > **Domain**: cto4.ai (purchased via Cloudflare)  
 > **Blog Platform**: Astro (AstroWind theme)  
-> **Repository**: https://github.com/jack4git/cto4ai-blog
+> **Repository**: https://github.com/cto4ai/cto4ai-blog
 
 ## Executive Summary
 

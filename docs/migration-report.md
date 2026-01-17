@@ -281,5 +281,5 @@ The collaboration pattern shows an effective human-AI partnership: humans provid
 ---
 
 _Report Generated: August 26, 2025_  
-_Repository: github.com/jack4git/cto4ai-blog_  
+_Repository: github.com/cto4ai/cto4ai-blog_  
 _Live Site: cto4.ai_

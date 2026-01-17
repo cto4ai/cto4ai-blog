@@ -3,7 +3,7 @@
 > **Status**: 🚀 **LAUNCHED AND OPERATIONAL**  
 > **Target**: ~~Launch within 3-5 days~~ ✅ **ACHIEVED**  
 > **Focus**: ~~Get cto4.ai live with content, redirects, and basic newsletter signup~~ ✅ **COMPLETE**  
-> **Repository**: https://github.com/jack4git/cto4ai-blog
+> **Repository**: https://github.com/cto4ai/cto4ai-blog
 
 ## Current Status Summary ✅
 
