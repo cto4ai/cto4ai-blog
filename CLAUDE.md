@@ -145,6 +145,16 @@ This repository uses `.gitkeep` files to preserve empty directory structures in 
 
 ## Development Guidelines
 
+### Branching Policy
+
+- **Content editing**: Can be done directly on `main` branch (writing/editing posts, updating MDX files)
+- **Code changes**: Should be done in a feature branch:
+  - Adding or modifying components
+  - Major site reorganization
+  - Upgrading Astro or dependencies
+  - Changes to build configuration
+  - New features or functionality
+
 ### When Working with Content
 
 - **NEVER** overwrite existing MDX files without explicit user permission
