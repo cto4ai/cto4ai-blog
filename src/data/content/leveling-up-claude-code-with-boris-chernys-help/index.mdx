@@ -59,9 +59,17 @@ I figured, what the hell, dive in.
 
 Back when I used VSCode itself, the experience was janky and configuration a nightmare. I've been using Cursor since it arrived, and as a VSCode fork, it inherits the same drawbacks. Furthermore, thanks to Claude Code, I've rarely be tapping into Cursor's AI, probably not at all over the last month. In fact, the AI stuff in Cursor just gets in the way. So I've been paying $20 for the privilege of using VSCode with added AI annoyances (though I hear those have arrived in VSCode, too, in new releases).
 
-I didn't ditch IDEs altogether; I just went light-and-clean with Zed. Such a breath of fresh air. I've installed a total of three extensions and have comparable functionality to the furball of 20+ I had running in Cursor.
+I didn't ditch IDEs altogether; I just went light-and-clean with Zed. Such a breath of fresh air. So much is built-in and fast. I've installed a total of three extensions and have comparable functionality to the hairball of 20+ extensions I had running in Cursor.
 
-### Multiplexing Terminal
+### Supercharging the CLI: CLI-Mesh
+
+I split my time between two Macs, a deskbound M4 Mac Mini, and a mobile M1 Max MacBook Pro. I had a good terminal app installed (Ghostty) but, because I wasn't fully CLI mode, I hadn't set things up for easy SSH between machines.
+
+Cherny's setup appears to be Ghostty with splits; but in conversations among those who had optimised their CLI configs I heard a lot of talk about `tmux` and spent some time getting my head around terminal multiplexing, persistent resumable sessions, and the like. I decided I wanted what I term "CLI-Mesh" between the two Macs, where I could access persistent CLI sessions on the Mini from the Macbook and vice versa.
+
+I got `tmux` set up with Ghostty but (quite possibly my own fault) I ran into a boatload of problems and the stack of tmux+ghostty+ssh felt fragile. I could have tried something like iTerm2 with `tmux` but ended up on Wezterm, which integrates multiplexing capabilities. So far it's working well, and "anything from anywhere" thanks to CLI-Mesh is pretty sweet.
+
+### Skills and Plugins in Claude Code
 
 https://x.com/search?q=from%3Abcherny%20to%3Abcherny%20since%3A2026-01-02%20until%3A2026-01-03&f=live
 
