@@ -87,6 +87,10 @@ This repository uses `.gitkeep` files to preserve empty directory structures in 
   - Usage: `<SingleImage src="image.png" alt="Description" size="2xl" postDir="post-name" />`
 - **ImageGallery**: Display multiple images in a grid with lightbox
   - Usage: `<ImageGallery images={["img1.png", "img2.png"]} postDir="post-name" size="xl" />`
+- **SideImage**: Display image alongside content (text, tables, bullets) in alternating layouts
+  - Usage: `<SideImage src="image.png" position="left" postDir="post-name" imageWidth="wide">Your content here</SideImage>`
+  - `position`: `"left"` (image left, content right) or `"right"` (content left, image right)
+  - `imageWidth`: `"narrow"` (40%), `"half"` (50%), or `"wide"` (60%)
 
 ### Layout Components
 
