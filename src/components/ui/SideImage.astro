@@ -1,0 +1,124 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: string;
+  alt?: string;
+  position?: 'left' | 'right';
+  postDir?: string;
+  imageWidth?: 'narrow' | 'half' | 'wide';
+  class?: string;
+}
+
+const { src, alt = '', position = 'left', postDir, imageWidth = 'half', class: className = '' } = Astro.props;
+
+const widthClasses = {
+  narrow: 'md:w-2/5',
+  half: 'md:w-1/2',
+  wide: 'md:w-3/5',
+};
+
+const contentWidthClasses = {
+  narrow: 'md:w-3/5',
+  half: 'md:w-1/2',
+  wide: 'md:w-2/5',
+};
+
+// Use Vite's glob import for production compatibility
+const images = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/content/**/*.{jpeg,jpg,png,svg,webp}');
+
+// Construct the full path for the image
+const imagePath = postDir ? `../../assets/images/content/${postDir}/${src}` : `../../assets/images/content/${src}`;
+
+// Get the image module
+let imageModule: { default: ImageMetadata } | null = null;
+if (images[imagePath]) {
+  try {
+    imageModule = await images[imagePath]();
+  } catch (error) {
+    console.error(`Failed to load image: ${imagePath}`, error);
+  }
+} else {
+  console.warn(`Image not found: ${imagePath}`);
+}
+
+const isReversed = position === 'right';
+---
+
+<div
+  class:list={[
+    'side-image-container',
+    'flex flex-col md:flex-row gap-6 my-8 items-start',
+    { 'md:flex-row-reverse': isReversed },
+    className,
+  ]}
+>
+  {
+    imageModule && (
+      <div class:list={['side-image', widthClasses[imageWidth], 'flex-shrink-0']}>
+        <a href={imageModule.default.src} class="glightbox block" data-gallery="gallery" data-title={alt}>
+          <Image
+            src={imageModule.default}
+            alt={alt}
+            class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+            loading="lazy"
+            width={1200}
+            height={900}
+          />
+        </a>
+      </div>
+    )
+  }
+  <div class:list={['side-content', contentWidthClasses[imageWidth], 'flex-grow']}>
+    <slot />
+  </div>
+</div>
+
+<style>
+  .side-image-container {
+    clear: both;
+  }
+
+  .side-content {
+    /* Ensure tables and content look good */
+    :global(table) {
+      width: 100%;
+      margin: 0;
+    }
+
+    :global(th),
+    :global(td) {
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    :global(ul),
+    :global(ol) {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    :global(li) {
+      margin-bottom: 0.25rem;
+    }
+
+    :global(p:first-child) {
+      margin-top: 0;
+    }
+
+    :global(p:last-child) {
+      margin-bottom: 0;
+    }
+  }
+
+  .glightbox {
+    display: block;
+    transition: transform 0.2s ease;
+  }
+
+  .glightbox:hover {
+    transform: scale(1.02);
+  }
+</style>
