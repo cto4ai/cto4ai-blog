@@ -20,7 +20,7 @@ import ChatTranscript from '~/components/ui/ChatTranscript.astro';
 import MDContent from '~/components/ui/MDContent.astro';
 import SideImage from '~/components/ui/SideImage.astro';
 
-I think about my kit of electronic tools that support my work as "The Workflow" and man, did I have a lot of ideas for new tools, improvements, and fixes. This 2XL-sized backlog lived in my head until June '25, when I started a "Workflow Tool ToDos" list in Obsidian. I made progress here and there, with my Obsidian implementation as one example. But progress was more sloth than cheetah.
+I think about the kit of electronic tools that support my work as "The Workflow" and man, did I have a lot of ideas for new tools, improvements, and fixes. This 2XL-sized backlog lived in my head until June '25, when I started a "Workflow Tool ToDos" list in Obsidian. I made progress here and there, with my Obsidian implementation as one example. But progress was more sloth than cheetah.
 
 <SingleImage
   src="workflow_sloth.jpeg"
@@ -33,29 +33,11 @@ Claude Opus 4.5 arrived in November, powering up Claude across all its surfaces-
 
 But let me focus here on Claude Code.
 
-## Overwhelmed by Opportunities
+## Sucking Wind on Claude Code ... Where to Start?
 
-One of my deepest Workflow desires was to tune up my Claude Code setup, to use it the way that I knew it could be used. I figured I was tapping at best 20% of Claude Code's potential. But picking where to start was overwhelming me.
+One of my deepest Workflow desires was to tune up my Claude Code setup, to use it the way that I knew it could be used. The problem was, pretty much every aspect of my setup was subpar. Where the heck do I start?
 
 Boris Cherny, the creator of Claude Code, came to my rescue. He posted a great 15-tweet thread about how he personally uses Claude Code. Unlike the rest of us, though, Cherny is using Claude Code to actually write Claude Code. You can see the thread [here on Twitter](x.com/bcherny/status/2007179832300581177), or [here on Threadreader](https://threadreaderapp.com/thread/2007179832300581177.html).
-
-My impressions as I read through the thread:
-
-- 5 terminal windows. That's clean.
-- Wait, where's the IDE? He has to have an IDE to look at code, sometimes, eh? No?
-- Wow. If he's exclusively using terminal ... I need to be ...
-- Gotta get Claude Code on the web up and running (meaning a fully testable sandbox environment). Teleport back and forth!
-- Opus 4.5. Already a convert but he makes a nice case in why.
-  - Nice CLAUDE.md tips, remember to keep updating it.
-- Get the Claude Code GitHub action sorted out. Multiple GitHub domains has things confused.
-- Trust Plan Mode more. I tend to have Claude save plans under docs/ in the repo.Had a conversation with Opus about this, I can probably do that less often.
-- Slash commands for every "inner loop" workflow that I end up doing many times a day. I have some but this helps me to understand slash commands versus skills, etc.
-- Subagents, whoa. I've been starting to see them in action with the /pr-review plugin, but gotta start using my own.
-- Hooks and PostToolUse hook. Wow, need to get these in place.
-- Permissions, gawd I need to get those in place, the permission prompts are killing me.
-- MCPs ... Slack MCP. I don't have enough configured, especially now that Claude Code has [Tool Search](#)
-- Very long-running tasks ... need to find a case to try that ... naming a plugin after Ralph Wiggum! I am not a Simpson-canon-expert but still had to laugh.
-- Give Claude a way to verify its work. YES.
 
 ## The Thread, Tweet by Tweet
 
@@ -193,7 +175,7 @@ My impressions as I read through the thread:
 
 ---
 
-## I Radically Changed Things
+## What I've Actually Changed So Far
 
 I figured, what the hell, dive in.
 
