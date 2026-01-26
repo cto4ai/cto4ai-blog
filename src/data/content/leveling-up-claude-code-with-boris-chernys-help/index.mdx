@@ -177,7 +177,7 @@ Boris Cherny, the creator of Claude Code, came to my rescue. He posted a great 1
 
 ## What I've Actually Changed So Far
 
-I figured, what the hell, dive in right, starting with "ditching the IDE."
+I figured, what the hell, dive right in, starting with "ditching the IDE."
 
 ### I Ditched Cursor (VSCode) but Kept a Lightweight IDE (Zed)
 
@@ -200,13 +200,15 @@ Zed gets a smaller slice of my widescreen; the CLI gets significantly more:
 
 ### I Supercharged my CLI: CLI-Mesh
 
-Before the Cherny post, my terminal setup had barely progressed beyond macOS terminal to trying out Kitty and then Ghostty. But I spent almost all my
+Before the Cherny post, my terminal setup had barely progressed beyond basic macOS terminal: I checked out Kitty and then Ghostty. But I spent almost all my time in the IDE, using Claude mostly through its VSCode extension.
 
-I split my time between two Macs, a deskbound M4 Mac Mini, and a mobile M1 Max MacBook Pro. I had a good terminal app installed (Ghostty) but, because I wasn't fully CLI mode, I hadn't set things up for easy SSH between machines.
+I split my time between two Macs, a deskbound M4 Mac Mini, and a mobile M1 Max MacBook Pro. Because I mostly wasn't operating in CLI mode, I hadn't set things up for easy SSH between machines.
 
-Cherny's setup appears to be Ghostty with splits; but in conversations among those who had optimised their CLI configs I heard a lot of talk about `tmux` and spent some time getting my head around terminal multiplexing, persistent resumable sessions, and the like. I decided I wanted what I term "CLI-Mesh" between the two Macs, where I could access persistent CLI sessions on the Mini from the Macbook and vice versa.
+Cherny's setup appears to be Ghostty with splits; but many CLI advocates recommended using a good terminal app augmented by `tmux`, which adds terminal session-group-persistence---reattach and there are all your terminal windows just as you left them. And `tmux` works nicely across machines, which was my use case.
 
-I got `tmux` set up with Ghostty but (quite possibly my own fault) I ran into a boatload of problems and the stack of tmux+ghostty+ssh felt fragile. I could have tried something like iTerm2 with `tmux` but ended up on Wezterm, which integrates multiplexing capabilities. So far it's working well, and "anything from anywhere" thanks to CLI-Mesh is pretty sweet.
+I'd never used `tmux` and it took a while to get my head around it. I also learned through painful experience that you must avoid the dreaded Cross Machine Infinite Terminal Mirror where machine A `tmux`-attaches to machine B, which has a window attached back to machine A, and bam---lockup. In one cases, Wezterm consumed 250GB of application memory on my Mac Mini, which went unstable and needed a reboot.
+
+In the end, I landed on iTerm2 which has significant support for `tmux`, configured to avoid infinite mirror. With Claude Code's help, I also did some ssh and .zshrc tuning to make cross-machine access super low friction. The result is what I term "CLI-Mesh" between the two Macs, where I can access persistent CLI sessions on the Mini from the Macbook and vice versa. "Anything from anywhere" thanks to CLI-Mesh is pretty sweet.
 
 ### Skills and Plugins in Claude Code
 
