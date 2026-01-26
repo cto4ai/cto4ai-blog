@@ -210,6 +210,10 @@ I'd never used `tmux` and it took a while to get my head around it. I also learn
 
 In the end, I landed on iTerm2 which has significant support for `tmux`, configured to avoid infinite mirror. With Claude Code's help, I also did some ssh and .zshrc tuning to make cross-machine access super low friction. The result is what I term "CLI-Mesh" between the two Macs, where I can access persistent CLI sessions on the Mini from the Macbook and vice versa. "Anything from anywhere" thanks to CLI-Mesh is pretty sweet.
 
+### Sorting Permissions in Claude Code
+
+Claude Code has a [known, still unresolved bug](https://github.com/anthropics/claude-code/issues/5140) where using global + project permissions together fails, globals get replace by project permissions rather than the two being merged.
+
 ### Skills and Plugins in Claude Code
 
 I was in the process of an extreme deep-dive into Skills and Plugins when Cherny's post landed: my Christmas break project, [Skillport](skillport). To build Skillport, I needed to research how each Claude surface supported Skills, and understand the Plugin abstraction that wraps Skills and supports Plugin Marketplaces for Claude Code.
