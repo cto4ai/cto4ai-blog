@@ -3,7 +3,7 @@ title: 'The Workflow: Fixing and Automating Everything With My AI Pair'
 contentType: 'essay'
 description: ''
 author: 'Jack Ivers'
-publishDate: '2026-01-19T15:34:22-0600'
+publishDate: '2026-01-27T15:34:22-0600'
 # Cover image: Must be 44:28 aspect ratio (11:7, ~1.571) for proper display
 # Recommended sizes: 1760x1120, 2200x1400, 3520x2240
 image: '~/assets/images/content/the-workflow-fixing-and-automating-everything-with-my-ai-pair/'
@@ -45,11 +45,38 @@ Below I'll outline how I've paired with Opus to tackle The Workflow.
 
 ## The Workflow has a Git Repo
 
-When I realized that I could start collaborating with Claude on The Workflow, one of my first steps was creating `the-workflow`, a Git repository for the uber project, with folders for each individual subproject; sometimes even sub-subprojects. This turned out to be a very important step, because, in following good Claude Code practices for a repo, I created CLAUDE.md with broad information about
+When I realized that I could start collaborating with Claude on The Workflow, one of my first steps was creating `the-workflow`, a Git repository for the overall project, with numerous folders for individual subprojects. This turned out to be a very important step, because, in following good Claude Code practices for a repo, I created a CLAUDE.md with broad information about all my Workflow initiatives, and in each subproject, a well-stocked /docs directory. The result: the Claude Code that I run inside `the-workflow` repo is insanely smart about all aspects of my setup.
 
 ## Shut Your Pi-hole
 
-I use Pi-hole running on a Raspberry Pi to block ads on our home network. Sometime in the past month,
+I use Pi-hole running on a Raspberry Pi to block ads on our home network. Sometime in the past month, I noticed my iPhone began getting ads, while on the home network ... what the heck?
+
+I had a little chat with Workflow Claude, and figured out that my recent upgrade to iOS 26 resulted in a new default setting "Limit IP Address Tracking" that bypassed local DNS and prevented Pi-hole from doing its thing. Toggled off, fixed.
+
+<SingleImage
+  src="pihole_fix.png"
+  alt="Pi-hole fix"
+  postDir="the-workflow-fixing-and-automating-everything-with-my-ai-pair"
+  size="xl"
+/>
+
+I also took the opportunity to capture Pi-hole setup documentation. One benefit of pairing with Claude Code in a terminal is that it has SSH access, so it was able to SSH in to the Pi and capture lots of details about the config. I also fed it some documentation I had done in Obsidian. So now Workflow Claude knows all about Pi-hole, my DNS setup, we well as other problems and upgrades on the Pi-hole todo list.
+
+## Connecting Obsidian to All Claudes
+
+I use Obsidian across all my machines and devices for note-taking, bookmarking, task tracking, podcast snip librarying, and more. I figured I should connect Obsidian to Claude and so I could put Claude to work on finding, organizing, and creating Obsidian content.
+
+I went a bit crazy on this project, deciding I wanted **all** Claude surfaces including Claude.ai to have Obsidian access. But Claude.ai lives in the cloud, not on my local computer and network like Claude Desktop and Claude Code, how could I get this to work?
+
+With Workflow Claude's help, we worked out an architecture that involved:
+
+- A docker based Obsidian instance running on my Synology NAS, along with the Obsidian REST API
+- A Tailscale funnel into that NAS using my personal Tailscale network
+- An authentication proxy that blocks unauthenticated traffic to Obsidian on the NAS
+- Since I learned how to build Claude Connectors (OAuth MCPs) as part of the [Skillport](skillport) project, an OAuth MCP to authenticate into the NAS
+- A Claude Obsidian Skill that helps Claude understand how to reach Obsidian content
+
+And we built it! It works! Obsidian from any Claude including Claude.ai.
 
 ## IDE or No IDE? Which IDE?
 
