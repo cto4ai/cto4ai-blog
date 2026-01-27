@@ -6,7 +6,7 @@ author: 'Jack Ivers'
 publishDate: '2026-01-19T15:32:17-0600'
 # Cover image: Must be 44:28 aspect ratio (11:7, ~1.571) for proper display
 # Recommended sizes: 1760x1120, 2200x1400, 3520x2240
-image: '~/assets/images/content/leveling-up-claude-code-with-boris-chernys-help/speedy_workflow_sloth.jpg'
+image: '~/assets/images/content/leveling-up-claude-code-with-boris-chernys-help/claude_code_terminal_11x7.jpg'
 featured: true
 featuredOrder: 10
 draft: true
@@ -220,15 +220,19 @@ Anyway! Today I went back and moved everything that could be moved from the PreT
 
 The good news is that I didn't have to actually do the work, Claude Code did---including writing Python hook scripts to parse commands. The better news is that Claude Code operation is so much more streamline, without needing to `--dangerously-skip-permissions`. (I will try living dangerously, safely, once I get more into Claude Code web and long running tasks.)
 
-### Applyinh Skills and Other Plugins in Claude Code
+### Using Skills and Other Plugins in Claude Code
 
-I was in the process of an extreme deep-dive into Skills and Plugins when Cherny's post landed: my Christmas break project, [Skillport](skillport). To build Skillport, I needed to research how each Claude surface supported Skills, and understand the Plugin abstraction that wraps Skills and supports Plugin Marketplaces for Claude Code.
+When Cherny's post landed, I was in the process of an extreme deep-dive into Skills and all the other varieties of Plugins: /commands, agents, hooks, MCP servers, and Language Server Protocol (LSP) servers. This was due to my Christmas break project, [Skillport](skillport), which brings repository-based Skill distribution to all Claude surfaces including Claude Desktop and Claude.ai, and allows organizations to host their own private Skill repos. Because I wanted Skillport's git-based repositories to be 100% compatible with Anthropic's Plugin Marketplace format, I needed to know exactly how that format worked and what it supported.
 
-Cherny's post lit a fire under me to But I hadn't really used a lot of Skills or other Plugins
-https://x.com/search?q=from%3Abcherny%20to%3Abcherny%20since%3A2026-01-02%20until%3A2026-01-03&f=live
+Although I was already pretty far along with using Skills in Claude Code, Cherny's post lit a fire under me to start using all the other plugin varieties. I've got one sophisticated use of hooks in place now, and an experiencing agents thanks to the PR Review plugin. I'm looking for an opportunity for custom agents next.
 
-x.com/bcherny/status/2007179832300581177
-https://x.com/bcherny/status/2007179832300581177
-https://www.wsj.com/tech/ai/anthropic-claude-code-ai-7a46460e
-https://x.com/trq212/status/2011523109871108570
-copy me from remote
+---
+
+Much remains to be done, but thanks Boris Cherny for the inspiration.
+
+<SingleImage
+  src="speedy_workflow_sloth.jpg"
+  alt="Progress was more sloth than cheetah"
+  postDir="leveling-up-claude-code-with-boris-chernys-help"
+  size="xl"
+/>
