@@ -212,9 +212,15 @@ In the end, I landed on iTerm2 which has significant support for `tmux`, configu
 
 ### Sorting Permissions in Claude Code
 
-Claude Code has a [known, still unresolved bug](https://github.com/anthropics/claude-code/issues/5140) where using global + project permissions together fails, globals get replace by project permissions rather than the two being merged.
+I was convinced that Claude Code had a [known, unresolved bug](https://github.com/anthropics/claude-code/issues/5140) where using global + project permissions together would fail, with globals getting replaced by project permissions rather than the two being merged. Based on this, Claude and I implemented a permission scheme based solely on a PreToolUse hook rather than global permissions settings. This worked, but I kept wondering, would the Claude Code team allow a serious bug like this to persist for months? I kept asking CC to recheck the open ticket, and kept getting the answer, "still unresolved."
 
-### Skills and Plugins in Claude Code
+Today I dug deeper and noticed that [someone apparently discovered](https://github.com/anthropics/claude-code/issues/5140#issuecomment-3725786707) that the supposed bug was actually caused by incorrect paths when specifying permissions for file operations---using / instead of // for absolute file paths. Once the paths were fixed, global permissions on file operations worked fine. It has been rumored that, at some point, Claude Code may have been incorrectly writing file paths when users approved file permissions, but I wasn't able to confirm that in researching or testing today.
+
+Anyway! Today I went back and moved everything that could be moved from the PreToolHook to Claude's Global Permissions settings. There were a few things that needed to stay in the hook: piped/compound commands, as well as restrictive git and gh subcommand parsing. The hook can handle these more complex rules because it receives the full command and runs code to parse it, splitting on pipes, extracting subcommands, checking against allowlists. Native permissions only do simple pattern matching on the raw command string.
+
+The good news is that I didn't have to actually do the work, Claude Code did---including writing Python hook scripts to parse commands. The better news is that Claude Code operation is so much more streamline, without needing to `--dangerously-skip-permissions`. (I will try living dangerously, safely, once I get more into Claude Code web and long running tasks.)
+
+### Applyinh Skills and Other Plugins in Claude Code
 
 I was in the process of an extreme deep-dive into Skills and Plugins when Cherny's post landed: my Christmas break project, [Skillport](skillport). To build Skillport, I needed to research how each Claude surface supported Skills, and understand the Plugin abstraction that wraps Skills and supports Plugin Marketplaces for Claude Code.
 
