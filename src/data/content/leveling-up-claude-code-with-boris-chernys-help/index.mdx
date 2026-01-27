@@ -37,7 +37,7 @@ But let me focus here on Claude Code.
 
 One of my deepest Workflow desires was to tune up my Claude Code setup, to use it the way that I knew it could be used. The problem was, pretty much every aspect of my setup was subpar. Where the heck do I start?
 
-Boris Cherny, the creator of Claude Code, came to my rescue. He posted a great 15-tweet thread about how he personally uses Claude Code. Unlike the rest of us, though, Cherny is using Claude Code to actually write Claude Code. You can see the thread [here on Twitter](x.com/bcherny/status/2007179832300581177), or [here on Threadreader](https://threadreaderapp.com/thread/2007179832300581177.html).
+Boris Cherny, the creator of Claude Code, came to my rescue. He posted a great 15-tweet thread about how he personally uses Claude Code. Unlike the rest of us, though, Cherny is using Claude Code to actually write Claude Code. You can see the thread [here on Twitter](https://x.com/bcherny/status/2007179832300581177), or [here on Threadreader](https://threadreaderapp.com/thread/2007179832300581177.html).
 
 ## The Thread, Tweet by Tweet
 
@@ -89,18 +89,18 @@ Boris Cherny, the creator of Claude Code, came to my rescue. He posted a great 1
 
 <SideImage src="05_tweet.png" position="right" postDir="leveling-up-claude-code-with-boris-chernys-help" imageWidth="wide">
 
-| Reactions                                                        | ToDos                                                     |
-| ---------------------------------------------------------------- | --------------------------------------------------------- |
-| Interesting use of Claude GitHub app/action to updated CLAUDE.md | Get Claude GitHub action working in a multi-account setup |
+| Reactions                                                       | ToDos                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------- |
+| Interesting use of Claude GitHub app/action to update CLAUDE.md | Get Claude GitHub action working in a multi-account setup |
 
 </SideImage>
 
 <SideImage src="06_tweet.png" position="left" postDir="leveling-up-claude-code-with-boris-chernys-help" imageWidth="wide">
 
-| Reactions                                                                                                           | ToDos     |
-| ------------------------------------------------------------------------------------------------------------------- | --------- |
-| Ahhh ... I usually force Claude to save plans under /docs but this reduces the is suboptimal for Claude and me both |           |
-| I can trust Plan Mode on tasks unlikely to span multiple coding sessions                                            | Try this! |
+| Reactions                                                                                               | ToDos     |
+| ------------------------------------------------------------------------------------------------------- | --------- |
+| Ahhh ... I usually force Claude to save plans under /docs but this is suboptimal for Claude and me both |           |
+| I can trust Plan Mode on tasks unlikely to span multiple coding sessions                                | Try this! |
 
 </SideImage>
 
@@ -143,7 +143,7 @@ Boris Cherny, the creator of Claude Code, came to my rescue. He posted a great 1
 | Reactions                                                     | ToDos                      |
 | ------------------------------------------------------------- | -------------------------- |
 | Now that Claude Code has Tool Search, I can use more MCPs ... | Configure more MCP servers |
-| Shared config checked into repo via.mcp.json, cool            | Look into this             |
+| Shared config checked into repo via .mcp.json, cool           | Look into this             |
 
 </SideImage>
 
@@ -183,7 +183,7 @@ I figured, what the hell, dive right in, starting with "ditching the IDE."
 
 Back when I used VSCode itself, the experience was janky and configuration a nightmare. I've been using Cursor since it arrived, and as a VSCode fork, it inherits those same drawbacks. Furthermore, once Claude Code launched, my use of AI in Cursor dropped off dramatically.
 
-I shifted to using the Claude Code VSCode plugin in Cursor, which enabled easier multiline editing than CC-in-terminal. Over time, though, I hit more and more cases where the VSCode extension couldn't do things that CC-in terminal could. Friction.
+I shifted to using the Claude Code VSCode plugin in Cursor, which enabled easier multiline editing than CC-in-terminal. Over time, though, I hit more and more cases where the VSCode extension couldn't do things that CC-in-terminal could. Friction.
 
 As I got up to speed on Claude Skills and phased out Cursor Rules, I realized I was using Cursor as nothing more than an IDE, and in fact, the AI stuff in Cursor was just getting in the way. So I'm effectively paying $20/mo for the privilege of using VSCode with added AI annoyances (though I hear AI Annoyance has arrived in VSCode, too, in recent releases).
 
@@ -200,13 +200,13 @@ Zed gets a smaller slice of my widescreen; the CLI gets significantly more:
 
 ### I Supercharged my CLI: CLI-Mesh
 
-Before the Cherny post, my terminal setup had barely progressed beyond basic macOS terminal: I checked out Kitty and then Ghostty. But I spent almost all my time in the IDE, using Claude mostly through its VSCode extension.
+Before the Cherny post, my terminal setup had barely progressed beyond basic macOS terminal, mainly experiments with Kitty and Ghostty. But I spent almost all my time in the IDE, using Claude mostly through its VSCode extension.
 
 I split my time between two Macs, a deskbound M4 Mac Mini, and a mobile M1 Max MacBook Pro. Because I mostly wasn't operating in CLI mode, I hadn't set things up for easy SSH between machines.
 
 Cherny's setup appears to be Ghostty with splits; but many CLI advocates recommended using a good terminal app augmented by `tmux`, which adds terminal session-group-persistence---reattach and there are all your terminal windows just as you left them. And `tmux` works nicely across machines, which was my use case.
 
-I'd never used `tmux` and it took a while to get my head around it. I also learned through painful experience that you must avoid the dreaded Cross Machine Infinite Terminal Mirror where machine A `tmux`-attaches to machine B, which has a window attached back to machine A, and bam---lockup. In one cases, Wezterm consumed 250GB of application memory on my Mac Mini, which went unstable and needed a reboot.
+I'd never used `tmux` and it took a while to get my head around it. I also learned through painful experience that you must avoid the dreaded Cross Machine Infinite Terminal Mirror where machine A `tmux`-attaches to machine B, which has a window attached back to machine A, and bam---lockup. In one case, Wezterm consumed 250GB of application memory on my Mac Mini, which went unstable and needed a reboot.
 
 In the end, I landed on iTerm2 which has significant support for `tmux`, configured to avoid infinite mirror. With Claude Code's help, I also did some ssh and .zshrc tuning to make cross-machine access super low friction. The result is what I term "CLI-Mesh" between the two Macs, where I can access persistent CLI sessions on the Mini from the Macbook and vice versa. "Anything from anywhere" thanks to CLI-Mesh is pretty sweet.
 
@@ -218,17 +218,17 @@ Today I dug deeper and noticed that [someone apparently discovered](https://gith
 
 Anyway! Today I went back and moved everything that could be moved from the PreToolHook to Claude's Global Permissions settings. There were a few things that needed to stay in the hook: piped/compound commands, as well as restrictive git and gh subcommand parsing. The hook can handle these more complex rules because it receives the full command and runs code to parse it, splitting on pipes, extracting subcommands, checking against allowlists. Native permissions only do simple pattern matching on the raw command string.
 
-The good news is that I didn't have to actually do the work, Claude Code did---including writing Python hook scripts to parse commands. The better news is that Claude Code operation is so much more streamline, without needing to `--dangerously-skip-permissions`. (I will try living dangerously, safely, once I get more into Claude Code web and long running tasks.)
+The good news is that I didn't have to actually do the work, Claude Code did---including writing Python hook scripts to parse commands. The better news is that Claude Code operation is so much more streamlined, without needing to `--dangerously-skip-permissions`. (I will try living dangerously, safely, once I get more into Claude Code web and long running tasks.)
 
 ### Using Skills and Other Plugins in Claude Code
 
 When Cherny's post landed, I was in the process of an extreme deep-dive into Skills and all the other varieties of Plugins: /commands, agents, hooks, MCP servers, and Language Server Protocol (LSP) servers. This was due to my Christmas break project, [Skillport](skillport), which brings repository-based Skill distribution to all Claude surfaces including Claude Desktop and Claude.ai, and allows organizations to host their own private Skill repos. Because I wanted Skillport's git-based repositories to be 100% compatible with Anthropic's Plugin Marketplace format, I needed to know exactly how that format worked and what it supported.
 
-Although I was already pretty far along with using Skills in Claude Code, Cherny's post lit a fire under me to start using all the other plugin varieties. I've got one sophisticated use of hooks in place now, and an experiencing agents thanks to the PR Review plugin. I'm looking for an opportunity for custom agents next.
+Although I was already pretty far along with using Skills in Claude Code, Cherny's post lit a fire under me to start using all the other plugin varieties. I've got one sophisticated use of hooks in place now, and am experiencing agents thanks to the PR Review plugin. I'm looking for an opportunity for custom agents next.
 
 ---
 
-Much remains to be done, but thanks Boris Cherny for the inspiration.
+Much remains to be done, but thanks, Boris Cherny, for the inspiration.
 
 <SingleImage
   src="speedy_workflow_sloth.jpg"
