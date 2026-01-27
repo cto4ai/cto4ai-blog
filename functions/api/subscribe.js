@@ -75,7 +75,7 @@ export async function onRequestPost(context) {
                   },
                 ],
                 // Custom attributes using slugs (lowercase with underscores)
-                newsletter_status: 'Confirmed',
+                newsletter_status: 'Subscribed',
                 newsletter_source: 'Website Signup',
               },
             },
