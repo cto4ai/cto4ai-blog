@@ -1,0 +1,21 @@
+---
+interface Props {
+  variant?: 'default' | 'warning' | 'success' | 'info';
+  class?: string;
+}
+
+const { variant = 'default', class: className = '' } = Astro.props;
+
+const variantClasses = {
+  default: 'from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 border-indigo-500',
+  warning: 'from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-amber-500',
+  success: 'from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-500',
+  info: 'from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20 border-cyan-500',
+};
+---
+
+<aside class={`bg-gradient-to-br ${variantClasses[variant]} border-l-4 p-6 my-8 rounded-r-lg shadow-md ${className}`}>
+  <div class="prose prose-lg dark:prose-invert max-w-none">
+    <slot />
+  </div>
+</aside>
