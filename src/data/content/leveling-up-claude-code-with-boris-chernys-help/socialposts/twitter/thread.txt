@@ -1,0 +1,17 @@
+TWEET 1:
+I knew my Claude Code setup needed work. I just didn't know where to start.
+
+TWEET 2:
+Then Boris Cherny - creator of Claude Code - posted a thread about how he personally uses it. Not documentation. Not a tutorial. Just: here's my actual setup, here's how I work.
+
+TWEET 3:
+First thing that hit me: no IDE. Just 5 terminal windows. Cherny writes Claude Code using Claude Code, apparently with little help from an IDE.
+
+TWEET 4:
+I followed his lead: CLI-first with iTerm2 + tmux, Cursor replaced with lightweight Zed, permissions configured. Just the first steps - but Claude Code already feels transformed.
+
+TWEET 5:
+Sometimes you just need to see how someone good at something actually does it. Cherny's thread was that for me.
+
+TWEET 6:
+https://cto4.ai/p/leveling-up-claude-code-with-boris-chernys-help

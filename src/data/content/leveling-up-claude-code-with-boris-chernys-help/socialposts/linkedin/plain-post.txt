@@ -4,7 +4,7 @@ Then Boris Cherny, creator of Claude Code, posted a thread about how he personal
 
 The first thing that hit me: no IDE. Just 5 terminal windows. Cherny writes Claude Code using Claude Code, and he apparently does it with little or no help from an IDE. 
 
-I followed Cherny's lead and went CLI-first, pairing George Nachman's iTerm2 with tmux for persistent sessions across machines. I replaced Cursor with nimble, lightweight Zed, and configured Claude's permissions so I'm not constantly clicking "allow." Just the first steps, with many more to follow, but Claude Code already feels like a different tool.
+I followed Cherny's lead and went CLI-first, pairing iTerm2 with tmux for persistent sessions across machines. I replaced Cursor with nimble, lightweight Zed, and configured Claude's permissions so I'm not constantly clicking "allow." Just the first steps, with many more to follow, but Claude Code already feels like a different tool.
 
 Sometimes you just need to see how someone good at something actually does it. Cherny's thread was that for me.
 
