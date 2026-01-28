@@ -93,9 +93,23 @@ Beehiiv organizes post creation into five sequential tabs:
 
 ### Timing
 
-- **Best days**: Tuesday, Wednesday, Thursday
-- **Best time**: 10am recipient's timezone (or 10am CT)
-- **Avoid**: Mondays, Fridays, weekends
+| Day           | Time    | Notes                                     |
+| ------------- | ------- | ----------------------------------------- |
+| **Tuesday**   | 10am CT | Strong choice - inbox cleared from Monday |
+| **Wednesday** | 10am CT | Peak mid-week engagement                  |
+| **Thursday**  | 10am CT | Good for thought leadership content       |
+| Monday AM     | -       | Avoid: inbox overload from weekend        |
+| Friday PM     | -       | Avoid: weekend mindset, low engagement    |
+
+**For B2B/CTO audience:** Tuesday or Wednesday 10am CT tends to perform best.
+
+**Why 10am CT specifically:**
+
+- Beehiiv sends based on _your_ timezone, not each recipient's
+- 10am CT = 11am ET (still morning) and 8am PT (early but working)
+- Catches most US-based readers during prime work hours
+
+**Recommendation:** Start with Tuesday 10am CT, then check open rate data after 3-4 sends to optimize for your specific audience.
 
 ### Subject Lines
 

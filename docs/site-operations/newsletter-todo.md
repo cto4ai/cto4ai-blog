@@ -13,7 +13,6 @@ Current status: 478 subscribers, zero newsletters sent.
 
 ### In Beehiiv
 
-- [ ] **Set up welcome email** - Auto-sends to new subscribers (do before first send!)
 - [ ] **Create draft** - Go to beehiiv.new or Dashboard → Start Writing
 - [ ] **Write subject line** - Under 50 chars, specific
 - [ ] **Set preview text** - Complements subject line
