@@ -2,9 +2,49 @@
 export async function onRequestGet(context) {
   const { request, env } = context;
   const url = new URL(request.url);
-  const email = url.searchParams.get('email');
+  let email = url.searchParams.get('email');
+  const attioRecordId = url.searchParams.get('id');
 
-  // If no email parameter, redirect to homepage
+  // If record ID provided, look up email from Attio
+  if (attioRecordId && !email) {
+    if (!env.ATTIO_API_KEY) {
+      console.error('ATTIO_API_KEY not configured for record ID lookup');
+      return Response.redirect('https://cto4.ai/?subscribe_error=1', 302);
+    }
+
+    try {
+      console.log('Looking up Attio record:', attioRecordId);
+      const attioResponse = await fetch(`https://api.attio.com/v2/objects/people/records/${attioRecordId}`, {
+        headers: {
+          Authorization: `Bearer ${env.ATTIO_API_KEY}`,
+        },
+      });
+
+      if (!attioResponse.ok) {
+        const errorText = await attioResponse.text();
+        console.error('Attio lookup failed:', attioResponse.status, errorText);
+        return Response.redirect('https://cto4.ai/?subscribe_error=1', 302);
+      }
+
+      const attioData = await attioResponse.json();
+      console.log('Attio record data:', JSON.stringify(attioData));
+
+      // Extract primary email (first in the list)
+      const emailAddresses = attioData?.data?.values?.email_addresses;
+      if (emailAddresses && emailAddresses.length > 0) {
+        email = emailAddresses[0].email_address;
+        console.log('Found email from Attio:', email);
+      } else {
+        console.error('No email found in Attio record');
+        return Response.redirect('https://cto4.ai/?subscribe_error=1', 302);
+      }
+    } catch (lookupError) {
+      console.error('Attio lookup error:', lookupError.message);
+      return Response.redirect('https://cto4.ai/?subscribe_error=1', 302);
+    }
+  }
+
+  // If no email (and no record ID), redirect to homepage
   if (!email) {
     return Response.redirect('https://cto4.ai/', 302);
   }
