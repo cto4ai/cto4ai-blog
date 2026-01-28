@@ -1,8 +1,92 @@
-// Handle GET requests (e.g., direct navigation to the URL)
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// Handle GET requests for one-click subscribe (e.g., from Attio permission pass emails)
 export async function onRequestGet(context) {
-  // Redirect GET requests to the homepage instead of subscribe page to avoid confusion
-  return Response.redirect('https://cto4.ai/', 302);
+  const { request, env } = context;
+  const url = new URL(request.url);
+  const email = url.searchParams.get('email');
+
+  // If no email parameter, redirect to homepage
+  if (!email) {
+    return Response.redirect('https://cto4.ai/', 302);
+  }
+
+  try {
+    if (!env.BEEHIIV_API_KEY) {
+      throw new Error('BEEHIIV_API_KEY is not configured');
+    }
+
+    console.log('One-click subscribe for:', email);
+
+    // Make API call to Beehiiv with double_opt_override for true one-click
+    const response = await fetch(
+      `https://api.beehiiv.com/v2/publications/pub_03d62407-3f9e-4c6f-8d95-d7da8f9e80fe/subscriptions`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${env.BEEHIIV_API_KEY}`,
+        },
+        body: JSON.stringify({
+          email: email,
+          reactivate_existing: true,
+          send_welcome_email: true,
+          double_opt_override: 'off',
+          utm_source: 'permission_pass',
+        }),
+      }
+    );
+
+    console.log('Beehiiv API response status:', response.status);
+    const responseText = await response.text();
+    console.log('Beehiiv API response:', responseText);
+
+    if (!response.ok) {
+      throw new Error(`Beehiiv API error: ${response.status} - ${responseText}`);
+    }
+
+    // Update Attio CRM if API key is configured
+    if (env.ATTIO_API_KEY) {
+      try {
+        console.log('Updating Attio for:', email);
+
+        const attioUrl = new URL('https://api.attio.com/v2/objects/people/records');
+        attioUrl.searchParams.append('matching_attribute', 'email_addresses');
+
+        const attioResponse = await fetch(attioUrl.toString(), {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${env.ATTIO_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            data: {
+              values: {
+                email_addresses: [{ email_address: email }],
+                newsletter_status: 'Subscribed',
+                newsletter_source: 'Permission Pass',
+              },
+            },
+          }),
+        });
+
+        const attioResult = await attioResponse.text();
+        console.log('Attio response status:', attioResponse.status);
+        console.log('Attio response:', attioResult);
+
+        if (!attioResponse.ok) {
+          console.error('Attio update failed:', attioResult);
+        }
+      } catch (attioError) {
+        console.error('Attio update error:', attioError.message);
+      }
+    }
+
+    // Redirect to success page
+    return Response.redirect('https://cto4.ai/subscribe-success', 303);
+  } catch (error) {
+    console.error('One-click subscription error:', error.message);
+    // Redirect to homepage with error (could create an error page later)
+    return Response.redirect('https://cto4.ai/?subscribe_error=1', 302);
+  }
 }
 
 export async function onRequestPost(context) {
