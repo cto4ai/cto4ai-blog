@@ -1,3 +1,11 @@
+// Mask email for logging (show first 2 chars + domain)
+function maskEmail(email) {
+  if (!email) return '[none]';
+  const [local, domain] = email.split('@');
+  if (!domain) return email.substring(0, 2) + '***';
+  return local.substring(0, 2) + '***@' + domain;
+}
+
 // Handle GET requests for one-click subscribe (e.g., from Attio permission pass emails)
 export async function onRequestGet(context) {
   const { request, env } = context;
@@ -7,6 +15,12 @@ export async function onRequestGet(context) {
 
   // If record ID provided, look up email from Attio
   if (attioRecordId && !email) {
+    // Validate record ID format (UUID)
+    if (!/^[a-f0-9-]{36}$/i.test(attioRecordId)) {
+      console.error('Invalid Attio record ID format');
+      return Response.redirect('https://cto4.ai/?subscribe_error=1', 302);
+    }
+
     if (!env.ATTIO_API_KEY) {
       console.error('ATTIO_API_KEY not configured for record ID lookup');
       return Response.redirect('https://cto4.ai/?subscribe_error=1', 302);
@@ -27,13 +41,13 @@ export async function onRequestGet(context) {
       }
 
       const attioData = await attioResponse.json();
-      console.log('Attio record data:', JSON.stringify(attioData));
+      const emailAddresses = attioData?.data?.values?.email_addresses;
+      console.log('Attio record found, email count:', emailAddresses?.length || 0);
 
       // Extract primary email (first in the list)
-      const emailAddresses = attioData?.data?.values?.email_addresses;
       if (emailAddresses && emailAddresses.length > 0) {
         email = emailAddresses[0].email_address;
-        console.log('Found email from Attio:', email);
+        console.log('Found email from Attio:', maskEmail(email));
       } else {
         console.error('No email found in Attio record');
         return Response.redirect('https://cto4.ai/?subscribe_error=1', 302);
@@ -54,7 +68,7 @@ export async function onRequestGet(context) {
       throw new Error('BEEHIIV_API_KEY is not configured');
     }
 
-    console.log('One-click subscribe for:', email);
+    console.log('One-click subscribe for:', maskEmail(email));
 
     // Make API call to Beehiiv with double_opt_override for true one-click
     const response = await fetch(
@@ -77,16 +91,16 @@ export async function onRequestGet(context) {
 
     console.log('Beehiiv API response status:', response.status);
     const responseText = await response.text();
-    console.log('Beehiiv API response:', responseText);
 
     if (!response.ok) {
-      throw new Error(`Beehiiv API error: ${response.status} - ${responseText}`);
+      console.error('Beehiiv API error response:', responseText);
+      throw new Error(`Beehiiv API error: ${response.status}`);
     }
 
     // Update Attio CRM if API key is configured
     if (env.ATTIO_API_KEY) {
       try {
-        console.log('Updating Attio for:', email);
+        console.log('Updating Attio for:', maskEmail(email));
 
         const attioUrl = new URL('https://api.attio.com/v2/objects/people/records');
         attioUrl.searchParams.append('matching_attribute', 'email_addresses');
@@ -108,12 +122,11 @@ export async function onRequestGet(context) {
           }),
         });
 
-        const attioResult = await attioResponse.text();
-        console.log('Attio response status:', attioResponse.status);
-        console.log('Attio response:', attioResult);
+        console.log('Attio update response status:', attioResponse.status);
 
         if (!attioResponse.ok) {
-          console.error('Attio update failed:', attioResult);
+          const attioResult = await attioResponse.text();
+          console.error('Attio update failed:', attioResponse.status, attioResult);
         }
       } catch (attioError) {
         console.error('Attio update error:', attioError.message);
@@ -136,9 +149,8 @@ export async function onRequestPost(context) {
     const formData = await request.formData();
     const email = formData.get('email');
 
-    console.log('Email submitted:', email);
+    console.log('Email submitted:', maskEmail(email));
     console.log('API Key exists:', !!env.BEEHIIV_API_KEY);
-    console.log('API Key length:', env.BEEHIIV_API_KEY?.length);
 
     if (!email) {
       return new Response('Email is required', { status: 400 });
@@ -169,16 +181,16 @@ export async function onRequestPost(context) {
 
     // Get the response text to see any error details
     const responseText = await response.text();
-    console.log('Beehiiv API response:', responseText);
 
     if (!response.ok) {
-      throw new Error(`Beehiiv API error: ${response.status} - ${responseText}`);
+      console.error('Beehiiv API error response:', responseText);
+      throw new Error(`Beehiiv API error: ${response.status}`);
     }
 
     // Update Attio CRM if API key is configured
     if (env.ATTIO_API_KEY) {
       try {
-        console.log('Updating Attio for:', email);
+        console.log('Updating Attio for:', maskEmail(email));
 
         // Use PUT to assert (create or update) person record
         const attioUrl = new URL('https://api.attio.com/v2/objects/people/records');
@@ -206,13 +218,12 @@ export async function onRequestPost(context) {
           }),
         });
 
-        const attioResult = await attioResponse.text();
-        console.log('Attio response status:', attioResponse.status);
-        console.log('Attio response:', attioResult);
+        console.log('Attio update response status:', attioResponse.status);
 
         if (!attioResponse.ok) {
+          const attioResult = await attioResponse.text();
           // Log error but don't fail the subscription
-          console.error('Attio update failed:', attioResult);
+          console.error('Attio update failed:', attioResponse.status, attioResult);
         }
       } catch (attioError) {
         // Log error but don't fail the subscription
